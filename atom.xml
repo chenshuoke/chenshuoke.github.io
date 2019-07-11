@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>孤狼的博客</title>
+  <icon>https://www.gravatar.com/avatar/ed56062f7a1b260b69b7d56f87d29dcb</icon>
+  <subtitle>孤狼的博客</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://blog.chenshuoke.top/"/>
+  <updated>2019-07-11T18:05:02.749Z</updated>
+  <id>http://blog.chenshuoke.top/</id>
+  
+  <author>
+    <name>陈硕珂</name>
+    <email>Henu_chenshuoke@163.com</email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>安装deepin之后的环境、软件安装（不断更新）</title>
+    <link href="http://blog.chenshuoke.top/2019/07/12/%E5%AE%89%E8%A3%85deepin%E4%B9%8B%E5%90%8E%E7%9A%84%E7%8E%AF%E5%A2%83%E3%80%81%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%8D%E6%96%AD%E6%9B%B4%E6%96%B0%EF%BC%89/"/>
+    <id>http://blog.chenshuoke.top/2019/07/12/安装deepin之后的环境、软件安装（不断更新）/</id>
+    <published>2019-07-11T18:01:12.000Z</published>
+    <updated>2019-07-11T18:05:02.749Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;安装deepin之后的环境、软件安装（不断更新）&quot;&gt;&lt;a href=&quot;#安装deepin之后的环境、软件安装（不断更新）&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="deepin" scheme="http://blog.chenshuoke.top/categories/deepin/"/>
+    
+    
+      <category term="deepin" scheme="http://blog.chenshuoke.top/tags/deepin/"/>
+    
+      <category term="环境" scheme="http://blog.chenshuoke.top/tags/%E7%8E%AF%E5%A2%83/"/>
+    
+      <category term="软件" scheme="http://blog.chenshuoke.top/tags/%E8%BD%AF%E4%BB%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://blog.chenshuoke.top/2019/07/11/hello-world/"/>
+    <id>http://blog.chenshuoke.top/2019/07/11/hello-world/</id>
+    <published>2019-07-11T07:15:46.130Z</published>
+    <updated>2019-07-11T07:15:46.130Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>markdown语法</title>
+    <link href="http://blog.chenshuoke.top/2019/05/09/markdown%E8%AF%AD%E6%B3%95/"/>
+    <id>http://blog.chenshuoke.top/2019/05/09/markdown语法/</id>
+    <published>2019-05-09T11:31:48.000Z</published>
+    <updated>2019-05-31T09:39:16.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;1-标题-Headers&quot;&gt;&lt;a href=&quot;#1-标题-Headers&quot; class=&quot;headerlink&quot; title=&quot;1.标题(Headers)&quot;&gt;&lt;/a&gt;1.标题(Headers)&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;Markdown 标题支持两种形式：&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;1-1用-6个-标记&quot;&gt;&lt;a href=&quot;#1-1用-6个-标记&quot; class=&quot;headerlink&quot; title=&quot;1.1用~6个#标记&quot;&gt;&lt;/a&gt;1.1用~6个#标记&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;在 标题开头 加上1~6个#，依次代表一级标题、二级标题….六级标题&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;# 一级标题 `&amp;lt;h1&amp;gt;`
+## 二级标题 `&amp;lt;h2&amp;gt;`
+### 三级标题 `&amp;lt;h3&amp;gt;`
+#### 四级标题 `&amp;lt;h4&amp;gt;`
+##### 五级标题 `&amp;lt;h5&amp;gt;`
+###### 六级标题 `&amp;lt;h6&amp;gt;`&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="markdown" scheme="http://blog.chenshuoke.top/categories/markdown/"/>
+    
+    
+      <category term="markdown" scheme="http://blog.chenshuoke.top/tags/markdown/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android组件之Fragment、FragmentTabHost</title>
+    <link href="http://blog.chenshuoke.top/2019/05/08/Android%E7%BB%84%E4%BB%B6%E4%B9%8BFragment%E3%80%81FragmentTabHost/"/>
+    <id>http://blog.chenshuoke.top/2019/05/08/Android组件之Fragment、FragmentTabHost/</id>
+    <published>2019-05-08T15:35:10.000Z</published>
+    <updated>2019-05-31T09:38:20.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Fragment和FtagmentTabHost的用法&quot;&gt;&lt;a href=&quot;#Fragment和FtagmentTabHost的用法&quot; class=&quot;headerlink&quot; title=&quot;Fragment和FtagmentTabHost的用法&quot;&gt;&lt;/a&gt;Fragment和FtagmentTabHost的用法&lt;/h2&gt;&lt;p&gt;结合&lt;strong&gt;Fragment&lt;/strong&gt;与&lt;strong&gt;FragmentTabHost&lt;/strong&gt;实现如图所示程序界面和&lt;strong&gt;底部菜单栏&lt;/strong&gt;功能&lt;/p&gt;
+&lt;p&gt;底部菜单栏有5个按钮，程序启动时默认进入主页按钮页面，该页面采用Fragment实现&lt;/p&gt;
+&lt;p&gt;按不同的按钮，可以在不同的界面切换，每个界面都采用Fragment实现。&lt;/p&gt;
+&lt;p&gt;另外，每个按钮具有两种不同的状态。其他界面分别采用线性布局、相对布局、表布局与网格布局设计&lt;/p&gt;
+&lt;center class=&quot;half&quot;&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://chenshuoke-pictures.oss-cn-beijing.aliyuncs.com/Android/Android_Fragment/Lab_2_4_1.png&quot; height=&quot;500&quot; width=&quot;240&quot;&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://blog.chenshuoke.top/categories/Android/"/>
+    
+    
+      <category term="Fragment" scheme="http://blog.chenshuoke.top/tags/Fragment/"/>
+    
+      <category term="FragmentTabHost" scheme="http://blog.chenshuoke.top/tags/FragmentTabHost/"/>
+    
+      <category term="碎片" scheme="http://blog.chenshuoke.top/tags/%E7%A2%8E%E7%89%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>利用GitHub搭建Hexo博客</title>
+    <link href="http://blog.chenshuoke.top/2019/05/02/%E5%88%A9%E7%94%A8GitHub%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://blog.chenshuoke.top/2019/05/02/利用GitHub搭建Hexo博客/</id>
+    <published>2019-05-02T05:44:54.000Z</published>
+    <updated>2019-05-11T15:57:12.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;安装环境&quot;&gt;&lt;a href=&quot;#安装环境&quot; class=&quot;headerlink&quot; title=&quot;安装环境&quot;&gt;&lt;/a&gt;安装环境&lt;/h2&gt;&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;Node.js&lt;/li&gt;
+&lt;li&gt;Git&lt;/li&gt;
+&lt;li&gt;编辑器&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;安装Node-js&quot;&gt;&lt;a href=&quot;#安装Node-js&quot; class=&quot;headerlink&quot; title=&quot;安装Node.js&quot;&gt;&lt;/a&gt;安装Node.js&lt;/h3&gt;&lt;p&gt;官方网址：&lt;a href=&quot;https://nodejs.org/en/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://nodejs.org/en/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;点击最新版，下载一个形如&lt;strong&gt;node-v12.1.0-x64.msi&lt;/strong&gt;的文件，下载完成后点击安装&lt;/p&gt;
+&lt;p&gt;安装步骤：&lt;a href=&quot;https://www.cnblogs.com/zhouyu2017/p/6485265.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.cnblogs.com/zhouyu2017/p/6485265.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;注意：如果选择了&lt;strong&gt;Add to PATH&lt;/strong&gt;了，则无需手动配置环境变量，直接测试即可&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="博客" scheme="http://blog.chenshuoke.top/categories/%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="GitHub" scheme="http://blog.chenshuoke.top/tags/GitHub/"/>
+    
+      <category term="Hexo" scheme="http://blog.chenshuoke.top/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android组件之ProgressDialog</title>
+    <link href="http://blog.chenshuoke.top/2019/04/29/Android%E7%BB%84%E4%BB%B6%E4%B9%8BProgressDialog/"/>
+    <id>http://blog.chenshuoke.top/2019/04/29/Android组件之ProgressDialog/</id>
+    <published>2019-04-29T15:59:09.000Z</published>
+    <updated>2019-05-31T09:38:40.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;ProgressDialog的用法&quot;&gt;&lt;a href=&quot;#ProgressDialog的用法&quot; class=&quot;headerlink&quot; title=&quot;ProgressDialog的用法&quot;&gt;&lt;/a&gt;ProgressDialog的用法&lt;/h2&gt;&lt;p&gt;使用ProgressDialog实现如下程序界面和功能&lt;/p&gt;
+&lt;div align=&quot;center&quot;&gt;
+&lt;img src=&quot;https://chenshuoke-pictures.oss-cn-beijing.aliyuncs.com/Android/Android_ProgressDialog/Lab_2_3_2_1.png&quot; height=&quot;500&quot; width=&quot;240&quot;&gt;
+&lt;/div&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://blog.chenshuoke.top/categories/Android/"/>
+    
+    
+      <category term="ProgressDialog" scheme="http://blog.chenshuoke.top/tags/ProgressDialog/"/>
+    
+      <category term="进度条" scheme="http://blog.chenshuoke.top/tags/%E8%BF%9B%E5%BA%A6%E6%9D%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android组件之AlertDialog</title>
+    <link href="http://blog.chenshuoke.top/2019/04/29/Android%E7%BB%84%E4%BB%B6%E4%B9%8BAlertDialog/"/>
+    <id>http://blog.chenshuoke.top/2019/04/29/Android组件之AlertDialog/</id>
+    <published>2019-04-29T15:36:07.000Z</published>
+    <updated>2019-05-31T09:38:06.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;AlertDialog的几种用法&quot;&gt;&lt;a href=&quot;#AlertDialog的几种用法&quot; class=&quot;headerlink&quot; title=&quot;AlertDialog的几种用法&quot;&gt;&lt;/a&gt;AlertDialog的几种用法&lt;/h2&gt;&lt;p&gt;使用AlertDialog实现如下程序和功能&lt;/p&gt;
+&lt;div align=&quot;center&quot;&gt;
+&lt;img src=&quot;https://chenshuoke-pictures.oss-cn-beijing.aliyuncs.com/Android/Android_AlertDialog/Lab_2_3_1_1.png&quot; height=&quot;500&quot; width=&quot;240&quot;&gt;
+&lt;/div&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://blog.chenshuoke.top/categories/Android/"/>
+    
+    
+      <category term="AlertDialog" scheme="http://blog.chenshuoke.top/tags/AlertDialog/"/>
+    
+      <category term="对话框" scheme="http://blog.chenshuoke.top/tags/%E5%AF%B9%E8%AF%9D%E6%A1%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2.两数相加</title>
+    <link href="http://blog.chenshuoke.top/2019/04/15/2.%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/"/>
+    <id>http://blog.chenshuoke.top/2019/04/15/2.两数相加/</id>
+    <published>2019-04-14T16:16:09.000Z</published>
+    <updated>2019-05-12T04:04:50.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;p&gt;给出两个 &lt;strong&gt;非空&lt;/strong&gt; 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 &lt;strong&gt;逆序&lt;/strong&gt; 的方式存储的，并且它们的每个节点只能存储 &lt;strong&gt;一位&lt;/strong&gt; 数字。&lt;/p&gt;
+&lt;p&gt;如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。&lt;/p&gt;
+&lt;p&gt;您可以假设除了数字 0 之外，这两个数都不会以 0 开头。&lt;/p&gt;
+&lt;h3 id=&quot;示例：&quot;&gt;&lt;a href=&quot;#示例：&quot; class=&quot;headerlink&quot; title=&quot;示例：&quot;&gt;&lt;/a&gt;示例：&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;输入：(2 -&amp;gt; 4 -&amp;gt; 3) + (5 -&amp;gt; 6 -&amp;gt; 4)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;输出：7 -&amp;gt; 0 -&amp;gt; 8&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;原因：342 + 465 = 807&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="http://blog.chenshuoke.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="链表" scheme="http://blog.chenshuoke.top/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+      <category term="数学" scheme="http://blog.chenshuoke.top/tags/%E6%95%B0%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>1.两数之和</title>
+    <link href="http://blog.chenshuoke.top/2019/04/15/1.%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/"/>
+    <id>http://blog.chenshuoke.top/2019/04/15/1.两数之和/</id>
+    <published>2019-04-14T16:12:38.000Z</published>
+    <updated>2019-05-27T13:32:32.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;p&gt; 给定一个整数数组 &lt;code&gt;nums&lt;/code&gt; 和一个目标值 &lt;code&gt;target&lt;/code&gt;，请你在该数组中找出和为目标值的那 &lt;strong&gt;两个&lt;/strong&gt; 整数，并返回他们的数组下标。&lt;/p&gt;
+&lt;p&gt; 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。&lt;/p&gt;
+&lt;h3 id=&quot;示例：&quot;&gt;&lt;a href=&quot;#示例：&quot; class=&quot;headerlink&quot; title=&quot;示例：&quot;&gt;&lt;/a&gt;示例：&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;给定 nums = [2, 7, 11, 15], target = 9&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;因为 nums[0] + nums[1] = 2 + 7 = 9&lt;br&gt;所以返回 [0, 1]&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="http://blog.chenshuoke.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="数组" scheme="http://blog.chenshuoke.top/tags/%E6%95%B0%E7%BB%84/"/>
+    
+      <category term="哈希表" scheme="http://blog.chenshuoke.top/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android组件之ListView</title>
+    <link href="http://blog.chenshuoke.top/2019/04/11/Android%E7%BB%84%E4%BB%B6%E4%B9%8BListView/"/>
+    <id>http://blog.chenshuoke.top/2019/04/11/Android组件之ListView/</id>
+    <published>2019-04-11T10:16:43.000Z</published>
+    <updated>2019-05-31T09:38:28.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;ListView简单用法&quot;&gt;&lt;a href=&quot;#ListView简单用法&quot; class=&quot;headerlink&quot; title=&quot;ListView简单用法&quot;&gt;&lt;/a&gt;ListView简单用法&lt;/h2&gt;&lt;p&gt;当选择某一ListView子项，TextView中会显示所选子项内容&lt;/p&gt;
+&lt;div align=&quot;center&quot;&gt;
+&lt;img src=&quot;https://chenshuoke-pictures.oss-cn-beijing.aliyuncs.com/Android/Android_ListView/Lab_2_2.png&quot; height=&quot;500&quot; width=&quot;240&quot;&gt;
+&lt;/div&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://blog.chenshuoke.top/categories/Android/"/>
+    
+    
+      <category term="ListView" scheme="http://blog.chenshuoke.top/tags/ListView/"/>
+    
+  </entry>
+  
+</feed>

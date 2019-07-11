@@ -1,0 +1,1490 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="markdown语法, 孤狼的博客">
+    <meta name="description" content="1.标题(Headers)
+Markdown 标题支持两种形式：
+
+1.1用~6个#标记
+在 标题开头 加上1~6个#，依次代表一级标题、二级标题….六级标题
+
+# 一级标题 `&amp;lt;h1&amp;gt;`
+## 二级标题 `&amp;lt;h2&amp;gt;">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>markdown语法 | 孤狼的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+    <!-- 下面一句添加的 -->
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">孤狼的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">孤狼的博客</div>
+        <div class="logo-desc">
+            
+            从来没有真正的绝境，只有心灵的迷途
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/chenshuoke" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/chenshuoke" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        markdown语法
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/markdown/" target="_blank">
+                                <span class="chip bg-color">markdown</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/markdown/" class="post-category" target="_blank">
+                                markdown
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-05-09
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        2.6k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        10 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="1-标题-Headers"><a href="#1-标题-Headers" class="headerlink" title="1.标题(Headers)"></a>1.标题(Headers)</h2><blockquote>
+<p>Markdown 标题支持两种形式：</p>
+</blockquote>
+<h3 id="1-1用-6个-标记"><a href="#1-1用-6个-标记" class="headerlink" title="1.1用~6个#标记"></a>1.1用~6个#标记</h3><blockquote>
+<p>在 标题开头 加上1~6个#，依次代表一级标题、二级标题….六级标题</p>
+</blockquote>
+<pre><code># 一级标题 `&lt;h1&gt;`
+## 二级标题 `&lt;h2&gt;`
+### 三级标题 `&lt;h3&gt;`
+#### 四级标题 `&lt;h4&gt;`
+##### 五级标题 `&lt;h5&gt;`
+###### 六级标题 `&lt;h6&gt;`</code></pre><a id="more"></a>
+
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><h3 id="1-2用-和-标记"><a href="#1-2用-和-标记" class="headerlink" title="1.2用=和-标记"></a>1.2用=和-标记</h3><blockquote>
+<p>在 标题底下 加上任意个=代表一级标题，-代表二级标题</p>
+</blockquote>
+<pre><code>一级标题
+========
+二级标题
+---------</code></pre><h1 id="一级标题-1"><a href="#一级标题-1" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题-1"><a href="#二级标题-1" class="headerlink" title="二级标题"></a>二级标题</h2><h2 id="2-列表-Lists"><a href="#2-列表-Lists" class="headerlink" title="2.列表(Lists)"></a>2.列表(Lists)</h2><blockquote>
+<p>Markdown 支持有序列表和无序列表。</p>
+</blockquote>
+<h3 id="2-1无序列表-Unordered-Lists"><a href="#2-1无序列表-Unordered-Lists" class="headerlink" title="2.1无序列表(Unordered Lists)"></a>2.1无序列表(Unordered Lists)</h3><blockquote>
+<p>无序列表使用-、+和*作为列表标记：</p>
+</blockquote>
+<pre><code>- Red
+- Green
+- Blue
+
+* Red
+* Green
+* Blue
+
++ Red
++ Green
++ Blue</code></pre><ul>
+<li>Red</li>
+<li>Green</li>
+<li>Blue</li>
+</ul>
+<ul>
+<li>Red</li>
+<li>Green</li>
+<li>Blue</li>
+</ul>
+<ul>
+<li>Red</li>
+<li>Green</li>
+<li>Blue</li>
+</ul>
+<h3 id="2-2有序列表-Ordered-Lists"><a href="#2-2有序列表-Ordered-Lists" class="headerlink" title="2.2有序列表(Ordered Lists)"></a>2.2有序列表(Ordered Lists)</h3><blockquote>
+<p>有序列表则使用数字加英文句点来表示：</p>
+</blockquote>
+<pre><code>1. Red
+2. Green
+5. 不管前面序号对错依次排列</code></pre><ol>
+<li>Red</li>
+<li>Green</li>
+<li>不管前面序号对错依次排列</li>
+</ol>
+<h3 id="2-3列表嵌套"><a href="#2-3列表嵌套" class="headerlink" title="2.3列表嵌套"></a>2.3列表嵌套</h3><p>上一级和下一级之间敲三个空格即可</p>
+<ul>
+<li><p>一级无序列表内容</p>
+<ul>
+<li>二级无序列表内容</li>
+</ul>
+</li>
+<li><p>一级无序列表内容</p>
+<ol>
+<li>二级有序列表内容</li>
+</ol>
+</li>
+</ul>
+<ol>
+<li><p>一级有序列表内容</p>
+<ul>
+<li>二级无序列表内容</li>
+</ul>
+</li>
+<li><p>一级有序列表内容</p>
+<ol>
+<li>二级有序列表内容</li>
+</ol>
+</li>
+</ol>
+<h2 id="3-引用-Reference"><a href="#3-引用-Reference" class="headerlink" title="3.引用(Reference)"></a>3.引用(Reference)</h2><blockquote>
+<p>引用以&gt;来表示，引用中支持多级引用、标题、列表、代码块、分割线等常规语<br>法。</p>
+</blockquote>
+<h3 id="3-1常见的引用方法："><a href="#3-1常见的引用方法：" class="headerlink" title="3.1常见的引用方法："></a>3.1常见的引用方法：</h3><pre><code>&gt; 这是一段引用    //在`&gt;`后面有 1 个空格
+&gt; 
+&gt;     这是引用的代码块形式    //在`&gt;`后面有 5 个空格</code></pre><blockquote>
+<p>这是一段引用    //在<code>&gt;</code>后面有 1 个空格</p>
+<pre><code>这是引用的代码块形式    //在`&gt;`后面有 5 个空格</code></pre></blockquote>
+<pre><code>&gt; 代码例子：
+&gt;   
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }</code></pre><blockquote>
+<p>代码例子：</p>
+<pre><code>protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+}</code></pre></blockquote>
+<h3 id="3-2分级引用"><a href="#3-2分级引用" class="headerlink" title="3.2分级引用"></a>3.2分级引用</h3><pre><code>&gt; 一级引用
+&gt; &gt; 二级引用
+&gt; &gt; &gt; 三级引用
+
+&gt; #### 这是一个四级标题
+&gt; 
+&gt; 1. 这是第一行列表项
+&gt; 2. 这是第二行列表项</code></pre><blockquote>
+<p>一级引用</p>
+<blockquote>
+<p>二级引用</p>
+<blockquote>
+<p>三级引用</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<blockquote>
+<h4 id="这是一个四级标题"><a href="#这是一个四级标题" class="headerlink" title="这是一个四级标题"></a>这是一个四级标题</h4><ol>
+<li>这是第一行列表项</li>
+<li>这是第二行列表项</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>建立多级列表时，每个子级别都要比上个级别前面多打2个以上空格。<br>在 「 * 」 前加两个空格键或者一个 tab 键就可以产生一个子列表。<br>有序列表： 在文本前加 「字母.」 或 「数字.」 即可生成一个有序列表。<br>注意，当你第一个序号使用什么作为标记的，那么同级别的列表就会自动使用其<br>作为标记。</p>
+</blockquote>
+<h2 id="4-文字样式-Text-Styling"><a href="#4-文字样式-Text-Styling" class="headerlink" title="4.文字样式(Text Styling)"></a>4.文字样式(Text Styling)</h2><h3 id="4-1基本语法"><a href="#4-1基本语法" class="headerlink" title="4.1基本语法"></a>4.1基本语法</h3><blockquote>
+<p>两个或-代表加粗，一个或-代表斜体，~~代表删除。</p>
+</blockquote>
+<pre><code>**加粗的文字**  或者 __加粗的文字__
+
+*倾斜的文字* 或者 _倾斜的文字_
+
+***斜体加粗的文字*** 或者 ___斜体加粗的文字___
+
+~~加删除线的文字~~
+
+:==高亮 #807700==  或者 ==高亮==
+
+`底纹`</code></pre><p><strong>加粗的文字</strong>  或者 <strong>加粗的文字</strong></p>
+<p><em>倾斜的文字</em> 或者 <em>倾斜的文字</em></p>
+<p><strong><em>斜体加粗的文字</em></strong> 或者 <strong><em>斜体加粗的文字</em></strong></p>
+<p><del>加删除线的文字</del></p>
+<p> :==高亮 #807700==  或者 ==高亮==</p>
+<p><code>底纹</code></p>
+<h3 id="4-2非基本语法"><a href="#4-2非基本语法" class="headerlink" title="4.2非基本语法"></a>4.2非基本语法</h3><p>字体上标（superscript）和下标（subscript ）</p>
+<h4 id="4-2-1简书上，字体上、下标的语法为："><a href="#4-2-1简书上，字体上、下标的语法为：" class="headerlink" title="4.2.1简书上，字体上、下标的语法为："></a>4.2.1简书上，字体上、下标的语法为：</h4><pre><code>&lt;sup&gt;上标文字&lt;/sup&gt;
+
+&lt;sub&gt;下标文字&lt;/sup&gt;</code></pre><p><sup>上标文字</sup></p>
+<p><sub>下标文字</sub></p>
+<h4 id="4-2-2Typora中，字体上、下标的语法为："><a href="#4-2-2Typora中，字体上、下标的语法为：" class="headerlink" title="4.2.2Typora中，字体上、下标的语法为："></a>4.2.2Typora中，字体上、下标的语法为：</h4><pre><code>这是^上标文字^
+
+这是~下标文字~</code></pre><p>这是^上标文字^</p>
+<p>这是<del>下标文字</del></p>
+<h2 id="5-图片与链接-Image-amp-Links"><a href="#5-图片与链接-Image-amp-Links" class="headerlink" title="5.图片与链接(Image &amp; Links)"></a>5.图片与链接(Image &amp; Links)</h2><blockquote>
+<p>图片与链接的语法很像，区别在一个 ! 号。</p>
+<p>注：Markdown 不能设置图片大小，如果必须设置则应使用HTML标记 &lt; img &gt;</p>
+</blockquote>
+<pre><code>图片：![]() ![图片描述(可忽略)](链接的地址)
+链接：[]() [链接描述](链接的地址)
+
+This is [an example](http://example.com/ &quot;Title&quot;) inline link.
+[This link](http://example.net/) has no title attribute.</code></pre><p>This is <a href="http://example.com/" title="Title" target="_blank" rel="noopener">an example</a> inline link.<br><a href="http://example.net/" target="_blank" rel="noopener">This link</a> has no title attribute.</p>
+<blockquote>
+<p>链接又分为行内式、参考式和 自动链接：</p>
+<blockquote>
+<p>内联（Inline）：以中括号[]标记显示的链接文本，后面紧跟用小括号()包围的链接。 如果链接 Title 属性，则在链接中使用空格加”Title 属性”，即Title。</p>
+</blockquote>
+</blockquote>
+<pre><code>这是行内式链接：[Mou](http://25.io/mou/)。
+
+这是参考式链接：[Mou][url]，其中url为链接标记，可置于文中任意位置。
+
+[url]: 25.io/mou/</code></pre><p>这是行内式链接：<a href="http://25.io/mou/" target="_blank" rel="noopener">Mou</a>。</p>
+<p>这是参考式链接：<a href="25.io/mou/">Mou</a>，其中url为链接标记，可置于文中任意位置。</p>
+<blockquote>
+<p>链接标记格式为：[链接标记文本]: 链接地址 链接title(可忽略)</p>
+</blockquote>
+<pre><code>这是自动链接：直接使用`&lt;&gt;`括起来&lt;http://25.io/mou/&gt;</code></pre><p>这是自动链接：直接使用<code>&lt;&gt;</code>括起来<a href="http://25.io/mou/" target="_blank" rel="noopener">http://25.io/mou/</a></p>
+<pre><code>这是图片：![][Mou icon]
+
+[Mou icon]: http://mouapp.com/Mou_128.png</code></pre><p>这是图片：<img src="http://mouapp.com/Mou_128.png" alt></p>
+<pre><code>添加图片的使用方法基本上和链接类似，只是在中括号前加叹号!，即![Image Title](URL &quot;Image Title&quot;)。</code></pre><p><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557646743750&di=509ba5d2314d2b87ff6697e2dc36614e&imgtype=0&src=http%3A%2F%2Fcdn.ifanr.cn%2Fwp-content%2Fuploads%2F2014%2F06%2Fgithub.png" alt="GitHub Mark"></p>
+<p>注：Markdown本身语法不支持链接在新页面中打开，有些平台可以，而有些平台可能就不行了，如果想要在新页面中打开的话可以用html语言的a标签代替。</p>
+<pre><code>&lt;a href=&quot;超链接地址&quot; target=&quot;_blank&quot;&gt;超链接名&lt;/a&gt;</code></pre><p>示例<br><a href="https://github.com/chenshuoke" target="_blank">我的Github</a></p>
+<h2 id="6-代码块引用-Fenced-Code-Blocks"><a href="#6-代码块引用-Fenced-Code-Blocks" class="headerlink" title="6.代码块引用(Fenced Code Blocks)"></a>6.代码块引用(Fenced Code Blocks)</h2><blockquote>
+<p>代码分为行内代码和代码块。</p>
+</blockquote>
+<h3 id="6-1行内代码"><a href="#6-1行内代码" class="headerlink" title="6.1行内代码"></a>6.1行内代码</h3><blockquote>
+<p>` 符号位于Tab键上方，1键左边</p>
+</blockquote>
+<blockquote>
+<p>行内代码使用 <code>代码</code> 标识，可嵌入文字中<br>需要引用代码时，如果引用的语句只有一段，不分行，可以用 ` 将语句包起来。</p>
+</blockquote>
+<pre><code>`Hello world`</code></pre><p><code>Hello world</code></p>
+<h3 id="6-2代码框"><a href="#6-2代码框" class="headerlink" title="6.2代码框"></a>6.2代码框</h3><blockquote>
+<p>两对```包裹,如果引用的语句为多行，可以将 置于这段代码的首行和末行。<br>代码前加四个空格键<br>代码前加一个 tab 键</p>
+</blockquote>
+<pre><code>Code Line 1
+Code Line 2
+Code Line 3</code></pre><p>代码语法高亮在```后面加上空格和语言名称即可</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">onCreate</span><span class="token punctuation">(</span>Bundle savedInstanceState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onCreate</span><span class="token punctuation">(</span>savedInstanceState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">setContentView</span><span class="token punctuation">(</span>R<span class="token punctuation">.</span>layout<span class="token punctuation">.</span>activity_main<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="7-表格-Tables"><a href="#7-表格-Tables" class="headerlink" title="7.表格(Tables)"></a>7.表格(Tables)</h2><blockquote>
+<p>表格对齐格式<br>居左：:—-<br>居中：:—-:或—–<br>居右：—-:<br>例子：</p>
+</blockquote>
+<pre><code>|标题|标题|标题|
+|:---|:---:|---:|
+|居左文本|居中文本|居右文本|</code></pre><table>
+<thead>
+<tr>
+<th align="left">标题</th>
+<th align="center">标题</th>
+<th align="right">标题</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">居左文本</td>
+<td align="center">居中文本</td>
+<td align="right">居右文本</td>
+</tr>
+</tbody></table>
+<h2 id="8-分隔线"><a href="#8-分隔线" class="headerlink" title="8.分隔线"></a>8.分隔线</h2><p>在一行中用三个以上的、-、_来建立一个分隔线，行内不能有其他东西。也可以在符号间插入空格。<br>在一行中使用三个或三个以上的、-或_可以添加分隔线，中间插入空格，但是不能有其他字符。</p>
+<pre><code>***
+---
+_____
+
+* * *</code></pre><hr>
+<hr>
+<hr>
+<hr>
+<blockquote>
+<p>效果均为一条分割线</p>
+</blockquote>
+<h2 id="9-脚注-注解-Footnotes"><a href="#9-脚注-注解-Footnotes" class="headerlink" title="9.脚注|注解(Footnotes)"></a>9.脚注|注解(Footnotes)</h2><h3 id="9-1使用-来定义脚注："><a href="#9-1使用-来定义脚注：" class="headerlink" title="9.1使用[^]来定义脚注："></a>9.1使用[^]来定义脚注：</h3><pre><code>这是一个脚注的例子[^1]
+[^1]: 这里是脚注</code></pre><p>这是一个脚注的例子[^1]<br>[^1]: 这里是脚注</p>
+<blockquote>
+<p>该页面不支持，遂用图片显示</p>
+</blockquote>
+<img align="left" src="https://chenshuoke-pictures.oss-cn-beijing.aliyuncs.com/markdown/Footnotes.jpg">
+<br>
+### 9.2注释
+
+<p>注释是给自己看的，预览时也不会出现，当然发布出去别人也不会看见。</p>
+<pre><code>&lt;!--注释--&gt;</code></pre><h2 id="10-常用弥补Markdown的Html标签"><a href="#10-常用弥补Markdown的Html标签" class="headerlink" title="10.常用弥补Markdown的Html标签"></a>10.常用弥补Markdown的Html标签</h2><h3 id="10-1字体"><a href="#10-1字体" class="headerlink" title="10.1字体"></a>10.1字体</h3><pre><code>&lt;font face=&quot;微软雅黑&quot; color=&quot;red&quot; size=&quot;6&quot;&gt;字体及字体颜色和大小&lt;/font&gt;
+&lt;font color=&quot;#0000ff&quot;&gt;字体颜色&lt;/font&gt;</code></pre><p><font face="微软雅黑" color="red" size="6">字体及字体颜色和大小</font><br><font color="#0000ff">字体颜色</font></p>
+<h3 id="10-2换行"><a href="#10-2换行" class="headerlink" title="10.2换行"></a>10.2换行</h3><pre><code>使用html标签`&lt;br/&gt;`&lt;br/&gt;换行</code></pre><p>使用html标签<code>&lt;br/&gt;</code><br>换行</p>
+<h3 id="10-3文本对齐方式"><a href="#10-3文本对齐方式" class="headerlink" title="10.3文本对齐方式"></a>10.3文本对齐方式</h3><pre><code>&lt;p align=&quot;left&quot;&gt;居左文本&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;居中文本&lt;/p&gt;
+&lt;p align=&quot;right&quot;&gt;居右文本&lt;/p&gt;</code></pre><p align="left">居左文本</p>
+<p align="center">居中文本</p>
+<p align="right">居右文本</p>
+
+<h3 id="10-4下划线"><a href="#10-4下划线" class="headerlink" title="10.4下划线"></a>10.4下划线</h3><pre><code>&lt;u&gt;下划线文本&lt;/u&gt;</code></pre><p><u>下划线文本</u></p>
+<h2 id="11-任务列表"><a href="#11-任务列表" class="headerlink" title="11.任务列表"></a>11.任务列表</h2><pre><code>【减号+[+空格或x+]+空格】
+- [ ] [links](), **formatting**, and ~~tags~~ supported
+- [x] list syntax required (any unordered or ordered list supported)
+- [ ] this is a complete item
+- [x] this is an incomplete item</code></pre><ul>
+<li><input disabled type="checkbox"> <a href>links</a>, <strong>formatting</strong>, and <del>tags</del> supported</li>
+<li><input checked disabled type="checkbox"> list syntax required (any unordered or ordered list supported)</li>
+<li><input disabled type="checkbox"> this is a complete item</li>
+<li><input checked disabled type="checkbox"> this is an incomplete item</li>
+</ul>
+<p>注：简书不支持该语法，Typora、Day One 2、马克飞象、Cmd Markdown等编辑器支持。</p>
+<h2 id="12-转义字符-Backslash-Escapes"><a href="#12-转义字符-Backslash-Escapes" class="headerlink" title="12.转义字符(Backslash Escapes)"></a>12.转义字符(Backslash Escapes)</h2><blockquote>
+<p>Markdown 可以利用反斜杠\来插入一些在语法中有其它意义的符号，例如：如果想要用星号加在文字旁边的方式来做出强调效果，可以在星号的前面加上反斜杠：</p>
+</blockquote>
+<pre><code>\*literal asterisks\*</code></pre><p>*literal asterisks*</p>
+<h2 id="13-流程图-Flow-Chart"><a href="#13-流程图-Flow-Chart" class="headerlink" title="13.流程图(Flow Chart)"></a>13.流程图(Flow Chart)</h2><ul>
+<li>流程图代码分两块，上面一块是创建你的流程（创建元素），然后隔一行，创建流程的走向(连接元素)<br></li>
+<li>创建流程（元素）：tag=&gt;type: content:&gt;url<ul>
+<li>tag 是流程图中的标签，在第二段连接元素时会用到。名称可以任意，一般为流程的英文缩写和数字的组合。</li>
+<li>type 用来确定标签的类型，=&gt;后面表示类型。由于标签的名称可以任意指定，所以要依赖type来确定标签的类型</li>
+<li>标签有6种类型：start end operation subroutine condition inputoutput</li>
+<li>content 是流程图文本框中的描述内容，: 后面表示内容，中英文均可。特别注意，冒号与文本之间一定要有个空格</li>
+<li>url是一个连接，与框框中的文本相绑定，:&gt;后面就是对应的 url 链接，点击文本时可以通过链接跳转到 url 指定页面<br></li>
+</ul>
+</li>
+<li>指向流程(连接元素)：标识（类别）-&gt;下一个标识<ul>
+<li>使用 -&gt; 来连接两个元素</li>
+<li>对于condition类型，有yes和no两个分支，如示例中的cond(yes)和cond(no)</li>
+<li>每个元素可以制定分支走向，默认向下，也可以用right指向右边，如示例中cond2(yes,right)。<br>
+
+</li>
+</ul>
+</li>
+</ul>
+<pre class=" language-flow"><code class="language-flow">st=>start: 开始
+op=>operation: My Operation
+cond=>condition: Yes or No?
+e=>end
+st->op->cond
+cond(yes)->e
+cond(no)->op</code></pre>
+<p><img src="https://chenshuoke-pictures.oss-cn-beijing.aliyuncs.com/markdown/FlowChart1.jpg" alt></p>
+<pre class=" language-flow"><code class="language-flow">st=>start: 开始
+e=>end: 登录
+io1=>inputoutput: 输入用户名密码
+sub1=>subroutine: 数据库查询子类
+cond=>condition: 是否有此用户
+cond2=>condition: 密码是否正确
+op=>operation: 读入用户信息
+
+st->io1->sub1->cond
+cond(yes,right)->cond2
+cond(no)->io1(right)
+cond2(yes,right)->op->e
+cond2(no)->io1</code></pre>
+<p><img src="https://chenshuoke-pictures.oss-cn-beijing.aliyuncs.com/markdown/FlowChart2.jpg" alt></p>
+<pre class=" language-flow"><code class="language-flow">st=>start: Start:>https://www.jpjbp.com/
+io=>inputoutput: verification
+op=>operation: Your Operation
+cond=>condition: Yes or No?
+sub=>subroutine: Your Subroutine
+e=>end
+
+st->io->op->cond
+cond(yes)->e
+cond(no)->sub->io</code></pre>
+<p><img src="https://chenshuoke-pictures.oss-cn-beijing.aliyuncs.com/markdown/FlowChart3.jpg" alt></p>
+
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'brA0u8dhiFmWzBQJ5YDMevuw-gzGzoHsz',
+        appKey: 'InzuBbqaqOss16gJu1jiKE7F',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/07/11/hello-world/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        
+                        <span class="card-title">Hello World</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-11
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            陈硕珂
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/05/08/Android组件之Fragment、FragmentTabHost/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Android组件之Fragment、FragmentTabHost">
+                        
+                        <span class="card-title">Android组件之Fragment、FragmentTabHost</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Fragment和FtagmentTabHost的用法结合Fragment与FragmentTabHost实现如图所示程序界面和底部菜单栏功能
+底部菜单栏有5个按钮，程序启动时默认进入主页按钮页面，该页面采用Fragment实现
+按不同的按
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Android/" class="post-category" target="_blank">
+                                    Android
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Fragment/" target="_blank">
+                        <span class="chip bg-color">Fragment</span>
+                    </a>
+                    
+                    <a href="/tags/FragmentTabHost/" target="_blank">
+                        <span class="chip bg-color">FragmentTabHost</span>
+                    </a>
+                    
+                    <a href="/tags/碎片/" target="_blank">
+                        <span class="chip bg-color">碎片</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">10.7k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/chenshuoke" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:henu_chenshuoke@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2604689299" class="tooltipped" data-tooltip="QQ联系我: 2604689299" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
