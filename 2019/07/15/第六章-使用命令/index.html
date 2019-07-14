@@ -1,0 +1,1503 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="第六章 使用命令, 孤狼的博客">
+    <meta name="description" content="Up to this point, we have seen a series of mysterious commands, each with its own mysterious options and arguments. In t">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>第六章 使用命令 | 孤狼的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+    <!-- 下面一句添加的 -->
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">孤狼的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">孤狼的博客</div>
+        <div class="logo-desc">
+            
+            从来没有真正的绝境，只有心灵的迷途
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/chenshuoke" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/chenshuoke" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        第六章 使用命令
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/TLCL/" class="post-category" target="_blank">
+                                TLCL
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-07-15
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        5.6k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        25 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>Up to this point, we have seen a series of mysterious commands, each with its own mysterious options and arguments. In this chapter, we will attempt to remove some of that mystery and even create some of our own commands. The commands introduced in this chapter are:</p>
+<p>在这之前，我们已经知道了一系列神秘的命令，每个命令都有自己奇妙的 选项和参数。在这一章中，我们将试图去掉一些神秘性，甚至创建我们自己 的命令。这一章将介绍以下命令：</p>
+<ul>
+<li>type – Indicate how a command name is interpreted</li>
+<li>type – 说明怎样解释一个命令名</li>
+<li>which – Display which executable program will be executed</li>
+<li>which – 显示会执行哪个可执行程序</li>
+<li>man – Display a command’s manual page</li>
+<li>man – 显示命令手册页</li>
+<li>apropos – Display a list of appropriate commands</li>
+<li>apropos – 显示一系列适合的命令</li>
+<li>info – Display a command’s info entry</li>
+<li>info – 显示命令 info</li>
+<li>whatis – Display a very brief description of a command</li>
+<li>whatis – 显示一个命令的简洁描述</li>
+<li>alias – Create an alias for a command</li>
+<li>alias – 创建命令别名</li>
+</ul>
+<h3 id="到底什么是命令？"><a href="#到底什么是命令？" class="headerlink" title="到底什么是命令？"></a>到底什么是命令？</h3><p>A command can be one of four different things:</p>
+<p>命令可以是下面四种形式之一：</p>
+<ol>
+<li>An executable program like all those files we saw in /usr/bin. Within this category, programs can be compiled binaries such as programs written in C and C++, or programs written in scripting languages such as the shell, perl, python, ruby, etc.</li>
+<li>A command built into the shell itself. bash supports a number of commands internally called shell builtins. The cd command, for example, is a shell builtin.</li>
+<li>A shell function. These are miniature shell scripts incorporated into the environment. We will cover configuring the environment and writing shell functions in later chapters, but for now, just be aware that they exist.</li>
+<li>An alias. Commands that we can define ourselves, built from other commands.</li>
+<li>是一个可执行程序，就像我们所看到的位于目录/usr/bin 中的文件一样。 这一类程序可以是用诸如 C 和 C++语言写成的程序编译的二进制文件, 也可以是由诸如shell，perl，python，ruby等等脚本语言写成的程序 。</li>
+<li>是一个内建于 shell 自身的命令。bash 支持若干命令，内部叫做 shell 内部命令 (builtins)。例如，cd 命令，就是一个 shell 内部命令。</li>
+<li>是一个 shell 函数。这些是小规模的 shell 脚本，它们混合到环境变量中。 在后续的章节里，我们将讨论配置环境变量以及书写 shell 函数。但是现在， 仅仅意识到它们的存在就可以了。</li>
+<li>是一个命令别名。我们可以定义自己的命令，建立在其它命令之上。</li>
+</ol>
+<h3 id="识别命令"><a href="#识别命令" class="headerlink" title="识别命令"></a>识别命令</h3><p>It is often useful to know exactly which of the four kinds of commands is being used and Linux provides a couple of ways to find out.</p>
+<p>这经常很有用，能确切地知道正在使用四类命令中的哪一类。Linux 提供了一对方法来 弄明白命令类型。</p>
+<h3 id="type-－-显示命令的类型"><a href="#type-－-显示命令的类型" class="headerlink" title="type － 显示命令的类型"></a>type － 显示命令的类型</h3><p>The type command is a shell builtin that displays the kind of command the shell will execute, given a particular command name. It works like this:</p>
+<p>type 命令是 shell 内部命令，它会显示命令的类别，给出一个特定的命令名（做为参数）。 它像这样工作：</p>
+<pre><code>type command</code></pre><p>Where “command” is the name of the command you want to examine. Here are some examples:</p>
+<p>“command”是你要检测的命令名。这里有些例子：</p>
+<pre><code>[me@linuxbox ~]$ type type
+type is a shell builtins
+[me@linuxbox ~]$ type ls
+ls is aliased to `ls --color=tty`
+[me@linuxbox ~]$ type cp
+cp is /bin/cp</code></pre><p>Here we see the results for three different commands. Notice that the one for ls (taken from a Fedora system) and how the ls command is actually an alias for the ls command with the “–color=tty” option added. Now we know why the output from ls is displayed in color!</p>
+<p>我们看到这三个不同命令的检测结果。注意，ls 命令（在 Fedora 系统中）的检查结果，ls 命令实际上 是 ls 命令加上选项”–color=tty”的别名。现在我们知道为什么 ls 的输出结果是有颜色的！</p>
+<h3 id="which-－-显示一个可执行程序的位置"><a href="#which-－-显示一个可执行程序的位置" class="headerlink" title="which － 显示一个可执行程序的位置"></a>which － 显示一个可执行程序的位置</h3><p>Sometimes there is more than one version of an executable program installed on a system. While this is not very common on desktop systems, it’s not unusual on large servers. To determine the exact location of a given executable, the which command is used:</p>
+<p>有时候在一个操作系统中，不只安装了可执行程序的一个版本。虽然在桌面系统中这并不普遍， 但在大型服务器中却很平常。为了确定所给定的执行程序的准确位置，使用 which 命令：</p>
+<pre><code>[me@linuxbox ~]$ which ls
+/bin/ls</code></pre><p>which only works for executable programs, not builtins nor aliases that are substitutes for actual executable programs. When we try to use which on a shell builtin, for example, cd, we either get no response or an error message:</p>
+<p>这个命令只对可执行程序有效，不包括内建命令和命令别名，别名是真正的可执行程序的替代物。 当我们试着使用 shell 内建命令时，例如，cd 命令，我们或者得不到回应，或者是个错误信息：</p>
+<pre><code>[me@linuxbox ~]$ which cd
+/usr/bin/which: no cd in
+(/opt/jre1.6.0_03/bin:/usr/lib/qt-3.3/bin:/usr/kerberos/bin:/opt/jre1
+.6.0_03/bin:/usr/lib/ccache:/usr/local/bin:/usr/bin:/bin:/home/me/bin)</code></pre><p>which is a fancy way of saying “command not found.”</p>
+<p>说“命令没有找到”，真是很奇特。</p>
+<h3 id="得到命令文档"><a href="#得到命令文档" class="headerlink" title="得到命令文档"></a>得到命令文档</h3><p>With this knowledge of what a command is, we can now search for the documentation available for each kind of command.</p>
+<p>知道了什么是命令，现在我们来寻找每一类命令的可得到的文档。</p>
+<h3 id="help-－-得到-shell-内建命令的帮助文档"><a href="#help-－-得到-shell-内建命令的帮助文档" class="headerlink" title="help － 得到 shell 内建命令的帮助文档"></a>help － 得到 shell 内建命令的帮助文档</h3><p>bash has a built-in help facility available for each of the shell builtins. To use it, type “help” followed by the name of the shell builtin. For example:</p>
+<p>bash 有一个内建的帮助工具，可供每一个 shell 内建命令使用。输入“help”，接着是 shell 内部命令名。例如：</p>
+<pre><code>[me@linuxbox ~]$ help cd
+cd: cd [-L|-P] [dir]
+Change ...</code></pre><p>A note on notation: When square brackets appear in the description of a command’s syntax, they indicate optional items. A vertical bar character indicates mutually exclusive items. In the case of the cd command above:</p>
+<p>注意表示法：出现在命令语法说明中的方括号，表示可选的项目。一个竖杠字符 表示互斥选项。在上面 cd 命令的例子中：</p>
+<pre><code>cd [-L|-P] [dir]</code></pre><p>This notation says that the command cd may be followed optionally by either a “-L” or a “-P” and further, optionally followed by the argument “dir”.</p>
+<p>这种表示法说明，cd 命令可能有一个“-L”选项或者“-P”选项，进一步，可能有参数“dir”。</p>
+<p>While the output of help for the cd commands is concise and accurate, it is by no means tutorial and as we can see, it also seems to mention a lot of things we haven’t talked about yet! Don’t worry. We’ll get there.</p>
+<p>虽然 cd 命令的帮助文档很简洁准确，但它决不是教程。正如我们所看到的，它似乎提到了许多 我们还没有谈论到的东西！不要担心，我们会学到的。</p>
+<h3 id="–help-显示用法信息"><a href="#–help-显示用法信息" class="headerlink" title="–help - 显示用法信息"></a>–help - 显示用法信息</h3><p>Many executable programs support a “–help” option that displays a description of the command’s supported syntax and options. For example:</p>
+<p>许多可执行程序支持一个 –help 选项，这个选项是显示命令所支持的语法和选项说明。例如：</p>
+<pre><code>[me@linuxbox ~]$ mkdir --help
+Usage: mkdir [OPTION] DIRECTORY...
+Create ...</code></pre><p>Some programs don’t support the “–help” option, but try it anyway. Often it results in an error message that will reveal the same usage information.</p>
+<p>一些程序不支持 –help 选项，但不管怎样试一下。这经常会导致输出错误信息，但同时能 揭示一样的命令用法信息。</p>
+<h3 id="man-－-显示程序手册页"><a href="#man-－-显示程序手册页" class="headerlink" title="man － 显示程序手册页"></a>man － 显示程序手册页</h3><p>Most executable programs intended for command line use provide a formal piece of documentation called a manual or man page. A special paging program called man is used to view them. It is used like this:</p>
+<p>许多希望被命令行使用的可执行程序，提供了一个正式的文档，叫做手册或手册页(man page)。一个特殊的叫做 man 的分页程序，可用来浏览他们。它是这样使用的：</p>
+<pre><code>man program</code></pre><p>where “program” is the name of the command to view.</p>
+<p>“program”是要浏览的命令名。</p>
+<p>Man pages vary somewhat in format but generally contain a title, a synopsis of the command’s syntax, a description of the command’s purpose, and a listing and description of each of the command’s options. Man pages, however, do not usually include examples, and are intended as a reference, not a tutorial. As an example, let’s try viewing the man page for the ls command:</p>
+<p>手册文档的格式有点不同，一般地包含一个标题、命令语法的纲要、命令用途的说明、 以及每个命令选项的列表和说明。然而，手册文档通常并不包含实例，它打算 作为一本参考手册，而不是教程。作为一个例子，浏览一下 ls 命令的手册文档：</p>
+<pre><code>[me@linuxbox ~]$ man ls
+</code></pre><p>On most Linux systems, man uses less to display the manual page, so all of the familiar less commands work while displaying the page.</p>
+<p>在大多数 Linux 系统中，man 使用 less 工具来显示参考手册，所以当浏览文档时，你所熟悉的 less 命令都能有效。</p>
+<p>The “manual” that man displays is broken into sections and not only covers user commands but also system administration commands, programming interfaces, file formats and more. The table below describes the layout of the manual:</p>
+<p>man 所显示的参考手册，被分成几个章节，它们不仅仅包括用户命令，也包括系统管理员 命令、程序接口、文件格式等等。下表描绘了手册的布局：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Section</th>
+<th align="left">Contents</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">User commands</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">Programming interfaces kernel system calls</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">Programming interfaces to the C library</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">Special files such as device nodes and drivers</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">File formats</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">Games and amusements such as screen savers</td>
+</tr>
+<tr>
+<td align="left">7</td>
+<td align="left">Miscellaneous</td>
+</tr>
+<tr>
+<td align="left">8</td>
+<td align="left">System administration commands</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">章节</th>
+<th align="left">内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">用户命令</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">程序接口内核系统调用</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">C 库函数程序接口</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">特殊文件，比如说设备结点和驱动程序</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">文件格式</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">游戏娱乐，如屏幕保护程序</td>
+</tr>
+<tr>
+<td align="left">7</td>
+<td align="left">其他方面</td>
+</tr>
+<tr>
+<td align="left">8</td>
+<td align="left">系统管理员命令</td>
+</tr>
+</tbody></table>
+<p>Sometimes we need to look in a specific section of the manual to find what we are looking for. This is particularly true if we are looking for a file format that is also the name of a command. Without specifying a section number, we will always get the first instance of a match, probably in section 1. To specify a section number, we use man like this:</p>
+<p>有时候，我们需要查看参考手册的特定章节，从而找到我们需要的信息。 如果我们要查找一种文件格式，而同时它也是一个命令名时,这种情况尤其正确。 没有指定章节号，我们总是得到第一个匹配项，可能在第一章节。我们这样使用 man 命令， 来指定章节号：</p>
+<pre><code>man section search_term
+</code></pre><p>For example:</p>
+<p>例如：</p>
+<pre><code>[me@linuxbox ~]$ man 5 passwd
+</code></pre><p>This will display the man page describing the file format of the /etc/passwd file.</p>
+<p>命令运行结果会显示文件 /etc/passwd 的文件格式说明手册。</p>
+<h3 id="apropos-－-显示适当的命令"><a href="#apropos-－-显示适当的命令" class="headerlink" title="apropos － 显示适当的命令"></a>apropos － 显示适当的命令</h3><p>It is also possible to search the list of man pages for possible matches based on a search term. It’s very crude but sometimes helpful. Here is an example of a search for man pages using the search term “floppy”:</p>
+<p>也有可能搜索参考手册列表，基于某个关键字的匹配项。虽然很粗糙但有时很有用。 下面是一个以”floppy”为关键词来搜索参考手册的例子：</p>
+<pre><code>[me@linuxbox ~]$ apropos floppy
+create_floppy_devices (8)   - udev callout to create all possible
+...
+</code></pre><p>The first field in each line of output is the name of the man page, the second field shows the section. Note that the man command with the “-k” option performs the exact same function as apropos.</p>
+<p>输出结果每行的第一个字段是手册页的名字，第二个字段展示章节。注意，man 命令加上”-k”选项， 和 apropos 完成一样的功能。</p>
+<h3 id="whatis-－-显示非常简洁的命令说明"><a href="#whatis-－-显示非常简洁的命令说明" class="headerlink" title="whatis － 显示非常简洁的命令说明"></a>whatis － 显示非常简洁的命令说明</h3><p>The whatis program displays the name and a one line description of a man page matching a specified keyword:</p>
+<p>whatis 程序显示匹配特定关键字的手册页的名字和一行命令说明：</p>
+<blockquote>
+<p>The Most Brutal Man Page Of Them All</p>
+<p>最晦涩难懂的手册页</p>
+<p>As we have seen, the manual pages supplied with Linux and other Unix-like systems are intended as reference documentation and not as tutorials. Many man pages are hard to read, but I think that the grand prize for difficulty has got to go to the man page for bash. As I was doing my research for this book, I gave it careful review to ensure that I was covering most of its topics. When printed, it’s over eighty pages long and extremely dense, and its structure makes absolutely no sense to a new user.</p>
+<p>正如我们所看到的，Linux 和类 Unix 的系统提供的手册页，只是打算作为参考手册使用， 而不是教程。许多手册页都很难阅读，但是我认为由于阅读难度而能拿到特等奖的手册页应该是 bash 手册页。因为我正在为这本书做我的研究，所以我很仔细地浏览了整个 bash 手册，为的是确保我讲述了 大部分的 bash 主题。当把 bash 参考手册整个打印出来，其篇幅有八十多页且内容极其紧密， 但对于初学者来说，其结构安排毫无意义。</p>
+<p>On the other hand, it is very accurate and concise, as well as being extremely complete. So check it out if you dare and look forward to the day when you can read it and it all makes sense.</p>
+<p>另一方面，bash 参考手册的内容非常简明精确，同时也非常完善。所以，如果你有胆量就查看一下， 并且期望有一天你能读懂它。</p>
+</blockquote>
+<h3 id="info-－-显示程序-Info-条目"><a href="#info-－-显示程序-Info-条目" class="headerlink" title="info － 显示程序 Info 条目"></a>info － 显示程序 Info 条目</h3><p>The GNU Project provides an alternative to man pages for their programs, called “info.” Info pages are displayed with a reader program named, appropriately enough, info. Info pages are hyperlinked much like web pages. Here is a sample:</p>
+<p>GNU 项目提供了一个命令程序手册页的替代物，称为”info”。info 内容可通过 info 阅读器 程序读取。info 页是超级链接形式的，和网页很相似。这有个例子：</p>
+<pre><code>File: coreutils.info,    Node: ls invocation,    Next: dir invocation,
+ Up: Directory listing
+
+10.1 `ls&#39;: List directory contents
+==================================
+...
+</code></pre><p>The info program reads info files, which are tree structured into individual nodes, each containing a single topic. Info files contain hyperlinks that can move you from node to node. A hyperlink can be identified by its leading asterisk, and is activated by placing the cursor upon it and pressing the enter key.</p>
+<p>info 程序读取 info 文件，info 文件是树型结构，分化为各个结点，每一个包含一个题目。 info 文件包含超级链接，它可以让你从一个结点跳到另一个结点。一个超级链接可通过 它开头的星号来辨别出来，把光标放在它上面并按下 enter 键，就可以激活它。</p>
+<p>To invoke info, type “info” followed optionally by the name of a program. Below is a table of commands used to control the reader while displaying an info page:</p>
+<p>输入”info”，接着输入程序名称，启动 info。下表中的命令，当显示一个 info 页面时， 用来控制阅读器。</p>
+<table>
+<thead>
+<tr>
+<th align="left">Command</th>
+<th align="left">Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">?</td>
+<td align="left">Display command help</td>
+</tr>
+<tr>
+<td align="left">PgUp or Backspace</td>
+<td align="left">Display privious page</td>
+</tr>
+<tr>
+<td align="left">PgDn or Space</td>
+<td align="left">Display next page</td>
+</tr>
+<tr>
+<td align="left">n</td>
+<td align="left">Next - Display the next node</td>
+</tr>
+<tr>
+<td align="left">p</td>
+<td align="left">Previous - Display the previous node</td>
+</tr>
+<tr>
+<td align="left">u</td>
+<td align="left">Up - Display the parent node of the currently displayed node, usually a menu.</td>
+</tr>
+<tr>
+<td align="left">Enter</td>
+<td align="left">Follow the hyperlink at the cursor location</td>
+</tr>
+<tr>
+<td align="left">q</td>
+<td align="left">Quit</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">?</td>
+<td align="left">显示命令帮助</td>
+</tr>
+<tr>
+<td align="left">PgUp or Backspace</td>
+<td align="left">显示上一页</td>
+</tr>
+<tr>
+<td align="left">PgDn or Space</td>
+<td align="left">显示下一页</td>
+</tr>
+<tr>
+<td align="left">n</td>
+<td align="left">下一个 - 显示下一个结点</td>
+</tr>
+<tr>
+<td align="left">p</td>
+<td align="left">上一个 - 显示上一个结点</td>
+</tr>
+<tr>
+<td align="left">u</td>
+<td align="left">Up - 显示当前所显示结点的父结点，通常是个菜单</td>
+</tr>
+<tr>
+<td align="left">Enter</td>
+<td align="left">激活光标位置下的超级链接</td>
+</tr>
+<tr>
+<td align="left">q</td>
+<td align="left">退出</td>
+</tr>
+</tbody></table>
+<p>Most of the command line programs we have discussed so far are part of the GNU Project’s “coreutils” package, so typing:</p>
+<p>到目前为止，我们所讨论的大多数命令行程序，属于 GNU 项目”coreutils”包，所以输入：</p>
+<pre><code>[me@linuxbox ~]$ info coreutils
+</code></pre><p>will display a menu page with hyperlinks to each program contained in the coreutils package.</p>
+<p>将会显示一个包含超级链接的手册页，这些超级链接指向包含在 coreutils 包中的各个程序。</p>
+<h3 id="README-和其它程序文档"><a href="#README-和其它程序文档" class="headerlink" title="README 和其它程序文档"></a>README 和其它程序文档</h3><p>Many software packages installed on your system have documentation files residing in the /usr/share/doc directory. Most of these are stored in plain text format and can be viewed with less. Some of the files are in HTML format and can be viewed with a web browser. We may encounter some files ending with a “.gz” extension. This indicates that they have been compressed with the gzip compression program. The gzip package includes a special version of less called zless that will display the contents of gzip-compressed text files.</p>
+<p>许多安装在你系统中的软件，都有自己的文档文件，这些文件位于/usr/share/doc 目录下。 这些文件大多数是以文本文件的形式存储的，可用 less 阅读器来浏览。一些文件是 HTML 格式， 可用网页浏览器来阅读。我们可能遇到许多以”.gz”结尾的文件。这表示 gzip 压缩程序 已经压缩了这些文件。gzip 软件包包括一个特殊的 less 版本，叫做 zless，zless 可以显示由 gzip 压缩的文本文件的内容。</p>
+<h3 id="用别名（alias）创建你自己的命令"><a href="#用别名（alias）创建你自己的命令" class="headerlink" title="用别名（alias）创建你自己的命令"></a>用别名（alias）创建你自己的命令</h3><p>Now for our very first experience with programming! We will create a command of our own using the alias command. But before we start, we need to reveal a small command line trick. It’s possible to put more than one command on a line by separating each command with a semicolon character. It works like this:</p>
+<p>现在是时候，感受第一次编程经历了！我们将用 alias 命令创建我们自己的命令。但在 开始之前，我们需要展示一个命令行小技巧。可以把多个命令放在同一行上，命令之间 用”;”分开。它像这样工作：</p>
+<pre><code>command1; command2; command3...
+</code></pre><p>Here’s the example we will use:</p>
+<p>我们会用到下面的例子：</p>
+<pre><code>[me@linuxbox ~]$ cd /usr; ls; cd -
+bin  games    kerberos  lib64    local  share  tmp
+...
+[me@linuxbox ~]$
+</code></pre><p>As we can see, we have combined three commands on one line. First we change directory to /usr then list the directory and finally return to the original directory (by using ‘cd -‘) so we end up where we started. Now let’s turn this sequence into a new command using alias. The first thing we have to do is dream up a name for our new command. Let’s try “test”. Before we do that, it would be a good idea to find out if the name “test” is already being used. To find out, we can use the type command again:</p>
+<p>正如我们看到的，我们在一行上联合了三个命令。首先更改目录到/usr，然后列出目录 内容，最后回到原始目录（用命令”cd -“）,结束在开始的地方。现在，通过 alias 命令 把这一串命令转变为一个命令。我们要做的第一件事就是为我们的新命令构想一个名字。 比方说”test”。在使用”test”之前，查明是否”test”命令名已经存在系统中，是个很不错 的主意。为了查清此事，可以使用 type 命令：</p>
+<pre><code>[me@linuxbox ~]$ type test
+test is a shell builtin
+</code></pre><p>Oops! The name “test” is already taken. Let’s try “foo”:</p>
+<p>哦！”test”名字已经被使用了。试一下”foo”:</p>
+<pre><code>[me@linuxbox ~]$ type foo
+bash: type: foo: not found
+</code></pre><p>Great! “foo” is not taken. So let’s create our alias:</p>
+<p>太棒了！”foo”还没被占用。创建命令别名：</p>
+<pre><code>[me@linuxbox ~]$ alias foo=&#39;cd /usr; ls; cd -&#39;
+</code></pre><p>Notice the structure of this command:</p>
+<p>注意命令结构：</p>
+<pre><code>alias name=&#39;string&#39;
+</code></pre><p>After the command “alias” we give alias a name followed immediately (no whitespace allowed) by an equals sign, followed immediately by a quoted string containing the meaning to be assigned to the name. After we define our alias, it can be used anywhere the shell would expect a command. Let’s try it:</p>
+<p>在命令”alias”之后，输入“name”，紧接着（没有空格）是一个等号，等号之后是 一串用引号引起的字符串，字符串的内容要赋值给 name。我们定义了别名之后， 这个命令别名可以使用在任何地方。试一下：</p>
+<pre><code>[me@linuxbox ~]$ foo
+bin   games   kerberos  lib64    local   share  tmp
+...
+[me@linuxbox ~]$
+</code></pre><p>We can also use the type command again to see our alias:</p>
+<p>我们也可以使用 type 命令来查看我们的别名：</p>
+<pre><code>[me@linuxbox ~]$ type foo
+foo is aliased to `cd /usr; ls ; cd -&#39;
+</code></pre><p>To remove an alias, the unalias command is used, like so:</p>
+<p>删除别名，使用 unalias 命令，像这样：</p>
+<pre><code>[me@linuxbox ~]$ unalias foo
+[me@linuxbox ~]$ type foo
+bash: type: foo: not found
+</code></pre><p>While we purposefully avoided naming our alias with an existing command name, it is not uncommon to do so. This is often done to apply a commonly desired option to each invocation of a common command. For instance, we saw earlier how the ls command is often aliased to add color support:</p>
+<p>虽然我们有意避免使用已经存在的命令名来命名我们的别名，但这是常做的事情。通常， 会把一个普遍用到的选项加到一个经常使用的命令后面。例如，之前见到的 ls 命令，会 带有色彩支持：</p>
+<pre><code>[me@linuxbox ~]$ type ls
+ls is aliased to &#39;ls --color=tty&#39;
+</code></pre><p>To see all the aliases defined in the environment, use the alias command without arguments. Here are some of the aliases defined by default on a Fedora system. Try and figure out what they all do:</p>
+<p>要查看所有定义在系统环境中的别名，使用不带参数的 alias 命令。下面在 Fedora 系统中 默认定义的别名。试着弄明白，它们是做什么的：</p>
+<pre><code>[me@linuxbox ~]$ alias
+alias l.=&#39;ls -d .* --color=tty&#39;
+...
+</code></pre><p>There is one tiny problem with defining aliases on the command line. They vanish when your shell session ends. In a later chapter, we will see how to add our own aliases to the files that establish the environment each time we log on, but for now, enjoy the fact that we have taken our first, albeit tiny, step into the world of shell programming!</p>
+<p>在命令行中定义别名有点儿小问题。当你的 shell 会话结束时，它们会消失。随后的章节里， 我们会了解怎样把自己的别名添加到文件中去，每次我们登录系统，这些文件会建立系统环境。 现在，好好享受我们刚经历过的，步入 shell 编程世界的第一步吧，虽然微小。</p>
+<h3 id="拜访老朋友"><a href="#拜访老朋友" class="headerlink" title="拜访老朋友"></a>拜访老朋友</h3><p>Now that we have learned how to find the documentation for commands, go and look up the documentation for all the commands we have encountered so far. Study what additional options are available and try them out!</p>
+<p>既然我们已经学习了怎样找到命令的帮助文档，那就试着查阅，到目前为止，我们学到的所有 命令的文档。学习命令其它可用的选项，练习一下！</p>
+<h3 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h3><ul>
+<li><p>There are many online sources of documentation for Linux and the command line. Here are some of the best:</p>
+</li>
+<li><p>在网上，有许多关于 Linux 和命令行的文档。以下是一些最好的文档：</p>
+</li>
+<li><p>The Bash Reference Manual is a reference guide to the bash shell. It’s still a reference work but contains examples and is easier to read than the bash man page.</p>
+</li>
+<li><p>Bash 参考手册是一本 bash shell 的参考指南。它仍然是一本参考书，但是包含了很多 实例，而且它比 bash 手册页容易阅读。</p>
+<p><a href="http://www.gnu.org/software/bash/manual/bashref.html" target="_blank" rel="noopener">http://www.gnu.org/software/bash/manual/bashref.html</a></p>
+</li>
+<li><p>The Bash FAQ contains answers to frequently asked questions regarding bash. This list is aimed at intermediate to advanced users, but contains a lot of good information.</p>
+</li>
+<li><p>Bash FAQ 包含关于 bash，而经常提到的问题的答案。这个列表面向 bash 的中高级用户， 但它包含了许多有帮助的信息。</p>
+<p><a href="http://mywiki.wooledge.org/BashFAQ" target="_blank" rel="noopener">http://mywiki.wooledge.org/BashFAQ</a></p>
+</li>
+<li><p>The GNU Project provides extensive documentation for its programs, which form the core of the Linux command line experience. You can see a complete list here:</p>
+</li>
+<li><p>GUN 项目为它的程序提供了大量的文档，这些文档组成了 Linux 命令行实验的核心。 这里你可以看到一个完整的列表：</p>
+<p><a href="http://www.gnu.org/manual/manual.html" target="_blank" rel="noopener">http://www.gnu.org/manual/manual.html</a></p>
+</li>
+<li><p>Wikipedia has an interesting article on man pages:</p>
+</li>
+<li><p>Wikipedia 有一篇关于手册页的有趣文章：</p>
+<p><a href="http://en.wikipedia.org/wiki/Man_page" target="_blank" rel="noopener">http://en.wikipedia.org/wiki/Man_page</a></p>
+</li>
+</ul>
+
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'brA0u8dhiFmWzBQJ5YDMevuw-gzGzoHsz',
+        appKey: 'InzuBbqaqOss16gJu1jiKE7F',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/07/15/第七章-重定义/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="第七章 重定义">
+                        
+                        <span class="card-title">第七章 重定义</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            In this lesson we are going to unleash what may be the coolest feature of the command line. It’s called I/O redirection.
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/TLCL/" class="post-category" target="_blank">
+                                    TLCL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/07/15/第五章-操作文件和目录/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="第五章 操作文件和目录">
+                        
+                        <span class="card-title">第五章 操作文件和目录</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            At this point, we are ready for some real work! This chapter will introduce the following commands:
+此时此刻，我们已经准备好了做些真正的工作
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/TLCL/" class="post-category" target="_blank">
+                                    TLCL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">249.9k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/chenshuoke" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:henu_chenshuoke@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2604689299" class="tooltipped" data-tooltip="QQ联系我: 2604689299" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

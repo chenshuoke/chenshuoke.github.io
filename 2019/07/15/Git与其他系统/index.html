@@ -1,0 +1,2810 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Git与其他系统, 孤狼的博客">
+    <meta name="description" content="现实并不总是尽如人意。 通常，你不能立刻就把接触到的每一个项目都切换到 Git。 有时候你被困在使用其他 VCS 的项目中，却希望使用 Git。 在本章的第一部分我们将会了解到，怎样在你的那些托管在不同系统的项目上使用 Git 客户端。
+在">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Git与其他系统 | 孤狼的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+    <!-- 下面一句添加的 -->
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">孤狼的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">孤狼的博客</div>
+        <div class="logo-desc">
+            
+            从来没有真正的绝境，只有心灵的迷途
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/chenshuoke" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/chenshuoke" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Git与其他系统
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Git/" target="_blank">
+                                <span class="chip bg-color">Git</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Git/" class="post-category" target="_blank">
+                                Git
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-07-15
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        22.5k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        93 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>现实并不总是尽如人意。 通常，你不能立刻就把接触到的每一个项目都切换到 Git。 有时候你被困在使用其他 VCS 的项目中，却希望使用 Git。 在本章的第一部分我们将会了解到，怎样在你的那些托管在不同系统的项目上使用 Git 客户端。</p>
+<p>在某些时候，你可能想要将已有项目转换到 Git。 本章的第二部分涵盖了从几个特定系统将你的项目迁移至 Git 的方法，即使没有预先构建好的导入工具，我们也有办法手动导入。</p>
+<h2 id="作为客户端的-Git"><a href="#作为客户端的-Git" class="headerlink" title="作为客户端的 Git"></a>作为客户端的 Git</h2><p>Git 为开发者提供了如此优秀的体验，许多人已经找到了在他们的工作站上使用 Git 的方法，即使他们团队其余的人使用的是完全不同的 VCS。 有许多这种可用的适配器，它们被叫做 “桥接”。 下面我们将要介绍几个很可能会在实际中用到的桥接。</p>
+<h3 id="Git-与-Subversion"><a href="#Git-与-Subversion" class="headerlink" title="Git 与 Subversion"></a>Git 与 Subversion</h3><p>很大一部分开源项目与相当多的企业项目使用 Subversion 来管理它们的源代码。 而且在大多数时间里，它已经是开源项目VCS选择的 <em>事实标准</em>。 它在很多方面都与曾经是源代码管理世界的大人物的 CVS 相似。</p>
+<p>Git 中最棒的特性就是有一个与 Subversion 的双向桥接，它被称作 <code>git svn</code>。 这个工具允许你使用 Git 作为连接到 Subversion 有效的客户端，这样你可以使用 Git 所有本地的功能然后如同正在本地使用 Subversion 一样推送到 Subversion 服务器。 这意味着你可以在本地做新建分支与合并分支、使用暂存区、使用变基与拣选等等的事情，同时协作者还在继续使用他们黑暗又古老的方式。 当你试图游说公司将基础设施修改为完全支持 Git 的过程中，一个好方法是将 Git 偷偷带入到公司环境，并帮助周围的开发者提升效率。 Subversion 桥接就是进入 DVCS 世界的诱饵。</p>
+<h4 id="git-svn"><a href="#git-svn" class="headerlink" title="git svn"></a><code>git svn</code></h4><p>在 Git 中所有 Subversion 桥接命令的基础命令是 <code>git svn</code>。 它可以跟很多命令，所以我们会通过几个简单的工作流程来为你演示最常用的命令。</p>
+<p>需要特别注意的是当你使用 <code>git svn</code> 时，就是在与 Subversion 打交道，一个与 Git 完全不同的系统。 尽管 <strong>可以</strong> 在本地新建分支与合并分支，但是你最好还是通过变基你的工作来保证你的历史尽可能是直线，并且避免做类似同时与 Git 远程服务器交互的事情。</p>
+<p>不要重写你的历史然后尝试再次推送，同时也不要推送到一个平行的 Git 仓库来与其他使用 Git 的开发者协作。 Subversion 只能有一个线性的历史，弄乱它很容易。 如果你在一个团队中工作，其中有一些人使用 SVN 而另一些人使用 Git，你需要确保每个人都使用 SVN 服务器来协作 - 这样做会省去很多麻烦。</p>
+<h4 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h4><p>为了演示这个功能，需要一个有写入权限的典型 SVN 仓库。 如果想要拷贝这些例子，你必须获得一份我的测试仓库的可写拷贝。 为了轻松地拷贝，可以使用 Subversion 自带的一个名为 <code>svnsync</code> 的工具。 为了这些测试，我们在 Google Code 上创建了一个 <code>protobuf</code> 项目部分拷贝的新 Subversion 仓库。<code>protobuf</code> 是一个将结构性数据编码用于网络传输的工具。</p>
+<p>接下来，你需要先创建一个新的本地 Subversion 仓库：</p>
+<pre class=" language-console"><code class="language-console">$ mkdir /tmp/test-svn
+$ svnadmin create /tmp/test-svn</code></pre>
+<p>然后，允许所有用户改变版本属性 - 最容易的方式是添加一个返回值为 0 的 <code>pre-revprop-change</code> 脚本。</p>
+<pre class=" language-console"><code class="language-console">$ cat /tmp/test-svn/hooks/pre-revprop-change
+#!/bin/sh
+exit 0;
+$ chmod +x /tmp/test-svn/hooks/pre-revprop-change</code></pre>
+<p>现在可以调用加入目标与来源仓库参数的 <code>svnsync init</code> 命令同步这个项目到本地的机器。</p>
+<pre class=" language-console"><code class="language-console">$ svnsync init file:///tmp/test-svn \
+  http://progit-example.googlecode.com/svn/</code></pre>
+<p>这样就设置好了同步所使用的属性。 可以通过运行下面的命令来克隆代码：</p>
+<pre class=" language-console"><code class="language-console">$ svnsync sync file:///tmp/test-svn
+Committed revision 1.
+Copied properties for revision 1.
+Transmitting file data .............................[...]
+Committed revision 2.
+Copied properties for revision 2.
+[…]</code></pre>
+<p>虽然这个操作可能只会花费几分钟，但如果你尝试拷贝原始的仓库到另一个非本地的远程仓库时，即使只有不到 100 个的提交，这个过程也可能会花费将近一个小时。 Subversion 必须一次复制一个版本然后推送回另一个仓库 - 这低效得可笑，但却是做这件事唯一简单的方式。</p>
+<h4 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h4><p>既然已经有了一个有写入权限的 Subversion 仓库，那么你可以开始一个典型的工作流程。 可以从 <code>git svn clone</code> 命令开始，它会将整个 Subversion 仓库导入到一个本地 Git 仓库。 需要牢记的一点是如果是从一个真正托管的 Subversion 仓库中导入，需要将 <code>file:///tmp/test-svn</code> 替换为你的 Subversion 仓库的 URL：</p>
+<pre class=" language-console"><code class="language-console">$ git svn clone file:///tmp/test-svn -T trunk -b branches -t tags
+Initialized empty Git repository in /private/tmp/progit/test-svn/.git/
+r1 = dcbfb5891860124cc2e8cc616cded42624897125 (refs/remotes/origin/trunk)
+    A    m4/acx_pthread.m4
+    A    m4/stl_hash.m4
+    A    java/src/test/java/com/google/protobuf/UnknownFieldSetTest.java
+    A    java/src/test/java/com/google/protobuf/WireFormatTest.java
+…
+r75 = 556a3e1e7ad1fde0a32823fc7e4d046bcfd86dae (refs/remotes/origin/trunk)
+Found possible branch point: file:///tmp/test-svn/trunk => file:///tmp/test-svn/branches/my-calc-branch, 75
+Found branch parent: (refs/remotes/origin/my-calc-branch) 556a3e1e7ad1fde0a32823fc7e4d046bcfd86dae
+Following parent with do_switch
+Successfully followed parent
+r76 = 0fb585761df569eaecd8146c71e58d70147460a2 (refs/remotes/origin/my-calc-branch)
+Checked out HEAD:
+  file:///tmp/test-svn/trunk r75</code></pre>
+<p>这相当于运行了两个命令 - <code>git svn init</code> 以及紧接着的 <code>git svn fetch</code> - 你提供的 URL 。 这会花费一些时间。 测试项目只有 75 个左右的提交并且代码库并不是很大，但是 Git 必须一次一个地检出一个版本同时单独地提交它。 对于有成百上千个提交的项目，这真的可能会花费几小时甚至几天来完成。</p>
+<p><code>-T trunk -b branches -t tags</code> 部分告诉 Git Subversion 仓库遵循基本的分支与标签惯例。 如果你命名了不同的主干、分支或标签，可以修改这些参数。 因为这是如此地常见，所以能用 <code>-s</code> 来替代整个这部分，这表示标准布局并且指代所有那些选项。 下面的命令是相同的：</p>
+<pre class=" language-console"><code class="language-console">$ git svn clone file:///tmp/test-svn -s</code></pre>
+<p>至此，应该得到了一个已经导入了分支与标签的有效的 Git 仓库：</p>
+<pre class=" language-console"><code class="language-console">$ git branch -a
+* master
+  remotes/origin/my-calc-branch
+  remotes/origin/tags/2.0.2
+  remotes/origin/tags/release-2.0.1
+  remotes/origin/tags/release-2.0.2
+  remotes/origin/tags/release-2.0.2rc1
+  remotes/origin/trunk</code></pre>
+<p>注意这个工具是如何将 Subversion 标签作为远程引用来管理的。 让我们近距离看一下 Git 的底层命令 <code>show-ref</code>：</p>
+<pre class=" language-console"><code class="language-console">$ git show-ref
+556a3e1e7ad1fde0a32823fc7e4d046bcfd86dae refs/heads/master
+0fb585761df569eaecd8146c71e58d70147460a2 refs/remotes/origin/my-calc-branch
+bfd2d79303166789fc73af4046651a4b35c12f0b refs/remotes/origin/tags/2.0.2
+285c2b2e36e467dd4d91c8e3c0c0e1750b3fe8ca refs/remotes/origin/tags/release-2.0.1
+cbda99cb45d9abcb9793db1d4f70ae562a969f1e refs/remotes/origin/tags/release-2.0.2
+a9f074aa89e826d6f9d30808ce5ae3ffe711feda refs/remotes/origin/tags/release-2.0.2rc1
+556a3e1e7ad1fde0a32823fc7e4d046bcfd86dae refs/remotes/origin/trunk</code></pre>
+<p>Git 在从 Git 服务器克隆时并不这样做；下面是在刚刚克隆完成的有标签的仓库的样子：</p>
+<pre class=" language-console"><code class="language-console">$ git show-ref
+c3dcbe8488c6240392e8a5d7553bbffcb0f94ef0 refs/remotes/origin/master
+32ef1d1c7cc8c603ab78416262cc421b80a8c2df refs/remotes/origin/branch-1
+75f703a3580a9b81ead89fe1138e6da858c5ba18 refs/remotes/origin/branch-2
+23f8588dde934e8f33c263c6d8359b2ae095f863 refs/tags/v0.1.0
+7064938bd5e7ef47bfd79a685a62c1e2649e2ce7 refs/tags/v0.2.0
+6dcb09b5b57875f334f61aebed695e2e4193db5e refs/tags/v1.0.0
+</code></pre>
+<p>Git 直接将标签抓取至 <code>refs/tags</code>，而不是将它们看作分支。</p>
+<h4 id="提交回-Subversion"><a href="#提交回-Subversion" class="headerlink" title="提交回 Subversion"></a>提交回 Subversion</h4><p>现在你有了一个工作仓库，你可以在项目上做一些改动，然后高效地使用 Git 作为 SVN 客户端将你的提交推送到上游。 一旦编辑了一个文件并提交它，你就有了一个存在于本地 Git 仓库的提交，这提交在 Subversion 服务器上并不存在：</p>
+<pre class=" language-console"><code class="language-console">$ git commit -am 'Adding git-svn instructions to the README'
+[master 4af61fd] Adding git-svn instructions to the README
+ 1 file changed, 5 insertions(+)
+</code></pre>
+<p>接下来，你需要将改动推送到上游。 注意这会怎样改变你使用 Subversion 的方式 - 你可以离线做几次提交然后一次性将它们推送到 Subversion 服务器。 要推送到一个 Subversion 服务器，运行 <code>git svn dcommit</code> 命令：</p>
+<pre class=" language-console"><code class="language-console">$ git svn dcommit
+Committing to file:///tmp/test-svn/trunk ...
+    M    README.txt
+Committed r77
+    M    README.txt
+r77 = 95e0222ba6399739834380eb10afcd73e0670bc5 (refs/remotes/origin/trunk)
+No changes between 4af61fd05045e07598c553167e0f31c84fd6ffe1 and refs/remotes/origin/trunk
+Resetting to the latest refs/remotes/origin/trunk
+</code></pre>
+<p>这会拿走你在 Subversion 服务器代码之上所做的所有提交，针对每一个做一个 Subversion 提交，然后重写你本地的 Git 提交来包含一个唯一的标识符。 这很重要因为这意味着所有你的提交的 SHA-1 校验和都改变了。 部分由于这个原因，同时使用一个基于 Git 的项目远程版本和一个 Subversion 服务器并不是一个好主意。 如果你查看最后一次提交，有新的 <code>git-svn-id</code> 被添加：</p>
+<pre class=" language-console"><code class="language-console">$ git log -1
+commit 95e0222ba6399739834380eb10afcd73e0670bc5
+Author: ben <ben@0b684db3-b064-4277-89d1-21af03df0a68>
+Date:   Thu Jul 24 03:08:36 2014 +0000
+
+    Adding git-svn instructions to the README
+
+    git-svn-id: file:///tmp/test-svn/trunk@77 0b684db3-b064-4277-89d1-21af03df0a68
+</code></pre>
+<p>注意你原来提交的 SHA-1 校验和原来是以 <code>4af61fd</code> 开头，而现在是以 <code>95e0222</code> 开头。 如果想要既推送到一个 Git 服务器又推送到一个 Subversion 服务器，必须先推送（<code>dcommit</code>）到 Subversion 服务器，因为这个操作会改变你的提交数据。</p>
+<h4 id="拉取新改动"><a href="#拉取新改动" class="headerlink" title="拉取新改动"></a>拉取新改动</h4><p>如果你和其他开发者一起工作，当在某一时刻你们其中之一推送时，另一人尝试推送修改会导致冲突。 那次修改会被拒绝直到你合并他们的工作。 在 <code>git svn</code> 中，它看起来是这样的：</p>
+<pre class=" language-console"><code class="language-console">$ git svn dcommit
+Committing to file:///tmp/test-svn/trunk ...
+
+ERROR from SVN:
+Transaction is out of date: File '/trunk/README.txt' is out of date
+W: d5837c4b461b7c0e018b49d12398769d2bfc240a and refs/remotes/origin/trunk differ, using rebase:
+:100644 100644 f414c433af0fd6734428cf9d2a9fd8ba00ada145 c80b6127dd04f5fcda218730ddf3a2da4eb39138 M    README.txt
+Current branch master is up to date.
+ERROR: Not all changes have been committed into SVN, however the committed
+ones (if any) seem to be successfully integrated into the working tree.
+Please see the above messages for details.
+</code></pre>
+<p>为了解决这种情况，可以运行 <code>git svn rebase</code>，它会从服务器拉取任何你本地还没有的改动，并将你所有的工作变基到服务器的内容之上：</p>
+<pre class=" language-console"><code class="language-console">$ git svn rebase
+Committing to file:///tmp/test-svn/trunk ...
+
+ERROR from SVN:
+Transaction is out of date: File '/trunk/README.txt' is out of date
+W: eaa029d99f87c5c822c5c29039d19111ff32ef46 and refs/remotes/origin/trunk differ, using rebase:
+:100644 100644 65536c6e30d263495c17d781962cfff12422693a b34372b25ccf4945fe5658fa381b075045e7702a M    README.txt
+First, rewinding head to replay your work on top of it...
+Applying: update foo
+Using index info to reconstruct a base tree...
+M    README.txt
+Falling back to patching base and 3-way merge...
+Auto-merging README.txt
+ERROR: Not all changes have been committed into SVN, however the committed
+ones (if any) seem to be successfully integrated into the working tree.
+Please see the above messages for details.
+</code></pre>
+<p>现在，所有你的工作都已经在 Subversion 服务器的内容之上了，你就可以顺利地 <code>dcommit</code>：</p>
+<pre class=" language-console"><code class="language-console">$ git svn dcommit
+Committing to file:///tmp/test-svn/trunk ...
+    M    README.txt
+Committed r85
+    M    README.txt
+r85 = 9c29704cc0bbbed7bd58160cfb66cb9191835cd8 (refs/remotes/origin/trunk)
+No changes between 5762f56732a958d6cfda681b661d2a239cc53ef5 and refs/remotes/origin/trunk
+Resetting to the latest refs/remotes/origin/trunk
+</code></pre>
+<p>注意，和 Git 需要你在推送前合并本地还没有的上游工作不同的是，<code>git svn</code> 只会在修改发生冲突时要求你那样做（更像是 Subversion 工作的行为）。 如果其他人推送一个文件的修改然后你推送了另一个文件的修改，你的 <code>dcommit</code> 命令会正常工作：</p>
+<pre class=" language-console"><code class="language-console">$ git svn dcommit
+Committing to file:///tmp/test-svn/trunk ...
+    M    configure.ac
+Committed r87
+    M    autogen.sh
+r86 = d8450bab8a77228a644b7dc0e95977ffc61adff7 (refs/remotes/origin/trunk)
+    M    configure.ac
+r87 = f3653ea40cb4e26b6281cec102e35dcba1fe17c4 (refs/remotes/origin/trunk)
+W: a0253d06732169107aa020390d9fefd2b1d92806 and refs/remotes/origin/trunk differ, using rebase:
+:100755 100755 efa5a59965fbbb5b2b0a12890f1b351bb5493c18 e757b59a9439312d80d5d43bb65d4a7d0389ed6d M    autogen.sh
+First, rewinding head to replay your work on top of it...
+</code></pre>
+<p>记住这一点很重要，因为结果是当你推送后项目的状态并不存在于你的电脑中。 如果修改并未冲突但却是不兼容的，可能会引起一些难以诊断的问题。 这与使用 Git 服务器并不同 - 在 Git 中，可以在发布前完全测试客户端系统的状态，然而在 SVN 中，你甚至不能立即确定在提交前与提交后的状态是相同的。</p>
+<p>你也应该运行这个命令从 Subversion 服务器上拉取修改，即使你自己并不准备提交。 可以运行 <code>git svn fetch</code> 来抓取新数据，但是 <code>git svn rebase</code> 会抓取并更新你本地的提交。</p>
+<pre class=" language-console"><code class="language-console">$ git svn rebase
+    M    autogen.sh
+r88 = c9c5f83c64bd755368784b444bc7a0216cc1e17b (refs/remotes/origin/trunk)
+First, rewinding head to replay your work on top of it...
+Fast-forwarded master to refs/remotes/origin/trunk.
+</code></pre>
+<p>每隔一会儿运行 <code>git svn rebase</code> 确保你的代码始终是最新的。 虽然需要保证当运行这个命令时工作目录是干净的。 如果有本地的修改，在运行 <code>git svn rebase</code> 之前要么储藏你的工作要么做一次临时的提交，不然，当变基会导致合并冲突时，命令会终止。</p>
+<h4 id="Git-分支问题"><a href="#Git-分支问题" class="headerlink" title="Git 分支问题"></a>Git 分支问题</h4><p>当适应了 Git 的工作流程，你大概会想要创建特性分支，在上面做一些工作，然后将它们合并入主分支。 如果你正通过 <code>git svn</code> 推送到一个 Subversion 服务器，你可能想要把你的工作变基到一个单独的分支上，而不是将分支合并到一起。 比较喜欢变基的原因是因为 Subversion 有一个线性的历史并且无法像 Git 一样处理合并，所以 <code>git svn</code> 在将快照转换成 Subversion 提交时，只会保留第一父提交。</p>
+<p>假设你的历史像下面这样：创建了一个 <code>experiment</code> 分支，做了两次提交，然后将它们合并回 <code>master</code>。 当 <code>dcommit</code> 时，你看到输出是这样的：</p>
+<pre class=" language-console"><code class="language-console">$ git svn dcommit
+Committing to file:///tmp/test-svn/trunk ...
+    M    CHANGES.txt
+Committed r89
+    M    CHANGES.txt
+r89 = 89d492c884ea7c834353563d5d913c6adf933981 (refs/remotes/origin/trunk)
+    M    COPYING.txt
+    M    INSTALL.txt
+Committed r90
+    M    INSTALL.txt
+    M    COPYING.txt
+r90 = cb522197870e61467473391799148f6721bcf9a0 (refs/remotes/origin/trunk)
+No changes between 71af502c214ba13123992338569f4669877f55fd and refs/remotes/origin/trunk
+Resetting to the latest refs/remotes/origin/trunk
+</code></pre>
+<p>在一个合并过历史提交的分支上 <code>dcommit</code> 命令工作得很好，除了当你查看你的 Git 项目历史时，它并没有重写所有你在 <code>experiment</code> 分支上所做的任意提交 - 相反，所有这些修改显示一个单独合并提交的 SVN 版本中。</p>
+<p>当其他人克隆那些工作时，他们只会看到一个被塞入了所有改动的合并提交，就像运行了 <code>git merge --squash</code>；他们无法看到修改从哪来或何时提交的信息。</p>
+<h4 id="Subversion-分支"><a href="#Subversion-分支" class="headerlink" title="Subversion 分支"></a>Subversion 分支</h4><p>在 Subversion 中新建分支与在 Git 中新建分支并不相同；如果你能不用它，那最好就不要用。 然而，你可以使用 git svn 在 Subversion 中创建分支并在分支上做提交。</p>
+<h4 id="创建一个新的-SVN-分支"><a href="#创建一个新的-SVN-分支" class="headerlink" title="创建一个新的 SVN 分支"></a>创建一个新的 SVN 分支</h4><p>要在 Subversion 中创建一个新分支，运行 <code>git svn branch [branchname]</code>：</p>
+<pre class=" language-console"><code class="language-console">$ git svn branch opera
+Copying file:///tmp/test-svn/trunk at r90 to file:///tmp/test-svn/branches/opera...
+Found possible branch point: file:///tmp/test-svn/trunk => file:///tmp/test-svn/branches/opera, 90
+Found branch parent: (refs/remotes/origin/opera) cb522197870e61467473391799148f6721bcf9a0
+Following parent with do_switch
+Successfully followed parent
+r91 = f1b64a3855d3c8dd84ee0ef10fa89d27f1584302 (refs/remotes/origin/opera)
+</code></pre>
+<p>这与 Subversion 中的 <code>svn copy trunk branches/opera</code> 命令作用相同并且是在 Subversion 服务器中操作。 需要重点注意的是它并不会检出到那个分支；如果你在这时提交，提交会进入服务器的 <code>trunk</code> 分支，而不是 <code>opera</code> 分支。</p>
+<h4 id="切换活动分支"><a href="#切换活动分支" class="headerlink" title="切换活动分支"></a>切换活动分支</h4><p>Git 通过查找在历史中 Subversion 分支的头部来指出你的提交将会到哪一个分支 - 应该只有一个，并且它应该是在当前分支历史中最后一个有 <code>git-svn-id</code> 的。</p>
+<p>如果想要同时在不止一个分支上工作，可以通过在导入的那个分支的 Subversion 提交开始来设置本地分支 <code>dcommit</code> 到特定的 Subversion 分支。 如果想要一个可以单独在上面工作的 <code>opera</code> 分支，可以运行</p>
+<pre class=" language-console"><code class="language-console">$ git branch opera remotes/origin/opera
+</code></pre>
+<p>现在，如果想要将你的 <code>opera</code> 分支合并入 <code>trunk</code>（你的 <code>master</code> 分支），可以用一个正常的 <code>git merge</code> 来这样做。 但是你需要通过 <code>-m</code> 来提供一个描述性的提交信息，否则合并信息会是没有用的 “Merge branch opera”。</p>
+<p>记住尽管使用的是 <code>git merge</code> 来做这个操作，而且合并可能会比在 Subversion 中更容易一些（因为 Git 会为你自动地检测合适的合并基础），但这并不是一个普通的 Git 合并提交。 你不得不将这个数据推送回一个 Subversion 服务器，Subversion 服务器不支持那些跟踪多个父结点的提交；所以，当推送完成后，它看起来会是一个将其他分支的所有提交压缩在一起的单独提交。 在合并一个分支到另一个分支后，你并不能像 Git 中那样轻松地回到原来的分支继续工作。 你运行的 <code>dcommit</code> 命令会将哪个分支被合并进来的信息抹掉，所以后续的合并基础计算会是错的 - dcommit 会使你的 <code>git merge</code> 结果看起来像是运行了 <code>git merge --squash</code>。 不幸的是，没有一个好的方式来避免这种情形 - Subversion 无法存储这个信息，所以当使用它做为服务器时你总是会被它的限制打垮。 为了避免这些问题，应该在合并到主干后删除本地分支（本例中是 <code>opera</code>）。</p>
+<h4 id="Subversion-命令"><a href="#Subversion-命令" class="headerlink" title="Subversion 命令"></a>Subversion 命令</h4><p><code>git svn</code> 工具集通过提供很多功能与 Subversion 中那些相似的命令来帮助简化转移到 Git 的过程。 下面是一些提供了 Subversion 中常用功能的命令。</p>
+<h6 id="SVN-风格历史"><a href="#SVN-风格历史" class="headerlink" title="SVN 风格历史"></a>SVN 风格历史</h6><p>如果你习惯于使用 Subversion 并且想要看 SVN 输出风格的提交历史，可以运行 <code>git svn log</code> 来查看 SVN 格式的提交历史：</p>
+<pre class=" language-console"><code class="language-console">$ git svn log
+------------------------------------------------------------------------
+r87 | schacon | 2014-05-02 16:07:37 -0700 (Sat, 02 May 2014) | 2 lines
+
+autogen change
+
+------------------------------------------------------------------------
+r86 | schacon | 2014-05-02 16:00:21 -0700 (Sat, 02 May 2014) | 2 lines
+
+Merge branch 'experiment'
+
+------------------------------------------------------------------------
+r85 | schacon | 2014-05-02 16:00:09 -0700 (Sat, 02 May 2014) | 2 lines
+
+updated the changelog
+</code></pre>
+<p>关于 <code>git svn log</code>，有两件重要的事你应该知道。 首先，它是离线工作的，并不像真正的 <code>svn log</code> 命令，会向 Subversion 服务器询问数据。 其次，它只会显示已经提交到 Subversion 服务器上的提交。 还未 dcommit 的本地 Git 提交并不会显示；同样也不会显示这段时间中其他人推送到 Subversion 服务器上的提交。 它更像是最后获取到的 Subversion 服务器上的提交状态。</p>
+<h6 id="SVN-注解"><a href="#SVN-注解" class="headerlink" title="SVN 注解"></a>SVN 注解</h6><p>类似 <code>git svn log</code> 命令离线模拟了 <code>svn log</code> 命令，你可以认为 <code>git svn blame [FILE]</code> 离线模拟了 <code>svn annotate</code>。 输出看起来像这样：</p>
+<pre class=" language-console"><code class="language-console">$ git svn blame README.txt
+ 2   temporal Protocol Buffers - Google's data interchange format
+ 2   temporal Copyright 2008 Google Inc.
+ 2   temporal http://code.google.com/apis/protocolbuffers/
+ 2   temporal
+22   temporal C++ Installation - Unix
+22   temporal =======================
+ 2   temporal
+79    schacon Committing in git-svn.
+78    schacon
+ 2   temporal To build and install the C++ Protocol Buffer runtime and the Protocol
+ 2   temporal Buffer compiler (protoc) execute the following:
+ 2   temporal
+</code></pre>
+<p>重复一次，它并不显示你在 Git 中的本地提交，也不显示同一时间被推送到 Subversion 的其他提交。</p>
+<h6 id="SVN-服务器信息"><a href="#SVN-服务器信息" class="headerlink" title="SVN 服务器信息"></a>SVN 服务器信息</h6><p>可以通过运行 <code>git svn info</code> 得到与 <code>svn info</code> 相同种类的信息。</p>
+<pre class=" language-console"><code class="language-console">$ git svn info
+Path: .
+URL: https://schacon-test.googlecode.com/svn/trunk
+Repository Root: https://schacon-test.googlecode.com/svn
+Repository UUID: 4c93b258-373f-11de-be05-5f7a86268029
+Revision: 87
+Node Kind: directory
+Schedule: normal
+Last Changed Author: schacon
+Last Changed Rev: 87
+Last Changed Date: 2009-05-02 16:07:37 -0700 (Sat, 02 May 2009)
+</code></pre>
+<p>这就像是在你上一次和 Subversion 服务器通讯时同步了之后，离线运行的 <code>blame</code> 与 <code>log</code> 命令。</p>
+<h6 id="忽略-SUBVERSION-所忽略的"><a href="#忽略-SUBVERSION-所忽略的" class="headerlink" title="忽略 SUBVERSION 所忽略的"></a>忽略 SUBVERSION 所忽略的</h6><p>如果克隆一个在任意一处设置 <code>svn:ignore</code> 属性的 Subversion 仓库时，你也许会想要设置对应的 <code>.gitignore</code> 文件，这样就不会意外的提交那些不该提交的文件。 <code>git svn</code> 有两个命令来帮助解决这个问题。 第一个是 <code>git svn create-ignore</code>，它会为你自动地创建对应的 <code>.gitignore</code> 文件，这样你的下次提交就能包含它们。</p>
+<p>第二个命令是 <code>git svn show-ignore</code>，它会将你需要放在 <code>.gitignore</code> 文件中的每行内容打印到标准输出，这样就可以将输出内容重定向到项目的例外文件中：</p>
+<pre class=" language-console"><code class="language-console">$ git svn show-ignore > .git/info/exclude
+</code></pre>
+<p>这样，你就不会由于 <code>.gitignore</code> 文件而把项目弄乱。 当你是 Subversion 团队中唯一的 Git 用户时这是一个好的选项，并且你的队友并不想要项目内存在 <code>.gitignore</code> 文件。</p>
+<h4 id="Git-Svn-总结"><a href="#Git-Svn-总结" class="headerlink" title="Git-Svn 总结"></a>Git-Svn 总结</h4><p>当你不得不使用 Subversion 服务器或者其他必须运行一个 Subversion 服务器的开发环境时，<code>git svn</code>工具很有用。 你应该把它当做一个不完全的 Git，然而，你要是不用它的话，就会在做转换的过程中遇到很多麻烦的问题。 为了不惹麻烦，尽量遵守这些准则：</p>
+<ul>
+<li>保持一个线性的 Git 历史，其中不能有 <code>git merge</code> 生成的合并提交。 把你在主线分支外开发的全部工作变基到主线分支；而不要合并入主线分支。</li>
+<li>不要建立一个单独的 Git 服务器，也不要在 Git 服务器上协作。 可以用一台 Git 服务器来帮助新来的开发者加速克隆，但是不要推送任何不包含 <code>git-svn-id</code> 条目的东西。 你可能会需要增加一个 <code>pre-receive</code> 钩子来检查每一个提交信息是否包含 <code>git-svn-id</code> 并且拒绝任何未包含的提交。</li>
+</ul>
+<p>如果你遵守了那些准则，忍受用一个 Subversion 服务器来工作可以更容易些。 然而，如果有可能迁移到一个真正的 Git 服务器，那么迁移过去能使你的团队获得更多好处。</p>
+<h3 id="Git-与-Mercurial"><a href="#Git-与-Mercurial" class="headerlink" title="Git 与 Mercurial"></a>Git 与 Mercurial</h3><p>DVCS 的宇宙里不只有 Git。 实际上，在这个空间里有许多其他的系统。对于如何正确地进行分布式版本管理，每一个系统都有自己的视角。 除了 Git，最流行的就是 Mercurial，并且它们两个在很多方面都很相似。</p>
+<p>好消息是，如果你更喜欢 Git 的客户端行为但是工作在源代码由 Mercurial 控制的项目中，有一种使用 Git 作为 Mercurial 托管仓库的客户端的方法。 由于 Git 与服务器仓库是使用远程交互的，那么由远程助手实现的桥接方法就不会让人很惊讶。 这个项目的名字是 git-remote-hg，可以在 <a href="https://github.com/felipec/git-remote-hg" target="_blank" rel="noopener">https://github.com/felipec/git-remote-hg</a> 找到。</p>
+<h4 id="git-remote-hg"><a href="#git-remote-hg" class="headerlink" title="git-remote-hg"></a>git-remote-hg</h4><p>首先，需要安装 git-remote-hg。 实际上需要将它的文件放在 PATH 变量的某个目录中，像这样：</p>
+<pre class=" language-console"><code class="language-console">$ curl -o ~/bin/git-remote-hg \
+  https://raw.githubusercontent.com/felipec/git-remote-hg/master/git-remote-hg
+$ chmod +x ~/bin/git-remote-hg
+</code></pre>
+<p>假定 <code>~/bin</code> 在 <code>$PATH</code> 变量中。 Git-remote-hg 有一个其他的依赖：<code>mercurial</code> Python 库。 如果已经安装了 Python，安装它就像这样简单：</p>
+<pre class=" language-console"><code class="language-console">$ pip install mercurial
+</code></pre>
+<p>（如果未安装 Python，访问 <a href="https://www.python.org/" target="_blank" rel="noopener">https://www.python.org/</a> 来获取它。）</p>
+<p>需要做的最后一件事是安装 Mercurial 客户端。 如果还没有安装的话请访问 <a href="http://mercurial.selenic.com/" target="_blank" rel="noopener">http://mercurial.selenic.com/</a> 来安装。</p>
+<p>现在已经准备好摇滚了。 你所需要的一切就是一个你可以推送的 Mercurial 仓库。 很幸运，每一个 Mercurial 仓库都可以这样做，所以我们只需要使用大家用来学习 Mercurial 的“hello world”仓库就可以了：</p>
+<pre class=" language-console"><code class="language-console">$ hg clone http://selenic.com/repo/hello /tmp/hello
+</code></pre>
+<h4 id="开始-1"><a href="#开始-1" class="headerlink" title="开始"></a>开始</h4><p>既然有一个可用的 “server-side” 仓库，我们可以通过一个典型的工作流来了解。 你将会看到，这两种系统非常相似，没有太多的出入。</p>
+<p>和 Git 一样，首先我们克隆：</p>
+<pre class=" language-console"><code class="language-console">$ git clone hg::/tmp/hello /tmp/hello-git
+$ cd /tmp/hello-git
+$ git log --oneline --graph --decorate
+* ac7955c (HEAD, origin/master, origin/branches/default, origin/HEAD, refs/hg/origin/branches/default, refs/hg/origin/bookmarks/master, master) Create a makefile
+* 65bb417 Create a standard "hello, world" program
+</code></pre>
+<p>你会注意到与 Mercurial 仓库工作时使用了标准的 <code>git clone</code> 命令。 那是因为 git-remote-hg 工作在相当低的底层，使用类似于 Git HTTP/S 协议的机制实现的（远程助手）。 由于 Git 与 Mercurial 都设计为每一个客户端有一个仓库的完整历史，所以这个命令做了一次完整的克隆，包括所有的项目历史，并且相当快地完成。</p>
+<p>log 命令显示了两次提交，最后一次提交指向了一大堆引用。 那说明这其中的一部分实际上并没有在那儿。 让我们看看 <code>.git</code> 目录中实际上有什么：</p>
+<pre class=" language-console"><code class="language-console">$ tree .git/refs
+.git/refs
+├── heads
+│   └── master
+├── hg
+│   └── origin
+│       ├── bookmarks
+│       │   └── master
+│       └── branches
+│           └── default
+├── notes
+│   └── hg
+├── remotes
+│   └── origin
+│       └── HEAD
+└── tags
+
+9 directories, 5 files
+</code></pre>
+<p>Git-remote-hg 尝试让结构更有 Git 风格，但是在隐藏在下面的是它管理两个轻微不同系统之间概念的映射。 <code>refs/hg</code> 目录中存储了实际的远程引用。 例如，<code>refs/hg/origin/branches/default</code> 是一个包含以<code>‘ac7955c’&#39;开始的 SHA-1 值的 Git 引用文件，是</code>master<code>所指向的提交。 所以</code>refs/hg<code>目录是一种类似</code>refs/remotes/origin` 的替代品，但是它引入了书签与分支的区别。</p>
+<p><code>notes/hg</code> 文件是 git-remote-hg 如何在 Git 的提交散列与 Mercurial 变更集 ID 之间建立映射的起点。 让我们来探索一下：</p>
+<pre class=" language-console"><code class="language-console">$ cat notes/hg
+d4c10386...
+
+$ git cat-file -p d4c10386...
+tree 1781c96...
+author remote-hg <> 1408066400 -0800
+committer remote-hg <> 1408066400 -0800
+
+Notes for master
+
+$ git ls-tree 1781c96...
+100644 blob ac9117f...    65bb417...
+100644 blob 485e178...    ac7955c...
+
+$ git cat-file -p ac9117f
+0a04b987be5ae354b710cefeba0e2d9de7ad41a9
+</code></pre>
+<p>所以 <code>refs/notes/hg</code> 指向了一个树，即在 Git 对象数据库中的一个有其他对象名字的列表。 <code>git ls-tree</code> 输出 tree 对象中所有项目的模式、类型、对象哈希与文件名。 如果深入挖掘 tree 对象中的一个项目，我们会发现在其中是一个名字为 “ac9117f” 的 blob 对象（<code>master</code> 所指向提交的 SHA-1 散列值），包含内容 “0a04b98”（是 <code>default</code> 分支指向的 Mercurial 变更集的 ID）。</p>
+<p>好消息是大多数情况下我们不需要关心以上这些。 典型的工作流程与使用 Git 远程仓库并没有什么不同。</p>
+<p>在我们继续之前，这里还有一件需要注意的事情：忽略。 Mercurial 与 Git 使用非常类似的机制实现这个功能，但是一般来说你不会想要把一个 <code>.gitignore</code> 文件提交到 Mercurial 仓库中。 幸运的是，Git 有一种方式可以忽略本地磁盘仓库的文件，而且 Mercurial 格式是与 Git 兼容的，所以你只需将这个文件拷贝过去：</p>
+<pre class=" language-console"><code class="language-console">$ cp .hgignore .git/info/exclude
+</code></pre>
+<p><code>.git/info/exclude</code> 文件的作用像是一个 <code>.gitignore</code>，但是它不包含在提交中。</p>
+<h4 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h4><p>假设我们已经做了一些工作并且在 <code>master</code> 分支做了几次提交，而且已经准备将它们推送到远程仓库。 这是我们仓库现在的样子：</p>
+<pre class=" language-console"><code class="language-console">$ git log --oneline --graph --decorate
+* ba04a2a (HEAD, master) Update makefile
+* d25d16f Goodbye
+* ac7955c (origin/master, origin/branches/default, origin/HEAD, refs/hg/origin/branches/default, refs/hg/origin/bookmarks/master) Create a makefile
+* 65bb417 Create a standard "hello, world" program
+</code></pre>
+<p>我们的 <code>master</code> 分支领先 <code>origin/master</code> 分支两个提交，但是那两个提交只存在于我们的本地机器中。 让我们看看在同一时间有没有其他人做过什么重要的工作：</p>
+<pre class=" language-console"><code class="language-console">$ git fetch
+From hg::/tmp/hello
+   ac7955c..df85e87  master     -> origin/master
+   ac7955c..df85e87  branches/default -> origin/branches/default
+$ git log --oneline --graph --decorate --all
+* 7b07969 (refs/notes/hg) Notes for default
+* d4c1038 Notes for master
+* df85e87 (origin/master, origin/branches/default, origin/HEAD, refs/hg/origin/branches/default, refs/hg/origin/bookmarks/master) Add some documentation
+| * ba04a2a (HEAD, master) Update makefile
+| * d25d16f Goodbye
+|/
+* ac7955c Create a makefile
+* 65bb417 Create a standard "hello, world" program
+</code></pre>
+<p>因为使用了 <code>--all</code> 标记，我们看到被 git-remote-hg 内部使用的 “notes” 引用，但是可以忽略它们。 剩下的部分是我们期望的；<code>origin/master</code> 已经前进了一次提交，同时我们的历史现在分叉了。 Mercurial 和我们本章中讨论的其他系统不一样，它能够处理合并，所以我们不需要做任何其他事情。</p>
+<pre class=" language-console"><code class="language-console">$ git merge origin/master
+Auto-merging hello.c
+Merge made by the 'recursive' strategy.
+ hello.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ git log --oneline --graph --decorate
+*   0c64627 (HEAD, master) Merge remote-tracking branch 'origin/master'
+|\
+| * df85e87 (origin/master, origin/branches/default, origin/HEAD, refs/hg/origin/branches/default, refs/hg/origin/bookmarks/master) Add some documentation
+* | ba04a2a Update makefile
+* | d25d16f Goodbye
+|/
+* ac7955c Create a makefile
+* 65bb417 Create a standard "hello, world" program
+</code></pre>
+<p>完美。 运行测试然后所有测试都通过了，所以我们准备将工作共享给团队的其他成员。</p>
+<pre class=" language-console"><code class="language-console">$ git push
+To hg::/tmp/hello
+   df85e87..0c64627  master -> master
+</code></pre>
+<p>就是这样！ 如果你现在查看一下 Mercurial 仓库，你会发现这样实现了我们所期望的：</p>
+<pre class=" language-console"><code class="language-console">$ hg log -G --style compact
+o    5[tip]:4,2   dc8fa4f932b8   2014-08-14 19:33 -0700   ben
+|\     Merge remote-tracking branch 'origin/master'
+| |
+| o  4   64f27bcefc35   2014-08-14 19:27 -0700   ben
+| |    Update makefile
+| |
+| o  3:1   4256fc29598f   2014-08-14 19:27 -0700   ben
+| |    Goodbye
+| |
+@ |  2   7db0b4848b3c   2014-08-14 19:30 -0700   ben
+|/     Add some documentation
+|
+o  1   82e55d328c8c   2005-08-26 01:21 -0700   mpm
+|    Create a makefile
+|
+o  0   0a04b987be5a   2005-08-26 01:20 -0700   mpm
+     Create a standard "hello, world" program
+</code></pre>
+<p>序号 <em>2</em> 的变更集是由 Mercurial 生成的，序号 <em>3</em> 与序号 <em>4</em> 的变更集是由 git-remote-hg 生成的，通过 Git 推送上来的提交。</p>
+<h4 id="分支与书签"><a href="#分支与书签" class="headerlink" title="分支与书签"></a>分支与书签</h4><p>Git 只有一种类型的分支：当提交生成时移动的一个引用。 在 Mercurial 中，这种类型的引用叫作 “bookmark”，它的行为非常类似于 Git 分支。</p>
+<p>Mercurial 的 “branch” 概念则更重量级一些。 变更集生成时的分支会记录 <em>在变更集中</em>，意味着它会永远地存在于仓库历史中。 这个例子描述了一个在 <code>develop</code> 分支上的提交：</p>
+<pre class=" language-console"><code class="language-console">$ hg log -l 1
+changeset:   6:8f65e5e02793
+branch:      develop
+tag:         tip
+user:        Ben Straub <ben@straub.cc>
+date:        Thu Aug 14 20:06:38 2014 -0700
+summary:     More documentation
+</code></pre>
+<p>注意开头为 “branch” 的那行。 Git 无法真正地模拟这种行为（并且也不需要这样做；两种类型的分支都可以表达为 Git 的一个引用），但是 git-remote-hg 需要了解其中的区别，因为 Mercurial 关心。</p>
+<p>创建 Mercurial 书签与创建 Git 分支一样容易。 在 Git 这边：</p>
+<pre class=" language-console"><code class="language-console">$ git checkout -b featureA
+Switched to a new branch 'featureA'
+$ git push origin featureA
+To hg::/tmp/hello
+ * [new branch]      featureA -> featureA
+</code></pre>
+<p>这就是所要做的全部。 在 Mercurial 这边，它看起来像这样：</p>
+<pre class=" language-console"><code class="language-console">$ hg bookmarks
+   featureA                  5:bd5ac26f11f9
+$ hg log --style compact -G
+@  6[tip]   8f65e5e02793   2014-08-14 20:06 -0700   ben
+|    More documentation
+|
+o    5[featureA]:4,2   bd5ac26f11f9   2014-08-14 20:02 -0700   ben
+|\     Merge remote-tracking branch 'origin/master'
+| |
+| o  4   0434aaa6b91f   2014-08-14 20:01 -0700   ben
+| |    update makefile
+| |
+| o  3:1   318914536c86   2014-08-14 20:00 -0700   ben
+| |    goodbye
+| |
+o |  2   f098c7f45c4f   2014-08-14 20:01 -0700   ben
+|/     Add some documentation
+|
+o  1   82e55d328c8c   2005-08-26 01:21 -0700   mpm
+|    Create a makefile
+|
+o  0   0a04b987be5a   2005-08-26 01:20 -0700   mpm
+     Create a standard "hello, world" program
+</code></pre>
+<p>注意在修订版本 5 上的新 <code>[featureA]</code> 标签。 在 Git 这边这些看起来像是 Git 分支，除了一点：不能从 Git 这边删除书签（这是远程助手的一个限制）。</p>
+<p>你也可以工作在一个 “重量级” 的 Mercurial branch：只需要在 <code>branches</code> 命名空间内创建一个分支：</p>
+<pre class=" language-console"><code class="language-console">$ git checkout -b branches/permanent
+Switched to a new branch 'branches/permanent'
+$ vi Makefile
+$ git commit -am 'A permanent change'
+$ git push origin branches/permanent
+To hg::/tmp/hello
+ * [new branch]      branches/permanent -> branches/permanent
+</code></pre>
+<p>下面是 Mercurial 这边的样子：</p>
+<pre class=" language-console"><code class="language-console">$ hg branches
+permanent                      7:a4529d07aad4
+develop                        6:8f65e5e02793
+default                        5:bd5ac26f11f9 (inactive)
+$ hg log -G
+o  changeset:   7:a4529d07aad4
+|  branch:      permanent
+|  tag:         tip
+|  parent:      5:bd5ac26f11f9
+|  user:        Ben Straub <ben@straub.cc>
+|  date:        Thu Aug 14 20:21:09 2014 -0700
+|  summary:     A permanent change
+|
+| @  changeset:   6:8f65e5e02793
+|/   branch:      develop
+|    user:        Ben Straub <ben@straub.cc>
+|    date:        Thu Aug 14 20:06:38 2014 -0700
+|    summary:     More documentation
+|
+o    changeset:   5:bd5ac26f11f9
+|\   bookmark:    featureA
+| |  parent:      4:0434aaa6b91f
+| |  parent:      2:f098c7f45c4f
+| |  user:        Ben Straub <ben@straub.cc>
+| |  date:        Thu Aug 14 20:02:21 2014 -0700
+| |  summary:     Merge remote-tracking branch 'origin/master'
+[...]
+</code></pre>
+<p>分支名字 “permanent” 记录在序号 <em>7</em> 的变更集中。</p>
+<p>在 Git 这边，对于其中任何一种风格的分支的工作都是相同的：仅仅是正常做的检出、提交、抓取、合并、拉取与推送。 还有需要知道的一件事情是 Mercurial 不支持重写历史，只允许添加历史。 下面是我们的 Mercurial 仓库在交互式的变基与强制推送后的样子：</p>
+<pre class=" language-console"><code class="language-console">$ hg log --style compact -G
+o  10[tip]   99611176cbc9   2014-08-14 20:21 -0700   ben
+|    A permanent change
+|
+o  9   f23e12f939c3   2014-08-14 20:01 -0700   ben
+|    Add some documentation
+|
+o  8:1   c16971d33922   2014-08-14 20:00 -0700   ben
+|    goodbye
+|
+| o  7:5   a4529d07aad4   2014-08-14 20:21 -0700   ben
+| |    A permanent change
+| |
+| | @  6   8f65e5e02793   2014-08-14 20:06 -0700   ben
+| |/     More documentation
+| |
+| o    5[featureA]:4,2   bd5ac26f11f9   2014-08-14 20:02 -0700   ben
+| |\     Merge remote-tracking branch 'origin/master'
+| | |
+| | o  4   0434aaa6b91f   2014-08-14 20:01 -0700   ben
+| | |    update makefile
+| | |
++---o  3:1   318914536c86   2014-08-14 20:00 -0700   ben
+| |      goodbye
+| |
+| o  2   f098c7f45c4f   2014-08-14 20:01 -0700   ben
+|/     Add some documentation
+|
+o  1   82e55d328c8c   2005-08-26 01:21 -0700   mpm
+|    Create a makefile
+|
+o  0   0a04b987be5a   2005-08-26 01:20 -0700   mpm
+     Create a standard "hello, world" program
+</code></pre>
+<p>变更集 <em>8</em>、<em>9</em> 与 <em>10</em> 已经被创建出来并且属于 <code>permanent</code> 分支，但是旧的变更集依然在那里。 这会让使用 Mercurial 的团队成员非常困惑，所以要避免这种行为。</p>
+<h4 id="Mercurial-总结"><a href="#Mercurial-总结" class="headerlink" title="Mercurial 总结"></a>Mercurial 总结</h4><p>Git 与 Mercurial 如此相似，以至于跨这两个系统进行工作十分流畅。 如果能注意避免改变在你机器上的历史（就像通常建议的那样），你甚至并不会察觉到另一端是 Mercurial。</p>
+<h3 id="Git-与-Perforce"><a href="#Git-与-Perforce" class="headerlink" title="Git 与 Perforce"></a>Git 与 Perforce</h3><p>在企业环境中 Perforce 是非常流行的版本管理系统。 它大概起始于 1995 年，这使它成为了本章中介绍的最古老的系统。 就其本身而言，它设计时带有当时时代的局限性；它假定你始终连接到一个单独的中央服务器，本地磁盘只保存一个版本。 诚然，它的功能与限制适合几个特定的问题，但实际上，在很多情况下，将使用 Perforce 的项目换做使用 Git 会更好。</p>
+<p>如果你决定混合使用 Perforce 与 Git 这里有两种选择。 第一个我们要介绍的是 Perforce 官方制作的 “Git Fusion” 桥接，它可以将 Perforce 仓库中的子树表示为一个可读写的 Git 仓库。 第二个是 git-p4，一个客户端桥接允许你将 Git 作为 Perforce 的客户端使用，而不用在 Perforce 服务器上做任何重新的配置。</p>
+<h4 id="Git-Fusion"><a href="#Git-Fusion" class="headerlink" title="Git Fusion"></a>Git Fusion</h4><p>Perforce 提供了一个叫作 Git Fusion 的产品（可在 <a href="http://www.perforce.com/git-fusion" target="_blank" rel="noopener">http://www.perforce.com/git-fusion</a> 获得），它将会在服务器这边同步 Perforce 服务器与 Git 仓库。</p>
+<h6 id="设置-1"><a href="#设置-1" class="headerlink" title="设置"></a>设置</h6><p>针对我们的例子，我们将会使用最简单的方式安装 Git Fusion：下载一个虚拟机来运行 Perforce 守护进程与 Git Fusion。 可以从 <a href="http://www.perforce.com/downloads/Perforce/20-User" target="_blank" rel="noopener">http://www.perforce.com/downloads/Perforce/20-User</a> 获得虚拟机镜像，下载完成后将它导入到你最爱的虚拟机软件中（我们将会使用 VirtualBox）。</p>
+<p>在第一次启动机器后，它会询问你自定义三个 Linux 用户（<code>root</code>、<code>perforce</code> 与 <code>git</code>）的密码，并且提供一个实例名字来区分在同一网络下不同的安装。 当那些都完成后，将会看到这样：</p>
+<p><img src="https://git-scm.com/book/en/v2/images/git-fusion-boot.png" alt="Git Fusion 虚拟机启动屏幕。"></p>
+<p>Figure 146. Git Fusion 虚拟机启动屏幕。</p>
+<p>应当注意显示在这儿的 IP 地址，我们将会在后面用到。 接下来，我们将会创建一个 Perforce 用户。 选择底部的 “Login” 选项并按下回车（或者用 SSH 连接到这台机器），然后登录为 <code>root</code>。 然后使用这些命令创建一个用户：</p>
+<pre class=" language-console"><code class="language-console">$ p4 -p localhost:1666 -u super user -f john
+$ p4 -p localhost:1666 -u john passwd
+$ exit
+</code></pre>
+<p>第一个命令将会打开一个 VI 编辑器来自定义用户，但是可以通过输入 <code>:wq</code> 并回车来接受默认选项。 第二个命令将会提示输入密码两次。 这就是所有我们要通过终端提示符做的事情，所以现在可以退出当前会话了。</p>
+<p>接下来要做的事就是告诉 Git 不要验证 SSL 证书。 Git Fusion 镜像内置一个证书，但是域名并不匹配你的虚拟主机的 IP 地址，所以 Git 会拒绝 HTTPS 连接。 如果要进行永久安装，查阅 Perforce Git Fusion 手册来安装一个不同的证书；然而，对于我们这个例子来说，这已经足够了。</p>
+<pre class=" language-console"><code class="language-console">$ export GIT_SSL_NO_VERIFY=true
+</code></pre>
+<p>现在我们可以测试所有东西是不是正常工作。</p>
+<pre class=" language-console"><code class="language-console">$ git clone https://10.0.1.254/Talkhouse
+Cloning into 'Talkhouse'...
+Username for 'https://10.0.1.254': john
+Password for 'https://john@10.0.1.254':
+remote: Counting objects: 630, done.
+remote: Compressing objects: 100% (581/581), done.
+remote: Total 630 (delta 172), reused 0 (delta 0)
+Receiving objects: 100% (630/630), 1.22 MiB | 0 bytes/s, done.
+Resolving deltas: 100% (172/172), done.
+Checking connectivity... done.
+</code></pre>
+<p>虚拟机镜像自带一个可以克隆的样例项目。 这里我们会使用之前创建的 <code>john</code> 用户，通过 HTTPS 进行克隆；Git 询问此次连接的凭证，但是凭证缓存会允许我们跳过这步之后的任意后续请求。</p>
+<h6 id="FUSION-配置"><a href="#FUSION-配置" class="headerlink" title="FUSION 配置"></a>FUSION 配置</h6><p>一旦安装了 Git Fusion，你会想要调整配置。 使用你最爱的 Perforce 客户端做这件事实际上相当容易；只需要映射 Perforce 服务器上的 <code>//.git-fusion</code> 目录到你的工作空间。 文件结构看起来像这样：</p>
+<pre class=" language-console"><code class="language-console">$ tree
+.
+├── objects
+│   ├── repos
+│   │   └── [...]
+│   └── trees
+│       └── [...]
+│
+├── p4gf_config
+├── repos
+│   └── Talkhouse
+│       └── p4gf_config
+└── users
+    └── p4gf_usermap
+
+498 directories, 287 files
+</code></pre>
+<p><code>objects</code> 目录被 Git Fusion 内部用来双向映射 Perforce 对象与 Git 对象，你不必弄乱那儿的任何东西。 在这个目录中有一个全局的 <code>p4gf_config</code> 文件，每个仓库中也会有一份 - 这些配置文件决定了 Git Fusion 的行为。 让我们看一下根目录下的文件：</p>
+<pre class=" language-ini"><code class="language-ini"><span class="token selector">[repo-creation]</span>
+<span class="token constant">charset</span> <span class="token attr-value"><span class="token punctuation">=</span> utf8</span>
+
+<span class="token selector">[git-to-perforce]</span>
+<span class="token constant">change-owner</span> <span class="token attr-value"><span class="token punctuation">=</span> author</span>
+<span class="token constant">enable-git-branch-creation</span> <span class="token attr-value"><span class="token punctuation">=</span> yes</span>
+<span class="token constant">enable-swarm-reviews</span> <span class="token attr-value"><span class="token punctuation">=</span> yes</span>
+<span class="token constant">enable-git-merge-commits</span> <span class="token attr-value"><span class="token punctuation">=</span> yes</span>
+<span class="token constant">enable-git-submodules</span> <span class="token attr-value"><span class="token punctuation">=</span> yes</span>
+<span class="token constant">preflight-commit</span> <span class="token attr-value"><span class="token punctuation">=</span> none</span>
+<span class="token constant">ignore-author-permissions</span> <span class="token attr-value"><span class="token punctuation">=</span> no</span>
+<span class="token constant">read-permission-check</span> <span class="token attr-value"><span class="token punctuation">=</span> none</span>
+<span class="token constant">git-merge-avoidance-after-change-num</span> <span class="token attr-value"><span class="token punctuation">=</span> 12107</span>
+
+<span class="token selector">[perforce-to-git]</span>
+<span class="token constant">http-url</span> <span class="token attr-value"><span class="token punctuation">=</span> none</span>
+<span class="token constant">ssh-url</span> <span class="token attr-value"><span class="token punctuation">=</span> none</span>
+
+<span class="token selector">[@features]</span>
+<span class="token constant">imports</span> <span class="token attr-value"><span class="token punctuation">=</span> False</span>
+<span class="token constant">chunked-push</span> <span class="token attr-value"><span class="token punctuation">=</span> False</span>
+<span class="token constant">matrix2</span> <span class="token attr-value"><span class="token punctuation">=</span> False</span>
+<span class="token constant">parallel-push</span> <span class="token attr-value"><span class="token punctuation">=</span> False</span>
+
+<span class="token selector">[authentication]</span>
+<span class="token constant">email-case-sensitivity</span> <span class="token attr-value"><span class="token punctuation">=</span> no</span>
+</code></pre>
+<p>这里我们并不会深入介绍这些选项的含义，但是要注意这是一个 INI 格式的文本文件，就像 Git 的配置。 这个文件指定了全局选项，但它可以被仓库特定的配置文件覆盖，像是 <code>repos/Talkhouse/p4gf_config</code>。 如果打开这个文件，你会看到有一些与全局默认不同设置的 <code>[@repo]</code> 区块。 你也会看到像下面这样的区块：</p>
+<pre class=" language-ini"><code class="language-ini"><span class="token selector">[Talkhouse-master]</span>
+<span class="token constant">git-branch-name</span> <span class="token attr-value"><span class="token punctuation">=</span> master</span>
+<span class="token constant">view</span> <span class="token attr-value"><span class="token punctuation">=</span> //depot/Talkhouse/main-dev/... ...</span>
+</code></pre>
+<p>这是一个 Perforce 分支与一个 Git 分支的映射。 这个区块可以被命名成你喜欢的名字，只要保证名字是唯一的即可。 <code>git-branch-name</code> 允许你将在 Git 下显得笨重的仓库路径转换为更友好的名字。 <code>view</code> 选项使用标准视图映射语法控制 Perforce 文件如何映射到 Git 仓库。 可以指定一个以上的映射，就像下面的例子：</p>
+<pre class=" language-ini"><code class="language-ini"><span class="token selector">[multi-project-mapping]</span>
+<span class="token constant">git-branch-name</span> <span class="token attr-value"><span class="token punctuation">=</span> master</span>
+<span class="token constant">view</span> <span class="token attr-value"><span class="token punctuation">=</span> //depot/project1/main/... project1/...</span>
+       //depot/project2/mainline/... project2/...
+</code></pre>
+<p>通过这种方式，如果正常工作空间映射包含对目录结构的修改，可以将其复制为一个 Git 仓库。</p>
+<p>最后一个我们讨论的文件是 <code>users/p4gf_usermap</code>，它将 Perforce 用户映射到 Git 用户，但你可能不会需要它。 当从一个 Perforce 变更集转换为一个 Git 提交时，Git Fusion 的默认行为是去查找 Perforce 用户，然后把邮箱地址与全名存储在 Git 的 author/commiter 字段中。 当反过来转换时，默认的行为是根据存储在 Git 提交中 author 字段中的邮箱地址来查找 Perforce 用户，然后以该用户提交变更集（以及权限的应用）。 大多数情况下，这个行为工作得很好，但是考虑下面的映射文件：</p>
+<pre><code>john john@example.com &quot;John Doe&quot;
+john johnny@appleseed.net &quot;John Doe&quot;
+bob employeeX@example.com &quot;Anon X. Mouse&quot;
+joe employeeY@example.com &quot;Anon Y. Mouse&quot;
+</code></pre><p>每一行的格式都是 <code>&lt;user&gt; &lt;email&gt; &quot;&lt;full name&gt;&quot;</code>，创建了一个单独的用户映射。 前两行映射不同的邮箱地址到同一个 Perforce 用户账户。 当使用几个不同的邮箱地址（或改变邮箱地址）生成 Git 提交并且想要让他们映射到同一个 Perforce 用户时这会很有用。 当从一个 Perforce 变更集创建一个 Git 提交时，第一个匹配 Perforce 用户的行会被用作 Git 作者信息。</p>
+<p>最后两行从创建的 Git 提交中掩盖了 Bob 与 Joe 的真实名字与邮箱地址。 当你想要将一个内部项目开源，但不想将你的雇员目录公布到全世界时这很不错。 注意邮箱地址与全名需要是唯一的，除非想要所有的 Git 提交都属于一个虚构的作者。</p>
+<h6 id="工作流程-1"><a href="#工作流程-1" class="headerlink" title="工作流程"></a>工作流程</h6><p>Perforce Git Fusion 是在 Perforce 与 Git 版本控制间双向的桥接。 让我们看一下在 Git 这边工作是什么样的感觉。 假定我们在 “Jam” 项目中使用上述的配置文件映射了，可以这样克隆：</p>
+<pre class=" language-console"><code class="language-console">$ git clone https://10.0.1.254/Jam
+Cloning into 'Jam'...
+Username for 'https://10.0.1.254': john
+Password for 'https://ben@10.0.1.254':
+remote: Counting objects: 2070, done.
+remote: Compressing objects: 100% (1704/1704), done.
+Receiving objects: 100% (2070/2070), 1.21 MiB | 0 bytes/s, done.
+remote: Total 2070 (delta 1242), reused 0 (delta 0)
+Resolving deltas: 100% (1242/1242), done.
+Checking connectivity... done.
+$ git branch -a
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+  remotes/origin/rel2.1
+$ git log --oneline --decorate --graph --all
+* 0a38c33 (origin/rel2.1) Create Jam 2.1 release branch.
+| * d254865 (HEAD, origin/master, origin/HEAD, master) Upgrade to latest metrowerks on Beos -- the Intel one.
+| * bd2f54a Put in fix for jam's NT handle leak.
+| * c0f29e7 Fix URL in a jam doc
+| * cc644ac Radstone's lynx port.
+[...]
+</code></pre>
+<p>当首次这样做时，会花费一些时间。 这里发生的是 Git Fusion 会将在 Perforce 历史中所有合适的变更集转换为 Git 提交。 这发生在服务器端本地，所以会相当快，但是如果有很多历史，那么它还是会花费一些时间。 后来的抓取会做增量转换，所以会感觉更像 Git 的本地速度。</p>
+<p>如你所见，我们的仓库看起来像之前使用过的任何一个 Git 仓库了。 这里有三个分支，Git 已经帮助创建了一个跟踪 <code>origin/master</code> 的本地 <code>master</code> 分支。 让我们做一些工作，创建几个新提交：</p>
+<pre class=" language-console"><code class="language-console"># ...
+$ git log --oneline --decorate --graph --all
+* cfd46ab (HEAD, master) Add documentation for new feature
+* a730d77 Whitespace
+* d254865 (origin/master, origin/HEAD) Upgrade to latest metrowerks on Beos -- the Intel one.
+* bd2f54a Put in fix for jam's NT handle leak.
+[...]
+</code></pre>
+<p>我们有两个新提交。 现在我们检查下是否有其他人在工作：</p>
+<pre class=" language-console"><code class="language-console">$ git fetch
+remote: Counting objects: 5, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 2), reused 0 (delta 0)
+Unpacking objects: 100% (3/3), done.
+From https://10.0.1.254/Jam
+   d254865..6afeb15  master     -> origin/master
+$ git log --oneline --decorate --graph --all
+* 6afeb15 (origin/master, origin/HEAD) Update copyright
+| * cfd46ab (HEAD, master) Add documentation for new feature
+| * a730d77 Whitespace
+|/
+* d254865 Upgrade to latest metrowerks on Beos -- the Intel one.
+* bd2f54a Put in fix for jam's NT handle leak.
+[...]
+</code></pre>
+<p>看起来有人在工作！ 从这个视图来看你并不知道这点，但是 <code>6afeb15</code> 提交确实是使用 Perforce 客户端创建的。 从 Git 的视角看它仅仅只是另一个提交，准确地说是一个点。 让我们看看 Perforce 服务器如何处理一个合并提交：</p>
+<pre class=" language-console"><code class="language-console">$ git merge origin/master
+Auto-merging README
+Merge made by the 'recursive' strategy.
+ README | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ git push
+Counting objects: 9, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (9/9), done.
+Writing objects: 100% (9/9), 917 bytes | 0 bytes/s, done.
+Total 9 (delta 6), reused 0 (delta 0)
+remote: Perforce: 100% (3/3) Loading commit tree into memory...
+remote: Perforce: 100% (5/5) Finding child commits...
+remote: Perforce: Running git fast-export...
+remote: Perforce: 100% (3/3) Checking commits...
+remote: Processing will continue even if connection is closed.
+remote: Perforce: 100% (3/3) Copying changelists...
+remote: Perforce: Submitting new Git commit objects to Perforce: 4
+To https://10.0.1.254/Jam
+   6afeb15..89cba2b  master -> master
+</code></pre>
+<p>Git 认为它成功了。 让我们从 Perforce 的视角看一下 <code>README</code> 文件的历史，使用 <code>p4v</code> 的版本图功能。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/git-fusion-perforce-graph.png" alt="Git 推送后的 Perforce 版本图。"></p>
+<p>Figure 147. Git 推送后的 Perforce 版本图</p>
+<p>如果你在之前从未看过这个视图，它似乎让人困惑，但是它显示出了作为 Git 历史图形化查看器相同的概念。 我们正在查看 <code>README</code> 文件的历史，所以左上角的目录树只显示那个文件在不同分支的样子。 右上方，我们有不同版本文件关系的可视图，这个可视图的全局视图在右下方。 视图中剩余的部分显示出选择版本的详细信息（在这个例子中是 <code>2</code>）</p>
+<p>还要注意的一件事是这个图看起来很像 Git 历史中的图。 Perforce 没有存储 <code>1</code> 和 <code>2</code> 提交的命名分支，所以它在 <code>.git-fusion</code> 目录中生成了一个 “anonymous” 分支来保存它。 这也会在 Git 命名分支不对应 Perforce 命名分支时发生（稍后你可以使用配置文件来映射它们到 Perforce 分支）。</p>
+<p>这些大多数发生在后台，但是最终结果是团队中的一个人可以使用 Git，另一个可以使用 Perforce，而所有人都不知道其他人的选择。</p>
+<h6 id="GIT-FUSION-总结"><a href="#GIT-FUSION-总结" class="headerlink" title="GIT-FUSION 总结"></a>GIT-FUSION 总结</h6><p>如果你有（或者能获得）接触你的 Perforce 服务器的权限，那么 Git Fusion 是使 Git 与 Perforce 互相交流的很好的方法。 这里包含了一点配置，但是学习曲线并不是很陡峭。 这是本章中其中一个不会出现无法使用 Git 全部能力的警告的章节。 这并不是说扔给 Perforce 任何东西都会高兴 - 如果你尝试重写已经推送的历史，Git Fusion 会拒绝它 - 虽然 Git Fusion 尽力让你感觉是原生的。 你甚至可以使用 Git 子模块（尽管它们对 Perforce 用户看起来很奇怪），合并分支（在 Perforce 这边会被记录了一次整合）。</p>
+<p>如果不能说服你的服务器管理员设置 Git Fusion，依然有一种方式来一起使用这两个工具。</p>
+<h4 id="Git-p4"><a href="#Git-p4" class="headerlink" title="Git-p4"></a>Git-p4</h4><p>Git-p4 是 Git 与 Perforce 之间的双向桥接。 它完全运行在你的 Git 仓库内，所以你不需要任何访问 Perforce 服务器的权限（当然除了用户验证）。 Git-p4 并不像 Git Fusion 一样灵活或完整，但是它允许你在无需修改服务器环境的情况下，做大部分想做的事情。</p>
+<table>
+<thead>
+<tr>
+<th>Note</th>
+<th>为了与 git-p4 一起工作需要在你的 <code>PATH</code> 环境变量中的某个目录中有 <code>p4</code> 工具。 在写这篇文章的时候，它可以在 <a href="http://www.perforce.com/downloads/Perforce/20-User" target="_blank" rel="noopener">http://www.perforce.com/downloads/Perforce/20-User</a> 免费获得。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h6 id="设置-2"><a href="#设置-2" class="headerlink" title="设置"></a>设置</h6><p>出于演示的目的，我们将会从上面演示的 Git Fusion OVA 运行 Perforce 服务器，但是我们会绕过 Git Fusion 服务器然后直接进行 Perforce 版本管理。</p>
+<p>为了使用 <code>p4</code> 命令行客户端（git-p4 依赖项），你需要设置两个环境变量：</p>
+<pre class=" language-console"><code class="language-console">$ export P4PORT=10.0.1.254:1666
+$ export P4USER=john
+</code></pre>
+<h6 id="开始-2"><a href="#开始-2" class="headerlink" title="开始"></a>开始</h6><p>像在 Git 中的任何事情一样，第一个命令就是克隆：</p>
+<pre class=" language-console"><code class="language-console">$ git p4 clone //depot/www/live www-shallow
+Importing from //depot/www/live into www-shallow
+Initialized empty Git repository in /private/tmp/www-shallow/.git/
+Doing initial import of //depot/www/live/ from revision #head into refs/remotes/p4/master
+</code></pre>
+<p>这样会创建出一种在 Git 中名为 “shallow” 克隆；只有最新版本的 Perforce 被导入至 Git；记住，Perforce 并未被设计成给每一个用户一个版本。 使用 Git 作为 Perforce 客户端这样就足够了，但是为了其他目的的话这样可能不够。</p>
+<p>完成之后，我们就有一个全功能的 Git 仓库：</p>
+<pre class=" language-console"><code class="language-console">$ cd myproject
+$ git log --oneline --all --graph --decorate
+* 70eaf78 (HEAD, p4/master, p4/HEAD, master) Initial import of //depot/www/live/ from the state at revision #head
+</code></pre>
+<p>注意有一个 “p4” 远程代表 Perforce 服务器，但是其他东西看起来就像是标准的克隆。 实际上，这有一点误导；其实远程仓库并不存在。</p>
+<pre class=" language-console"><code class="language-console">$ git remote -v
+</code></pre>
+<p>在当前仓库中并不存在任何远程仓库。 Git-p4 创建了一些引用来代表服务器的状态，它们看起来类似 <code>git log</code> 显示的远程引用，但是它们并不被 Git 本身管理，并且你无法推送它们。</p>
+<h6 id="工作流程-2"><a href="#工作流程-2" class="headerlink" title="工作流程"></a>工作流程</h6><p>好了，让我们开始一些工作。 假设你已经在一个非常重要的功能上做了一些工作，然后准备好将它展示给团队中的其他人。</p>
+<pre class=" language-console"><code class="language-console">$ git log --oneline --all --graph --decorate
+* 018467c (HEAD, master) Change page title
+* c0fb617 Update link
+* 70eaf78 (p4/master, p4/HEAD) Initial import of //depot/www/live/ from the state at revision #head
+</code></pre>
+<p>我们已经生成了两次新提交并已准备好推送它们到 Perforce 服务器。 让我们检查一下今天其他人是否做了一些工作：</p>
+<pre class=" language-console"><code class="language-console">$ git p4 sync
+git p4 sync
+Performing incremental import into refs/remotes/p4/master git branch
+Depot paths: //depot/www/live/
+Import destination: refs/remotes/p4/master
+Importing revision 12142 (100%)
+$ git log --oneline --all --graph --decorate
+* 75cd059 (p4/master, p4/HEAD) Update copyright
+| * 018467c (HEAD, master) Change page title
+| * c0fb617 Update link
+|/
+* 70eaf78 Initial import of //depot/www/live/ from the state at revision #head
+</code></pre>
+<p>看起来他们做了，<code>master</code> 与 <code>p4/master</code> 已经分叉了。 Perforce 的分支系统一点也 <em>不</em> 像 Git 的，所以提交合并提交没有任何意义。 Git-p4 建议变基你的提交，它甚至提供了一个快捷方式来这样做：</p>
+<pre class=" language-console"><code class="language-console">$ git p4 rebase
+Performing incremental import into refs/remotes/p4/master git branch
+Depot paths: //depot/www/live/
+No changes to import!
+Rebasing the current branch onto remotes/p4/master
+First, rewinding head to replay your work on top of it...
+Applying: Update link
+Applying: Change page title
+ index.html | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</code></pre>
+<p>从输出中可能大概得知，<code>git p4 rebase</code> 是 <code>git p4 sync</code> 接着 <code>git rebase p4/master</code> 的快捷方式。 它比那更聪明一些，特别是工作在多个分支时，但这是一个进步。</p>
+<p>现在我们的历史再次是线性的，我们准备好我们的改动贡献回 Perforce。 <code>git p4 submit</code> 命令会尝试在 <code>p4/master</code> 与 <code>master</code> 之间的每一个 Git 提交创建一个新的 Perforce 修订版本。 运行它会带我们到最爱的编辑器，文件内容看起来像是这样：</p>
+<pre class=" language-console"><code class="language-console"># A Perforce Change Specification.
+#
+#  Change:      The change number. 'new' on a new changelist.
+#  Date:        The date this specification was last modified.
+#  Client:      The client on which the changelist was created.  Read-only.
+#  User:        The user who created the changelist.
+#  Status:      Either 'pending' or 'submitted'. Read-only.
+#  Type:        Either 'public' or 'restricted'. Default is 'public'.
+#  Description: Comments about the changelist.  Required.
+#  Jobs:        What opened jobs are to be closed by this changelist.
+#               You may delete jobs from this list.  (New changelists only.)
+#  Files:       What opened files from the default changelist are to be added
+#               to this changelist.  You may delete files from this list.
+#               (New changelists only.)
+
+Change:  new
+
+Client:  john_bens-mbp_8487
+
+User: john
+
+Status:  new
+
+Description:
+   Update link
+
+Files:
+   //depot/www/live/index.html   # edit
+
+
+######## git author ben@straub.cc does not match your p4 account.
+######## Use option --preserve-user to modify authorship.
+######## Variable git-p4.skipUserNameCheck hides this message.
+######## everything below this line is just the diff #######
+--- //depot/www/live/index.html  2014-08-31 18:26:05.000000000 0000
++++ /Users/ben/john_bens-mbp_8487/john_bens-mbp_8487/depot/www/live/index.html   2014-08-31 18:26:05.000000000 0000
+@@ -60,7 +60,7 @@
+ </td>
+ <td valign=top>
+ Source and documentation for
+-<a href="http://www.perforce.com/jam/jam.html">
++<a href="jam.html">
+ Jam/MR</a>,
+ a software build tool.
+ </td>
+</code></pre>
+<p>除了结尾 git-p4 给我们的帮助性的提示，其它的与你运行 <code>p4 submit</code> 后看到的内容大多相同。 当提交或变更集需要一个名字时 git-p4 会分别尝试使用你的 Git 与 Perforce 设置，但是有些情况下你会想要覆盖默认行为。 例如，如果你正导入的提交是由没有 Perforce 用户账户的贡献者编写的，你还是会想要最终的变更集看起来像是他们写的（而不是你）。</p>
+<p>Git-p4 帮助性地将 Git 的提交注释导入到 Perforce 变更集的内容，这样所有我们必须做的就是保存并退出，两次（每次一个提交）。 这会使 shell 输出看起来像这样：</p>
+<pre class=" language-console"><code class="language-console">$ git p4 submit
+Perforce checkout for depot path //depot/www/live/ located at /Users/ben/john_bens-mbp_8487/john_bens-mbp_8487/depot/www/live/
+Synchronizing p4 checkout...
+... - file(s) up-to-date.
+Applying dbac45b Update link
+//depot/www/live/index.html#4 - opened for edit
+Change 12143 created with 1 open file(s).
+Submitting change 12143.
+Locking 1 files ...
+edit //depot/www/live/index.html#5
+Change 12143 submitted.
+Applying 905ec6a Change page title
+//depot/www/live/index.html#5 - opened for edit
+Change 12144 created with 1 open file(s).
+Submitting change 12144.
+Locking 1 files ...
+edit //depot/www/live/index.html#6
+Change 12144 submitted.
+All commits applied!
+Performing incremental import into refs/remotes/p4/master git branch
+Depot paths: //depot/www/live/
+Import destination: refs/remotes/p4/master
+Importing revision 12144 (100%)
+Rebasing the current branch onto remotes/p4/master
+First, rewinding head to replay your work on top of it...
+$ git log --oneline --all --graph --decorate
+* 775a46f (HEAD, p4/master, p4/HEAD, master) Change page title
+* 05f1ade Update link
+* 75cd059 Update copyright
+* 70eaf78 Initial import of //depot/www/live/ from the state at revision #head
+</code></pre>
+<p>结果恰如我们只是做了一次 <code>git push</code>，就像是应当实际发生的最接近的类比。</p>
+<p>注意在这个过程中每一个 Git 提交都会被转化为一个 Perforce 变更集；如果想要将它们压缩成为一个单独的提交，可以在运行 <code>git p4 submit</code> 前进行一次交互式变基。 同样注意的是所有被转化为变更集的提交的 SHA-1 校验和都改变了；这是因为 git-p4 在每一个转化的提交增加一行到提交注释结尾：</p>
+<pre class=" language-console"><code class="language-console">$ git log -1
+commit 775a46f630d8b46535fc9983cf3ebe6b9aa53145
+Author: John Doe <john@example.com>
+Date:   Sun Aug 31 10:31:44 2014 -0800
+
+    Change page title
+
+    [git-p4: depot-paths = "//depot/www/live/": change = 12144]
+</code></pre>
+<p>当尝试提交一次合并提交时会发生什么？ 让我们尝试一下。 这是我们可能会遇到的一种情形：</p>
+<pre class=" language-console"><code class="language-console">$ git log --oneline --all --graph --decorate
+* 3be6fd8 (HEAD, master) Correct email address
+*   1dcbf21 Merge remote-tracking branch 'p4/master'
+|\
+| * c4689fc (p4/master, p4/HEAD) Grammar fix
+* | cbacd0a Table borders: yes please
+* | b4959b6 Trademark
+|/
+* 775a46f Change page title
+* 05f1ade Update link
+* 75cd059 Update copyright
+* 70eaf78 Initial import of //depot/www/live/ from the state at revision #head
+</code></pre>
+<p>Git 与 Perforce 历史在 775a46f 后分叉了。 Git 这边有两次提交，然后一次与 Perforce 头部的合并提交，还有另一个提交。 我们将会尝试提交这些到 Perforce 那边单独的变更集之上。 让我们看看如果尝试这样提交会发生什么：</p>
+<pre class=" language-console"><code class="language-console">$ git p4 submit -n
+Perforce checkout for depot path //depot/www/live/ located at /Users/ben/john_bens-mbp_8487/john_bens-mbp_8487/depot/www/live/
+Would synchronize p4 checkout in /Users/ben/john_bens-mbp_8487/john_bens-mbp_8487/depot/www/live/
+Would apply
+  b4959b6 Trademark
+  cbacd0a Table borders: yes please
+  3be6fd8 Correct email address
+</code></pre>
+<p><code>-n</code> 标记是 <code>--dry-run</code> 的缩写，将会报告如果提交命令真的运行会发生什么。 这本例中，它看起来像是我们会创建三个 Perforce 变更集，对应着不在 Perforce 服务器端的三次非合并提交。 那听起来像是我们想要的，让我们看看它会如何做：</p>
+<pre class=" language-console"><code class="language-console">$ git p4 submit
+[…]
+$ git log --oneline --all --graph --decorate
+* dadbd89 (HEAD, p4/master, p4/HEAD, master) Correct email address
+* 1b79a80 Table borders: yes please
+* 0097235 Trademark
+* c4689fc Grammar fix
+* 775a46f Change page title
+* 05f1ade Update link
+* 75cd059 Update copyright
+* 70eaf78 Initial import of //depot/www/live/ from the state at revision #head
+</code></pre>
+<p>我们的历史变成线性了，就像在提交前刚刚变基过（实际上也是这样）。 这意味着你可以在 Git 这边自由地创建、工作、扔掉与合并分支而不用害怕你的历史会变得与 Perforce 不兼容。 如果你可以变基它，你就可以将它贡献到 Perforce 服务器。</p>
+<h6 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h6><p>如果你的 Perforce 项目有多个分支，你并不会不走运；git-p4 可以以一种类似 Git 的方式来处理那种情况。 假定你的 Perforce 仓库平铺的时候像这样：</p>
+<pre><code>//depot
+  └── project
+      ├── main
+      └── dev
+</code></pre><p>并且假定你有一个 <code>dev</code> 分支，有一个视图规格像下面这样：</p>
+<pre><code>//depot/project/main/... //depot/project/dev/...
+</code></pre><p>Git-p4 可以自动地检测到这种情形并做正确的事情：</p>
+<pre class=" language-console"><code class="language-console">$ git p4 clone --detect-branches //depot/project@all
+Importing from //depot/project@all into project
+Initialized empty Git repository in /private/tmp/project/.git/
+Importing revision 20 (50%)
+    Importing new branch project/dev
+
+    Resuming with change 20
+Importing revision 22 (100%)
+Updated branches: main dev
+$ cd project; git log --oneline --all --graph --decorate
+* eae77ae (HEAD, p4/master, p4/HEAD, master) main
+| * 10d55fb (p4/project/dev) dev
+| * a43cfae Populate //depot/project/main/... //depot/project/dev/....
+|/
+* 2b83451 Project init
+</code></pre>
+<p>注意在仓库路径中的 “@all” 说明符；那会告诉 git-p4 不仅仅只是克隆那个子树最新的变更集，更包括那些路径未接触的所有变更集。 这有点类似于 Git 的克隆概念，但是如果你工作在一个具有很长历史的项目，那么它会花费一段时间。</p>
+<p><code>--detect-branches</code> 标记告诉 git-p4 使用 Perforce 的分支规范来映射到 Git 的引用中。 如果这些映射不在 Perforce 服务器中（使用 Perforce 的一种完美有效的方式），你可以告诉 git-p4 分支映射是什么，然后你会得到同样的结果：</p>
+<pre class=" language-console"><code class="language-console">$ git init project
+Initialized empty Git repository in /tmp/project/.git/
+$ cd project
+$ git config git-p4.branchList main:dev
+$ git clone --detect-branches //depot/project@all .
+</code></pre>
+<p>设置 <code>git-p4.branchList</code> 配置选项为 <code>main:dev</code> 告诉 git-p4 那个 “main” 与 “dev” 都是分支，第二个是第一个的子分支。</p>
+<p>如果我们现在运行 <code>git checkout -b dev p4/project/dev</code> 并且做一些提交，在运行 <code>git p4 submit</code> 时 git-p4 会聪明地选择正确的分支。 不幸的是，git-p4 不能混用 shallow 克隆与多个分支；如果你有一个巨型项目并且想要同时工作在不止一个分支上，可能不得不针对每一个你想要提交的分支运行一次 <code>git p4 clone</code>。</p>
+<p>为了创建与整合分支，你不得不使用一个 Perforce 客户端。 Git-p4 只能同步或提交已有分支，并且它一次只能做一个线性的变更集。 如果你在 Git 中合并两个分支并尝试提交新的变更集，所有这些会被记录为一串文件修改；关于哪个分支参与的元数据在整合中会丢失。</p>
+<h4 id="Git-与-Perforce-总结"><a href="#Git-与-Perforce-总结" class="headerlink" title="Git 与 Perforce 总结"></a>Git 与 Perforce 总结</h4><p>Git-p4 将与 Perforce 服务器工作时使用 Git 工作流成为可能，并且它非常擅长这点。 然而，需要记住的重要一点是 Perforce 负责源头，而你只是在本地使用 Git。 在共享 Git 提交时要相当小心：如果你有一个其他人使用的远程仓库，不要在提交到 Perforce 服务器前推送任何提交。</p>
+<p>如果想要为源码管理自由地混合使用 Perforce 与 Git 作为客户端，可以说服服务器管理员安装 Git Fusion，Git Fusion 使 Git 作为 Perforce 服务器的首级版本管理客户端。</p>
+<h3 id="Git-与-TFS"><a href="#Git-与-TFS" class="headerlink" title="Git 与 TFS"></a>Git 与 TFS</h3><p>Git 在 Windows 开发者当中变得流行起来，如果你正在 Windows 上编写代码并且正在使用 Microsoft 的 Team Foundation Server (TFS)，这会是个好机会。 TFS 是一个包含工作项目检测与跟踪、支持 Scrum 与其他流程管理方法、代码审核、版本控制的协作套件。 这里有一点困惑：<strong>TFS</strong> 是服务器，它支持通过 Git 与它们自定义的 VCS 来管理源代码，这被他们称为 <strong>TFVC</strong>（Team Foundation Version Control）。 Git 支持 TFS（自 2013 版本起）的部分新功能，所以在那之前所有工具都将版本控制部分称为 “TFS”，即使实际上他们大部分时间都在与 TFVC 工作。</p>
+<p>如果发现你的团队在使用 TFVC 但是你更愿意使用 Git 作为版本控制客户端，这里为你准备了一个项目。</p>
+<h4 id="选择哪个工具"><a href="#选择哪个工具" class="headerlink" title="选择哪个工具"></a>选择哪个工具</h4><p>实际上，这里有两个工具：git-tf 与 git-tfs。</p>
+<p>Git-tfs （可以在 <a href="https://github.com/git-tfs/git-tfs" target="_blank" rel="noopener">https://github.com/git-tfs/git-tfs</a> 找到）是一个 .NET 项目，它只能运行在 Windows 上（截至文章完成时）。 为了操作 Git 仓库，它使用了 libgit2 的 .NET 绑定，一个可靠的面向库的 Git 实现，十分灵活且性能优越。 Libgit2 并不是一个完整的 Git 实现，为了弥补差距 git-tfs 实际上会调用 Git 命令行客户端来执行某些操作，因此在操作 Git 仓库时并没有任何功能限制。 因为它使用 Visual Studio 程序集对服务器进行操作，所以它对 TFVC 的支持非常成熟。 这并不意味着你需要接触那些程序集，但是意味着你需要安装 Visual Studio 的一个最近版本（2010 之后的任何版本，包括 2012 之后的 Express 版本），或者 Visual Studio SDK。</p>
+<p>Git-tf（主页在 <a href="https://gittf.codeplex.com/" target="_blank" rel="noopener">https://gittf.codeplex.com</a>）是一个 Java 项目，因此它可以运行在任何一个有 Java 运行时环境的电脑上。 它通过 JGit（一个 Git 的 JVM 实现）来与 Git 仓库交互，这意味着事实上它没有 Git 功能上的限制。 然而，相对于 git-tfs 它对 TFVC 的支持是有限的 - 例如，它不支持分支。</p>
+<p>所以每个工具都有优点和缺点，每个工具都有它适用的情况。 我们在本书中将会介绍它们两个的基本用法。</p>
+<table>
+<thead>
+<tr>
+<th>Note</th>
+<th>你需要有一个基于 TFVC 的仓库来执行后续的指令。 现实中它们并没有 Git 或 Subversion 仓库那样多，所以你可能需要创建一个你自己的仓库。 Codeplex (<a href="https://www.codeplex.com/" target="_blank" rel="noopener">https://www.codeplex.com</a>) 或 Visual Studio Online (<a href="http://www.visualstudio.com/" target="_blank" rel="noopener">http://www.visualstudio.com</a>) 都是非常好的选择。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="使用：git-tf"><a href="#使用：git-tf" class="headerlink" title="使用：git-tf"></a>使用：<code>git-tf</code></h4><p>和其它任何 Git 项目一样，你要做的第一件事是克隆。 使用 <code>git-tf</code> 克隆看起来像这样：</p>
+<pre class=" language-console"><code class="language-console">$ git tf clone https://tfs.codeplex.com:443/tfs/TFS13 $/myproject/Main project_git
+</code></pre>
+<p>第一个参数是一个 TFVC 集的 URL，第二个参数类似于 <code>$/project/branch</code> 的形式，第三个参数是将要创建的本地 Git 仓库路径（最后一项可以省略）。 Git-tf 同一时间只能工作在一个分支上；如果你想要检入一个不同的 TFVC 分支，你需要从那个分支克隆一份新的。</p>
+<p>这会创建一个完整功能的 Git 仓库：</p>
+<pre class=" language-console"><code class="language-console">$ cd project_git
+$ git log --all --oneline --decorate
+512e75a (HEAD, tag: TFS_C35190, origin_tfs/tfs, master) Checkin message
+</code></pre>
+<p>这叫做 <em>浅</em> 克隆，意味着只下载了最新的变更集。 TFVC 并未设计成为每一个客户端提供一份全部历史记录的拷贝，所以 git-tf 默认行为是获得最新的版本，这样更快一些。</p>
+<p>如果愿意多花一些时间，使用 <code>--deep</code> 选项克隆整个项目历史可能更有价值。</p>
+<pre class=" language-console"><code class="language-console">$ git tf clone https://tfs.codeplex.com:443/tfs/TFS13 $/myproject/Main \
+  project_git --deep
+Username: domain\user
+Password:
+Connecting to TFS...
+Cloning $/myproject into /tmp/project_git: 100%, done.
+Cloned 4 changesets. Cloned last changeset 35190 as d44b17a
+$ cd project_git
+$ git log --all --oneline --decorate
+d44b17a (HEAD, tag: TFS_C35190, origin_tfs/tfs, master) Goodbye
+126aa7b (tag: TFS_C35189)
+8f77431 (tag: TFS_C35178) FIRST
+0745a25 (tag: TFS_C35177) Created team project folder $/tfvctest via the \
+        Team Project Creation Wizard
+</code></pre>
+<p>注意名字类似 <code>TFS_C35189</code> 的标签；这是一个帮助你知道 Git 提交与 TFVC 变更集关联的功能。 这是一种优雅的表示方式，因为通过一个简单的 log 命令就可以看到你的提交是如何与 TFVC 中已存在快照关联起来的。 它们并不是必须的（并且实际上可以使用 <code>git config git-tf.tag false</code> 来关闭它们）- git-tf 会在 <code>.git/git-tf</code> 文件中保存真正的提交与变更集的映射。</p>
+<h4 id="使用：git-tfs"><a href="#使用：git-tfs" class="headerlink" title="使用：git-tfs"></a>使用：<code>git-tfs</code></h4><p>Git-tfs 克隆行为略为不同。 观察：</p>
+<pre class=" language-powershell"><code class="language-powershell"><span class="token function">PS</span>> git tfs clone <span class="token operator">--</span>with<span class="token operator">-</span>branches \
+    https:<span class="token operator">/</span><span class="token operator">/</span>username<span class="token punctuation">.</span>visualstudio<span class="token punctuation">.</span>com<span class="token operator">/</span>DefaultCollection \
+    $<span class="token operator">/</span>project<span class="token operator">/</span>Trunk project_git
+Initialized empty Git repository in C:<span class="token operator">/</span>Users<span class="token operator">/</span>ben<span class="token operator">/</span>project_git<span class="token operator">/</span><span class="token punctuation">.</span>git<span class="token operator">/</span>
+C15 = b75da1aba1ffb359d00e85c52acb261e4586b0c9
+C16 = c403405f4989d73a2c3c119e79021cb2104ce44a
+Tfs branches found:
+<span class="token operator">-</span> $<span class="token operator">/</span>tfvc<span class="token operator">-</span>test<span class="token operator">/</span>featureA
+The name of the local branch will be : featureA
+C17 = d202b53f67bde32171d5078968c644e562f1c439
+C18 = 44cd729d8df868a8be20438fdeeefb961958b674
+</code></pre>
+<p>注意 <code>--with-branches</code> 选项。 Git-tfs 能够映射 TFVC 分支到 Git 分支，这个标记告诉它为每一个 TFVC 分支建立一个本地的 Git 分支。 强烈推荐曾经在 TFS 中新建过分支或合并过分支的仓库使用这个标记，但是如果使用的服务器的版本比 TFS 2010 更老 - 在那个版本前，“分支” 只是文件夹，所以 git-tfs 无法将它们与普通文件夹区分开。</p>
+<p>让我们看一下最终的 Git 仓库：</p>
+<pre class=" language-powershell"><code class="language-powershell"><span class="token function">PS</span>> git log <span class="token operator">--</span>oneline <span class="token operator">--</span>graph <span class="token operator">--</span>decorate <span class="token operator">--</span>all
+<span class="token operator">*</span> 44cd729 <span class="token punctuation">(</span>tfs<span class="token operator">/</span>featureA<span class="token punctuation">,</span> featureA<span class="token punctuation">)</span> Goodbye
+<span class="token operator">*</span> d202b53 Branched <span class="token keyword">from</span> $<span class="token operator">/</span>tfvc<span class="token operator">-</span>test<span class="token operator">/</span>Trunk
+<span class="token operator">*</span> c403405 <span class="token punctuation">(</span>HEAD<span class="token punctuation">,</span> tfs<span class="token operator">/</span>default<span class="token punctuation">,</span> master<span class="token punctuation">)</span> Hello
+<span class="token operator">*</span> b75da1a New project
+<span class="token function">PS</span>> git log <span class="token operator">-</span>1
+commit c403405f4989d73a2c3c119e79021cb2104ce44a
+Author: Ben Straub &lt;ben@straub<span class="token punctuation">.</span>cc>
+Date:   Fri Aug 1 03:41:59 2014 <span class="token operator">+</span>0000
+
+    Hello
+
+    git<span class="token operator">-</span>tfs<span class="token operator">-</span>id: <span class="token namespace">[https://username.visualstudio.com/DefaultCollection]</span>$<span class="token operator">/</span>myproject<span class="token operator">/</span>Trunk<span class="token punctuation">;</span>C16
+</code></pre>
+<p>有两个本地分支，<code>master</code> 与 <code>featureA</code>，分别代表着克隆（TFVC 中的 <code>Trunk</code>）与子分支（TFVC 中的 <code>featureA</code>）的初始状态。 也可以看到 <code>tfs</code> “remote” 也有一对引用：<code>default</code> 与 <code>featureA</code>，代表 TFVC 分支。 Git-tfs 映射从 <code>tfs/default</code> 克隆的分支，其他的会有它们自己的名字。</p>
+<p>另一件需要注意的事情是在提交信息中的 <code>git-tfs-id:</code> 行。 Git-tfs 使用这些标记而不是标签来关联 TFVC 变更集与 Git 提交。 有一个潜在的问题是 Git 提交在推送到 TFVC 前后会有不同的 SHA-1 校验和。</p>
+<h4 id="Git-tf-s-工作流程"><a href="#Git-tf-s-工作流程" class="headerlink" title="Git-tf[s] 工作流程"></a>Git-tf[s] 工作流程</h4><table>
+<thead>
+<tr>
+<th>Note</th>
+<th>无论你使用哪个工具，都需要先设置几个 Git 配置选项来避免一些问题。<code>$ git config set --local core.ignorecase=true $ git config set --local core.autocrlf=false</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>显然，接下来要做的事情就是要在项目中做一些工作。 TFVC 与 TFS 有几个功能可能会增加你的工作流程的复杂性：</p>
+<ol>
+<li>TFVC 无法表示特性分支，这会增加一点复杂度。 这会导致需要以 <strong>非常</strong> 不同的方式使用 TFVC 与 Git 表示的分支。</li>
+<li>要意识到 TFVC 允许用户从服务器上 “检出” 文件并锁定它们，这样其他人就无法编辑了。 显然它不会阻止你在本地仓库中编辑它们，但是当推送你的修改到 TFVC 服务器时会出现问题。</li>
+<li>TFS 有一个 “封闭” 检入的概念，TFS 构建-测试循环必须在检入被允许前成功完成。 这使用了 TFVC 的 “shelve” 功能，我们不会在这里详述。 可以通过 git-tf 手动地模拟这个功能，并且 git-tfs 提供了封闭敏感的 <code>checkintool</code> 命令。</li>
+</ol>
+<p>出于简洁性的原因，我们这里介绍的是一种轻松的方式，回避并避免了大部分问题。</p>
+<h4 id="工作流程：git-tf"><a href="#工作流程：git-tf" class="headerlink" title="工作流程：git-tf"></a>工作流程：<code>git-tf</code></h4><p>假定你完成了一些工作，在 <code>master</code> 中做了几次 Git 提交，然后准备将你的进度共享到服务器。 这是我们的 Git 仓库：</p>
+<pre class=" language-console"><code class="language-console">$ git log --oneline --graph --decorate --all
+* 4178a82 (HEAD, master) update code
+* 9df2ae3 update readme
+* d44b17a (tag: TFS_C35190, origin_tfs/tfs) Goodbye
+* 126aa7b (tag: TFS_C35189)
+* 8f77431 (tag: TFS_C35178) FIRST
+* 0745a25 (tag: TFS_C35177) Created team project folder $/tfvctest via the \
+          Team Project Creation Wizard
+</code></pre>
+<p>我们想要拿到在 <code>4178a82</code> 提交的快照并将其推送到 TFVC 服务器。 先说重要的：让我们看看自从上次连接后我们的队友是否进行过改动：</p>
+<pre class=" language-console"><code class="language-console">$ git tf fetch
+Username: domain\user
+Password:
+Connecting to TFS...
+Fetching $/myproject at latest changeset: 100%, done.
+Downloaded changeset 35320 as commit 8ef06a8. Updated FETCH_HEAD.
+$ git log --oneline --graph --decorate --all
+* 8ef06a8 (tag: TFS_C35320, origin_tfs/tfs) just some text
+| * 4178a82 (HEAD, master) update code
+| * 9df2ae3 update readme
+|/
+* d44b17a (tag: TFS_C35190) Goodbye
+* 126aa7b (tag: TFS_C35189)
+* 8f77431 (tag: TFS_C35178) FIRST
+* 0745a25 (tag: TFS_C35177) Created team project folder $/tfvctest via the \
+          Team Project Creation Wizard
+</code></pre>
+<p>看起来其他人也做了一些改动，现在我们有一个分叉的历史。 这就是 Git 的优势，但是我们现在有两种处理的方式：</p>
+<ol>
+<li>像一名 Git 用户一样自然的生成一个合并提交（毕竟，那也是 <code>git pull</code> 做的），git-tf 可以通过一个简单的 <code>git tf pull</code> 来帮你完成。 然而，我们要注意的是，TFVC 却并不这样想，如果你推送合并提交那么你的历史在两边看起来都不一样，这会造成困惑。 其次，如果你计划将所有你的改动提交为一次变更集，这可能是最简单的选择。</li>
+<li>变基使我们的提交历史变成直线，这意味着我们有个选项可以将我们的每一个 Git 提交转换为一个 TFVC 变更集。 因为这种方式为其他选项留下了可能，所以我们推荐你这样做；git-tf 可以很简单地通过 <code>git tf pull --rebase</code> 帮你达成目标。</li>
+</ol>
+<p>这是你的选择。 在本例中，我们会进行变基：</p>
+<pre class=" language-console"><code class="language-console">$ git rebase FETCH_HEAD
+First, rewinding head to replay your work on top of it...
+Applying: update readme
+Applying: update code
+$ git log --oneline --graph --decorate --all
+* 5a0e25e (HEAD, master) update code
+* 6eb3eb5 update readme
+* 8ef06a8 (tag: TFS_C35320, origin_tfs/tfs) just some text
+* d44b17a (tag: TFS_C35190) Goodbye
+* 126aa7b (tag: TFS_C35189)
+* 8f77431 (tag: TFS_C35178) FIRST
+* 0745a25 (tag: TFS_C35177) Created team project folder $/tfvctest via the \
+          Team Project Creation Wizard
+</code></pre>
+<p>现在我们准备好生成一个检入来推送到 TFVC 服务器上了。 Git-tf 给你一个将自上次修改（即 <code>--shallow</code>选项，默认启用）以来所有的修改生成的一个单独的变更集以及为每一个 Git 提交（<code>--deep</code>）生成的一个新的变更集。 在本例中，我们将会创建一个变更集：</p>
+<pre class=" language-console"><code class="language-console">$ git tf checkin -m 'Updating readme and code'
+Username: domain\user
+Password:
+Connecting to TFS...
+Checking in to $/myproject: 100%, done.
+Checked commit 5a0e25e in as changeset 35348
+$ git log --oneline --graph --decorate --all
+* 5a0e25e (HEAD, tag: TFS_C35348, origin_tfs/tfs, master) update code
+* 6eb3eb5 update readme
+* 8ef06a8 (tag: TFS_C35320) just some text
+* d44b17a (tag: TFS_C35190) Goodbye
+* 126aa7b (tag: TFS_C35189)
+* 8f77431 (tag: TFS_C35178) FIRST
+* 0745a25 (tag: TFS_C35177) Created team project folder $/tfvctest via the \
+          Team Project Creation Wizard
+</code></pre>
+<p>那有一个新标签 <code>TFS_C35348</code>，表明 TFVC 已经存储了一个相当于 <code>5a0e25e</code> 提交的快照。 要重点注意的是，不是每一个 Git 提交都需要在 TFVC 中存在一个相同的副本；例如 <code>6eb3eb5</code> 提交，在服务器上并不存在。</p>
+<p>这就是主要的工作流程。 有一些你需要考虑的其他注意事项：</p>
+<ul>
+<li>没有分支。 Git-tf 同一时间只能从一个 TFVC 分支创建一个 Git 仓库。</li>
+<li>协作时使用 TFVC 或 Git，而不是两者同时使用。 同一个 TFVC 仓库的不同 git-tf 克隆会有不同的 SHA-1 校验和，这会导致无尽的头痛问题。</li>
+<li>如果你的团队的工作流程包括在 Git 中协作并定期与 TFVC 同步，只能使用其中的一个 Git 仓库连接到 TFVC。</li>
+</ul>
+<h4 id="工作流程：git-tfs"><a href="#工作流程：git-tfs" class="headerlink" title="工作流程：git-tfs"></a>工作流程：<code>git-tfs</code></h4><p>让我们使用 git-tfs 来走一遍同样的情景。 这是我们在 Git 仓库中 <code>master</code> 分支上生成的几个新提交：</p>
+<pre class=" language-powershell"><code class="language-powershell"><span class="token function">PS</span>> git log <span class="token operator">--</span>oneline <span class="token operator">--</span>graph <span class="token operator">--</span>all <span class="token operator">--</span>decorate
+<span class="token operator">*</span> c3bd3ae <span class="token punctuation">(</span>HEAD<span class="token punctuation">,</span> master<span class="token punctuation">)</span> update code
+<span class="token operator">*</span> d85e5a2 update readme
+<span class="token punctuation">|</span> <span class="token operator">*</span> 44cd729 <span class="token punctuation">(</span>tfs<span class="token operator">/</span>featureA<span class="token punctuation">,</span> featureA<span class="token punctuation">)</span> Goodbye
+<span class="token punctuation">|</span> <span class="token operator">*</span> d202b53 Branched <span class="token keyword">from</span> $<span class="token operator">/</span>tfvc<span class="token operator">-</span>test<span class="token operator">/</span>Trunk
+<span class="token punctuation">|</span><span class="token operator">/</span>
+<span class="token operator">*</span> c403405 <span class="token punctuation">(</span>tfs<span class="token operator">/</span>default<span class="token punctuation">)</span> Hello
+<span class="token operator">*</span> b75da1a New project
+</code></pre>
+<p>让我们看一下在我们工作时有没有人完成一些其它的工作：</p>
+<pre class=" language-powershell"><code class="language-powershell"><span class="token function">PS</span>> git tfs fetch
+C19 = aea74a0313de0a391940c999e51c5c15c381d91d
+<span class="token function">PS</span>> git log <span class="token operator">--</span>all <span class="token operator">--</span>oneline <span class="token operator">--</span>graph <span class="token operator">--</span>decorate
+<span class="token operator">*</span> aea74a0 <span class="token punctuation">(</span>tfs<span class="token operator">/</span>default<span class="token punctuation">)</span> update documentation
+<span class="token punctuation">|</span> <span class="token operator">*</span> c3bd3ae <span class="token punctuation">(</span>HEAD<span class="token punctuation">,</span> master<span class="token punctuation">)</span> update code
+<span class="token punctuation">|</span> <span class="token operator">*</span> d85e5a2 update readme
+<span class="token punctuation">|</span><span class="token operator">/</span>
+<span class="token punctuation">|</span> <span class="token operator">*</span> 44cd729 <span class="token punctuation">(</span>tfs<span class="token operator">/</span>featureA<span class="token punctuation">,</span> featureA<span class="token punctuation">)</span> Goodbye
+<span class="token punctuation">|</span> <span class="token operator">*</span> d202b53 Branched <span class="token keyword">from</span> $<span class="token operator">/</span>tfvc<span class="token operator">-</span>test<span class="token operator">/</span>Trunk
+<span class="token punctuation">|</span><span class="token operator">/</span>
+<span class="token operator">*</span> c403405 Hello
+<span class="token operator">*</span> b75da1a New project
+</code></pre>
+<p>是的，那说明我们的同事增加了一个新的 TFVC 变更集，显示为新的 <code>aea74a0</code> 提交，而 <code>tfs/default</code> 远程分支已经被移除了。</p>
+<p>与 git-tf 相同，我们有两种基础选项来解决这个分叉历史问题：</p>
+<ol>
+<li>通过变基来保持历史是线性的。</li>
+<li>通过合并来保留改动。</li>
+</ol>
+<p>在本例中，我们将要做一个 “深” 检入，也就是说每一个 Git 提交会变成一个 TFVC 变更集，所以我们想要变基。</p>
+<pre class=" language-powershell"><code class="language-powershell"><span class="token function">PS</span>> git rebase tfs<span class="token operator">/</span>default
+First<span class="token punctuation">,</span> rewinding head to replay your work on top of it<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+Applying: update readme
+Applying: update code
+<span class="token function">PS</span>> git log <span class="token operator">--</span>all <span class="token operator">--</span>oneline <span class="token operator">--</span>graph <span class="token operator">--</span>decorate
+<span class="token operator">*</span> 10a75ac <span class="token punctuation">(</span>HEAD<span class="token punctuation">,</span> master<span class="token punctuation">)</span> update code
+<span class="token operator">*</span> 5cec4ab update readme
+<span class="token operator">*</span> aea74a0 <span class="token punctuation">(</span>tfs<span class="token operator">/</span>default<span class="token punctuation">)</span> update documentation
+<span class="token punctuation">|</span> <span class="token operator">*</span> 44cd729 <span class="token punctuation">(</span>tfs<span class="token operator">/</span>featureA<span class="token punctuation">,</span> featureA<span class="token punctuation">)</span> Goodbye
+<span class="token punctuation">|</span> <span class="token operator">*</span> d202b53 Branched <span class="token keyword">from</span> $<span class="token operator">/</span>tfvc<span class="token operator">-</span>test<span class="token operator">/</span>Trunk
+<span class="token punctuation">|</span><span class="token operator">/</span>
+<span class="token operator">*</span> c403405 Hello
+<span class="token operator">*</span> b75da1a New project
+</code></pre>
+<p>现在已经准备好通过检入我们的代码到 TFVC 服务器来完成贡献。 我们这里将会使用 <code>rcheckin</code> 命令将 HEAD 到第一个 <code>tfs</code> 远程分支间的每一个 Git 提交转换为一个 TFVC 变更集（<code>checkin</code> 命令只会创建一个变更集，有些类似于压缩 Git 提交）。</p>
+<pre class=" language-powershell"><code class="language-powershell"><span class="token function">PS</span>> git tfs rcheckin
+Working with tfs remote: default
+Fetching changes <span class="token keyword">from</span> TFS to minimize possibility of late conflict<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+Starting checkin of 5cec4ab4 <span class="token string">'update readme'</span>
+ add README<span class="token punctuation">.</span>md
+C20 = 71a5ddce274c19f8fdc322b4f165d93d89121017
+Done with 5cec4ab4b213c354341f66c80cd650ab98dcf1ed<span class="token punctuation">,</span> rebasing tail onto new TFS<span class="token operator">-</span>commit<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+Rebase done successfully<span class="token punctuation">.</span>
+Starting checkin of b1bf0f99 <span class="token string">'update code'</span>
+ edit <span class="token punctuation">.</span>git\tfs\default\workspace\ConsoleApplication1<span class="token operator">/</span>ConsoleApplication1<span class="token operator">/</span>Program<span class="token punctuation">.</span>cs
+C21 = ff04e7c35dfbe6a8f94e782bf5e0031cee8d103b
+Done with b1bf0f9977b2d48bad611ed4a03d3738df05ea5d<span class="token punctuation">,</span> rebasing tail onto new TFS<span class="token operator">-</span>commit<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+Rebase done successfully<span class="token punctuation">.</span>
+No more to rcheckin<span class="token punctuation">.</span>
+<span class="token function">PS</span>> git log <span class="token operator">--</span>all <span class="token operator">--</span>oneline <span class="token operator">--</span>graph <span class="token operator">--</span>decorate
+<span class="token operator">*</span> ff04e7c <span class="token punctuation">(</span>HEAD<span class="token punctuation">,</span> tfs<span class="token operator">/</span>default<span class="token punctuation">,</span> master<span class="token punctuation">)</span> update code
+<span class="token operator">*</span> 71a5ddc update readme
+<span class="token operator">*</span> aea74a0 update documentation
+<span class="token punctuation">|</span> <span class="token operator">*</span> 44cd729 <span class="token punctuation">(</span>tfs<span class="token operator">/</span>featureA<span class="token punctuation">,</span> featureA<span class="token punctuation">)</span> Goodbye
+<span class="token punctuation">|</span> <span class="token operator">*</span> d202b53 Branched <span class="token keyword">from</span> $<span class="token operator">/</span>tfvc<span class="token operator">-</span>test<span class="token operator">/</span>Trunk
+<span class="token punctuation">|</span><span class="token operator">/</span>
+<span class="token operator">*</span> c403405 Hello
+<span class="token operator">*</span> b75da1a New project
+</code></pre>
+<p>注意在每次成功检入到 TFVC 服务器后，git-tfs 是如何将剩余的工作变基到服务器上。 这是因为它将 <code>git-tfs-id</code> 属性加入到提交信息的底部，这将会改变 SHA-1 校验和。 这恰恰是有意设计的，没有什么事情可以担心了，但是你应该意识到发生了什么，特别是当你想要与其他人共享 Git 提交时。</p>
+<p>TFS 有许多与它的版本管理系统整合的功能，比如工作项目、指定审核者、封闭检入等等。 仅仅通过命令行工具使用这些功能来工作是很笨重的，但是幸运的是 git-tfs 允许你轻松地运行一个图形化的检入工具：</p>
+<pre class=" language-powershell"><code class="language-powershell"><span class="token function">PS</span>> git tfs checkintool
+<span class="token function">PS</span>> git tfs ct
+</code></pre>
+<p>它看起来有点像这样：</p>
+<p><img src="https://git-scm.com/book/en/v2/images/git-tfs-ct.png" alt="git-tfs 检入工具。"></p>
+<p>Figure 148. git-tfs 检入工具。</p>
+<p>对 TFS 用户来说这看起来很熟悉，因为它就是从 Visual Studio 中运行的同一个窗口。</p>
+<p>Git-tfs 同样允许你从你的 Git 仓库控制 TFVC 分支。 如同这个例子，让我们创建一个：</p>
+<pre class=" language-powershell"><code class="language-powershell"><span class="token function">PS</span>> git tfs branch $<span class="token operator">/</span>tfvc<span class="token operator">-</span>test<span class="token operator">/</span>featureBee
+The name of the local branch will be : featureBee
+C26 = 1d54865c397608c004a2cadce7296f5edc22a7e5
+<span class="token function">PS</span>> git log <span class="token operator">--</span>oneline <span class="token operator">--</span>graph <span class="token operator">--</span>decorate <span class="token operator">--</span>all
+<span class="token operator">*</span> 1d54865 <span class="token punctuation">(</span>tfs<span class="token operator">/</span>featureBee<span class="token punctuation">)</span> Creation branch $<span class="token operator">/</span>myproject<span class="token operator">/</span>featureBee
+<span class="token operator">*</span> ff04e7c <span class="token punctuation">(</span>HEAD<span class="token punctuation">,</span> tfs<span class="token operator">/</span>default<span class="token punctuation">,</span> master<span class="token punctuation">)</span> update code
+<span class="token operator">*</span> 71a5ddc update readme
+<span class="token operator">*</span> aea74a0 update documentation
+<span class="token punctuation">|</span> <span class="token operator">*</span> 44cd729 <span class="token punctuation">(</span>tfs<span class="token operator">/</span>featureA<span class="token punctuation">,</span> featureA<span class="token punctuation">)</span> Goodbye
+<span class="token punctuation">|</span> <span class="token operator">*</span> d202b53 Branched <span class="token keyword">from</span> $<span class="token operator">/</span>tfvc<span class="token operator">-</span>test<span class="token operator">/</span>Trunk
+<span class="token punctuation">|</span><span class="token operator">/</span>
+<span class="token operator">*</span> c403405 Hello
+<span class="token operator">*</span> b75da1a New project
+</code></pre>
+<p>在 TFVC 中创建一个分支意味着增加一个使分支存在的变更集，这会映射为一个 Git 提交。 也要注意的是 git-tfs <strong>创建</strong> 了 <code>tfs/featureBee</code> 远程分支，但是 <code>HEAD</code> 始终指向 <code>master</code>。 如果你想要在新生成的分支上工作，那你也许应该通过从那次提交创建一个特性分支的方式使你新的提交基于 <code>1d54865</code> 提交。</p>
+<h4 id="Git-与-TFS-总结"><a href="#Git-与-TFS-总结" class="headerlink" title="Git 与 TFS 总结"></a>Git 与 TFS 总结</h4><p>Git-tf 与 Git-tfs 都是与 TFVC 服务器交互的很好的工具。 它们允许你在本地使用 Git 的能力，避免与中央 TFVC 服务器频繁交流，使你做为一个开发者的生活更轻松，而不用强制整个团队迁移到 Git。 如果你在 Windows 上工作（那很有可能你的团队正在使用 TFS），你可能会想要使用 git-tfs，因为它的功能更完整，但是如果你在其他平台工作，你只能使用略有限制的 git-tf。 像本章中大多数工具一样，你应当使用其中的一个版本系统作为主要的，而使用另一个做为次要的 - 不管是 Git 还是 TFVC 都可以做为协作中心，但不是两者都用。</p>
+<h2 id="迁移到-Git"><a href="#迁移到-Git" class="headerlink" title="迁移到 Git"></a>迁移到 Git</h2><p>如果你现在有一个正在使用其他 VCS 的代码库，但是你已经决定开始使用 Git，必须通过某种方式将你的项目迁移至 Git。 这一部分会介绍一些通用系统的导入器，然后演示如何开发你自己定制的导入器。 你将会学习如何从几个大型专业应用的 SCM 系统中导入数据，不仅因为它们是大多数想要转换的用户正在使用的系统，也因为获取针对它们的高质量工具很容易。</p>
+<h3 id="Subversion"><a href="#Subversion" class="headerlink" title="Subversion"></a>Subversion</h3><p>如果你阅读过前面关于 <code>git svn</code> 的章节，可以轻松地使用那些指令来 <code>git svn clone</code> 一个仓库，停止使用 Subversion 服务器，推送到一个新的 Git 服务器，然后就可以开始使用了。 如果你想要历史，可以从 Subversion 服务器上尽可能快地拉取数据来完成这件事（这可能会花费一些时间）。</p>
+<p>然而，导入并不完美；因为花费太长时间了，你可能早已用其他方法完成导入操作。 导入产生的第一个问题就是作者信息。 在 Subversion 中，每一个人提交时都需要在系统中有一个用户，它会被记录在提交信息内。 在之前章节的例子中几个地方显示了 <code>schacon</code>，比如 <code>blame</code> 输出与 <code>git svn log</code>。 如果想要将上面的 Subversion 用户映射到一个更好的 Git 作者数据中，你需要一个 Subversion 用户到 Git 用户的映射。 创建一个 <code>users.txt</code> 的文件包含像下面这种格式的映射：</p>
+<pre><code>schacon = Scott Chacon &lt;schacon@geemail.com&gt;
+selse = Someo Nelse &lt;selse@geemail.com&gt;
+</code></pre><p>为了获得 SVN 使用的作者名字列表，可以运行这个：</p>
+<pre class=" language-console"><code class="language-console">$ svn log --xml | grep author | sort -u | \
+  perl -pe 's/.*>(.*?)<.*/$1 = /'
+</code></pre>
+<p>这会将日志输出为 XML 格式，然后保留作者信息行、去除重复、去除 XML 标记。 （很显然这只会在安装了 <code>grep</code>、<code>sort</code> 与 <code>perl</code> 的机器上运行。） 然后，将输出重定向到你的 users.txt 文件中，这样就可以在每一个记录后面加入对应的 Git 用户数据。</p>
+<p>你可以将此文件提供给 <code>git svn</code> 来帮助它更加精确地映射作者数据。 也可以通过传递 <code>--no-metadata</code>给 <code>clone</code> 与 <code>init</code> 命令，告诉 <code>git svn</code> 不要包括 Subversion 通常会导入的元数据。 这会使你的 <code>import</code> 命令看起来像这样：</p>
+<pre class=" language-console"><code class="language-console">$ git svn clone http://my-project.googlecode.com/svn/ \
+      --authors-file=users.txt --no-metadata -s my_project
+</code></pre>
+<p>现在在 <code>my_project</code> 目录中应当有了一个更好的 Subversion 导入。 并不像是下面这样的提交：</p>
+<pre><code>commit 37efa680e8473b615de980fa935944215428a35a
+Author: schacon &lt;schacon@4c93b258-373f-11de-be05-5f7a86268029&gt;
+Date:   Sun May 3 00:12:22 2009 +0000
+
+    fixed install - go to trunk
+
+    git-svn-id: https://my-project.googlecode.com/svn/trunk@94 4c93b258-373f-11de-
+    be05-5f7a86268029
+</code></pre><p>反而它们看起来像是这样：</p>
+<pre><code>commit 03a8785f44c8ea5cdb0e8834b7c8e6c469be2ff2
+Author: Scott Chacon &lt;schacon@geemail.com&gt;
+Date:   Sun May 3 00:12:22 2009 +0000
+
+    fixed install - go to trunk
+</code></pre><p>不仅是 Author 字段更好看了，<code>git-svn-id</code> 也不在了。</p>
+<p>之后，你应当做一些导入后的清理工作。 第一步，你应当清理 <code>git svn</code> 设置的奇怪的引用。 首先移动标签，这样它们就是标签而不是奇怪的远程引用，然后你会移动剩余的分支这样它们就是本地的了。</p>
+<p>为了将标签变为合适的 Git 标签，运行</p>
+<pre class=" language-console"><code class="language-console">$ cp -Rf .git/refs/remotes/origin/tags/* .git/refs/tags/
+$ rm -Rf .git/refs/remotes/origin/tags
+</code></pre>
+<p>这会使原来在 <code>remotes/origin/tags/</code> 里的远程分支引用变成真正的（轻量）标签。</p>
+<p>接下来，将 <code>refs/remotes</code> 下剩余的引用移动为本地分支：</p>
+<pre class=" language-console"><code class="language-console">$ cp -Rf .git/refs/remotes/* .git/refs/heads/
+$ rm -Rf .git/refs/remotes
+</code></pre>
+<p>现在所有的旧分支都是真正的 Git 分支，并且所有的旧标签都是真正的 Git 标签。 最后一件要做的事情是，将你的新 Git 服务器添加为远程仓库并推送到上面。 下面是一个将你的服务器添加为远程仓库的例子：</p>
+<pre class=" language-console"><code class="language-console">$ git remote add origin git@my-git-server:myrepository.git
+</code></pre>
+<p>因为想要上传所有分支与标签，你现在可以运行：</p>
+<pre class=" language-console"><code class="language-console">$ git push origin --all
+</code></pre>
+<p>通过以上漂亮、干净地导入操作，你的所有分支与标签都应该在新 Git 服务器上。</p>
+<h3 id="Mercurial"><a href="#Mercurial" class="headerlink" title="Mercurial"></a>Mercurial</h3><p>因为 Mercurial 与 Git 在表示版本时有着非常相似的模型，也因为 Git 拥有更加强大的灵活性，将一个仓库从 Mercurial 转换到 Git 是相当直接的，使用一个叫作“hg-fast-export”的工具，需要从这里拷贝一份：</p>
+<pre class=" language-console"><code class="language-console">$ git clone http://repo.or.cz/r/fast-export.git /tmp/fast-export
+</code></pre>
+<p>转换的第一步就是要先得到想要转换的 Mercurial 仓库的完整克隆：</p>
+<pre class=" language-console"><code class="language-console">$ hg clone <remote repo URL> /tmp/hg-repo
+</code></pre>
+<p>下一步就是创建一个作者映射文件。 Mercurial 对放入到变更集作者字段的内容比 Git 更宽容一些，所以这是一个清理的好机会。 只需要用到 <code>bash</code> 终端下的一行命令：</p>
+<pre class=" language-console"><code class="language-console">$ cd /tmp/hg-repo
+$ hg log | grep user: | sort | uniq | sed 's/user: *//' > ../authors
+</code></pre>
+<p>这会花费几秒钟，具体要看项目提交历史有多少，最终 <code>/tmp/authors</code> 文件看起来会像这样：</p>
+<pre><code>bob
+bob@localhost
+bob &lt;bob@company.com&gt;
+bob jones &lt;bob &lt;AT&gt; company &lt;DOT&gt; com&gt;
+Bob Jones &lt;bob@company.com&gt;
+Joe Smith &lt;joe@company.com&gt;
+</code></pre><p>在这个例子中，同一个人（Bob）使用不同的名字创建变更集，其中一个实际上是正确的，另一个完全不符合 Git 提交的规范。 Hg-fast-export 通过向我们想要修改的行尾添加 <code>={new name and email address}</code> 来修正这个问题，移除任何我们想要保留的用户名所在的行。 如果所有的用户名看起来都是正确的，那我们根本就不需要这个文件。 在本例中，我们会使文件看起来像这样：</p>
+<pre><code>bob=Bob Jones &lt;bob@company.com&gt;
+bob@localhost=Bob Jones &lt;bob@company.com&gt;
+bob jones &lt;bob &lt;AT&gt; company &lt;DOT&gt; com&gt;=Bob Jones &lt;bob@company.com&gt;
+bob &lt;bob@company.com&gt;=Bob Jones &lt;bob@company.com&gt;
+</code></pre><p>下一步是创建一个新的 Git 仓库，然后运行导出脚本：</p>
+<pre class=" language-console"><code class="language-console">$ git init /tmp/converted
+$ cd /tmp/converted
+$ /tmp/fast-export/hg-fast-export.sh -r /tmp/hg-repo -A /tmp/authors
+</code></pre>
+<p><code>-r</code> 选项告诉 hg-fast-export 去哪里寻找我们想要转换的 Mercurial 仓库，<code>-A</code> 标记告诉它在哪找到作者映射文件。 这个脚本会分析 Mercurial 变更集然后将它们转换成 Git“fast-import”功能（我们将在之后详细讨论）需要的脚本。 这会花一点时间（尽管它比通过网格 <em>更</em> 快），输出相当的冗长：</p>
+<pre class=" language-console"><code class="language-console">$ /tmp/fast-export/hg-fast-export.sh -r /tmp/hg-repo -A /tmp/authors
+Loaded 4 authors
+master: Exporting full revision 1/22208 with 13/0/0 added/changed/removed files
+master: Exporting simple delta revision 2/22208 with 1/1/0 added/changed/removed files
+master: Exporting simple delta revision 3/22208 with 0/1/0 added/changed/removed files
+[…]
+master: Exporting simple delta revision 22206/22208 with 0/4/0 added/changed/removed files
+master: Exporting simple delta revision 22207/22208 with 0/2/0 added/changed/removed files
+master: Exporting thorough delta revision 22208/22208 with 3/213/0 added/changed/removed files
+Exporting tag [0.4c] at [hg r9] [git :10]
+Exporting tag [0.4d] at [hg r16] [git :17]
+[…]
+Exporting tag [3.1-rc] at [hg r21926] [git :21927]
+Exporting tag [3.1] at [hg r21973] [git :21974]
+Issued 22315 commands
+git-fast-import statistics:
+---------------------------------------------------------------------
+Alloc'd objects:     120000
+Total objects:       115032 (    208171 duplicates                  )
+      blobs  :        40504 (    205320 duplicates      26117 deltas of      39602 attempts)
+      trees  :        52320 (      2851 duplicates      47467 deltas of      47599 attempts)
+      commits:        22208 (         0 duplicates          0 deltas of          0 attempts)
+      tags   :            0 (         0 duplicates          0 deltas of          0 attempts)
+Total branches:         109 (         2 loads     )
+      marks:        1048576 (     22208 unique    )
+      atoms:           1952
+Memory total:          7860 KiB
+       pools:          2235 KiB
+     objects:          5625 KiB
+---------------------------------------------------------------------
+pack_report: getpagesize()            =       4096
+pack_report: core.packedGitWindowSize = 1073741824
+pack_report: core.packedGitLimit      = 8589934592
+pack_report: pack_used_ctr            =      90430
+pack_report: pack_mmap_calls          =      46771
+pack_report: pack_open_windows        =          1 /          1
+pack_report: pack_mapped              =  340852700 /  340852700
+---------------------------------------------------------------------
+
+$ git shortlog -sn
+   369  Bob Jones
+   365  Joe Smith
+</code></pre>
+<p>那看起来非常好。 所有 Mercurial 标签都已被转换成 Git 标签，Mercurial 分支与书签都被转换成 Git 分支。 现在已经准备好将仓库推送到新的服务器那边：</p>
+<pre class=" language-console"><code class="language-console">$ git remote add origin git@my-git-server:myrepository.git
+$ git push origin --all
+</code></pre>
+<h3 id="Perforce"><a href="#Perforce" class="headerlink" title="Perforce"></a>Perforce</h3><p>下一个将要看到导入的系统是 Perforce。 就像我们之前讨论过的，有两种方式让 Git 与 Perforce 互相通信：git-p4 与 Perforce Git Fusion。</p>
+<h4 id="Perforce-Git-Fusion"><a href="#Perforce-Git-Fusion" class="headerlink" title="Perforce Git Fusion"></a>Perforce Git Fusion</h4><p>Git Fusion 使这个过程毫无痛苦。 只需要使用在 <a href="https://git-scm.com/book/zh/v2/ch00/r_p4_git_fusion" target="_blank" rel="noopener">Git Fusion</a> 中讨论过的配置文件来配置你的项目设置、用户映射与分支，然后克隆整个仓库。 Git Fusion 让你处在一个看起来像是原生 Git 仓库的环境中，如果愿意的话你可以随时将它推送到一个原生 Git 托管中。 如果你喜欢的话甚至可以使用 Perforce 作为你的 Git 托管。</p>
+<h4 id="Git-p4-1"><a href="#Git-p4-1" class="headerlink" title="Git-p4"></a>Git-p4</h4><p>Git-p4 也可以作为一个导入工具。 作为例子，我们将从 Perforce 公开仓库中导入 Jam 项目。 为了设置客户端，必须导出 P4PORT 环境变量指向 Perforce 仓库：</p>
+<pre class=" language-console"><code class="language-console">$ export P4PORT=public.perforce.com:1666
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Note</th>
+<th>为了继续后续步骤，需要连接到 Perforce 仓库。 在我们的例子中将会使用在 public.perforce.com 的公开仓库，但是你可以使用任何你有权限的仓库。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>运行 <code>git p4 clone</code> 命令从 Perforce 服务器导入 Jam 项目，提供仓库、项目路径与你想要存放导入项目的路径：</p>
+<pre class=" language-console"><code class="language-console">$ git-p4 clone //guest/perforce_software/jam@all p4import
+Importing from //guest/perforce_software/jam@all into p4import
+Initialized empty Git repository in /private/tmp/p4import/.git/
+Import destination: refs/remotes/p4/master
+Importing revision 9957 (100%)
+</code></pre>
+<p>这个特定的项目只有一个分支，但是如果你在分支视图（或者说一些目录）中配置了一些分支，你可以将 <code>--detect-branches</code> 选项传递给 <code>git p4 clone</code> 来导入项目的所有分支。 查看 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_p4_branches" target="_blank" rel="noopener">分支</a> 来了解关于这点的更多信息。</p>
+<p>此时你几乎已经完成了。 如果进入 <code>p4import</code> 目录中并运行 <code>git log</code>，可以看到你的导入工作：</p>
+<pre class=" language-console"><code class="language-console">$ git log -2
+commit e5da1c909e5db3036475419f6379f2c73710c4e6
+Author: giles <giles@giles@perforce.com>
+Date:   Wed Feb 8 03:13:27 2012 -0800
+
+    Correction to line 355; change </UL> to </OL>.
+
+    [git-p4: depot-paths = "//public/jam/src/": change = 8068]
+
+commit aa21359a0a135dda85c50a7f7cf249e4f7b8fd98
+Author: kwirth <kwirth@perforce.com>
+Date:   Tue Jul 7 01:35:51 2009 -0800
+
+    Fix spelling error on Jam doc page (cummulative -> cumulative).
+
+    [git-p4: depot-paths = "//public/jam/src/": change = 7304]
+</code></pre>
+<p>你可以看到 <code>git-p4</code> 在每一个提交里都留下了一个标识符。 如果之后想要引用 Perforce 的修改序号的话，标识符保留在那里也是可以的。 然而，如果想要移除标识符，现在正是这么做的时候 - 在你开始在新仓库中工作之前。 可以使用 <code>git filter-branch</code> 将全部标识符移除。</p>
+<pre class=" language-console"><code class="language-console">$ git filter-branch --msg-filter 'sed -e "/^\[git-p4:/d"'
+Rewrite e5da1c909e5db3036475419f6379f2c73710c4e6 (125/125)
+Ref 'refs/heads/master' was rewritten
+</code></pre>
+<p>如果运行 <code>git log</code>，你会看到所有提交的 SHA-1 校验和都改变了，但是提交信息中不再有 <code>git-p4</code> 字符串了：</p>
+<pre class=" language-console"><code class="language-console">$ git log -2
+commit b17341801ed838d97f7800a54a6f9b95750839b7
+Author: giles <giles@giles@perforce.com>
+Date:   Wed Feb 8 03:13:27 2012 -0800
+
+    Correction to line 355; change </UL> to </OL>.
+
+commit 3e68c2e26cd89cb983eb52c024ecdfba1d6b3fff
+Author: kwirth <kwirth@perforce.com>
+Date:   Tue Jul 7 01:35:51 2009 -0800
+
+    Fix spelling error on Jam doc page (cummulative -> cumulative).
+</code></pre>
+<p>现在导入已经准备好推送到你的新 Git 服务器上了。</p>
+<h3 id="TFS"><a href="#TFS" class="headerlink" title="TFS"></a>TFS</h3><p>如果你的团队正在将他们的源代码管理从 TFVC 转换为 Git，你们会想要最高程度的无损转换。 这意味着，虽然我们在之前的交互章节介绍了 git-tfs 与 git-tf 两种工具，但是我们在本部分只能介绍 git-tfs，因为 git-tfs 支持分支，而使用 git-tf 代价太大。</p>
+<table>
+<thead>
+<tr>
+<th>Note</th>
+<th>这是一个单向转换。 这意味着 Git 仓库无法连接到原始的 TFVC 项目。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>第一件事是映射用户名。 TFVC 对待变更集作者字段的内容相当宽容，但是 Git 需要人类可读的名字与邮箱地址。 可以通过 <code>tf</code> 命令行客户端来获取这个信息，像这样：</p>
+<pre class=" language-powershell"><code class="language-powershell"><span class="token function">PS</span>> tf history $<span class="token operator">/</span>myproject <span class="token operator">-</span>recursive > AUTHORS_TMP
+</code></pre>
+<p>这会将历史中的所有变更集抓取下来并放到 AUTHORS_TMP 文件中，然后我们将会将 <code>User</code> 列（第二个）取出来。 打开文件找到列开始与结束的字符并替换，在下面的命令行中，<code>cut</code> 命令的参数 <code>11-20</code> 就是我们找到的：</p>
+<pre class=" language-powershell"><code class="language-powershell"><span class="token function">PS</span>> <span class="token function">cat</span> AUTHORS_TMP <span class="token punctuation">|</span> cut <span class="token operator">-</span>b 11<span class="token operator">-</span>20 <span class="token punctuation">|</span> tail <span class="token operator">-</span>n<span class="token operator">+</span>3 <span class="token punctuation">|</span> uniq <span class="token punctuation">|</span> <span class="token function">sort</span> > AUTHORS
+</code></pre>
+<p><code>cut</code> 命令只会保留每行中第 11 个到第 22 个字符。 <code>tail</code> 命令会跳过前两行，就是字段表头与 ASCII 风格的下划线。 所有这些的结果通过管道送到 <code>uniq</code> 来去除重复，然后保存到 <code>AUTOHRS</code> 文件中。 下一步是手动的；为了让 git-tfs 有效地使用这个文件，每一行必须是这种格式：</p>
+<pre class=" language-text"><code class="language-text">DOMAIN\username = User Name <email@address.com>
+</code></pre>
+<p>左边的部分是 TFVC 中的 “User” 字段，等号右边的部分是将被用作 Git 提交的用户名。</p>
+<p>一旦有了这个文件，下一件事就是生成一个你需要的 TFVC 项目的完整克隆：</p>
+<pre class=" language-powershell"><code class="language-powershell"><span class="token function">PS</span>> git tfs clone <span class="token operator">--</span>with<span class="token operator">-</span>branches <span class="token operator">--</span>authors=AUTHORS https:<span class="token operator">/</span><span class="token operator">/</span>username<span class="token punctuation">.</span>visualstudio<span class="token punctuation">.</span>com<span class="token operator">/</span>DefaultCollection $<span class="token operator">/</span>project<span class="token operator">/</span>Trunk project_git
+</code></pre>
+<p>接下来要从提交信息底部清理 <code>git-tfs-id</code> 区块。 下面的命令会完成这个任务：</p>
+<pre class=" language-powershell"><code class="language-powershell"><span class="token function">PS</span>> git <span class="token keyword">filter</span><span class="token operator">-</span>branch <span class="token operator">-</span>f <span class="token operator">--</span>msg<span class="token operator">-</span><span class="token keyword">filter</span> <span class="token string">'sed "s/^git-tfs-id:.*$//g"'</span> <span class="token operator">--</span> <span class="token operator">--</span>all
+</code></pre>
+<p>那会使用 Git 终端环境中的 <code>sed</code> 命令来将所有以 “git-tfs-id:” 开头的行替换为 Git 会忽略的空白。</p>
+<p>全部完成后，你就已经准备好去增加一个新的远程仓库，推送你所有的分支上去，然后你的团队就可以开始用 Git 工作了。</p>
+<h3 id="一个自定义的导入器"><a href="#一个自定义的导入器" class="headerlink" title="一个自定义的导入器"></a>一个自定义的导入器</h3><p>如果你的系统不是上述中的任何一个，你需要在线查找一个导入器 - 针对许多其他系统有很多高质量的导入器，包括 CVS、Clear Case、Visual Source Safe，甚至是一个档案目录。 如果没有一个工具适合你，需要一个不知名的工具，或者需要更大自由度的自定义导入过程，应当使用 <code>git fast-import</code>。 这个命令从标准输入中读取简单指令来写入特定的 Git 数据。 通过这种方式创建 Git 对象比运行原始 Git 命令或直接写入原始对象（查看 <a href="https://git-scm.com/book/zh/v2/ch00/ch10-git-internals" target="_blank" rel="noopener">Git 内部原理</a> 了解更多内容）更容易些。 通过这种方式你可以编写导入脚本，从你要导入的系统中读取必要数据，然后直接打印指令到标准输出。 然后可以运行这个程序并通过 <code>git fast-import</code> 重定向管道输出。</p>
+<p>为了快速演示，我们会写一个简单的导入器。 假设你在 <code>current</code> 工作，有时候会备份你的项目到时间标签 <code>back_YYYY_MM_DD</code> 备份目录中，你想要将这些导入到 Git 中。 目录结构看起来是这样：</p>
+<pre class=" language-console"><code class="language-console">$ ls /opt/import_from
+back_2014_01_02
+back_2014_01_04
+back_2014_01_14
+back_2014_02_03
+current
+</code></pre>
+<p>为了导入一个 Git 目录，需要了解 Git 如何存储它的数据。 你可能记得，Git 在底层存储指向内容快照的提交对象的链表。 所有要做的就是告诉 <code>fast-import</code> 哪些内容是快照，哪个提交数据指向它们，以及它们进入的顺序。 你的策略是一次访问一个快照，然后用每个目录中的内容创建提交，并且将每一个提交与前一个连接起来。</p>
+<p>如同我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_an_example_git_enforced_policy" target="_blank" rel="noopener">使用强制策略的一个例子</a> 里做的，我们将会使用 Ruby 写这个，因为它是我们平常工作中使用的并且它很容易读懂。 可以使用任何你熟悉的东西来非常轻松地写这个例子 - 它只需要将合适的信息打印到 <code>标准输出</code>。 然而，如果你在 Windows 上，这意味着需要特别注意不要引入回车符到行尾 - git fast-import 非常特别地只接受换行符（LF）而不是 Windows 使用的回车换行符（CRLF）。</p>
+<p>现在开始，需要进入目标目录中并识别每一个子目录，每一个都是你要导入为提交的快照。 要进入到每个子目录中并为导出它打印必要的命令。 基本主循环像这个样子：</p>
+<pre class=" language-ruby"><code class="language-ruby">last_mark <span class="token operator">=</span> <span class="token keyword">nil</span>
+
+<span class="token comment" spellcheck="true"># loop through the directories</span>
+<span class="token builtin">Dir</span><span class="token punctuation">.</span><span class="token function">chdir</span><span class="token punctuation">(</span><span class="token constant">ARGV</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">do</span>
+  <span class="token builtin">Dir</span><span class="token punctuation">.</span><span class="token function">glob</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>dir<span class="token operator">|</span>
+    <span class="token keyword">next</span> <span class="token keyword">if</span> <span class="token builtin">File</span><span class="token punctuation">.</span>file<span class="token operator">?</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true"># move into the target directory</span>
+    <span class="token builtin">Dir</span><span class="token punctuation">.</span><span class="token function">chdir</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span> <span class="token keyword">do</span>
+      last_mark <span class="token operator">=</span> <span class="token function">print_export</span><span class="token punctuation">(</span>dir<span class="token punctuation">,</span> last_mark<span class="token punctuation">)</span>
+    <span class="token keyword">end</span>
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+</code></pre>
+<p>在每个目录内运行 <code>print_export</code>，将会拿到清单并标记之前的快照，然后返回清单并标记现在的快照；通过这种方式，可以将它们合适地连接在一起。 “标记” 是一个给提交标识符的 <code>fast-import</code> 术语；当你创建提交，为每一个提交赋予一个标记来将它与其他提交连接在一起。 这样，在你的 <code>print_export</code>方法中第一件要做的事就是从目录名字生成一个标记：</p>
+<pre class=" language-ruby"><code class="language-ruby">mark <span class="token operator">=</span> <span class="token function">convert_dir_to_mark</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span>
+</code></pre>
+<p>可以创建一个目录的数组并使用索引做为标记，因为标记必须是一个整数。 方法类似这样：</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token variable">$marks</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token keyword">def</span> <span class="token function">convert_dir_to_mark</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span>
+  <span class="token keyword">if</span> <span class="token operator">!</span><span class="token variable">$marks</span><span class="token punctuation">.</span>include<span class="token operator">?</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span>
+    <span class="token variable">$marks</span> <span class="token operator">&lt;</span><span class="token operator">&lt;</span> dir
+  <span class="token keyword">end</span>
+  <span class="token punctuation">(</span><span class="token variable">$marks</span><span class="token punctuation">.</span><span class="token function">index</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to_s
+<span class="token keyword">end</span>
+</code></pre>
+<p>既然有一个整数代表你的提交，那还要给提交元数据一个日期。 因为目录名字表达了日期，所以你将会从中解析出日期。 你的 <code>print_export</code> 文件的下一行是</p>
+<pre class=" language-ruby"><code class="language-ruby">date <span class="token operator">=</span> <span class="token function">convert_dir_to_date</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span>
+</code></pre>
+<p><code>convert_dir_to_date</code> 定义为</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token keyword">def</span> <span class="token function">convert_dir_to_date</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span>
+  <span class="token keyword">if</span> dir <span class="token operator">==</span> <span class="token string">'current'</span>
+    <span class="token keyword">return</span> <span class="token builtin">Time</span><span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to_i
+  <span class="token keyword">else</span>
+    dir <span class="token operator">=</span> dir<span class="token punctuation">.</span><span class="token function">gsub</span><span class="token punctuation">(</span><span class="token string">'back_'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span>
+    <span class="token punctuation">(</span>year<span class="token punctuation">,</span> month<span class="token punctuation">,</span> day<span class="token punctuation">)</span> <span class="token operator">=</span> dir<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">'_'</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token builtin">Time</span><span class="token punctuation">.</span><span class="token function">local</span><span class="token punctuation">(</span>year<span class="token punctuation">,</span> month<span class="token punctuation">,</span> day<span class="token punctuation">)</span><span class="token punctuation">.</span>to_i
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+</code></pre>
+<p>那会返回每一个目录日期的整数。 最后一项每个提交需要的元数据是提交者信息，它将会被硬编码在全局变量中：</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token variable">$author</span> <span class="token operator">=</span> <span class="token string">'John Doe &lt;john@example.com>'</span>
+</code></pre>
+<p>现在准备开始为你的导入器打印出提交数据。 初始信息声明定义了一个提交对象与它所在的分支，紧接着一个你生成的标记、提交者信息与提交信息、然后是一个之前的提交，如果它存在的话。 代码看起来像这样：</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true"># print the import information</span>
+puts <span class="token string">'commit refs/heads/master'</span>
+puts <span class="token string">'mark :'</span> <span class="token operator">+</span> mark
+puts <span class="token string">"committer <span class="token interpolation"><span class="token delimiter tag">#{</span>$author<span class="token delimiter tag">}</span></span> <span class="token interpolation"><span class="token delimiter tag">#{</span>date<span class="token delimiter tag">}</span></span> -0700"</span>
+<span class="token function">export_data</span><span class="token punctuation">(</span><span class="token string">'imported from '</span> <span class="token operator">+</span> dir<span class="token punctuation">)</span>
+puts <span class="token string">'from :'</span> <span class="token operator">+</span> last_mark <span class="token keyword">if</span> last_mark
+</code></pre>
+<p>我们将硬编码时区信息（-0700），因为这样很容易。 如果从其他系统导入，必须指定为一个偏移的时区。 提交信息必须指定为特殊的格式：</p>
+<pre><code>data (size)\n(contents)
+</code></pre><p>这个格式包括文本数据、将要读取数据的大小、一个换行符、最终的数据。 因为之后还需要为文件内容指定相同的数据格式，你需要创建一个帮助函数，<code>export_data</code>：</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token keyword">def</span> <span class="token function">export_data</span><span class="token punctuation">(</span>string<span class="token punctuation">)</span>
+  print <span class="token string">"data <span class="token interpolation"><span class="token delimiter tag">#{</span>string<span class="token punctuation">.</span>size<span class="token delimiter tag">}</span></span>\n<span class="token interpolation"><span class="token delimiter tag">#{</span>string<span class="token delimiter tag">}</span></span>"</span>
+<span class="token keyword">end</span>
+</code></pre>
+<p>剩下的工作就是指定每一个快照的文件内容。 这很轻松，因为每一个目录都是一个快照 - 可以在目录中的每一个文件内容后打印 <code>deleteall</code> 命令。 Git 将会适当地记录每一个快照：</p>
+<pre class=" language-ruby"><code class="language-ruby">puts <span class="token string">'deleteall'</span>
+<span class="token builtin">Dir</span><span class="token punctuation">.</span><span class="token function">glob</span><span class="token punctuation">(</span><span class="token string">"**/*"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>file<span class="token operator">|</span>
+  <span class="token keyword">next</span> <span class="token keyword">if</span> <span class="token operator">!</span><span class="token builtin">File</span><span class="token punctuation">.</span>file<span class="token operator">?</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span>
+  <span class="token function">inline_data</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+</code></pre>
+<p>注意：因为大多数系统认为他们的版本是从一个提交变化到另一个提交，fast-import 也可以为每一个提交执行命令来指定哪些文件是添加的、删除的或修改的与新内容是哪些。 可以计算快照间的不同并只提供这些数据，但是这样做会很复杂 - 也可以把所有数据给 Git 然后让它为你指出来。 如果这更适合你的数据，查阅 <code>fast-import</code> man 帮助页来了解如何以这种方式提供你的数据。</p>
+<p>这种列出新文件内容或用新内容指定修改文件的格式如同下面的内容：</p>
+<pre><code>M 644 inline path/to/file
+data (size)
+(file contents)
+</code></pre><p>这里，644 是模式（如果你有可执行文件，反而你需要检测并指定 755），inline 表示将会立即把内容放在本行之后。 你的 <code>inline_data</code> 方法看起来像这样：</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token keyword">def</span> <span class="token function">inline_data</span><span class="token punctuation">(</span>file<span class="token punctuation">,</span> code <span class="token operator">=</span> <span class="token string">'M'</span><span class="token punctuation">,</span> mode <span class="token operator">=</span> <span class="token string">'644'</span><span class="token punctuation">)</span>
+  content <span class="token operator">=</span> <span class="token builtin">File</span><span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span>
+  puts <span class="token string">"<span class="token interpolation"><span class="token delimiter tag">#{</span>code<span class="token delimiter tag">}</span></span> <span class="token interpolation"><span class="token delimiter tag">#{</span>mode<span class="token delimiter tag">}</span></span> inline <span class="token interpolation"><span class="token delimiter tag">#{</span>file<span class="token delimiter tag">}</span></span>"</span>
+  <span class="token function">export_data</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+</code></pre>
+<p>可以重用之前定义的 <code>export_data</code> 方法，因为它与你定义的提交信息数据的方法一样。</p>
+<p>最后一件你需要做的是返回当前的标记以便它可以传给下一个迭代：</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token keyword">return</span> mark
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Note</th>
+<th>如果在 Windows 上还需要确保增加一个额外步骤。 正如之前提到的，Windows 使用 CRLF 作为换行符而 git fast-import 只接受 LF。 为了修正这个问题使 git fast-import 正常工作，你需要告诉 ruby 使用 LF 代替 CRLF：<code>$stdout.binmode</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>就是这样。 这是全部的脚本：</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true">#!/usr/bin/env ruby</span>
+
+<span class="token variable">$stdout</span><span class="token punctuation">.</span>binmode
+<span class="token variable">$author</span> <span class="token operator">=</span> <span class="token string">"John Doe &lt;john@example.com>"</span>
+
+<span class="token variable">$marks</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token keyword">def</span> <span class="token function">convert_dir_to_mark</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token operator">!</span><span class="token variable">$marks</span><span class="token punctuation">.</span>include<span class="token operator">?</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span>
+        <span class="token variable">$marks</span> <span class="token operator">&lt;</span><span class="token operator">&lt;</span> dir
+    <span class="token keyword">end</span>
+    <span class="token punctuation">(</span><span class="token variable">$marks</span><span class="token punctuation">.</span><span class="token function">index</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to_s
+<span class="token keyword">end</span>
+
+
+<span class="token keyword">def</span> <span class="token function">convert_dir_to_date</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> dir <span class="token operator">==</span> <span class="token string">'current'</span>
+        <span class="token keyword">return</span> <span class="token builtin">Time</span><span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to_i
+    <span class="token keyword">else</span>
+        dir <span class="token operator">=</span> dir<span class="token punctuation">.</span><span class="token function">gsub</span><span class="token punctuation">(</span><span class="token string">'back_'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span>
+        <span class="token punctuation">(</span>year<span class="token punctuation">,</span> month<span class="token punctuation">,</span> day<span class="token punctuation">)</span> <span class="token operator">=</span> dir<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">'_'</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token builtin">Time</span><span class="token punctuation">.</span><span class="token function">local</span><span class="token punctuation">(</span>year<span class="token punctuation">,</span> month<span class="token punctuation">,</span> day<span class="token punctuation">)</span><span class="token punctuation">.</span>to_i
+    <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">def</span> <span class="token function">export_data</span><span class="token punctuation">(</span>string<span class="token punctuation">)</span>
+    print <span class="token string">"data <span class="token interpolation"><span class="token delimiter tag">#{</span>string<span class="token punctuation">.</span>size<span class="token delimiter tag">}</span></span>\n<span class="token interpolation"><span class="token delimiter tag">#{</span>string<span class="token delimiter tag">}</span></span>"</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">def</span> <span class="token function">inline_data</span><span class="token punctuation">(</span>file<span class="token punctuation">,</span> code<span class="token operator">=</span><span class="token string">'M'</span><span class="token punctuation">,</span> mode<span class="token operator">=</span><span class="token string">'644'</span><span class="token punctuation">)</span>
+    content <span class="token operator">=</span> <span class="token builtin">File</span><span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span>
+    puts <span class="token string">"<span class="token interpolation"><span class="token delimiter tag">#{</span>code<span class="token delimiter tag">}</span></span> <span class="token interpolation"><span class="token delimiter tag">#{</span>mode<span class="token delimiter tag">}</span></span> inline <span class="token interpolation"><span class="token delimiter tag">#{</span>file<span class="token delimiter tag">}</span></span>"</span>
+    <span class="token function">export_data</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">def</span> <span class="token function">print_export</span><span class="token punctuation">(</span>dir<span class="token punctuation">,</span> last_mark<span class="token punctuation">)</span>
+    date <span class="token operator">=</span> <span class="token function">convert_dir_to_date</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span>
+    mark <span class="token operator">=</span> <span class="token function">convert_dir_to_mark</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span>
+
+    puts <span class="token string">'commit refs/heads/master'</span>
+    puts <span class="token string">"mark :<span class="token interpolation"><span class="token delimiter tag">#{</span>mark<span class="token delimiter tag">}</span></span>"</span>
+    puts <span class="token string">"committer <span class="token interpolation"><span class="token delimiter tag">#{</span>$author<span class="token delimiter tag">}</span></span> <span class="token interpolation"><span class="token delimiter tag">#{</span>date<span class="token delimiter tag">}</span></span> -0700"</span>
+    <span class="token function">export_data</span><span class="token punctuation">(</span><span class="token string">"imported from <span class="token interpolation"><span class="token delimiter tag">#{</span>dir<span class="token delimiter tag">}</span></span>"</span><span class="token punctuation">)</span>
+    puts <span class="token string">"from :<span class="token interpolation"><span class="token delimiter tag">#{</span>last_mark<span class="token delimiter tag">}</span></span>"</span> <span class="token keyword">if</span> last_mark
+
+    puts <span class="token string">'deleteall'</span>
+    <span class="token builtin">Dir</span><span class="token punctuation">.</span><span class="token function">glob</span><span class="token punctuation">(</span><span class="token string">"**/*"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>file<span class="token operator">|</span>
+        <span class="token keyword">next</span> <span class="token keyword">if</span> <span class="token operator">!</span><span class="token builtin">File</span><span class="token punctuation">.</span>file<span class="token operator">?</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span>
+        <span class="token function">inline_data</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span>
+    <span class="token keyword">end</span>
+    mark
+<span class="token keyword">end</span>
+
+
+<span class="token comment" spellcheck="true"># Loop through the directories</span>
+last_mark <span class="token operator">=</span> <span class="token keyword">nil</span>
+<span class="token builtin">Dir</span><span class="token punctuation">.</span><span class="token function">chdir</span><span class="token punctuation">(</span><span class="token constant">ARGV</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">do</span>
+    <span class="token builtin">Dir</span><span class="token punctuation">.</span><span class="token function">glob</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>dir<span class="token operator">|</span>
+        <span class="token keyword">next</span> <span class="token keyword">if</span> <span class="token builtin">File</span><span class="token punctuation">.</span>file<span class="token operator">?</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span>
+
+        <span class="token comment" spellcheck="true"># move into the target directory</span>
+        <span class="token builtin">Dir</span><span class="token punctuation">.</span><span class="token function">chdir</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span> <span class="token keyword">do</span>
+            last_mark <span class="token operator">=</span> <span class="token function">print_export</span><span class="token punctuation">(</span>dir<span class="token punctuation">,</span> last_mark<span class="token punctuation">)</span>
+        <span class="token keyword">end</span>
+    <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+</code></pre>
+<p>如果运行这个脚本，你会得到类似下面的内容：</p>
+<pre class=" language-console"><code class="language-console">$ ruby import.rb /opt/import_from
+commit refs/heads/master
+mark :1
+committer John Doe <john@example.com> 1388649600 -0700
+data 29
+imported from back_2014_01_02deleteall
+M 644 inline README.md
+data 28
+# Hello
+
+This is my readme.
+commit refs/heads/master
+mark :2
+committer John Doe <john@example.com> 1388822400 -0700
+data 29
+imported from back_2014_01_04from :1
+deleteall
+M 644 inline main.rb
+data 34
+#!/bin/env ruby
+
+puts "Hey there"
+M 644 inline README.md
+(...)
+</code></pre>
+<p>为了运行导入器，将这些输出用管道重定向到你想要导入的 Git 目录中的 <code>git fast-import</code>。 可以创建一个新的目录并在其中运行 <code>git init</code> 作为开始，然后运行你的脚本：</p>
+<pre class=" language-console"><code class="language-console">$ git init
+Initialized empty Git repository in /opt/import_to/.git/
+$ ruby import.rb /opt/import_from | git fast-import
+git-fast-import statistics:
+---------------------------------------------------------------------
+Alloc'd objects:       5000
+Total objects:           13 (         6 duplicates                  )
+      blobs  :            5 (         4 duplicates          3 deltas of          5 attempts)
+      trees  :            4 (         1 duplicates          0 deltas of          4 attempts)
+      commits:            4 (         1 duplicates          0 deltas of          0 attempts)
+      tags   :            0 (         0 duplicates          0 deltas of          0 attempts)
+Total branches:           1 (         1 loads     )
+      marks:           1024 (         5 unique    )
+      atoms:              2
+Memory total:          2344 KiB
+       pools:          2110 KiB
+     objects:           234 KiB
+---------------------------------------------------------------------
+pack_report: getpagesize()            =       4096
+pack_report: core.packedGitWindowSize = 1073741824
+pack_report: core.packedGitLimit      = 8589934592
+pack_report: pack_used_ctr            =         10
+pack_report: pack_mmap_calls          =          5
+pack_report: pack_open_windows        =          2 /          2
+pack_report: pack_mapped              =       1457 /       1457
+---------------------------------------------------------------------
+</code></pre>
+<p>正如你所看到的，当它成功完成时，它会给你一串关于它完成内容的统计。 这本例中，一共导入了 13 个对象、4 次提交到 1 个分支。 现在，可以运行 <code>git log</code> 来看一下你的新历史：</p>
+<pre class=" language-console"><code class="language-console">$ git log -2
+commit 3caa046d4aac682a55867132ccdfbe0d3fdee498
+Author: John Doe <john@example.com>
+Date:   Tue Jul 29 19:39:04 2014 -0700
+
+    imported from current
+
+commit 4afc2b945d0d3c8cd00556fbe2e8224569dc9def
+Author: John Doe <john@example.com>
+Date:   Mon Feb 3 01:00:00 2014 -0700
+
+    imported from back_2014_02_03
+</code></pre>
+<p>做得很好 - 一个漂亮、干净的 Git 仓库。 要注意的一点是并没有检出任何东西 - 一开始你的工作目录内并没有任何文件。 为了得到他们，你必须将分支重置到 <code>master</code> 所在的地方：</p>
+<pre class=" language-console"><code class="language-console">$ ls
+$ git reset --hard master
+HEAD is now at 3caa046 imported from current
+$ ls
+README.md main.rb
+</code></pre>
+<p>可以通过 <code>fast-import</code> 工具做很多事情 - 处理不同模式、二进制数据、多个分支与合并、标签、进度指示等等。 一些更复杂情形下的例子可以在 Git 源代码目录中的 <code>contrib/fast-import</code> 目录中找到。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>你会觉得将 Git 作为其他版本控制系统的客户端，或者在数据无损的情况下将几乎任何一个现有的仓库导入到 Git，都是一件很惬意的事。 在下一章，我们将要讲解 Git 的原始内部数据，如果需要的话你就可以加工每一个字节。</p>
+
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'brA0u8dhiFmWzBQJ5YDMevuw-gzGzoHsz',
+        appKey: 'InzuBbqaqOss16gJu1jiKE7F',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/07/15/Git内部原理/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Git内部原理">
+                        
+                        <span class="card-title">Git内部原理</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            无论是从之前的章节直接跳到本章，还是读完了其余章节一直到这——你都将在本章见识到 Git 的内部工作原理和实现方式。 我们发现学习这部分内容对于理解 Git 的用途和强大至关重要。不过也有人认为这些内容对于初学者而言可能难以理解且过于复杂。
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Git/" class="post-category" target="_blank">
+                                    Git
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Git/" target="_blank">
+                        <span class="chip bg-color">Git</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/07/15/自定义Git/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="自定义Git">
+                        
+                        <span class="card-title">自定义Git</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            到目前为止，我们已经阐述了 Git 基本的运作机制和使用方式，介绍了许多 Git 提供的工具来帮助你简单且有效地使用它。 在本章，我们将演示如何借助 Git 的一些重要的配置方法和钩子机制，来满足自定义的需求。 通过这些工具，它会和你、你的
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Git/" class="post-category" target="_blank">
+                                    Git
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Git/" target="_blank">
+                        <span class="chip bg-color">Git</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">249.9k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/chenshuoke" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:henu_chenshuoke@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2604689299" class="tooltipped" data-tooltip="QQ联系我: 2604689299" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

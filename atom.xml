@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.chenshuoke.top/"/>
-  <updated>2019-07-13T17:02:21.550Z</updated>
+  <updated>2019-07-14T18:22:15.663Z</updated>
   <id>http://blog.chenshuoke.top/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>安装deepin之后的环境、软件安装（不断更新）</title>
-    <link href="http://blog.chenshuoke.top/2019/07/12/%E5%AE%89%E8%A3%85deepin%E4%B9%8B%E5%90%8E%E7%9A%84%E7%8E%AF%E5%A2%83%E3%80%81%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%8D%E6%96%AD%E6%9B%B4%E6%96%B0%EF%BC%89/"/>
-    <id>http://blog.chenshuoke.top/2019/07/12/安装deepin之后的环境、软件安装（不断更新）/</id>
-    <published>2019-07-11T18:01:12.000Z</published>
-    <updated>2019-07-13T17:02:21.550Z</updated>
+    <title>git-简易指南</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/git-%E7%AE%80%E6%98%93%E6%8C%87%E5%8D%97/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/git-简易指南/</id>
+    <published>2019-07-14T18:21:26.000Z</published>
+    <updated>2019-07-14T18:22:15.663Z</updated>
     
     <summary type="html">
     
@@ -29,29 +29,27 @@
       
         
         
-          &lt;h2 id=&quot;环境部署&quot;&gt;&lt;a href=&quot;#环境部署&quot; class=&quot;headerlink&quot; title=&quot;环境部署&quot;&gt;&lt;/a&gt;环境部署&lt;/h2&gt;&lt;h3 id=&quot;C-编译环境&quot;&gt;&lt;a href=&quot;#C-编译环境&quot; class=&quot;headerlink&quot;
+          &lt;p&gt;助你开始使用 git 的简易指南，木有高深内容，;)。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.bootcss.com/p/git-guide/img/arrow.png&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot;
         
       
     
     </summary>
     
-      <category term="deepin" scheme="http://blog.chenshuoke.top/categories/deepin/"/>
+      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
     
     
-      <category term="deepin" scheme="http://blog.chenshuoke.top/tags/deepin/"/>
-    
-      <category term="环境" scheme="http://blog.chenshuoke.top/tags/%E7%8E%AF%E5%A2%83/"/>
-    
-      <category term="软件" scheme="http://blog.chenshuoke.top/tags/%E8%BD%AF%E4%BB%B6/"/>
+      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
     
   </entry>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://blog.chenshuoke.top/2019/07/11/hello-world/"/>
-    <id>http://blog.chenshuoke.top/2019/07/11/hello-world/</id>
-    <published>2019-07-11T07:15:46.130Z</published>
-    <updated>2019-07-13T16:46:58.059Z</updated>
+    <title>附录C:Git命令</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E9%99%84%E5%BD%95C-Git%E5%91%BD%E4%BB%A4/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/附录C-Git命令/</id>
+    <published>2019-07-14T18:20:48.000Z</published>
+    <updated>2019-07-14T18:27:15.054Z</updated>
     
     <summary type="html">
     
@@ -59,242 +57,473 @@
       
         
         
-          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
+          &lt;h2 id=&quot;设置与配置&quot;&gt;&lt;a href=&quot;#设置与配置&quot; class=&quot;headerlink&quot; title=&quot;设置与配置&quot;&gt;&lt;/a&gt;设置与配置&lt;/h2&gt;&lt;p&gt;有两个命令使用得最多了，从第一次调用 Git 到每天的日常微调及参考，这个两个命令就是：
         
       
     
     </summary>
     
+      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
+    
+    
+      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
     
   </entry>
   
   <entry>
-    <title>markdown语法</title>
-    <link href="http://blog.chenshuoke.top/2019/05/09/markdown%E8%AF%AD%E6%B3%95/"/>
-    <id>http://blog.chenshuoke.top/2019/05/09/markdown语法/</id>
-    <published>2019-05-09T11:31:48.000Z</published>
-    <updated>2019-07-13T16:46:28.971Z</updated>
+    <title>附录B:将Git嵌入你的应用</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E9%99%84%E5%BD%95B-%E5%B0%86Git%E5%B5%8C%E5%85%A5%E4%BD%A0%E7%9A%84%E5%BA%94%E7%94%A8/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/附录B-将Git嵌入你的应用/</id>
+    <published>2019-07-14T18:20:33.000Z</published>
+    <updated>2019-07-14T18:26:54.940Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;1-标题-Headers&quot;&gt;&lt;a href=&quot;#1-标题-Headers&quot; class=&quot;headerlink&quot; title=&quot;1.标题(Headers)&quot;&gt;&lt;/a&gt;1.标题(Headers)&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;Markdown 标题支持两种形式：&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;1-1用-6个-标记&quot;&gt;&lt;a href=&quot;#1-1用-6个-标记&quot; class=&quot;headerlink&quot; title=&quot;1.1用~6个#标记&quot;&gt;&lt;/a&gt;1.1用~6个#标记&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;在 标题开头 加上1~6个#，依次代表一级标题、二级标题….六级标题&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;pre&gt;&lt;code&gt;# 一级标题 `&amp;lt;h1&amp;gt;`
-## 二级标题 `&amp;lt;h2&amp;gt;`
-### 三级标题 `&amp;lt;h3&amp;gt;`
-#### 四级标题 `&amp;lt;h4&amp;gt;`
-##### 五级标题 `&amp;lt;h5&amp;gt;`
-###### 六级标题 `&amp;lt;h6&amp;gt;`&lt;/code&gt;&lt;/pre&gt;
+      
+      
+        
+        
+          &lt;p&gt;假设你的应用程序的目标人群是开发者，如果它能够被整合进一些源码控制的功能，那真真是极好的。 甚至对于一个例如文档编辑器之类的不是为开发者而设计的应用程序，它们也可能从版本控制系统中受益，并且 Git 的实现方式在很多情况下都表现得非常出色。&lt;/p&gt;
+&lt;p&gt;如果你想将
+        
+      
     
     </summary>
     
-      <category term="markdown" scheme="http://blog.chenshuoke.top/categories/markdown/"/>
+      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
     
     
-      <category term="markdown" scheme="http://blog.chenshuoke.top/tags/markdown/"/>
+      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
     
   </entry>
   
   <entry>
-    <title>Android组件之Fragment、FragmentTabHost</title>
-    <link href="http://blog.chenshuoke.top/2019/05/08/Android%E7%BB%84%E4%BB%B6%E4%B9%8BFragment%E3%80%81FragmentTabHost/"/>
-    <id>http://blog.chenshuoke.top/2019/05/08/Android组件之Fragment、FragmentTabHost/</id>
-    <published>2019-05-08T15:35:10.000Z</published>
-    <updated>2019-07-13T16:45:22.927Z</updated>
+    <title>附录A:其他环境中的Git</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E9%99%84%E5%BD%95A-%E5%85%B6%E4%BB%96%E7%8E%AF%E5%A2%83%E4%B8%AD%E7%9A%84Git/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/附录A-其他环境中的Git/</id>
+    <published>2019-07-14T18:20:12.000Z</published>
+    <updated>2019-07-14T18:26:34.458Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;Fragment和FtagmentTabHost的用法&quot;&gt;&lt;a href=&quot;#Fragment和FtagmentTabHost的用法&quot; class=&quot;headerlink&quot; title=&quot;Fragment和FtagmentTabHost的用法&quot;&gt;&lt;/a&gt;Fragment和FtagmentTabHost的用法&lt;/h2&gt;&lt;p&gt;结合&lt;strong&gt;Fragment&lt;/strong&gt;与&lt;strong&gt;FragmentTabHost&lt;/strong&gt;实现如图所示程序界面和&lt;strong&gt;底部菜单栏&lt;/strong&gt;功能&lt;/p&gt;
-&lt;p&gt;底部菜单栏有5个按钮，程序启动时默认进入主页按钮页面，该页面采用Fragment实现&lt;/p&gt;
-&lt;p&gt;按不同的按钮，可以在不同的界面切换，每个界面都采用Fragment实现。&lt;/p&gt;
-&lt;p&gt;另外，每个按钮具有两种不同的状态。其他界面分别采用线性布局、相对布局、表布局与网格布局设计&lt;/p&gt;
-&lt;center class=&quot;half&quot;&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://chenshuoke-pictures.oss-cn-beijing.aliyuncs.com/Android/Android_Fragment/Lab_2_4_1.png&quot; height=&quot;500&quot; width=&quot;240&quot;&gt;
+      
+      
+        
+        
+          &lt;p&gt;从头至尾读到了这里，你肯定已经掌握了不少使用 Git 命令行操作的知识。 你学会了操作本地文件，通过网络连接你的仓库，以及与他人进行有效率的合作。 但是故事并未就此结束；Git 通常只是更大的生态圈的一部分，在某些情况下使用终端并不是最合适的方式。
+        
+      
     
     </summary>
     
-      <category term="Android" scheme="http://blog.chenshuoke.top/categories/Android/"/>
+      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
     
     
-      <category term="Fragment" scheme="http://blog.chenshuoke.top/tags/Fragment/"/>
-    
-      <category term="FragmentTabHost" scheme="http://blog.chenshuoke.top/tags/FragmentTabHost/"/>
-    
-      <category term="碎片" scheme="http://blog.chenshuoke.top/tags/%E7%A2%8E%E7%89%87/"/>
+      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
     
   </entry>
   
   <entry>
-    <title>利用GitHub搭建Hexo博客</title>
-    <link href="http://blog.chenshuoke.top/2019/05/02/%E5%88%A9%E7%94%A8GitHub%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2/"/>
-    <id>http://blog.chenshuoke.top/2019/05/02/利用GitHub搭建Hexo博客/</id>
-    <published>2019-05-02T05:44:54.000Z</published>
-    <updated>2019-07-13T16:47:12.451Z</updated>
+    <title>Git内部原理</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/Git%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/Git内部原理/</id>
+    <published>2019-07-14T18:19:49.000Z</published>
+    <updated>2019-07-14T18:24:14.945Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;安装环境&quot;&gt;&lt;a href=&quot;#安装环境&quot; class=&quot;headerlink&quot; title=&quot;安装环境&quot;&gt;&lt;/a&gt;安装环境&lt;/h2&gt;&lt;blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;Node.js&lt;/li&gt;
-&lt;li&gt;Git&lt;/li&gt;
-&lt;li&gt;编辑器&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;安装Node-js&quot;&gt;&lt;a href=&quot;#安装Node-js&quot; class=&quot;headerlink&quot; title=&quot;安装Node.js&quot;&gt;&lt;/a&gt;安装Node.js&lt;/h3&gt;&lt;p&gt;官方网址：&lt;a href=&quot;https://nodejs.org/en/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://nodejs.org/en/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;点击最新版，下载一个形如&lt;strong&gt;node-v12.1.0-x64.msi&lt;/strong&gt;的文件，下载完成后点击安装&lt;/p&gt;
-&lt;p&gt;安装步骤：&lt;a href=&quot;https://www.cnblogs.com/zhouyu2017/p/6485265.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.cnblogs.com/zhouyu2017/p/6485265.html&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;注意：如果选择了&lt;strong&gt;Add to PATH&lt;/strong&gt;了，则无需手动配置环境变量，直接测试即可&lt;/p&gt;
+      
+      
+        
+        
+          &lt;p&gt;无论是从之前的章节直接跳到本章，还是读完了其余章节一直到这——你都将在本章见识到 Git 的内部工作原理和实现方式。 我们发现学习这部分内容对于理解 Git 的用途和强大至关重要。不过也有人认为这些内容对于初学者而言可能难以理解且过于复杂。
+        
+      
     
     </summary>
     
-      <category term="博客" scheme="http://blog.chenshuoke.top/categories/%E5%8D%9A%E5%AE%A2/"/>
+      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
     
     
-      <category term="GitHub" scheme="http://blog.chenshuoke.top/tags/GitHub/"/>
-    
-      <category term="Hexo" scheme="http://blog.chenshuoke.top/tags/Hexo/"/>
+      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
     
   </entry>
   
   <entry>
-    <title>Android组件之ProgressDialog</title>
-    <link href="http://blog.chenshuoke.top/2019/04/29/Android%E7%BB%84%E4%BB%B6%E4%B9%8BProgressDialog/"/>
-    <id>http://blog.chenshuoke.top/2019/04/29/Android组件之ProgressDialog/</id>
-    <published>2019-04-29T15:59:09.000Z</published>
-    <updated>2019-07-13T16:46:22.463Z</updated>
+    <title>Git与其他系统</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/Git%E4%B8%8E%E5%85%B6%E4%BB%96%E7%B3%BB%E7%BB%9F/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/Git与其他系统/</id>
+    <published>2019-07-14T18:19:40.000Z</published>
+    <updated>2019-07-14T18:24:55.136Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;ProgressDialog的用法&quot;&gt;&lt;a href=&quot;#ProgressDialog的用法&quot; class=&quot;headerlink&quot; title=&quot;ProgressDialog的用法&quot;&gt;&lt;/a&gt;ProgressDialog的用法&lt;/h2&gt;&lt;p&gt;使用ProgressDialog实现如下程序界面和功能&lt;/p&gt;
-&lt;div align=&quot;center&quot;&gt;
-&lt;img src=&quot;https://chenshuoke-pictures.oss-cn-beijing.aliyuncs.com/Android/Android_ProgressDialog/Lab_2_3_2_1.png&quot; height=&quot;500&quot; width=&quot;240&quot;&gt;
-&lt;/div&gt;
+      
+      
+        
+        
+          &lt;p&gt;现实并不总是尽如人意。 通常，你不能立刻就把接触到的每一个项目都切换到 Git。 有时候你被困在使用其他 VCS 的项目中，却希望使用 Git。 在本章的第一部分我们将会了解到，怎样在你的那些托管在不同系统的项目上使用 Git
+        
+      
     
     </summary>
     
-      <category term="Android" scheme="http://blog.chenshuoke.top/categories/Android/"/>
+      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
     
     
-      <category term="ProgressDialog" scheme="http://blog.chenshuoke.top/tags/ProgressDialog/"/>
-    
-      <category term="进度条" scheme="http://blog.chenshuoke.top/tags/%E8%BF%9B%E5%BA%A6%E6%9D%A1/"/>
+      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
     
   </entry>
   
   <entry>
-    <title>Android组件之AlertDialog</title>
-    <link href="http://blog.chenshuoke.top/2019/04/29/Android%E7%BB%84%E4%BB%B6%E4%B9%8BAlertDialog/"/>
-    <id>http://blog.chenshuoke.top/2019/04/29/Android组件之AlertDialog/</id>
-    <published>2019-04-29T15:36:07.000Z</published>
-    <updated>2019-07-13T16:44:52.504Z</updated>
+    <title>自定义Git</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E8%87%AA%E5%AE%9A%E4%B9%89Git/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/自定义Git/</id>
+    <published>2019-07-14T18:19:25.000Z</published>
+    <updated>2019-07-14T18:27:35.016Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;AlertDialog的几种用法&quot;&gt;&lt;a href=&quot;#AlertDialog的几种用法&quot; class=&quot;headerlink&quot; title=&quot;AlertDialog的几种用法&quot;&gt;&lt;/a&gt;AlertDialog的几种用法&lt;/h2&gt;&lt;p&gt;使用AlertDialog实现如下程序和功能&lt;/p&gt;
-&lt;div align=&quot;center&quot;&gt;
-&lt;img src=&quot;https://chenshuoke-pictures.oss-cn-beijing.aliyuncs.com/Android/Android_AlertDialog/Lab_2_3_1_1.png&quot; height=&quot;500&quot; width=&quot;240&quot;&gt;
-&lt;/div&gt;
+      
+      
+        
+        
+          &lt;p&gt;到目前为止，我们已经阐述了 Git 基本的运作机制和使用方式，介绍了许多 Git 提供的工具来帮助你简单且有效地使用它。 在本章，我们将演示如何借助 Git 的一些重要的配置方法和钩子机制，来满足自定义的需求。
+        
+      
     
     </summary>
     
-      <category term="Android" scheme="http://blog.chenshuoke.top/categories/Android/"/>
+      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
     
     
-      <category term="AlertDialog" scheme="http://blog.chenshuoke.top/tags/AlertDialog/"/>
-    
-      <category term="对话框" scheme="http://blog.chenshuoke.top/tags/%E5%AF%B9%E8%AF%9D%E6%A1%86/"/>
+      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
     
   </entry>
   
   <entry>
-    <title>2.两数相加</title>
-    <link href="http://blog.chenshuoke.top/2019/04/15/2.%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/"/>
-    <id>http://blog.chenshuoke.top/2019/04/15/2.两数相加/</id>
-    <published>2019-04-14T16:16:09.000Z</published>
-    <updated>2019-07-13T17:00:04.325Z</updated>
+    <title>Git工具</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/Git%E5%B7%A5%E5%85%B7/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/Git工具/</id>
+    <published>2019-07-14T18:19:13.000Z</published>
+    <updated>2019-07-14T18:23:21.565Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;p&gt;给出两个 &lt;strong&gt;非空&lt;/strong&gt; 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 &lt;strong&gt;逆序&lt;/strong&gt; 的方式存储的，并且它们的每个节点只能存储 &lt;strong&gt;一位&lt;/strong&gt; 数字。&lt;/p&gt;
-&lt;p&gt;如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。&lt;/p&gt;
-&lt;p&gt;您可以假设除了数字 0 之外，这两个数都不会以 0 开头。&lt;/p&gt;
-&lt;h3 id=&quot;示例：&quot;&gt;&lt;a href=&quot;#示例：&quot; class=&quot;headerlink&quot; title=&quot;示例：&quot;&gt;&lt;/a&gt;示例：&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;输入：(2 -&amp;gt; 4 -&amp;gt; 3) + (5 -&amp;gt; 6 -&amp;gt; 4)&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;输出：7 -&amp;gt; 0 -&amp;gt; 8&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;原因：342 + 465 = 807&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;hr&gt;
+      
+      
+        
+        
+          &lt;p&gt;现在，你已经学习了管理或者维护 Git 仓库、实现代码控制所需的大多数日常命令和工作流程。 你已经尝试了跟踪和提交文件的基本操作，并且发挥了暂存区和轻量级的分支及合并的威力。&lt;/p&gt;
+&lt;p&gt;接下来你将学习一些 Git
+        
+      
     
     </summary>
     
-      <category term="算法" scheme="http://blog.chenshuoke.top/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
     
     
-      <category term="链表" scheme="http://blog.chenshuoke.top/tags/%E9%93%BE%E8%A1%A8/"/>
-    
-      <category term="数学" scheme="http://blog.chenshuoke.top/tags/%E6%95%B0%E5%AD%A6/"/>
+      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
     
   </entry>
   
   <entry>
-    <title>1.两数之和</title>
-    <link href="http://blog.chenshuoke.top/2019/04/15/1.%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/"/>
-    <id>http://blog.chenshuoke.top/2019/04/15/1.两数之和/</id>
-    <published>2019-04-14T16:12:38.000Z</published>
-    <updated>2019-07-13T16:59:35.904Z</updated>
+    <title>GitHub</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/GitHub/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/GitHub/</id>
+    <published>2019-07-14T18:19:04.000Z</published>
+    <updated>2019-07-14T18:25:19.262Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;p&gt; 给定一个整数数组 &lt;code&gt;nums&lt;/code&gt; 和一个目标值 &lt;code&gt;target&lt;/code&gt;，请你在该数组中找出和为目标值的那 &lt;strong&gt;两个&lt;/strong&gt; 整数，并返回他们的数组下标。&lt;/p&gt;
-&lt;p&gt; 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。&lt;/p&gt;
-&lt;h3 id=&quot;示例：&quot;&gt;&lt;a href=&quot;#示例：&quot; class=&quot;headerlink&quot; title=&quot;示例：&quot;&gt;&lt;/a&gt;示例：&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;给定 nums = [2, 7, 11, 15], target = 9&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;因为 nums[0] + nums[1] = 2 + 7 = 9&lt;br&gt;所以返回 [0, 1]&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;hr&gt;
+      
+      
+        
+        
+          &lt;p&gt;GitHub 是最大的 Git 版本库托管商，是成千上万的开发者和项目能够合作进行的中心。 大部分 Git 版本库都托管在 GitHub，很多开源项目使用 GitHub 实现 Git 托管、问题追踪、代码审查以及其它事情。 所以，尽管这不是 Git
+        
+      
     
     </summary>
     
-      <category term="算法" scheme="http://blog.chenshuoke.top/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
     
     
-      <category term="数组" scheme="http://blog.chenshuoke.top/tags/%E6%95%B0%E7%BB%84/"/>
-    
-      <category term="哈希表" scheme="http://blog.chenshuoke.top/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
+      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
     
   </entry>
   
   <entry>
-    <title>Android组件之ListView</title>
-    <link href="http://blog.chenshuoke.top/2019/04/11/Android%E7%BB%84%E4%BB%B6%E4%B9%8BListView/"/>
-    <id>http://blog.chenshuoke.top/2019/04/11/Android组件之ListView/</id>
-    <published>2019-04-11T10:16:43.000Z</published>
-    <updated>2019-07-13T16:45:36.983Z</updated>
+    <title>分布式Git</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E5%88%86%E5%B8%83%E5%BC%8FGit/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/分布式Git/</id>
+    <published>2019-07-14T18:18:53.000Z</published>
+    <updated>2019-07-14T18:25:46.119Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;ListView简单用法&quot;&gt;&lt;a href=&quot;#ListView简单用法&quot; class=&quot;headerlink&quot; title=&quot;ListView简单用法&quot;&gt;&lt;/a&gt;ListView简单用法&lt;/h2&gt;&lt;p&gt;当选择某一ListView子项，TextView中会显示所选子项内容&lt;/p&gt;
-&lt;div align=&quot;center&quot;&gt;
-&lt;img src=&quot;https://chenshuoke-pictures.oss-cn-beijing.aliyuncs.com/Android/Android_ListView/Lab_2_2.png&quot; height=&quot;500&quot; width=&quot;240&quot;&gt;
-&lt;/div&gt;
+      
+      
+        
+        
+          &lt;p&gt;你现在拥有了一个远程 Git 版本库，能为所有开发者共享代码提供服务，在一个本地工作流程下，你也已经熟悉了基本 Git 命令。你现在可以学习如何利用 Git
+        
+      
     
     </summary>
     
-      <category term="Android" scheme="http://blog.chenshuoke.top/categories/Android/"/>
+      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
     
     
-      <category term="ListView" scheme="http://blog.chenshuoke.top/tags/ListView/"/>
+      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>服务器上的Git</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84Git/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/服务器上的Git/</id>
+    <published>2019-07-14T18:18:45.000Z</published>
+    <updated>2019-07-14T18:26:09.452Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;到目前为止，你应该已经有办法使用 Git 来完成日常工作。 然而，为了使用 Git 协作功能，你还需要有远程的 Git 仓库。 尽管在技术上你可以从个人仓库进行推送（push）和拉取（pull）来修改内容，但不鼓励使用这种方法，因为一不留心就很容易弄混其他人的进度。
+        
+      
+    
+    </summary>
+    
+      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
+    
+    
+      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git分支</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/Git%E5%88%86%E6%94%AF/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/Git分支/</id>
+    <published>2019-07-14T18:18:31.000Z</published>
+    <updated>2019-07-14T18:22:53.849Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;几乎所有的版本控制系统都以某种形式支持分支。 使用分支意味着你可以把你的工作从开发主线上分离开来，以免影响开发主线。 在很多版本控制系统中，这是一个略微低效的过程——常常需要完全创建一个源代码目录的副本。对于大项目来说，这样的过程会耗费很多时间。&lt;/p&gt;
+&lt;p&gt;有人把
+        
+      
+    
+    </summary>
+    
+      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
+    
+    
+      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git基础</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/Git%E5%9F%BA%E7%A1%80/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/Git基础/</id>
+    <published>2019-07-14T18:18:22.000Z</published>
+    <updated>2019-07-14T18:23:44.434Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;假如你只能阅读一章来学习 Git，本章就是你的不二选择。 本章内容涵盖你在使用 Git 完成各种工作中将要使用的各种基本命令。
+        
+      
+    
+    </summary>
+    
+      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
+    
+    
+      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>第十一章 进程</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E8%BF%9B%E7%A8%8B/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第十一章-进程/</id>
+    <published>2019-07-14T18:09:19.000Z</published>
+    <updated>2019-07-14T18:16:25.050Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Modern operating systems are usually multitasking, meaning that they create the illusion of doing more than one thing at once by rapidly
+        
+      
+    
+    </summary>
+    
+      <category term="TLCL" scheme="http://blog.chenshuoke.top/categories/TLCL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>第十章 权限</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E5%8D%81%E7%AB%A0-%E6%9D%83%E9%99%90/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第十章-权限/</id>
+    <published>2019-07-14T18:09:08.000Z</published>
+    <updated>2019-07-14T18:15:50.189Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Operating systems in the Unix tradition differ from those in the MS-DOS tradition in that they are not only multitasking systems, but
+        
+      
+    
+    </summary>
+    
+      <category term="TLCL" scheme="http://blog.chenshuoke.top/categories/TLCL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>第九章 键盘高级操作技巧</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E9%94%AE%E7%9B%98%E9%AB%98%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8A%80%E5%B7%A7/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第九章-键盘高级操作技巧/</id>
+    <published>2019-07-14T18:08:49.000Z</published>
+    <updated>2019-07-14T18:15:23.484Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;I often kiddingly describe Unix as “the operating system for people who like to type.” Of course, the fact that it even has a command
+        
+      
+    
+    </summary>
+    
+      <category term="TLCL" scheme="http://blog.chenshuoke.top/categories/TLCL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>第八章 从shell眼中看世界</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E5%85%AB%E7%AB%A0-%E4%BB%8Eshell%E7%9C%BC%E4%B8%AD%E7%9C%8B%E4%B8%96%E7%95%8C/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第八章-从shell眼中看世界/</id>
+    <published>2019-07-14T18:08:23.000Z</published>
+    <updated>2019-07-14T18:14:52.659Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;In this chapter we are going to look at some of the “magic” that occurs on the command line when you press the enter key. While we will
+        
+      
+    
+    </summary>
+    
+      <category term="TLCL" scheme="http://blog.chenshuoke.top/categories/TLCL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>第七章 重定义</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E9%87%8D%E5%AE%9A%E4%B9%89/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第七章-重定义/</id>
+    <published>2019-07-14T18:08:01.000Z</published>
+    <updated>2019-07-14T18:14:19.521Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;In this lesson we are going to unleash what may be the coolest feature of the command line. It’s called I/O redirection. The “I/O”
+        
+      
+    
+    </summary>
+    
+      <category term="TLCL" scheme="http://blog.chenshuoke.top/categories/TLCL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>第六章 使用命令</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第六章-使用命令/</id>
+    <published>2019-07-14T18:07:44.000Z</published>
+    <updated>2019-07-14T18:13:52.896Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Up to this point, we have seen a series of mysterious commands, each with its own mysterious options and arguments. In this chapter, we
+        
+      
+    
+    </summary>
+    
+      <category term="TLCL" scheme="http://blog.chenshuoke.top/categories/TLCL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>第五章 操作文件和目录</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第五章-操作文件和目录/</id>
+    <published>2019-07-14T18:07:28.000Z</published>
+    <updated>2019-07-14T18:13:13.715Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;At this point, we are ready for some real work! This chapter will introduce the following
+        
+      
+    
+    </summary>
+    
+      <category term="TLCL" scheme="http://blog.chenshuoke.top/categories/TLCL/"/>
+    
     
   </entry>
   

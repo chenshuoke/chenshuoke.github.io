@@ -1,0 +1,1596 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="第九章 键盘高级操作技巧, 孤狼的博客">
+    <meta name="description" content="I often kiddingly describe Unix as “the operating system for people who like to type.” Of course, the fact that it even ">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>第九章 键盘高级操作技巧 | 孤狼的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+    <!-- 下面一句添加的 -->
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">孤狼的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">孤狼的博客</div>
+        <div class="logo-desc">
+            
+            从来没有真正的绝境，只有心灵的迷途
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/chenshuoke" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/chenshuoke" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        第九章 键盘高级操作技巧
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/TLCL/" class="post-category" target="_blank">
+                                TLCL
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-07-15
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        5.4k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        24 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>I often kiddingly describe Unix as “the operating system for people who like to type.” Of course, the fact that it even has a command line is a testament to that. But command line users don’t like to type that much. Why else would so many commands have such short names like cp, ls, mv, and rm? In fact, one of the most cherished goals of the command line is laziness; doing the most work with the fewest number of keystrokes. Another goal is never having to lift your fingers from the keyboard, never reaching for the mouse. In this chapter, we will look at bash features that make keyboard use faster and more efficient.</p>
+<p>开玩笑地说，我经常把 Unix 描述为“这个操作系统是为喜欢敲键盘的人们服务的。” 当然，Unix 甚至还有一个命令行这件事证明了我所说的话。但是命令行用户不喜欢敲入 那么多字。要不为什么会有如此多的命令有这样简短的命令名，像cp、ls、mv和 rm？事实上 ，命令行最为珍视的目标之一就是懒惰；用最少的击键次数来完成最多的工作。另一个 目标是你的手指永远不必离开键盘，永不触摸鼠标。在这一章节，我们将看一下 bash 特性 ，这些特性使键盘使用起来更加迅速，更加高效。</p>
+<p>The following commands will make an appearance:</p>
+<p>以下命令将会露面：</p>
+<ul>
+<li>clear - Clear the screen</li>
+<li>history - Display the contents of the history list</li>
+<li>clear － 清空屏幕</li>
+<li>history － 显示历史列表内容</li>
+</ul>
+<h3 id="命令行编辑"><a href="#命令行编辑" class="headerlink" title="命令行编辑"></a>命令行编辑</h3><p>bash uses a library (a shared collection of routines that different programs can use) called Readline to implement command line editing. We have already seen some of this. We know, for example, that the arrow keys move the cursor but there are many more features. Think of these as additional tools that we can employ in our work. It’s not important to learn all of them, but many of them are very useful. Pick and choose as desired.</p>
+<p>Bash 使用了一个名为 Readline 的库（共享的例程集合，可以被不同的程序使用）， 来实现命令行编辑。我们已经看到一些例子。我们知道，例如，箭头按键可以移动光标， 此外还有许多特性。想想这些额外的工具，我们可以在工作中使用。学会所有的特性 并不重要，但许多特性非常有帮助。选择自己需要的特性。</p>
+<p>Note: Some of the key sequences below (particularly those which use the Alt key) may be intercepted by the GUI for other functions. All of the key sequences should work properly when using a virtual console.</p>
+<p>注意：下面一些按键组合（尤其使用 Alt 键的组合），可能会被 GUI 拦截来触发其它的功能。 当使用虚拟控制台时，所有的按键组合都应该正确地工作。</p>
+<h3 id="移动光标"><a href="#移动光标" class="headerlink" title="移动光标"></a>移动光标</h3><p>The following table lists the keys used to move the cursor:</p>
+<p>下表列出了移动光标所使用的按键：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Key</th>
+<th align="left">Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Ctrl-a</td>
+<td align="left">Move cursor to the beginning of the line.</td>
+</tr>
+<tr>
+<td align="left">Ctrl-e</td>
+<td align="left">Move cursor to the end of the line.</td>
+</tr>
+<tr>
+<td align="left">Ctrl-f</td>
+<td align="left">Move cursor forward one character;same as the right arrow key.</td>
+</tr>
+<tr>
+<td align="left">Ctrl-b</td>
+<td align="left">Move cursor backward one character;same as the left arrow key.</td>
+</tr>
+<tr>
+<td align="left">Alt-f</td>
+<td align="left">Move cursor forward one word.</td>
+</tr>
+<tr>
+<td align="left">Alt-b</td>
+<td align="left">Move cursor backward one word.</td>
+</tr>
+<tr>
+<td align="left">Ctrl-l</td>
+<td align="left">Clear the screen and move the cursor to the top left corner. The clear command does the same thing.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">按键</th>
+<th align="left">行动</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Ctrl-a</td>
+<td align="left">移动光标到行首。</td>
+</tr>
+<tr>
+<td align="left">Ctrl-e</td>
+<td align="left">移动光标到行尾。</td>
+</tr>
+<tr>
+<td align="left">Ctrl-f</td>
+<td align="left">光标前移一个字符；和右箭头作用一样。</td>
+</tr>
+<tr>
+<td align="left">Ctrl-b</td>
+<td align="left">光标后移一个字符；和左箭头作用一样。</td>
+</tr>
+<tr>
+<td align="left">Alt-f</td>
+<td align="left">光标前移一个字。</td>
+</tr>
+<tr>
+<td align="left">Alt-b</td>
+<td align="left">光标后移一个字。</td>
+</tr>
+<tr>
+<td align="left">Ctrl-l</td>
+<td align="left">清空屏幕，移动光标到左上角。clear 命令完成同样的工作。</td>
+</tr>
+</tbody></table>
+<h3 id="修改文本"><a href="#修改文本" class="headerlink" title="修改文本"></a>修改文本</h3><p>Table 9-2 lists keyboard commands that are used to edit characters on the command line.</p>
+<p>表9－2列出了键盘命令，这些命令用来在命令行中编辑字符。</p>
+<table>
+<thead>
+<tr>
+<th align="left">Key</th>
+<th align="left">Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Ctrl-d</td>
+<td align="left">Delete the character at the cursor location</td>
+</tr>
+<tr>
+<td align="left">Ctrl-t</td>
+<td align="left">Transpose(exchange)the character at the cursor location with the one preceding it.</td>
+</tr>
+<tr>
+<td align="left">Alt-t</td>
+<td align="left">Transpose the word at the cursor location with the one preceding it.</td>
+</tr>
+<tr>
+<td align="left">Alt-l</td>
+<td align="left">Convert the characters from the cursor location to the end of the word to lowercase.</td>
+</tr>
+<tr>
+<td align="left">Alt-u</td>
+<td align="left">Convert the characters from the cursor location to the end of the word to uppercase.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">按键</th>
+<th align="left">行动</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Ctrl-d</td>
+<td align="left">删除光标位置的字符。</td>
+</tr>
+<tr>
+<td align="left">Ctrl-t</td>
+<td align="left">光标位置的字符和光标前面的字符互换位置。</td>
+</tr>
+<tr>
+<td align="left">Alt-t</td>
+<td align="left">光标位置的字和其前面的字互换位置。</td>
+</tr>
+<tr>
+<td align="left">Alt-l</td>
+<td align="left">把从光标位置到字尾的字符转换成小写字母。</td>
+</tr>
+<tr>
+<td align="left">Alt-u</td>
+<td align="left">把从光标位置到字尾的字符转换成大写字母。</td>
+</tr>
+</tbody></table>
+<h3 id="剪切和粘贴文本"><a href="#剪切和粘贴文本" class="headerlink" title="剪切和粘贴文本"></a>剪切和粘贴文本</h3><p>The Readline documentation uses the terms killing and yanking to refer to what we would commonly call cutting and pasting. Items that are cut are stored in a buffer called the kill-ring.</p>
+<p>Readline 的文档使用术语 killing 和 yanking 来指我们平常所说的剪切和粘贴。 剪切下来的本文被存储在一个叫做剪切环(kill-ring)的缓冲区中。</p>
+<table>
+<thead>
+<tr>
+<th align="left">Key</th>
+<th align="left">Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Ctrl-k</td>
+<td align="left">Kill text from the cursor location to the end of line.</td>
+</tr>
+<tr>
+<td align="left">Ctrl-u</td>
+<td align="left">Kill text from the cursor location to the beginning of the line.</td>
+</tr>
+<tr>
+<td align="left">Alt-d</td>
+<td align="left">Kill text from the cursor location to the end of the current word.</td>
+</tr>
+<tr>
+<td align="left">Alt-Backspace</td>
+<td align="left">Kill text from the cursor location to the beginning of the word. If the cursor is at the beginning of a word, kill the previous word.</td>
+</tr>
+<tr>
+<td align="left">Ctrl-y</td>
+<td align="left">Yank text from the kill-ring and insert it at the cursor location.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">按键</th>
+<th align="left">行动</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Ctrl-k</td>
+<td align="left">剪切从光标位置到行尾的文本。</td>
+</tr>
+<tr>
+<td align="left">Ctrl-u</td>
+<td align="left">剪切从光标位置到行首的文本。</td>
+</tr>
+<tr>
+<td align="left">Alt-d</td>
+<td align="left">剪切从光标位置到词尾的文本。</td>
+</tr>
+<tr>
+<td align="left">Alt-Backspace</td>
+<td align="left">剪切从光标位置到词头的文本。如果光标在一个单词的开头，剪切前一个单词。</td>
+</tr>
+<tr>
+<td align="left">Ctrl-y</td>
+<td align="left">把剪切环中的文本粘贴到光标位置。</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>The Meta Key</p>
+<p>元键</p>
+<p>If you venture into the Readline documentation, which can be found in the READLINE section of the bash man page, you will encounter the term “meta key.” On modern keyboards this maps to the Alt key but it wasn’t always so.</p>
+<p>如果你冒险进入到 Readline 的文档中，你会在 bash 手册页的 READLINE 段落， 遇到一个术语”元键”（meta key）。在当今的键盘上，这个元键是指 Alt 键，但 并不总是这样。</p>
+<p>Back in the dim times (before PCs but after Unix) not everybody had their own computer. What they might have had was a device called a terminal. A terminal was a communication device that featured a text display screen and a keyboard and just enough electronics inside to display text characters and move the cursor around. It was attached (usually by serial cable) to a larger computer or the communication network of a larger computer. There were many different brands of terminals and they all had different keyboards and display feature sets. Since they all tended to at least understand ASCII, software developers wanting portable applications wrote to the lowest common denominator. Unix systems have a very elaborate way of dealing with terminals and their different display features. Since the developers of Readline could not be sure of the presence of a dedicated extra control key, they invented one and called it “meta.” While the Alt key serves as the meta key on modern keyboards, you can also press and release the Esc key to get the same effect as holding down the Alt key if you’re still using a terminal (which you can still do in Linux!).</p>
+<p>回到昏暗的年代（在 PC 之前 Unix 之后），并不是每个人都有他们自己的计算机。 他们可能有一个叫做终端的设备。一个终端是一种通信设备，它以一个文本显示 屏幕和一个键盘作为其特色，它里面有足够的电子器件来显示文本字符和移动光标。 它连接到（通常通过串行电缆）一个更大的计算机或者是一个大型计算机的通信 网络。有许多不同的终端产品商标，它们有着不同的键盘和特征显示集。因为它们 都倾向于至少能理解 ASCII，所以软件开发者想要符合最低标准的可移植的应用程序。 Unix 系统有一个非常精巧的方法来处理各种终端产品和它们不同的显示特征。因为 Readline 程序的开发者们，不能确定一个专用多余的控制键的存在，他们发明了一个 控制键，并把它叫做”元”（”meta”）。然而在现代的键盘上，Alt 键作为元键来服务。 如果你仍然在使用终端（在 Linux 中，你仍然可以得到一个终端），你也可以按下和 释放 Esc 键来得到如控制 Alt 键一样的效果。</p>
+</blockquote>
+<h3 id="自动补全"><a href="#自动补全" class="headerlink" title="自动补全"></a>自动补全</h3><p>Another way that the shell can help you is through a mechanism called completion. Completion occurs when you press the tab key while typing a command. Let’s see how this works. Given a home directory that looks like this:</p>
+<p>shell 能帮助你的另一种方式是通过一种叫做自动补全的机制。当你敲入一个命令时， 按下 tab 键，自动补全就会发生。让我们看一下这是怎样工作的。给出一个看起来 像这样的家目录：</p>
+<pre><code>[me@linuxbox ~]$ ls
+Desktop   ls-output.txt   Pictures   Templates   Videos
+....</code></pre><p>Try typing the following but don’t press the Enter key:</p>
+<p>试着输入下面的命令，但不要按下 Enter 键：</p>
+<pre><code>[me@linuxbox ~]$ ls l</code></pre><p>Now press the tab key:</p>
+<p>现在按下 tab 键：</p>
+<pre><code>[me@linuxbox ~]$ ls ls-output.txt</code></pre><p>See how the shell completed the line for you? Let’s try another one. Again, don’t press Enter:</p>
+<p>看一下 shell 是怎样补全这一行的？让我们再试试另一个例子。这回，也 不要按下 Enter:</p>
+<pre><code>[me@linuxbox ~]$ ls D</code></pre><p>Press tab:</p>
+<p>按下 tab:</p>
+<pre><code>[me@linuxbox ~]$ ls D</code></pre><p>No completion, just a beep. This happened because “D” matches more than one entry in the directory. For completion to be successful, the “clue” you give it has to be unambiguous. If we go further:</p>
+<p>没有补全，只是嘟嘟响。因为”D”不止匹配目录中的一个条目。为了自动补全执行成功， 你给它的”线索”不能模棱两可。如果我们继续输入：</p>
+<pre><code>[me@linuxbox ~]$ ls Do</code></pre><p>Then press tab:</p>
+<p>然后按下 tab：</p>
+<pre><code>[me@linuxbox ~]$ ls Documents</code></pre><p>The completion is successful.</p>
+<p>自动补全成功了。</p>
+<p>While this example shows completion of pathnames, which is its most common use, completion will also work on variables (if the beginning of the word is a “$”), user names (if the word begins with “~”), commands (if the word is the first word on the line.) and host names (if the beginning of the word is “@”). Host name completion only works for host names listed in /etc/hosts.</p>
+<p>这个实例展示了路径名自动补全，这是最常用的形式。自动补全也能对变量（如果 字的开头是一个”$”）、用户名字（单词以”~”开始）、命令（如果单词是一行的第一个单词） 和主机名（如果单词的开头是”@”）起作用。主机名自动补全只对包含在文件/etc/hosts 中的主机名有效。</p>
+<p>There are a number of control and meta key sequences that are associated with completion:</p>
+<p>有一系列的控制和元键序列与自动补全相关联：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Key</th>
+<th align="left">Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Alt-?</td>
+<td align="left">Display list of possible completions. On most systems you can also do this by pressing the tab key a second time, which is much easier.</td>
+</tr>
+<tr>
+<td align="left">Alt-*</td>
+<td align="left">Insert all possible completions. This is useful when you want to use more than one possible match.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">按键</th>
+<th align="left">行动</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Alt-?</td>
+<td align="left">显示可能的自动补全列表。在大多数系统中，你也可以完成这个通过按 两次 tab 键，这会更容易些。</td>
+</tr>
+<tr>
+<td align="left">Alt-*</td>
+<td align="left">插入所有可能的自动补全。当你想要使用多个可能的匹配项时，这个很有帮助。</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>Programmable Completion</p>
+<p>可编程自动补全</p>
+<p>Recent versions of bash have a facility called programmable completion. Programmable completion allows you (or more likely, your distribution provider) to add additional completion rules. Usually this is done to add support for specific applications. For example it is possible to add completions for the option list of a command or match particular file types that an application supports. Ubuntu has a fairly large set defined by default. Programmable completion is implemented by shell functions, a kind of mini shell script that we will cover in later chapters. If you are curious, try:</p>
+<p>目前的 bash 版本有一个叫做可编程自动补全工具。可编程自动补全允许你（更可能是，你的 发行版提供商）来加入额外的自动补全规则。通常需要加入对特定应用程序的支持，来完成这个 任务。例如，有可能为一个命令的选项列表，或者一个应用程序支持的特殊文件类型加入自动补全。 默认情况下，Ubuntu 已经定义了一个相当大的规则集合。可编程自动补全是由 shell 函数实现的，shell 函数是一种小巧的 shell 脚本，我们会在后面的章节中讨论到。如果你感到好奇，试一下：</p>
+<p><em>set | less</em></p>
+<p>and see if you can find them. Not all distributions include them by default.</p>
+<p>查看一下如果你能找到它们的话。默认情况下，并不是所有的发行版都包括它们。</p>
+</blockquote>
+<h3 id="利用历史命令"><a href="#利用历史命令" class="headerlink" title="利用历史命令"></a>利用历史命令</h3><p>As we discovered in Chapter 2, bash maintains a history of commands that have been entered. This list of commands is kept in your home directory in a file called .bash_history. The history facility is a useful resource for reducing the amount of typing you have to do, especially when combined with command line editing.</p>
+<p>正如我们在第二章中讨论到的，bash 维护着一个已经执行过的命令的历史列表。这个命令列表 被保存在你家目录下，一个叫做 .bash_history 的文件里。这个 history 工具是个有用资源， 因为它可以减少你敲键盘的次数，尤其当和命令行编辑联系起来时。</p>
+<h3 id="搜索历史命令"><a href="#搜索历史命令" class="headerlink" title="搜索历史命令"></a>搜索历史命令</h3><p>At any time, we can view the contents of the history list by:</p>
+<p>在任何时候，我们都可以浏览历史列表的内容，通过：</p>
+<pre><code>[me@linuxbox ~]$ history | less</code></pre><p>By default, bash stores the last five hundred commands you have entered. We will see how to adjust this value in a later chapter. Let’s say we want to find the commands we used to list /usr/bin. One way we could do this:</p>
+<p>在默认情况下，bash 会存储你所输入的最后 500 个命令。在随后的章节里，我们会知道 怎样调整这个数值。比方说我们想在自己曾经用过的命令中，找出和/usr/bin这一目录相关的。那么我们就可以这样做：</p>
+<pre><code>[me@linuxbox ~]$ history | grep /usr/bin
+</code></pre><p>And let’s say that among our results we got a line containing an interesting command like this:</p>
+<p>比方说在我们的搜索结果之中，我们得到一行，包含了有趣的命令，像这样；</p>
+<pre><code>88  ls -l /usr/bin &gt; ls-output.txt
+</code></pre><p>The number “88” is the line number of the command in the history list. We could use this immediately using another type of expansion called history expansion. To use our discovered line we could do this:</p>
+<p>数字 “88” 是这个命令在历史列表中的行号。我们可以使用另一种叫做 历史命令展开的方式，来调用“88”所代表的这一行命令：</p>
+<pre><code>[me@linuxbox ~]$ !88
+</code></pre><p>bash will expand “!88” into the contents of the eighty-eighth line in the history list. There are other forms of history expansion that we will cover a little later. bash also provides the ability to search the history list incrementally. This means that we can tell bash to search the history list as we enter characters, with each additional character further refining our search. To start incremental search type Ctrl-r followed by the text you are looking for. When you find it, you can either type Enter to execute the command or type Ctrl-j to copy the line from the history list to the current command line. To find the next occurrence of the text (moving “up” the history list), type Ctrl-r again. To quit searching, type either Ctrl-g or Ctrl-c. Here we see it in action:</p>
+<p>bash 会把 “!88” 展开成为历史列表中88行的内容。还有其它的历史命令展开形式，我们一会儿 讨论它们。bash 也具有增量搜索历史列表的能力。意思是在字符输入的同时，bash 会去搜索历史列表（直接出结果，并高亮匹配的第一个字），每多输入一个字符都会使搜索结果更接近目标。输入 Ctrl-r来启动增量搜索， 接着输入你要寻找的字。当你找到它以后，你可以敲入 Enter 来执行命令， 或者输入 Ctrl-j，从历史列表中复制这一行到当前命令行。再次输入 Ctrl-r，来找到下一个 匹配项（历史列表中向上移动）。输入 Ctrl-g 或者 Ctrl-c，退出搜索。现在看看它的实际效果：</p>
+<pre><code>[me@linuxbox ~]$
+</code></pre><p>First type Ctrl-r:</p>
+<p>首先输入 Ctrl-r:</p>
+<pre><code>(reverse-i-search)`&#39;:
+</code></pre><p>The prompt changes to indicate that we are performing a reverse incremental search. It is “reverse” because we are searching from “now” to some time in the past. Next, we start typing our search text. In this example “/usr/bin”:</p>
+<p>提示符改变，显示我们正在执行反向增量搜索。搜索过程是”反向的”，因为我们按照从”现在”到过去 某个时间段的顺序来搜寻。下一步，我们开始输入要查找的文本。在这个例子里是 “/usr/bin”：</p>
+<pre><code>(reverse-i-search)`/usr/bin&#39;: ls -l /usr/bin &gt; ls-output.txt
+</code></pre><blockquote>
+<p>上面这一行冒号后面的第一个”/”会高亮显示。</p>
+</blockquote>
+<p>Immediately, the search returns our result. With our result, we can execute the command by pressing Enter, or we can copy the command to our current command line for further editing by typing Ctrl-j. Let’s copy it. Type Ctrl-j:</p>
+<p>即刻，搜索返回我们需要的结果。我们可以按下 Enter 键来执行这个命令，或者我们可以按下Ctrl-j复制 这个命令到我们当前的命令行，来进一步编辑它。好了现在我们复制它，输入 Ctrl-j：</p>
+<pre><code>[me@linuxbox ~]$ ls -l /usr/bin &gt; ls-output.txt
+</code></pre><p>Our shell prompt returns and our command line is loaded and ready for action! The table below lists some of the keystrokes used to manipulate the history list:</p>
+<p>我们的 shell 提示符重新出现，命令行加载完毕，准备接受下一命令！ 下表列出了一些按键组合， 这些按键可以用来操作历史列表：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Key</th>
+<th align="left">Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Ctrl-p</td>
+<td align="left">Move to the previous history entry. Same action as the up arrow.</td>
+</tr>
+<tr>
+<td align="left">Ctrl-n</td>
+<td align="left">Move to the next history entry. Same action as the down arrow.</td>
+</tr>
+<tr>
+<td align="left">Alt-&lt;</td>
+<td align="left">Move to the beginning (top) of the history list.</td>
+</tr>
+<tr>
+<td align="left">Alt-&gt;</td>
+<td align="left">Move to the end (bottom) of the history list, i.e., the current command line.</td>
+</tr>
+<tr>
+<td align="left">Ctrl-r</td>
+<td align="left">Reverse incremental search. Searches incrementally from the current command line up the history list.</td>
+</tr>
+<tr>
+<td align="left">Alt-p</td>
+<td align="left">Reverse search, non-incremental. With this key, type in the search string and press enter before the search is performed.</td>
+</tr>
+<tr>
+<td align="left">Alt-n</td>
+<td align="left">Forward search, non-incremental.</td>
+</tr>
+<tr>
+<td align="left">Ctrl-o</td>
+<td align="left">Execute the current item in the history list and advance to the next one. This is handy if you are trying to re-execute a sequence of commands in the history list.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">按键</th>
+<th align="left">行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Ctrl-p</td>
+<td align="left">移动到上一个历史条目。类似于上箭头按键。</td>
+</tr>
+<tr>
+<td align="left">Ctrl-n</td>
+<td align="left">移动到下一个历史条目。类似于下箭头按键。</td>
+</tr>
+<tr>
+<td align="left">Alt-&lt;</td>
+<td align="left">移动到历史列表开头。</td>
+</tr>
+<tr>
+<td align="left">Alt-&gt;</td>
+<td align="left">移动到历史列表结尾，即当前命令行。</td>
+</tr>
+<tr>
+<td align="left">Ctrl-r</td>
+<td align="left">反向增量搜索。从当前命令行开始，向上增量搜索。</td>
+</tr>
+<tr>
+<td align="left">Alt-p</td>
+<td align="left">反向搜索，非增量搜索。（输入要查找的字符串，按下 Enter来执行搜索）。</td>
+</tr>
+<tr>
+<td align="left">Alt-n</td>
+<td align="left">向前搜索，非增量。</td>
+</tr>
+<tr>
+<td align="left">Ctrl-o</td>
+<td align="left">执行历史列表中的当前项，并移到下一个。如果你想要执行历史列表中一系列的命令，这很方便。</td>
+</tr>
+</tbody></table>
+<h3 id="历史命令展开"><a href="#历史命令展开" class="headerlink" title="历史命令展开"></a>历史命令展开</h3><p>The shell offers a specialized type of expansion for items in the history list by using the “!” character. We have already seen how the exclamation point can be followed by a number to insert an entry from the history list. There are a number of other expansion features:</p>
+<p>通过使用 “!” 字符，shell 为历史列表中的命令，提供了一个特殊的展开类型。我们已经知道一个感叹号 ，其后再加上一个数字，可以把来自历史列表中的命令插入到命令行中。这里还有一些其它的展开特性：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Sequence</th>
+<th align="left">Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">!!</td>
+<td align="left">Repeat the last command. It is probably easier to press up arrow and enter.</td>
+</tr>
+<tr>
+<td align="left">!number</td>
+<td align="left">Repeat history list item number.</td>
+</tr>
+<tr>
+<td align="left">!string</td>
+<td align="left">Repeat last history list item starting with string.</td>
+</tr>
+<tr>
+<td align="left">!?string</td>
+<td align="left">Repeat last history list item containing string.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">序列</th>
+<th align="left">行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">!!</td>
+<td align="left">重复最后一次执行的命令。可能按下上箭头按键和 enter 键更容易些。</td>
+</tr>
+<tr>
+<td align="left">!number</td>
+<td align="left">重复历史列表中第 number 行的命令。</td>
+</tr>
+<tr>
+<td align="left">!string</td>
+<td align="left">重复最近历史列表中，以这个字符串开头的命令。</td>
+</tr>
+<tr>
+<td align="left">!?string</td>
+<td align="left">重复最近历史列表中，包含这个字符串的命令。</td>
+</tr>
+</tbody></table>
+<p>I would caution against using the “!string” and “!?string” forms unless you are absolutely sure of the contents of the history list items.</p>
+<p>应该小心谨慎地使用 “!string” 和 “!?string” 格式，除非你完全确信历史列表条目的内容。</p>
+<p>There are many more elements available in the history expansion mechanism, but this subject is already too arcane and our heads may explode if we continue. The HISTORY EXPANSION section of the bash man page goes into all the gory details. Feel free to explore!</p>
+<p>在历史展开机制中，还有许多可利用的特点，但是这个题目已经太晦涩难懂了， 如果我们再继续讨论的话，我们的头可能要爆炸了。bash 手册页的 HISTORY EXPANSION 部分详尽地讲述了所有要素。</p>
+<blockquote>
+<p>script</p>
+<p>脚本</p>
+<p>In addition to the command history feature in bash, most Linux distributions include a program called script that can be used to record an entire shell session and store it in a file. The basic syntax of the command is:</p>
+<p>除了 bash 中的命令历史特性，许多 Linux 发行版包括一个叫做 script 的程序， 这个程序可以记录整个 shell 会话，并把 shell 会话存在一个文件里面。这个命令的基本语法是：</p>
+<p><em>script [file]</em></p>
+<p>where file is the name of the file used for storing the recording. If no file is specified, the file typescript is used. See the script man page for a complete list of the program’s options and features.</p>
+<p>命令中的 file 是指用来存储 shell 会话记录的文件名。如果没有指定文件名，则使用文件 typescript。查看脚本的手册页，可以得到一个关于 script 程序选项和特点的完整列表。</p>
+</blockquote>
+<h3 id="总结归纳"><a href="#总结归纳" class="headerlink" title="总结归纳"></a>总结归纳</h3><p>In this chapter we have covered some of the keyboard tricks that the shell provides to help hardcore typists reduce their workloads. I suspect that as time goes by and you become more involved with the command line, you will refer back to this chapter to pick up more of these tricks. For now, consider them optional and potentially helpful.</p>
+<p>在这一章中，我们已经讨论了一些由 shell 提供的键盘操作技巧，这些技巧是来帮助打字员减少工作量的。 随着时光流逝，你和命令行打交道越来越多，我猜想你会重新翻阅这一章的内容，学会更多的技巧。 目前，你就认为它们是可选的，潜在地有帮助的。</p>
+<h3 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h3><ul>
+<li><p>The Wikipedia has a good article on computer terminals:</p>
+</li>
+<li><p>Wikipedia 上有一篇关于计算机终端的好文章：</p>
+<p><a href="http://en.wikipedia.org/wiki/Computer_terminal" target="_blank" rel="noopener">http://en.wikipedia.org/wiki/Computer_terminal</a></p>
+</li>
+</ul>
+
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'brA0u8dhiFmWzBQJ5YDMevuw-gzGzoHsz',
+        appKey: 'InzuBbqaqOss16gJu1jiKE7F',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/07/15/第十章-权限/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="第十章 权限">
+                        
+                        <span class="card-title">第十章 权限</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Operating systems in the Unix tradition differ from those in the MS-DOS tradition in that they are not only multitasking
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/TLCL/" class="post-category" target="_blank">
+                                    TLCL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/07/15/第八章-从shell眼中看世界/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="第八章 从shell眼中看世界">
+                        
+                        <span class="card-title">第八章 从shell眼中看世界</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            In this chapter we are going to look at some of the “magic” that occurs on the command line when you press the enter key
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/TLCL/" class="post-category" target="_blank">
+                                    TLCL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">249.9k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/chenshuoke" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:henu_chenshuoke@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2604689299" class="tooltipped" data-tooltip="QQ联系我: 2604689299" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

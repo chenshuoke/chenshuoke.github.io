@@ -1,0 +1,1822 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="自定义Git, 孤狼的博客">
+    <meta name="description" content="到目前为止，我们已经阐述了 Git 基本的运作机制和使用方式，介绍了许多 Git 提供的工具来帮助你简单且有效地使用它。 在本章，我们将演示如何借助 Git 的一些重要的配置方法和钩子机制，来满足自定义的需求。 通过这些工具，它会和你、你的">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>自定义Git | 孤狼的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+    <!-- 下面一句添加的 -->
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">孤狼的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">孤狼的博客</div>
+        <div class="logo-desc">
+            
+            从来没有真正的绝境，只有心灵的迷途
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/chenshuoke" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/chenshuoke" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        自定义Git
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Git/" target="_blank">
+                                <span class="chip bg-color">Git</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Git/" class="post-category" target="_blank">
+                                Git
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-07-15
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        15.2k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        58 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>到目前为止，我们已经阐述了 Git 基本的运作机制和使用方式，介绍了许多 Git 提供的工具来帮助你简单且有效地使用它。 在本章，我们将演示如何借助 Git 的一些重要的配置方法和钩子机制，来满足自定义的需求。 通过这些工具，它会和你、你的公司或你的团队配合得天衣无缝。</p>
+<h2 id="配置-Git"><a href="#配置-Git" class="headerlink" title="配置 Git"></a>配置 Git</h2><p>你在 <a href="https://git-scm.com/book/zh/v2/ch00/ch01-introduction" target="_blank" rel="noopener">起步</a> 中看到，可以用 <code>git config</code> 配置 Git。 首先要做的事情就是设置你的名字和邮件地址：</p>
+<pre class=" language-console"><code class="language-console">$ git config --global user.name "John Doe"
+$ git config --global user.email johndoe@example.com</code></pre>
+<p>现在，你会了解到许多更有趣的选项，并用类似的方式来定制 Git。</p>
+<p>首先，快速回忆下：Git 使用一系列配置文件来保存你自定义的行为。 它首先会查找 <code>/etc/gitconfig</code> 文件，该文件含有系统里每位用户及他们所拥有的仓库的配置值。 如果你传递 <code>--system</code> 选项给 <code>git config</code>，它就会读写该文件。</p>
+<p>接下来 Git 会查找每个用户的 <code>~/.gitconfig</code> 文件（或者 <code>~/.config/git/config</code> 文件）。 你可以传递 <code>--global</code> 选项让 Git 读写该文件。</p>
+<p>最后 Git 会查找你正在操作的版本库所对应的 Git 目录下的配置文件（<code>.git/config</code>）。 这个文件中的值只对该版本库有效。</p>
+<p>以上三个层次中每层的配置（系统、全局、本地）都会覆盖掉上一层次的配置，所以 <code>.git/config</code> 中的值会覆盖掉 <code>/etc/gitconfig</code> 中所对应的值。</p>
+<table>
+<thead>
+<tr>
+<th>Note</th>
+<th>Git 的配置文件是纯文本的，所以你可以直接手动编辑这些配置文件，输入合乎语法的值。 但是运行 <code>git config</code> 命令会更简单些。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="客户端基本配置"><a href="#客户端基本配置" class="headerlink" title="客户端基本配置"></a>客户端基本配置</h3><p>Git 能够识别的配置项分为两大类：客户端和服务器端。 其中大部分属于客户端配置 —— 可以依你个人的工作偏好进行配置。 尽管 Git 支持的选项 <em>繁多</em>，但其中大部分仅仅在某些罕见的情况下有意义。 我们只讲述最平常和最有用的选项。 如果想得到你当前版本的 Git 支持的选项列表，请运行</p>
+<pre class=" language-console"><code class="language-console">$ man git-config</code></pre>
+<p>这个命令列出了所有可用的选项，以及与之相关的介绍。 你也可以在 <a href="http://git-scm.com/docs/git-config.html" target="_blank" rel="noopener">http://git-scm.com/docs/git-config.html</a> 找到同样的内容。</p>
+<h4 id="core-editor"><a href="#core-editor" class="headerlink" title="core.editor"></a><code>core.editor</code></h4><p>默认情况下，Git 会调用环境变量（<code>$VISUAL</code> 或 <code>$EDITOR</code>）设置的任意文本编辑器，如果没有设置，会调用 <code>vi</code> 来创建和编辑你的提交以及标签信息。 你可以使用 <code>core.editor</code> 选项来修改默认的编辑器：</p>
+<pre class=" language-console"><code class="language-console">$ git config --global core.editor emacs</code></pre>
+<p>现在，无论你定义了什么终端编辑器，Git 都会调用 Emacs 编辑信息。</p>
+<h4 id="commit-template"><a href="#commit-template" class="headerlink" title="commit.template"></a><code>commit.template</code></h4><p>如果把此项指定为你的系统上某个文件的路径，当你提交的时候， Git 会使用该文件的内容作为提交的默认信息。 例如：假设你创建了一个叫 <code>~/.gitmessage.txt</code> 的模板文件，类似这样：</p>
+<pre><code>subject line
+
+what happened
+
+[ticket: X]</code></pre><p>要想让 Git 把它作为运行 <code>git commit</code> 时显示在你的编辑器中的默认信息， 如下设置 <code>commit.template</code>：</p>
+<pre class=" language-console"><code class="language-console">$ git config --global commit.template ~/.gitmessage.txt
+$ git commit</code></pre>
+<p>然后当你提交时，编辑器中就会显示如下的提交信息占位符：</p>
+<pre><code>subject line
+
+what happened
+
+[ticket: X]
+# Please enter the commit message for your changes. Lines starting
+# with &#39;#&#39; will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+#
+# modified:   lib/test.rb
+#
+~
+~
+&quot;.git/COMMIT_EDITMSG&quot; 14L, 297C</code></pre><p>如果你的团队对提交信息有格式要求，可以在系统上创建一个文件，并配置 Git 把它作为默认的模板，这样可以更加容易地使提交信息遵循格式。</p>
+<h4 id="core-pager"><a href="#core-pager" class="headerlink" title="core.pager"></a><code>core.pager</code></h4><p>该配置项指定 Git 运行诸如 <code>log</code> 和 <code>diff</code> 等命令所使用的分页器。 你可以把它设置成用 <code>more</code> 或者任何你喜欢的分页器（默认用的是 <code>less</code>），当然也可以设置成空字符串，关闭该选项：</p>
+<pre class=" language-console"><code class="language-console">$ git config --global core.pager ''</code></pre>
+<p>这样不管命令的输出量多少，Git 都会在一页显示所有内容。</p>
+<h4 id="user-signingkey"><a href="#user-signingkey" class="headerlink" title="user.signingkey"></a><code>user.signingkey</code></h4><p>如果你要创建经签署的含附注的标签（正如 <a href="https://git-scm.com/book/zh/v2/ch00/r_signing" target="_blank" rel="noopener">签署工作</a> 所述），那么把你的 GPG 签署密钥设置为配置项会更好。 如下设置你的密钥 ID：</p>
+<pre class=" language-console"><code class="language-console">$ git config --global user.signingkey <gpg-key-id></code></pre>
+<p>现在，你每次运行 <code>git tag</code> 命令时，即可直接签署标签，而无需定义密钥：</p>
+<pre class=" language-console"><code class="language-console">$ git tag -s <tag-name>
+</code></pre>
+<h4 id="core-excludesfile"><a href="#core-excludesfile" class="headerlink" title="core.excludesfile"></a><code>core.excludesfile</code></h4><p>正如 <a href="https://git-scm.com/book/zh/v2/ch00/r_ignoring" target="_blank" rel="noopener">忽略文件</a> 所述，你可以在你的项目的 <code>.gitignore</code> 文件里面规定无需纳入 Git 管理的文件的模板，这样它们既不会出现在未跟踪列表，也不会在你运行 <code>git add</code> 后被暂存。</p>
+<p>不过有些时候，你想要在你所有的版本库中忽略掉某一类文件。 如果你的操作系统是 OS X，很可能就是指 <code>.DS_Store</code>。 如果你把 Emacs 或 Vim 作为首选的编辑器，你肯定知道以 <code>~</code> 结尾的临时文件。</p>
+<p>这个配置允许你设置类似于全局生效的 <code>.gitignore</code> 文件。 如果你按照下面的内容创建一个 <code>~/.gitignore_global</code> 文件：</p>
+<pre><code>*~
+.DS_Store
+</code></pre><p>……然后运行 <code>git config --global core.excludesfile ~/.gitignore_global</code>，Git 将把那些文件永远地拒之门外。</p>
+<h4 id="help-autocorrect"><a href="#help-autocorrect" class="headerlink" title="help.autocorrect"></a><code>help.autocorrect</code></h4><p>假如你打错了一条命令，会显示：</p>
+<pre class=" language-console"><code class="language-console">$ git chekcout master
+git：'chekcout' 不是一个 git 命令。参见 'git --help'。
+
+您指的是这个么？
+  checkout
+</code></pre>
+<p>Git 会尝试猜测你的意图，但是它不会越俎代庖。 如果你把 <code>help.autocorrect</code> 设置成 1，那么只要有一个命令被模糊匹配到了，Git 会自动运行该命令。</p>
+<pre class=" language-console"><code class="language-console">$ git chekcout master
+警告：您运行一个不存在的 Git 命令 'chekcout'。继续执行假定您要要运行的
+是 'checkout'
+在 0.1 秒钟后自动运行...
+</code></pre>
+<p>注意提示信息中的“0.1 秒”。<code>help.autocorrect</code> 接受一个代表十分之一秒的整数。 所以如果你把它设置为 50, Git 将在自动执行命令前给你 5 秒的时间改变主意。</p>
+<h3 id="Git-中的着色"><a href="#Git-中的着色" class="headerlink" title="Git 中的着色"></a>Git 中的着色</h3><p>Git 充分支持对终端内容着色，对你凭肉眼简单、快速分析命令输出有很大帮助。 你可以设置许多的相关选项来满足自己的偏好。</p>
+<h4 id="color-ui"><a href="#color-ui" class="headerlink" title="color.ui"></a><code>color.ui</code></h4><p>Git 会自动着色大部分输出内容，但如果你不喜欢花花绿绿，也可以关掉。 要想关掉 Git 的终端颜色输出，试一下这个：</p>
+<pre class=" language-console"><code class="language-console">$ git config --global color.ui false
+</code></pre>
+<p>这个设置的默认值是 <code>auto</code>，它会着色直接输出到终端的内容；而当内容被重定向到一个管道或文件时，则忽略着色功能。</p>
+<p>你也可以设置成 <code>always</code>，来忽略掉管道和终端的不同，即在任何情况下着色输出。 你很少会这么设置，在大多数场合下，如果你想在被重定向的输出中插入颜色码，可以传递 <code>--color</code> 标志给 Git 命令来强制它这么做。 默认设置就已经能满足大多数情况下的需求了。</p>
+<h4 id="color"><a href="#color" class="headerlink" title="color.*"></a><code>color.*</code></h4><p>要想具体到哪些命令输出需要被着色以及怎样着色，你需要用到和具体命令有关的颜色配置选项。 它们都能被置为 <code>true</code>、<code>false</code> 或 <code>always</code>：</p>
+<pre><code>color.branch
+color.diff
+color.interactive
+color.status
+</code></pre><p>另外，以上每个配置项都有子选项，它们可以被用来覆盖其父设置，以达到为输出的各个部分着色的目的。 例如，为了让 <code>diff</code> 的输出信息以蓝色前景、黑色背景和粗体显示，你可以运行</p>
+<pre><code>$ git config --global color.diff.meta &quot;blue black bold&quot;
+</code></pre><p>你能设置的颜色有：<code>normal</code>、<code>black</code>、<code>red</code>、<code>green</code>、<code>yellow</code>、<code>blue</code>、<code>magenta</code>、<code>cyan</code> 或 <code>white</code>。 正如以上例子设置的粗体属性，想要设置字体属性的话，可以选择包括：<code>bold</code>、<code>dim</code>、<code>ul</code>（下划线）、<code>blink</code>、<code>reverse</code>（交换前景色和背景色）。</p>
+<h3 id="外部的合并与比较工具"><a href="#外部的合并与比较工具" class="headerlink" title="外部的合并与比较工具"></a>外部的合并与比较工具</h3><p>虽然 Git 自己内置了一个 <code>diff</code> 实现，而且到目前为止我们一直在使用它，但你能够用一个外部的工具替代它。 除此以外，你还能设置一个图形化的工具来合并和解决冲突，从而不必自己手动解决。 这里我们以一个不错且免费的工具 —— Perforce 图形化合并工具（P4Merge） —— 来展示如何用一个外部的工具来合并和解决冲突。</p>
+<p>P4Merge 可以在所有主流平台上运行，所以安装上应该没有什么困难。 在这个例子中，我们使用的路径名可以直接应用在 Mac 和 Linux 上；在 Windows 上，<code>/usr/local/bin</code> 需要被改为你的环境中可执行文件所在的目录路径。</p>
+<p>首先， 从 <a href="http://www.perforce.com/downloads/Perforce/" target="_blank" rel="noopener">http://www.perforce.com/downloads/Perforce/</a> 下载 P4Merge。 接下来，你要编写一个全局包装脚本来运行你的命令。 我们会使用 Mac 上的路径来指定该脚本的位置，在其他系统上，它将是 <code>p4merge</code> 二进制文件所在的目录。 创建一个名为 <code>extMerge</code> 的脚本包装 merge 命令，让它把参数转发给 p4merge 二进制文件：</p>
+<pre class=" language-console"><code class="language-console">$ cat /usr/local/bin/extMerge
+#!/bin/sh
+/Applications/p4merge.app/Contents/MacOS/p4merge $*
+</code></pre>
+<p>包装 diff 命令的脚本首先确保传递了七个参数过来，随后把其中两个转发给包装了 merge 的脚本。 默认情况下， Git 传递以下参数给 <code>diff</code>：</p>
+<pre><code>path old-file old-hex old-mode new-file new-hex new-mode
+</code></pre><p>由于你仅仅需要 <code>old-file</code> 和 <code>new-file</code> 参数，由包装 diff 的脚本来转发它们吧。</p>
+<pre class=" language-console"><code class="language-console">$ cat /usr/local/bin/extDiff
+#!/bin/sh
+[ $# -eq 7 ] && /usr/local/bin/extMerge "$2" "$5"
+</code></pre>
+<p>你也需要确保这些脚本具有可执行权限：</p>
+<pre class=" language-console"><code class="language-console">$ sudo chmod +x /usr/local/bin/extMerge
+$ sudo chmod +x /usr/local/bin/extDiff
+</code></pre>
+<p>现在你可以修改配置文件来使用你自定义的合并和比较工具了。 这将涉及许多自定义设置：<code>merge.tool</code>通知 Git 该使用哪个合并工具， <code>mergetool.&lt;tool&gt;.cmd</code> 规定命令运行的方式，<code>mergetool.&lt;tool&gt;.trustExitCode</code> 会通知 Git 程序的返回值是否表示合并操作成功，<code>diff.external</code> 通知 Git 该用什么命令做比较。 因此，你可以运行以下四条配置命令：</p>
+<pre class=" language-console"><code class="language-console">$ git config --global merge.tool extMerge
+$ git config --global mergetool.extMerge.cmd \
+  'extMerge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"'
+$ git config --global mergetool.extMerge.trustExitCode false
+$ git config --global diff.external extDiff
+</code></pre>
+<p>或编辑你的 <code>~/.gitconfig</code> 文件，添加以下各行：</p>
+<pre class=" language-ini"><code class="language-ini"><span class="token selector">[merge]</span>
+<span class="token constant">  tool</span> <span class="token attr-value"><span class="token punctuation">=</span> extMerge</span>
+<span class="token selector">[mergetool "extMerge"]</span>
+<span class="token constant">  cmd</span> <span class="token attr-value"><span class="token punctuation">=</span> extMerge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"</span>
+<span class="token constant">  trustExitCode</span> <span class="token attr-value"><span class="token punctuation">=</span> false</span>
+<span class="token selector">[diff]</span>
+<span class="token constant">  external</span> <span class="token attr-value"><span class="token punctuation">=</span> extDiff</span>
+</code></pre>
+<p>待一切设置妥当后，如果你像这样运行 diff 命令：</p>
+<pre class=" language-console"><code class="language-console">$ git diff 32d1776b1^ 32d1776b1
+</code></pre>
+<p>Git 将启动 P4Merge，而不是在命令行输出比较的结果，就像这样：</p>
+<p><img src="https://git-scm.com/book/en/v2/images/p4merge.png" alt="P4Merge."></p>
+<p>Figure 143. P4Merge.</p>
+<p>如果你尝试合并两个分支，随后遇到了合并冲突，运行 <code>git mergetool</code>，Git 会调用 P4Merge 让你通过图形界面来解决冲突。</p>
+<p>设置包装脚本的好处在于大大降低了改变 diff 和 merge 工具的工作量。 举个例子，想把 <code>extDiff</code> 和 <code>extMerge</code> 的工具改成 KDiff3，你要做的仅仅是编辑 <code>extMerge</code> 脚本文件：</p>
+<pre class=" language-console"><code class="language-console">$ cat /usr/local/bin/extMerge
+#!/bin/sh
+/Applications/kdiff3.app/Contents/MacOS/kdiff3 $*
+</code></pre>
+<p>现在，Git 将使用 KDiff3 作为查看比较和解决合并冲突的工具。</p>
+<p>Git 预设了许多其他的合并和解决冲突的工具，无需特别的设置你就能用上它们。 要想看到它支持的工具列表，试一下这个：</p>
+<pre class=" language-console"><code class="language-console">$ git mergetool --tool-help
+'git mergetool --tool=<tool>' may be set to one of the following:
+        emerge
+        gvimdiff
+        gvimdiff2
+        opendiff
+        p4merge
+        vimdiff
+        vimdiff2
+
+The following tools are valid, but not currently available:
+        araxis
+        bc3
+        codecompare
+        deltawalker
+        diffmerge
+        diffuse
+        ecmerge
+        kdiff3
+        meld
+        tkdiff
+        tortoisemerge
+        xxdiff
+
+Some of the tools listed above only work in a windowed
+environment. If run in a terminal-only session, they will fail.
+</code></pre>
+<p>如果你不想用到 KDiff3 的所有功能，只是想用它来合并，那么 kdiff3 正符合你的要求，运行：</p>
+<pre class=" language-console"><code class="language-console">$ git config --global merge.tool kdiff3
+</code></pre>
+<p>如果运行了以上命令，而没有设置 <code>extMerge</code> 和 <code>extDiff</code> 文件，Git 会用 KDiff3 做合并，让内置的 <code>diff</code>来做比较。</p>
+<h3 id="格式化与多余的空白字符"><a href="#格式化与多余的空白字符" class="headerlink" title="格式化与多余的空白字符"></a>格式化与多余的空白字符</h3><p>格式化与多余的空白字符是许多开发人员在协作时，特别是在跨平台情况下，不时会遇到的令人头疼的琐碎的问题。 由于编辑器的不同或者文件行尾的换行符在 Windows 下被替换了，一些细微的空格变化会不经意地混入提交的补丁或其它协作成果中。 不用怕，Git 提供了一些配置项来帮助你解决这些问题。</p>
+<h4 id="core-autocrlf"><a href="#core-autocrlf" class="headerlink" title="core.autocrlf"></a><code>core.autocrlf</code></h4><p>假如你正在 Windows 上写程序，而你的同伴用的是其他系统（或相反），你可能会遇到 CRLF 问题。 这是因为 Windows 使用回车（CR）和换行（LF）两个字符来结束一行，而 Mac 和 Linux 只使用换行（LF）一个字符。 虽然这是小问题，但它会极大地扰乱跨平台协作。许多 Windows 上的编辑器会悄悄把行尾的换行字符转换成回车和换行，或在用户按下 Enter 键时，插入回车和换行两个字符。</p>
+<p>Git 可以在你提交时自动地把回车和换行转换成换行，而在检出代码时把换行转换成回车和换行。 你可以用 <code>core.autocrlf</code> 来打开此项功能。 如果是在 Windows 系统上，把它设置成 <code>true</code>，这样在检出代码时，换行会被转换成回车和换行：</p>
+<pre class=" language-console"><code class="language-console">$ git config --global core.autocrlf true
+</code></pre>
+<p>如果使用以换行作为行结束符的 Linux 或 Mac，你不需要 Git 在检出文件时进行自动的转换；然而当一个以回车加换行作为行结束符的文件不小心被引入时，你肯定想让 Git 修正。 你可以把 <code>core.autocrlf</code> 设置成 input 来告诉 Git 在提交时把回车和换行转换成换行，检出时不转换：</p>
+<pre class=" language-console"><code class="language-console">$ git config --global core.autocrlf input
+</code></pre>
+<p>这样在 Windows 上的检出文件中会保留回车和换行，而在 Mac 和 Linux 上，以及版本库中会保留换行。</p>
+<p>如果你是 Windows 程序员，且正在开发仅运行在 Windows 上的项目，可以设置 <code>false</code> 取消此功能，把回车保留在版本库中：</p>
+<pre class=" language-console"><code class="language-console">$ git config --global core.autocrlf false
+</code></pre>
+<h4 id="core-whitespace"><a href="#core-whitespace" class="headerlink" title="core.whitespace"></a><code>core.whitespace</code></h4><p>Git 预先设置了一些选项来探测和修正多余空白字符问题。 它提供了六种处理多余空白字符的主要选项 —— 其中三个默认开启，另外三个默认关闭，不过你可以自由地设置它们。</p>
+<p>默认被打开的三个选项是：<code>blank-at-eol</code>，查找行尾的空格；<code>blank-at-eof</code>，盯住文件底部的空行；<code>space-before-tab</code>，警惕行头 tab 前面的空格。</p>
+<p>默认被关闭的三个选项是：<code>indent-with-non-tab</code>，揪出以空格而非 tab 开头的行（你可以用 <code>tabwidth</code> 选项控制它）；<code>tab-in-indent</code>，监视在行头表示缩进的 tab；<code>cr-at-eol</code>，告诉 Git 忽略行尾的回车。</p>
+<p>通过设置 <code>core.whitespace</code>，你可以让 Git 按照你的意图来打开或关闭以逗号分割的选项。 要想关闭某个选项，你可以在输入设置选项时不指定它或在它前面加个 <code>-</code>。 例如，如果你想要打开除 <code>cr-at-eol</code> 之外的所有选项：</p>
+<pre class=" language-console"><code class="language-console">$ git config --global core.whitespace \
+    trailing-space,space-before-tab,indent-with-non-tab
+</code></pre>
+<p>当你运行 <code>git diff</code> 命令并尝试给输出着色时，Git 将探测到这些问题，因此你在提交前就能修复它们。 用 <code>git apply</code> 打补丁时你也会从中受益。 如果正准备应用的补丁存有特定的空白问题，你可以让 Git 在应用补丁时发出警告：</p>
+<pre class=" language-console"><code class="language-console">$ git apply --whitespace=warn <patch>
+</code></pre>
+<p>或者让 Git 在打上补丁前自动修正此问题：</p>
+<pre class=" language-console"><code class="language-console">$ git apply --whitespace=fix <patch>
+</code></pre>
+<p>这些选项也能运用于 <code>git rebase</code>。 如果提交了有空白问题的文件，但还没推送到上游，你可以运行 <code>git rebase --whitespace=fix</code> 来让 Git 在重写补丁时自动修正它们。</p>
+<h3 id="服务器端配置"><a href="#服务器端配置" class="headerlink" title="服务器端配置"></a>服务器端配置</h3><p>Git 服务器端的配置项相对来说并不多，但仍有一些饶有生趣的选项值得你一看。</p>
+<h4 id="receive-fsckObjects"><a href="#receive-fsckObjects" class="headerlink" title="receive.fsckObjects"></a><code>receive.fsckObjects</code></h4><p>Git 能够确认每个对象的有效性以及 SHA-1 检验和是否保持一致。 但 Git 不会在每次推送时都这么做。这个操作很耗时间，很有可能会拖慢提交的过程，特别是当库或推送的文件很大的情况下。 如果想在每次推送时都要求 Git 检查一致性，设置 <code>receive.fsckObjects</code> 为 true 来强迫它这么做：</p>
+<pre class=" language-console"><code class="language-console">$ git config --system receive.fsckObjects true
+</code></pre>
+<p>现在 Git 会在每次推送生效前检查库的完整性，确保没有被有问题的客户端引入破坏性数据。</p>
+<h4 id="receive-denyNonFastForwards"><a href="#receive-denyNonFastForwards" class="headerlink" title="receive.denyNonFastForwards"></a><code>receive.denyNonFastForwards</code></h4><p>如果你变基已经被推送的提交，继而再推送，又或者推送一个提交到远程分支，而这个远程分支当前指向的提交不在该提交的历史中，这样的推送会被拒绝。 这通常是个很好的策略，但有时在变基的过程中，你确信自己需要更新远程分支，可以在 push 命令后加 <code>-f</code> 标志来强制更新（force-update）。</p>
+<p>要禁用这样的强制更新推送（force-pushes），可以设置 <code>receive.denyNonFastForwards</code>：</p>
+<pre class=" language-console"><code class="language-console">$ git config --system receive.denyNonFastForwards true
+</code></pre>
+<p>稍后我们会提到，用服务器端的接收钩子也能达到同样的目的。 那种方法可以做到更细致的控制，例如禁止某一类用户做非快进（non-fast-forwards）推送。</p>
+<h4 id="receive-denyDeletes"><a href="#receive-denyDeletes" class="headerlink" title="receive.denyDeletes"></a><code>receive.denyDeletes</code></h4><p>有一些方法可以绕过 <code>denyNonFastForwards</code> 策略。其中一种是先删除某个分支，再连同新的引用一起推送回该分支。 把 <code>receive.denyDeletes</code> 设置为 true 可以把这个漏洞补上：</p>
+<pre class=" language-console"><code class="language-console">$ git config --system receive.denyDeletes true
+</code></pre>
+<p>这样会禁止通过推送删除分支和标签 — 没有用户可以这么做。 要删除远程分支，必须从服务器手动删除引用文件。 通过用户访问控制列表（ACL）也能够在用户级的粒度上实现同样的功能，你将在 <a href="https://git-scm.com/book/zh/v2/ch00/r_an_example_git_enforced_policy" target="_blank" rel="noopener">使用强制策略的一个例子</a> 一节学到具体的做法。</p>
+<h2 id="Git-属性"><a href="#Git-属性" class="headerlink" title="Git 属性"></a>Git 属性</h2><p>你也可以针对特定的路径配置某些设置项，这样 Git 就只对特定的子目录或子文件集运用它们。 这些基于路径的设置项被称为 Git 属性，可以在你的目录下的 <code>.gitattributes</code> 文件内进行设置（通常是你的项目的根目录）。如果不想让这些属性文件与其它文件一同提交，你也可以在 <code>.git/info/attributes</code> 文件中进行设置。</p>
+<p>通过使用属性，你可以对项目中的文件或目录单独定义不同的合并策略，让 Git 知道怎样比较非文本文件，或者让 Git 在提交或检出前过滤内容。 在本节，你将学习到一些能在自己的项目中用到的属性，并看到几个实际的例子。</p>
+<h3 id="二进制文件"><a href="#二进制文件" class="headerlink" title="二进制文件"></a>二进制文件</h3><p>你可以用 Git 属性让 Git 知道哪些是二进制文件（以防它没有识别出来），并指示其如何处理这些文件。 例如，一些文本文件是由机器产生的，没有办法进行比较，但是一些二进制文件可以比较。 你将了解到怎样让 Git 区分这些文件。</p>
+<h4 id="识别二进制文件"><a href="#识别二进制文件" class="headerlink" title="识别二进制文件"></a>识别二进制文件</h4><p>有些文件表面上是文本文件，实质上应被作为二进制文件处理。 例如，Mac 平台上的 Xcode 项目会包含一个以 <code>.pbxproj</code> 结尾的文件，它通常是一个记录项目构建配置等信息的 JSON（纯文本 Javascript 数据类型）数据集，由 IDE 写入磁盘。 虽然技术上看它是由 UTF-8 编码的文本文件，但你并不会希望将它当作文本文件来处理，因为它其实是一个轻量级数据库——如果有两个人修改了它，你通常无法合并内容，diff 的输出也帮不上什么忙。 它本应被机器处理。 因此，你想把它当成二进制文件。</p>
+<p>要让 Git 把所有 <code>pbxproj</code> 文件当成二进制文件，在 <code>.gitattributes</code> 文件中如下设置：</p>
+<pre><code>*.pbxproj binary
+</code></pre><p>现在，Git 不会尝试转换或修正回车换行（CRLF）问题，当你在项目中运行 <code>git show</code> 或 <code>git diff</code> 时，Git 也不会比较或打印该文件的变化。</p>
+<h4 id="比较二进制文件"><a href="#比较二进制文件" class="headerlink" title="比较二进制文件"></a>比较二进制文件</h4><p>你也可以使用 Git 属性来有效地比较两个二进制文件。 秘诀在于，告诉 Git 怎么把你的二进制文件转化为文本格式，从而能够使用普通的 diff 方式进行对比。</p>
+<p>首先，让我们尝试用这个技术解决世人最头疼的问题之一：对 Microsoft Word 文档进行版本控制。 大家都知道，Microsoft Word 几乎是世上最难缠的编辑器，尽管如此，大家还是在用它。 如果想对 Word 文档进行版本控制，你可以把文件加入到 Git 库中，每次修改后提交即可。但这样做有什么实际意义呢？ 毕竟运行 <code>git diff</code> 命令后，你只能得到如下的结果：</p>
+<pre class=" language-console"><code class="language-console">$ git diff
+diff --git a/chapter1.docx b/chapter1.docx
+index 88839c4..4afcb7c 100644
+Binary files a/chapter1.docx and b/chapter1.docx differ
+</code></pre>
+<p>除了检出之后睁大眼睛逐行扫描，就真的没有办法直接比较两个不同版本的 Word 文档吗？ Git 属性能很好地解决此问题。 把下面这行文本加到你的 <code>.gitattributes</code> 文件中：</p>
+<pre><code>*.docx diff=word
+</code></pre><p>这告诉 Git 当你尝试查看包含变更的比较结果时，所有匹配 <code>.docx</code> 模式的文件都应该使用“word”过滤器。 “word”过滤器是什么？ 我们现在就来设置它。 我们会对 Git 进行配置，令其能够借助 <code>docx2txt</code>程序将 Word 文档转为可读文本文件，这样不同的文件间就能够正确比较了。</p>
+<p>首先，你需要安装 <code>docx2txt</code>；它可以从 <a href="http://docx2txt.sourceforge.net/" target="_blank" rel="noopener">http://docx2txt.sourceforge.net</a> 下载。 按照 <code>INSTALL</code> 文件的说明，把它放到你的可执行路径下。 接下来，你还需要写一个脚本把输出结果包装成 Git 支持的格式。 在你的可执行路径下创建一个叫 <code>docx2txt</code> 文件，添加这些内容：</p>
+<pre class=" language-console"><code class="language-console">#!/bin/bash
+docx2txt.pl $1 -
+</code></pre>
+<p>别忘了用 <code>chmod a+x</code> 给这个文件加上可执行权限。 最后，你需要配置 Git 来使用这个脚本：</p>
+<pre class=" language-console"><code class="language-console">$ git config diff.word.textconv docx2txt
+</code></pre>
+<p>现在如果在两个快照之间进行比较，Git 就会对那些以 <code>.docx</code> 结尾的文件应用“word”过滤器，即 <code>docx2txt</code>。 这样你的 Word 文件就能被高效地转换成文本文件并进行比较了。</p>
+<p>作为例子，我把本书的第一章另存为 Word 文件，并提交到 Git 版本库。 接着，往其中加入一个新的段落。 运行 <code>git diff</code>，输出如下：</p>
+<pre class=" language-console"><code class="language-console">$ git diff
+diff --git a/chapter1.docx b/chapter1.docx
+index 0b013ca..ba25db5 100644
+--- a/chapter1.docx
++++ b/chapter1.docx
+@@ -2,6 +2,7 @@
+ This chapter will be about getting started with Git. We will begin at the beginning by explaining some background on version control tools, then move on to how to get Git running on your system and finally how to get it setup to start working with. At the end of this chapter you should understand why Git is around, why you should use it and you should be all setup to do so.
+ 1.1. About Version Control
+ What is "version control", and why should you care? Version control is a system that records changes to a file or set of files over time so that you can recall specific versions later. For the examples in this book you will use software source code as the files being version controlled, though in reality you can do this with nearly any type of file on a computer.
++Testing: 1, 2, 3.
+ If you are a graphic or web designer and want to keep every version of an image or layout (which you would most certainly want to), a Version Control System (VCS) is a very wise thing to use. It allows you to revert files back to a previous state, revert the entire project back to a previous state, compare changes over time, see who last modified something that might be causing a problem, who introduced an issue and when, and more. Using a VCS also generally means that if you screw things up or lose files, you can easily recover. In addition, you get all this for very little overhead.
+ 1.1.1. Local Version Control Systems
+ Many people's version-control method of choice is to copy files into another directory (perhaps a time-stamped directory, if they're clever). This approach is very common because it is so simple, but it is also incredibly error prone. It is easy to forget which directory you're in and accidentally write to the wrong file or copy over files you don't mean to.
+</code></pre>
+<p>Git 成功地挑出了我们添加的那句话“Testing: 1, 2, 3.”，一字不差。 还算不上完美——格式上的变动显示不出来——但已经足够了。</p>
+<p>你还能用这个方法比较图像文件。 其中一个办法是，在比较时对图像文件运用一个过滤器，提炼出 EXIF 信息——这是在大部分图像格式中都有记录的一种元数据。 如果你下载并安装了 <code>exiftool</code> 程序，可以利用它将图像转换为关于元数据的文本信息，这样比较时至少能以文本的形式显示发生过的变动：</p>
+<pre class=" language-console"><code class="language-console">$ echo '*.png diff=exif' >> .gitattributes
+$ git config diff.exif.textconv exiftool
+</code></pre>
+<p>如果在项目中替换了一个图像文件，运行 <code>git diff</code> 命令的结果如下：</p>
+<pre><code>diff --git a/image.png b/image.png
+index 88839c4..4afcb7c 100644
+--- a/image.png
++++ b/image.png
+@@ -1,12 +1,12 @@
+ ExifTool Version Number         : 7.74
+-File Size                       : 70 kB
+-File Modification Date/Time     : 2009:04:21 07:02:45-07:00
++File Size                       : 94 kB
++File Modification Date/Time     : 2009:04:21 07:02:43-07:00
+ File Type                       : PNG
+ MIME Type                       : image/png
+-Image Width                     : 1058
+-Image Height                    : 889
++Image Width                     : 1056
++Image Height                    : 827
+ Bit Depth                       : 8
+ Color Type                      : RGB with Alpha
+</code></pre><p>你一眼就能看出文件大小和图像尺寸发生了变化。</p>
+<h3 id="关键字展开"><a href="#关键字展开" class="headerlink" title="关键字展开"></a>关键字展开</h3><p>SVN 或 CVS 风格的关键字展开（keyword expansion）功能经常会被习惯于上述系统的开发者使用到。 在 Git 中，这项功能有一个主要问题，就是你无法利用它往文件中加入其关联提交的相关信息，因为 Git 总是先对文件做校验和运算（译者注：Git 中提交对象的校验依赖于文件的校验和，而 Git 属性针对特定文件或路径，因此基于 Git 属性的关键字展开无法仅根据文件反推出对应的提交）。 不过，我们可以在检出某个文件后对其注入文本，并在再次提交前删除这些文本。 Git 属性提供了两种方法来达到这一目的。</p>
+<p>一种方法是，你可以把文件所对应数据对象的 SHA-1 校验和自动注入到文件中的 <code>$Id$</code> 字段。 如果在一个或多个文件上设置了该属性，下次当你检出相关分支的时候，Git 会用相应数据对象的 SHA-1 值替换上述字段。 注意，这不是提交对象的 SHA-1 校验和，而是数据对象本身的校验和：</p>
+<pre class=" language-console"><code class="language-console">$ echo '*.txt ident' >> .gitattributes
+$ echo '$Id$' > test.txt
+</code></pre>
+<p>当你下次检出文件时，Git 将注入数据对象的 SHA-1 校验和：</p>
+<pre class=" language-console"><code class="language-console">$ rm test.txt
+$ git checkout -- test.txt
+$ cat test.txt
+$Id: 42812b7653c7b88933f8a9d6cad0ca16714b9bb3 $
+</code></pre>
+<p>然而，这个结果的用途比较有限。 如果用过 CVS 或 Subversion 的关键字替换功能，我们会想加上一个时间戳信息——光有 SHA-1 校验和用途不大，它仅仅是个随机字符串，你无法凭字面值来区分不同 SHA-1 时间上的先后。</p>
+<p>因此 Git 属性提供了另一种方法：我们可以编写自己的过滤器来实现文件提交或检出时的关键字替换。 一个过滤器由“clean”和“smudge”两个子过滤器组成。 在 <code>.gitattributes</code> 文件中，你能对特定的路径设置一个过滤器，然后设置文件检出前的处理脚本（“smudge”，见 <a href="https://git-scm.com/book/zh/v2/ch00/rfilters_a" target="_blank" rel="noopener">“smudge”过滤器会在文件被检出时触发</a>）和文件暂存前的处理脚本（“clean”，见 <a href="https://git-scm.com/book/zh/v2/ch00/rfilters_b" target="_blank" rel="noopener">“clean”过滤器会在文件被暂存时触发</a>）。 这两个过滤器能够被用来做各种有趣的事。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/smudge.png" alt="“smudge”过滤器会在文件被检出时触发。"></p>
+<p>Figure 144. “smudge”过滤器会在文件被检出时触发</p>
+<p><img src="https://git-scm.com/book/en/v2/images/clean.png" alt="“clean”过滤器会在文件被暂存时触发。"></p>
+<p>Figure 145. “clean”过滤器会在文件被暂存时触发</p>
+<p>在（Git 源码中）实现这个特性的原始提交信息里给出了一个简单的例子：在提交前，用 <code>indent</code> 程序过滤所有 C 源码。 你可以在 <code>.gitattributes</code> 文件中对 filter 属性设置“indent”过滤器来过滤 <code>*.c</code> 文件</p>
+<pre><code>*.c filter=indent
+</code></pre><p>然后，通过以下配置，让 Git 知道“indent”过滤器在 smudge 和 clean 时分别该做什么：</p>
+<pre class=" language-console"><code class="language-console">$ git config --global filter.indent.clean indent
+$ git config --global filter.indent.smudge cat
+</code></pre>
+<p>在这个例子中，当你暂存 <code>*.c</code> 文件时，<code>indent</code> 程序会先被触发；在把它们检出回硬盘时，<code>cat</code> 程序会先被触发。 <code>cat</code> 在这里没什么实际作用：它仅仅把输入的数据重新输出。 这样的组合可以有效地在暂存前用 <code>indent</code> 过滤所有的 C 源码。</p>
+<p>另一个有趣的例子是实现 RCS 风格的 <code>$Date$</code> 关键字展开。 要想演示这个例子，我们需要实现这样的一个小脚本：接受文件名参数，得到项目的最新提交日期，并把日期写入该文件。 下面是一个实现了该功能的 Ruby 小脚本：</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true">#! /usr/bin/env ruby</span>
+data <span class="token operator">=</span> <span class="token constant">STDIN</span><span class="token punctuation">.</span>read
+last_date <span class="token operator">=</span> `git log <span class="token operator">--</span>pretty<span class="token operator">=</span>format<span class="token punctuation">:</span><span class="token string">"%ad"</span> <span class="token operator">-</span><span class="token number">1</span>`
+puts data<span class="token punctuation">.</span><span class="token function">gsub</span><span class="token punctuation">(</span><span class="token string">'$Date$'</span><span class="token punctuation">,</span> <span class="token string">'$Date: '</span> <span class="token operator">+</span> last_date<span class="token punctuation">.</span>to_s <span class="token operator">+</span> <span class="token string">'$'</span><span class="token punctuation">)</span>
+</code></pre>
+<p>这个脚本从 <code>git log</code> 中得到最新提交日期，将其注入所有输入文件的 <code>$Date$</code> 字段，并输出结果——你可以使用最顺手的语言轻松实现一个类似的脚本。 把该脚本命名为 <code>expand_date</code>，放到你的可执行路径中。 现在，你需要在 Git 中设置一个过滤器（就叫它 <code>dater</code> 吧），让它在检出文件时调用你的 <code>expand_date</code> 来注入时间戳，完成 smudge 操作。 暂存文件时的 clean 操作则是用一行 Perl 表达式清除注入的内容：</p>
+<pre class=" language-console"><code class="language-console">$ git config filter.dater.smudge expand_date
+$ git config filter.dater.clean 'perl -pe "s/\\\$Date[^\\\$]*\\\$/\\\$Date\\\$/"'
+</code></pre>
+<p>这段 Perl 代码会删除 <code>$Date$</code> 后面注入的内容，恢复它的原貌。 过滤器终于准备完成了，是时候测试一下。创建一个带有 <code>$Date$</code> 关键字的文件，然后给它设置一个 Git 属性，关联我们的新过滤器：</p>
+<pre class=" language-console"><code class="language-console">$ echo '# $Date$' > date_test.txt
+$ echo 'date*.txt filter=dater' >> .gitattributes
+</code></pre>
+<p>提交该文件，并再次检出，你会发现关键字如期被替换了：</p>
+<pre class=" language-console"><code class="language-console">$ git add date_test.txt .gitattributes
+$ git commit -m "Testing date expansion in Git"
+$ rm date_test.txt
+$ git checkout date_test.txt
+$ cat date_test.txt
+# $Date: Tue Apr 21 07:26:52 2009 -0700$
+</code></pre>
+<p>自定义过滤器真的很强大。 不过你需要注意的是，因为 <code>.gitattributes</code> 文件会随着项目一起提交，而过滤器（例如这里的 <code>dater</code>）不会，所以过滤器有可能会失效。 当你在设计这些过滤器时，要注重容错性——它们在出错时应该能优雅地退出，从而不至于影响项目的正常运行。</p>
+<h3 id="导出版本库"><a href="#导出版本库" class="headerlink" title="导出版本库"></a>导出版本库</h3><p>Git 属性在导出项目归档（archive）时也能发挥作用。</p>
+<h4 id="export-ignore"><a href="#export-ignore" class="headerlink" title="export-ignore"></a><code>export-ignore</code></h4><p>当归档的时候，可以设置 Git 不导出某些文件和目录。 如果你不想在归档中包含某个子目录或文件，但想把它们纳入项目的版本管理中，你可以在 <code>export-ignore</code> 属性中指定它们。</p>
+<p>例如，假设你在 <code>test/</code> 子目录下有一些测试文件，不希望它们被包含在项目导出的压缩包（tarball）中。 你可以增加下面这行到 Git 属性文件中：</p>
+<pre><code>test/ export-ignore
+</code></pre><p>现在，当你运行 <code>git archive</code> 来创建项目的压缩包时，那个目录不会被包括在归档中。</p>
+<h4 id="export-subst"><a href="#export-subst" class="headerlink" title="export-subst"></a><code>export-subst</code></h4><p>在导出文件进行部署的时候，你可以将 <code>git log</code> 的格式化和关键字展开处理应用于被 <code>export-subst</code> 属性标记的部分文件。</p>
+<p>举个例子，如果你想在项目中包含一个叫做 <code>LAST_COMMIT</code> 的文件，并在运行 <code>git archive</code> 的时候自动向它注入最新提交的元数据，可以像这样设置该文件：</p>
+<pre class=" language-console"><code class="language-console">$ echo 'Last commit date: $Format:%cd by %aN$' > LAST_COMMIT
+$ echo "LAST_COMMIT export-subst" >> .gitattributes
+$ git add LAST_COMMIT .gitattributes
+$ git commit -am 'adding LAST_COMMIT file for archives'
+</code></pre>
+<p>运行 <code>git archive</code> 之后，该文件被归档后的内容会被替换成这样：</p>
+<pre class=" language-console"><code class="language-console">$ git archive HEAD | tar xCf ../deployment-testing -
+$ cat ../deployment-testing/LAST_COMMIT
+Last commit date: Tue Apr 21 08:38:48 2009 -0700 by Scott Chacon
+</code></pre>
+<p>你也可以用诸如提交信息或者任意的 git 注解进行替换，并且 git log 还能做简单的字词包装：</p>
+<pre><code>$ echo &#39;$Format:Last commit: %h by %aN at %cd%n%+w(76,6,9)%B$&#39; &gt; LAST_COMMIT
+$ git commit -am &#39;export-subst 使用 git log 的自定义格式化工具
+
+git archive 直接使用 git log 的 `pretty=format:`
+处理器，并在输出中移除两侧的 `$Format:` 和 `$`
+标记。
+&#39;
+$ git archive @ | tar xfO - LAST_COMMIT
+Last commit: 312ccc8 by Jim Hill at Fri May 8 09:14:04 2015 -0700
+       export-subst 使用 git log 的自定义格式化工具
+
+         git archive 直接使用 git log 的 `pretty=format:` 处理器，并
+         在输出中移除两侧的 `$Format:` 和 `$` 标记。
+</code></pre><p>由此得到的归档适用于（当前的）部署工作。然而和其他的导出归档一样，它并不适用于后继的部署工作。</p>
+<h3 id="合并策略"><a href="#合并策略" class="headerlink" title="合并策略"></a>合并策略</h3><p>通过 Git 属性，你还能对项目中的特定文件指定不同的合并策略。 一个非常有用的选项就是，告诉 Git 当特定文件发生冲突时不要尝试合并它们，而是直接使用你这边的内容。</p>
+<p>考虑如下场景：项目中有一个分叉的或者定制过的特性分支，你希望该分支上的更改能合并回你的主干分支，同时需要忽略其中某些文件。此时这个合并策略就能派上用场。 假设你有一个数据库设置文件 <code>database.xml</code>，在两个分支中它是不同的，而你想合并另一个分支到你的分支上，又不想弄乱该数据库文件。 你可以设置属性如下：</p>
+<pre><code>database.xml merge=ours
+</code></pre><p>然后定义一个虚拟的合并策略，叫做 <code>ours</code>：</p>
+<pre class=" language-console"><code class="language-console">$ git config --global merge.ours.driver true
+</code></pre>
+<p>如果你合并了另一个分支，<code>database.xml</code> 文件不会有合并冲突，相反会显示如下信息：</p>
+<pre class=" language-console"><code class="language-console">$ git merge topic
+Auto-merging database.xml
+Merge made by recursive.
+</code></pre>
+<p>这里，<code>database.xml</code> 保持了主干分支中的原始版本。</p>
+<h2 id="Git-钩子"><a href="#Git-钩子" class="headerlink" title="Git 钩子"></a>Git 钩子</h2><p>和其它版本控制系统一样，Git 能在特定的重要动作发生时触发自定义脚本。 有两组这样的钩子：客户端的和服务器端的。 客户端钩子由诸如提交和合并这样的操作所调用，而服务器端钩子作用于诸如接收被推送的提交这样的联网操作。 你可以随心所欲地运用这些钩子。</p>
+<h3 id="安装一个钩子"><a href="#安装一个钩子" class="headerlink" title="安装一个钩子"></a>安装一个钩子</h3><p>钩子都被存储在 Git 目录下的 <code>hooks</code> 子目录中。 也即绝大部分项目中的 <code>.git/hooks</code> 。 当你用 <code>git init</code> 初始化一个新版本库时，Git 默认会在这个目录中放置一些示例脚本。这些脚本除了本身可以被调用外，它们还透露了被触发时所传入的参数。 所有的示例都是 shell 脚本，其中一些还混杂了 Perl 代码，不过，任何正确命名的可执行脚本都可以正常使用 —— 你可以用 Ruby 或 Python，或其它语言编写它们。 这些示例的名字都是以 <code>.sample</code> 结尾，如果你想启用它们，得先移除这个后缀。</p>
+<p>把一个正确命名且可执行的文件放入 Git 目录下的 <code>hooks</code> 子目录中，即可激活该钩子脚本。 这样一来，它就能被 Git 调用。 接下来，我们会讲解常用的钩子脚本类型。</p>
+<h3 id="客户端钩子"><a href="#客户端钩子" class="headerlink" title="客户端钩子"></a>客户端钩子</h3><p>客户端钩子分为很多种。 下面把它们分为：提交工作流钩子、电子邮件工作流钩子和其它钩子。</p>
+<table>
+<thead>
+<tr>
+<th>Note</th>
+<th>需要注意的是，克隆某个版本库时，它的客户端钩子 <strong>并不</strong> 随同复制。 如果需要靠这些脚本来强制维持某种策略，建议你在服务器端实现这一功能。（请参照 <a href="https://git-scm.com/book/zh/v2/ch00/r_an_example_git_enforced_policy" target="_blank" rel="noopener">使用强制策略的一个例子</a> 中的例子。）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="提交工作流钩子"><a href="#提交工作流钩子" class="headerlink" title="提交工作流钩子"></a>提交工作流钩子</h4><p>前四个钩子涉及提交的过程。</p>
+<p><code>pre-commit</code> 钩子在键入提交信息前运行。 它用于检查即将提交的快照，例如，检查是否有所遗漏，确保测试运行，以及核查代码。 如果该钩子以非零值退出，Git 将放弃此次提交，不过你可以用 <code>git commit --no-verify</code> 来绕过这个环节。 你可以利用该钩子，来检查代码风格是否一致（运行类似 <code>lint</code> 的程序）、尾随空白字符是否存在（自带的钩子就是这么做的），或新方法的文档是否适当。</p>
+<p><code>prepare-commit-msg</code> 钩子在启动提交信息编辑器之前，默认信息被创建之后运行。 它允许你编辑提交者所看到的默认信息。 该钩子接收一些选项：存有当前提交信息的文件的路径、提交类型和修补提交的提交的 SHA-1 校验。 它对一般的提交来说并没有什么用；然而对那些会自动产生默认信息的提交，如提交信息模板、合并提交、压缩提交和修订提交等非常实用。 你可以结合提交模板来使用它，动态地插入信息。</p>
+<p><code>commit-msg</code> 钩子接收一个参数，此参数即上文提到的，存有当前提交信息的临时文件的路径。 如果该钩子脚本以非零值退出，Git 将放弃提交，因此，可以用来在提交通过前验证项目状态或提交信息。 在本章的最后一节，我们将展示如何使用该钩子来核对提交信息是否遵循指定的模板。</p>
+<p><code>post-commit</code> 钩子在整个提交过程完成后运行。 它不接收任何参数，但你可以很容易地通过运行 <code>git log -1 HEAD</code> 来获得最后一次的提交信息。 该钩子一般用于通知之类的事情。</p>
+<h4 id="电子邮件工作流钩子"><a href="#电子邮件工作流钩子" class="headerlink" title="电子邮件工作流钩子"></a>电子邮件工作流钩子</h4><p>你可以给电子邮件工作流设置三个客户端钩子。 它们都是由 <code>git am</code> 命令调用的，因此如果你没有在你的工作流中用到这个命令，可以跳到下一节。 如果你需要通过电子邮件接收由 <code>git format-patch</code> 产生的补丁，这些钩子也许用得上。</p>
+<p>第一个运行的钩子是 <code>applypatch-msg</code> 。 它接收单个参数：包含请求合并信息的临时文件的名字。 如果脚本返回非零值，Git 将放弃该补丁。 你可以用该脚本来确保提交信息符合格式，或直接用脚本修正格式错误。</p>
+<p>下一个在 <code>git am</code> 运行期间被调用的是 <code>pre-applypatch</code> 。 有些难以理解的是，它正好运行于应用补丁 <em>之后</em>，产生提交之前，所以你可以用它在提交前检查快照。 你可以用这个脚本运行测试或检查工作区。 如果有什么遗漏，或测试未能通过，脚本会以非零值退出，中断 <code>git am</code> 的运行，这样补丁就不会被提交。</p>
+<p><code>post-applypatch</code> 运行于提交产生之后，是在 <code>git am</code> 运行期间最后被调用的钩子。 你可以用它把结果通知给一个小组或所拉取的补丁的作者。 但你没办法用它停止打补丁的过程。</p>
+<h4 id="其它客户端钩子"><a href="#其它客户端钩子" class="headerlink" title="其它客户端钩子"></a>其它客户端钩子</h4><p><code>pre-rebase</code> 钩子运行于变基之前，以非零值退出可以中止变基的过程。 你可以使用这个钩子来禁止对已经推送的提交变基。 Git 自带的 <code>pre-rebase</code> 钩子示例就是这么做的，不过它所做的一些假设可能与你的工作流程不匹配。</p>
+<p><code>post-rewrite</code> 钩子被那些会替换提交记录的命令调用，比如 <code>git commit --amend</code> 和 <code>git rebase</code>（不过不包括 <code>git filter-branch</code>）。 它唯一的参数是触发重写的命令名，同时从标准输入中接受一系列重写的提交记录。 这个钩子的用途很大程度上跟 <code>post-checkout</code> 和 <code>post-merge</code> 差不多。</p>
+<p>在 <code>git checkout</code> 成功运行后，<code>post-checkout</code> 钩子会被调用。你可以根据你的项目环境用它调整你的工作目录。 其中包括放入大的二进制文件、自动生成文档或进行其他类似这样的操作。</p>
+<p>在 <code>git merge</code> 成功运行后，<code>post-merge</code> 钩子会被调用。 你可以用它恢复 Git 无法跟踪的工作区数据，比如权限数据。 这个钩子也可以用来验证某些在 Git 控制之外的文件是否存在，这样你就能在工作区改变时，把这些文件复制进来。</p>
+<p><code>pre-push</code> 钩子会在 <code>git push</code> 运行期间， 更新了远程引用但尚未传送对象时被调用。 它接受远程分支的名字和位置作为参数，同时从标准输入中读取一系列待更新的引用。 你可以在推送开始之前，用它验证对引用的更新操作（一个非零的退出码将终止推送过程）。</p>
+<p>Git 的一些日常操作在运行时，偶尔会调用 <code>git gc --auto</code> 进行垃圾回收。 <code>pre-auto-gc</code> 钩子会在垃圾回收开始之前被调用，可以用它来提醒你现在要回收垃圾了，或者依情形判断是否要中断回收。</p>
+<h3 id="服务器端钩子"><a href="#服务器端钩子" class="headerlink" title="服务器端钩子"></a>服务器端钩子</h3><p>除了客户端钩子，作为系统管理员，你还可以使用若干服务器端的钩子对项目强制执行各种类型的策略。 这些钩子脚本在推送到服务器之前和之后运行。 推送到服务器前运行的钩子可以在任何时候以非零值退出，拒绝推送并给客户端返回错误消息，还可以依你所想设置足够复杂的推送策略。</p>
+<h4 id="pre-receive"><a href="#pre-receive" class="headerlink" title="pre-receive"></a><code>pre-receive</code></h4><p>处理来自客户端的推送操作时，最先被调用的脚本是 <code>pre-receive</code>。 它从标准输入获取一系列被推送的引用。如果它以非零值退出，所有的推送内容都不会被接受。 你可以用这个钩子阻止对引用进行非快进（non-fast-forward）的更新，或者对该推送所修改的所有引用和文件进行访问控制。</p>
+<h4 id="update"><a href="#update" class="headerlink" title="update"></a><code>update</code></h4><p><code>update</code> 脚本和 <code>pre-receive</code> 脚本十分类似，不同之处在于它会为每一个准备更新的分支各运行一次。 假如推送者同时向多个分支推送内容，<code>pre-receive</code> 只运行一次，相比之下 <code>update</code> 则会为每一个被推送的分支各运行一次。 它不会从标准输入读取内容，而是接受三个参数：引用的名字（分支），推送前的引用指向的内容的 SHA-1 值，以及用户准备推送的内容的 SHA-1 值。 如果 update 脚本以非零值退出，只有相应的那一个引用会被拒绝；其余的依然会被更新。</p>
+<h4 id="post-receive"><a href="#post-receive" class="headerlink" title="post-receive"></a><code>post-receive</code></h4><p><code>post-receive</code> 挂钩在整个过程完结以后运行，可以用来更新其他系统服务或者通知用户。 它接受与 <code>pre-receive</code> 相同的标准输入数据。 它的用途包括给某个邮件列表发信，通知持续集成（continous integration）的服务器，或者更新问题追踪系统（ticket-tracking system） —— 甚至可以通过分析提交信息来决定某个问题（ticket）是否应该被开启，修改或者关闭。 该脚本无法终止推送进程，不过客户端在它结束运行之前将保持连接状态，所以如果你想做其他操作需谨慎使用它，因为它将耗费你很长的一段时间。</p>
+<h2 id="使用强制策略的一个例子"><a href="#使用强制策略的一个例子" class="headerlink" title="使用强制策略的一个例子"></a>使用强制策略的一个例子</h2><p>在本节中，你将应用前面学到的知识建立这样一个 Git 工作流程：检查提交信息的格式，并且指定只能由特定用户修改项目中特定的子目录。 你将编写一个客户端脚本来提示开发人员他们的推送是否会被拒绝，以及一个服务器端脚本来实际执行这些策略。</p>
+<p>我们待会展示的脚本是用 Ruby 写的，部分是由于我习惯用它写脚本，另外也因为 Ruby 简单易懂，即便你没写过它也能看明白。 不过任何其他语言也一样适用。所有 Git 自带的示例钩子脚本都是用 Perl 或 Bash 写的，所以你能从它们中找到相当多的这两种语言的钩子示例。</p>
+<h3 id="服务器端钩子-1"><a href="#服务器端钩子-1" class="headerlink" title="服务器端钩子"></a>服务器端钩子</h3><p>所有服务器端的工作都将在你的 <code>hooks</code> 目录下的 <code>update</code> 脚本中完成。 <code>update</code> 脚本会为每一个提交的分支各运行一次，它接受三个参数：</p>
+<ul>
+<li>被推送的引用的名字</li>
+<li>推送前分支的修订版本（revision）</li>
+<li>用户准备推送的修订版本（revision）</li>
+</ul>
+<p>如果推送是通过 SSH 进行的，还可以获知进行此次推送的用户的信息。 如果你允许所有操作都通过公匙授权的单一帐号（比如“git”）进行，就有必要通过一个 shell 包装脚本依据公匙来判断用户的身份，并且相应地设定环境变量来表示该用户的身份。 下面就假设 <code>$USER</code> 环境变量里存储了当前连接的用户的身份，你的 update 脚本首先搜集一切需要的信息：</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true">#!/usr/bin/env ruby</span>
+
+<span class="token variable">$refname</span> <span class="token operator">=</span> <span class="token constant">ARGV</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+<span class="token variable">$oldrev</span>  <span class="token operator">=</span> <span class="token constant">ARGV</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+<span class="token variable">$newrev</span>  <span class="token operator">=</span> <span class="token constant">ARGV</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>
+<span class="token variable">$user</span>    <span class="token operator">=</span> <span class="token constant">ENV</span><span class="token punctuation">[</span><span class="token string">'USER'</span><span class="token punctuation">]</span>
+
+puts <span class="token string">"Enforcing Policies..."</span>
+puts <span class="token string">"(<span class="token interpolation"><span class="token delimiter tag">#{</span>$refname<span class="token delimiter tag">}</span></span>) (<span class="token interpolation"><span class="token delimiter tag">#{</span>$oldrev<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token delimiter tag">}</span></span>) (<span class="token interpolation"><span class="token delimiter tag">#{</span>$newrev<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token delimiter tag">}</span></span>)"</span>
+</code></pre>
+<p>是的，我们这里用的都是全局变量。 请勿在此吐槽——这样做只是为了方便展示而已。</p>
+<h4 id="指定特殊的提交信息格式"><a href="#指定特殊的提交信息格式" class="headerlink" title="指定特殊的提交信息格式"></a>指定特殊的提交信息格式</h4><p>你的第一项任务是要求每一条提交信息都必须遵循某种特殊的格式。 作为目标，假定每一条信息必须包含一条形似“ref: 1234”的字符串，因为你想把每一次提交对应到问题追踪系统（ticketing system）中的某个事项。 你要逐一检查每一条推送上来的提交内容，看看提交信息是否包含这么一个字符串，然后，如果某个提交里不包含这个字符串，以非零返回值退出从而拒绝此次推送。</p>
+<p>把 <code>$newrev</code> 和 <code>$oldrev</code> 变量的值传给一个叫做 <code>git rev-list</code> 的 Git 底层命令，你可以获取所有提交的 SHA-1 值列表。 <code>git rev-list</code> 基本类似 <code>git log</code> 命令，但它默认只输出 SHA-1 值而已，没有其他信息。 所以要获取由一次提交到另一次提交之间的所有 SHA-1 值，可以像这样运行：</p>
+<pre class=" language-console"><code class="language-console">$ git rev-list 538c33..d14fc7
+d14fc7c847ab946ec39590d87783c69b031bdfb7
+9f585da4401b0a3999e84113824d15245c13f0be
+234071a1be950e2a8d078e6141f5cd20c1e61ad3
+dfa04c9ef3d5197182f13fb5b9b1fb7717d2222a
+17716ec0f1ff5c77eff40b7fe912f9f6cfd0e475
+</code></pre>
+<p>你可以截取这些输出内容，循环遍历其中每一个 SHA-1 值，找出与之对应的提交信息，然后用正则表达式来测试该信息包含的内容。</p>
+<p>下一步要实现从每个提交中提取出提交信息。 使用另一个叫做 <code>git cat-file</code> 的底层命令来获得原始的提交数据。 我们将在 <a href="https://git-scm.com/book/zh/v2/ch00/ch10-git-internals" target="_blank" rel="noopener">Git 内部原理</a> 了解到这些底层命令的细节；现在暂时先看一下这条命令的输出：</p>
+<pre class=" language-console"><code class="language-console">$ git cat-file commit ca82a6
+tree cfda3bf379e4f8dba8717dee55aab78aef7f4daf
+parent 085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7
+author Scott Chacon <schacon@gmail.com> 1205815931 -0700
+committer Scott Chacon <schacon@gmail.com> 1240030591 -0700
+
+changed the version number
+</code></pre>
+<p>通过 SHA-1 值获得提交中的提交信息的一个简单办法是找到提交的第一个空行，然后取从它往后的所有内容。 可以使用 Unix 系统的 <code>sed</code> 命令来实现该效果：</p>
+<pre class=" language-console"><code class="language-console">$ git cat-file commit ca82a6 | sed '1,/^$/d'
+changed the version number
+</code></pre>
+<p>你可以用这条咒语从每一个待推送的提交里提取提交信息，然后在提取的内容不符合要求时退出。 为了退出脚本和拒绝此次推送，返回非零值。 整个脚本大致如下：</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token variable">$regex</span> <span class="token operator">=</span> <span class="token regex">/\[ref: (\d+)\]/</span>
+
+<span class="token comment" spellcheck="true"># 指定自定义的提交信息格式</span>
+<span class="token keyword">def</span> check_message_format
+  missed_revs <span class="token operator">=</span> `git rev<span class="token operator">-</span>list #<span class="token punctuation">{</span><span class="token variable">$oldrev</span><span class="token punctuation">}</span><span class="token punctuation">.</span><span class="token punctuation">.</span>#<span class="token punctuation">{</span><span class="token variable">$newrev</span><span class="token punctuation">}</span>`<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span>
+  missed_revs<span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>rev<span class="token operator">|</span>
+    message <span class="token operator">=</span> `git cat<span class="token operator">-</span>file commit #<span class="token punctuation">{</span>rev<span class="token punctuation">}</span> <span class="token operator">|</span> sed <span class="token string">'1,/^$/d'</span>`
+    <span class="token keyword">if</span> <span class="token operator">!</span><span class="token variable">$regex</span><span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span>
+      puts <span class="token string">"[POLICY] Your message is not formatted correctly"</span>
+      exit <span class="token number">1</span>
+    <span class="token keyword">end</span>
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+check_message_format
+</code></pre>
+<p>把这一段放在 <code>update</code> 脚本里，所有包含不符合指定规则的提交都会遭到拒绝。</p>
+<h4 id="指定基于用户的访问权限控制列表（ACL）系统"><a href="#指定基于用户的访问权限控制列表（ACL）系统" class="headerlink" title="指定基于用户的访问权限控制列表（ACL）系统"></a>指定基于用户的访问权限控制列表（ACL）系统</h4><p>假设你需要添加一个使用访问权限控制列表的机制，来指定哪些用户对项目的哪些部分有推送权限。 某些用户具有全部的访问权，其他人只对某些子目录或者特定的文件具有推送权限。 为了实现这一点，你要把相关的规则写入位于服务器原始 Git 仓库的 acl 文件中。 你还需要让 <code>update</code> 钩子检阅这些规则，审视推送的提交内容中被修改的所有文件，然后决定执行推送的用户是否对所有这些文件都有权限。</p>
+<p>先从写一个 ACL 文件开始吧。 这里使用的格式和 CVS 的 ACL 机制十分类似：它由若干行构成，第一项内容是 <code>avail</code> 或者 <code>unavail</code>，接着是逗号分隔的适用该规则的用户列表，最后一项是适用该规则的路径（该项空缺表示没有路径限制）。 各项由管道符 <code>|</code> 隔开。</p>
+<p>在本例中，你会有几个管理员，一些对 <code>doc</code> 目录具有权限的文档作者，以及一位仅对 <code>lib</code> 和 <code>tests</code> 目录具有权限的开发人员，相应的 ACL 文件如下：</p>
+<pre><code>avail|nickh,pjhyett,defunkt,tpw
+avail|usinclair,cdickens,ebronte|doc
+avail|schacon|lib
+avail|schacon|tests
+</code></pre><p>首先把这些数据读入你要用到的数据结构里。 在本例中，为保持简洁，我们暂时只实现 <code>avail</code> 的规则。 下面这个方法生成一个关联数组，它的键是用户名，值是一个由该用户有写权限的所有目录组成的数组：</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token keyword">def</span> <span class="token function">get_acl_access_data</span><span class="token punctuation">(</span>acl_file<span class="token punctuation">)</span>
+  <span class="token comment" spellcheck="true"># 读取ACL数据</span>
+  acl_file <span class="token operator">=</span> <span class="token builtin">File</span><span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>acl_file<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reject <span class="token punctuation">{</span> <span class="token operator">|</span>line<span class="token operator">|</span> line <span class="token operator">==</span> <span class="token string">''</span> <span class="token punctuation">}</span>
+  access <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  acl_file<span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>line<span class="token operator">|</span>
+    avail<span class="token punctuation">,</span> users<span class="token punctuation">,</span> path <span class="token operator">=</span> line<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">'|'</span><span class="token punctuation">)</span>
+    <span class="token keyword">next</span> <span class="token keyword">unless</span> avail <span class="token operator">==</span> <span class="token string">'avail'</span>
+    users<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">','</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>user<span class="token operator">|</span>
+      access<span class="token punctuation">[</span>user<span class="token punctuation">]</span> <span class="token operator">||</span><span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+      access<span class="token punctuation">[</span>user<span class="token punctuation">]</span> <span class="token operator">&lt;</span><span class="token operator">&lt;</span> path
+    <span class="token keyword">end</span>
+  <span class="token keyword">end</span>
+  access
+<span class="token keyword">end</span>
+</code></pre>
+<p>对于之前给出的 ACL 规则文件，这个 <code>get_acl_access_data</code> 方法返回的数据结构如下：</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token punctuation">{</span><span class="token string">"defunkt"</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">[</span><span class="token keyword">nil</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+ <span class="token string">"tpw"</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">[</span><span class="token keyword">nil</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+ <span class="token string">"nickh"</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">[</span><span class="token keyword">nil</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+ <span class="token string">"pjhyett"</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">[</span><span class="token keyword">nil</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+ <span class="token string">"schacon"</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">[</span><span class="token string">"lib"</span><span class="token punctuation">,</span> <span class="token string">"tests"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+ <span class="token string">"cdickens"</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">[</span><span class="token string">"doc"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+ <span class="token string">"usinclair"</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">[</span><span class="token string">"doc"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+ <span class="token string">"ebronte"</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">[</span><span class="token string">"doc"</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
+</code></pre>
+<p>既然拿到了用户权限的数据，接下来你需要找出提交都修改了哪些路径，从而才能保证推送者对所有这些路径都有权限。</p>
+<p>使用 <code>git log</code> 的 <code>--name-only</code> 选项（在第二章里简单地提过），我们可以轻而易举的找出一次提交里修改的文件：</p>
+<pre class=" language-console"><code class="language-console">$ git log -1 --name-only --pretty=format:'' 9f585d
+
+README
+lib/test.rb
+</code></pre>
+<p>使用 <code>get_acl_access_data</code> 返回的 ACL 结构来一一核对每次提交修改的文件列表，就能找出该用户是否有权限推送所有的提交内容:</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true"># 仅允许特定用户修改项目中的特定子目录</span>
+<span class="token keyword">def</span> check_directory_perms
+  access <span class="token operator">=</span> <span class="token function">get_acl_access_data</span><span class="token punctuation">(</span><span class="token string">'acl'</span><span class="token punctuation">)</span>
+
+  <span class="token comment" spellcheck="true"># 检查是否有人在向他没有权限的地方推送内容</span>
+  new_commits <span class="token operator">=</span> `git rev<span class="token operator">-</span>list #<span class="token punctuation">{</span><span class="token variable">$oldrev</span><span class="token punctuation">}</span><span class="token punctuation">.</span><span class="token punctuation">.</span>#<span class="token punctuation">{</span><span class="token variable">$newrev</span><span class="token punctuation">}</span>`<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span>
+  new_commits<span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>rev<span class="token operator">|</span>
+    files_modified <span class="token operator">=</span> `git log <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">--</span>name<span class="token operator">-</span>only <span class="token operator">--</span>pretty<span class="token operator">=</span>format<span class="token punctuation">:</span><span class="token string">''</span> #<span class="token punctuation">{</span>rev<span class="token punctuation">}</span>`<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span>
+    files_modified<span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>path<span class="token operator">|</span>
+      <span class="token keyword">next</span> <span class="token keyword">if</span> path<span class="token punctuation">.</span>size <span class="token operator">==</span> <span class="token number">0</span>
+      has_file_access <span class="token operator">=</span> <span class="token keyword">false</span>
+      access<span class="token punctuation">[</span><span class="token variable">$user</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>access_path<span class="token operator">|</span>
+        <span class="token keyword">if</span> <span class="token operator">!</span>access_path  <span class="token comment" spellcheck="true"># 用户拥有完全访问权限</span>
+           <span class="token operator">||</span> <span class="token punctuation">(</span>path<span class="token punctuation">.</span>start_with<span class="token operator">?</span> access_path<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 或者对此路径有访问权限</span>
+          has_file_access <span class="token operator">=</span> <span class="token keyword">true</span>
+        <span class="token keyword">end</span>
+      <span class="token keyword">end</span>
+      <span class="token keyword">if</span> <span class="token operator">!</span>has_file_access
+        puts <span class="token string">"[POLICY] You do not have access to push to <span class="token interpolation"><span class="token delimiter tag">#{</span>path<span class="token delimiter tag">}</span></span>"</span>
+        exit <span class="token number">1</span>
+      <span class="token keyword">end</span>
+    <span class="token keyword">end</span>
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+
+check_directory_perms
+</code></pre>
+<p>通过 <code>git rev-list</code> 获取推送到服务器的所有提交。 接着，对于每一个提交，找出它修改的文件，然后确保推送者具有这些文件的推送权限。</p>
+<p>现在你的用户没法推送带有不正确的提交信息的内容，也不能在准许他们访问范围之外的位置做出修改。</p>
+<h4 id="测试一下"><a href="#测试一下" class="headerlink" title="测试一下"></a>测试一下</h4><p>如果已经把上面的代码放到 <code>.git/hooks/update</code> 文件里了，运行 <code>chmod u+x .git/hooks/update</code>，然后尝试推送一个不符合格式的提交，你会得到以下的提示：</p>
+<pre class=" language-console"><code class="language-console">$ git push -f origin master
+Counting objects: 5, done.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 323 bytes, done.
+Total 3 (delta 1), reused 0 (delta 0)
+Unpacking objects: 100% (3/3), done.
+Enforcing Policies...
+(refs/heads/master) (8338c5) (c5b616)
+[POLICY] Your message is not formatted correctly
+error: hooks/update exited with error code 1
+error: hook declined to update refs/heads/master
+To git@gitserver:project.git
+ ! [remote rejected] master -> master (hook declined)
+error: failed to push some refs to 'git@gitserver:project.git'
+</code></pre>
+<p>这里有几个有趣的信息。 首先，我们可以看到钩子运行的起点。</p>
+<pre><code>Enforcing Policies...
+(refs/heads/master) (fb8c72) (c56860)
+</code></pre><p>注意这是从 update 脚本开头输出到标准输出的。 所有从脚本输出到标准输出的内容都会转发给客户端。</p>
+<p>下一个值得注意的部分是错误信息。</p>
+<pre><code>[POLICY] Your message is not formatted correctly
+error: hooks/update exited with error code 1
+error: hook declined to update refs/heads/master
+</code></pre><p>第一行是我们的脚本输出的，剩下两行是 Git 在告诉我们 update 脚本退出时返回了非零值因而推送遭到了拒绝。 最后一点：</p>
+<pre><code>To git@gitserver:project.git
+ ! [remote rejected] master -&gt; master (hook declined)
+error: failed to push some refs to &#39;git@gitserver:project.git&#39;
+</code></pre><p>你会看到每个被你的钩子拒之门外的引用都收到了一个 remote rejected 信息，它告诉你正是钩子无法成功运行导致了推送的拒绝。</p>
+<p>又或者某人想修改一个自己不具备权限的文件然后推送了一个包含它的提交，他将看到类似的提示。 比如，一个文档作者尝试推送一个修改到 <code>lib</code> 目录的提交，他会看到</p>
+<pre><code>[POLICY] You do not have access to push to lib/test.rb
+</code></pre><p>从今以后，只要 <code>update</code> 脚本存在并且可执行，我们的版本库中永远都不会包含不符合格式的提交信息，并且用户都会待在沙箱里面。</p>
+<h3 id="客户端钩子-1"><a href="#客户端钩子-1" class="headerlink" title="客户端钩子"></a>客户端钩子</h3><p>这种方法的缺点在于，用户推送的提交遭到拒绝后无法避免的抱怨。 辛辛苦苦写成的代码在最后时刻惨遭拒绝是十分让人沮丧且具有迷惑性的；更可怜的是他们不得不修改提交历史来解决问题，这个方法并不能让每一个人满意。</p>
+<p>逃离这种两难境地的法宝是给用户一些客户端的钩子，在他们犯错的时候给以警告。 然后呢，用户们就能趁问题尚未变得更难修复，在提交前消除这个隐患。 由于钩子本身不跟随克隆的项目副本分发，所以你必须通过其他途径把这些钩子分发到用户的 <code>.git/hooks</code> 目录并设为可执行文件。 虽然你可以在相同或单独的项目里加入并分发这些钩子，但是 Git 不会自动替你设置它。</p>
+<p>首先，你应该在每次提交前核查你的提交信息，这样才能确保服务器不会因为不合条件的提交信息而拒绝你的更改。 为了达到这个目的，你可以增加 <code>commit-msg</code> 钩子。 如果你使用该钩子来读取作为第一个参数传递的提交信息，然后与规定的格式作比较，你就可以使 Git 在提交信息格式不对的情况下拒绝提交。</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true">#!/usr/bin/env ruby</span>
+message_file <span class="token operator">=</span> <span class="token constant">ARGV</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+message <span class="token operator">=</span> <span class="token builtin">File</span><span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>message_file<span class="token punctuation">)</span>
+
+<span class="token variable">$regex</span> <span class="token operator">=</span> <span class="token regex">/\[ref: (\d+)\]/</span>
+
+<span class="token keyword">if</span> <span class="token operator">!</span><span class="token variable">$regex</span><span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span>
+  puts <span class="token string">"[POLICY] Your message is not formatted correctly"</span>
+  exit <span class="token number">1</span>
+<span class="token keyword">end</span>
+</code></pre>
+<p>如果这个脚本位于正确的位置 (<code>.git/hooks/commit-msg</code>) 并且是可执行的，你提交信息的格式又是不正确的，你会看到：</p>
+<pre class=" language-console"><code class="language-console">$ git commit -am 'test'
+[POLICY] Your message is not formatted correctly
+</code></pre>
+<p>在这个示例中，提交没有成功。 然而如果你的提交注释信息是符合要求的，Git 会允许你提交：</p>
+<pre class=" language-console"><code class="language-console">$ git commit -am 'test [ref: 132]'
+[master e05c914] test [ref: 132]
+ 1 file changed, 1 insertions(+), 0 deletions(-)
+</code></pre>
+<p>接下来我们要保证没有修改到 ACL 允许范围之外的文件。 假如你的 <code>.git</code> 目录下有前面使用过的那份 ACL 文件，那么以下的 <code>pre-commit</code> 脚本将把里面的规定执行起来：</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true">#!/usr/bin/env ruby</span>
+
+<span class="token variable">$user</span>    <span class="token operator">=</span> <span class="token constant">ENV</span><span class="token punctuation">[</span><span class="token string">'USER'</span><span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># [ 插入上文中的 get_acl_access_data 方法 ]</span>
+
+<span class="token comment" spellcheck="true"># 仅允许特定用户修改项目中的特定子目录</span>
+<span class="token keyword">def</span> check_directory_perms
+  access <span class="token operator">=</span> <span class="token function">get_acl_access_data</span><span class="token punctuation">(</span><span class="token string">'.git/acl'</span><span class="token punctuation">)</span>
+
+  files_modified <span class="token operator">=</span> `git diff<span class="token operator">-</span>index <span class="token operator">--</span>cached <span class="token operator">--</span>name<span class="token operator">-</span>only <span class="token constant">HEAD</span>`<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span>
+  files_modified<span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>path<span class="token operator">|</span>
+    <span class="token keyword">next</span> <span class="token keyword">if</span> path<span class="token punctuation">.</span>size <span class="token operator">==</span> <span class="token number">0</span>
+    has_file_access <span class="token operator">=</span> <span class="token keyword">false</span>
+    access<span class="token punctuation">[</span><span class="token variable">$user</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>access_path<span class="token operator">|</span>
+    <span class="token keyword">if</span> <span class="token operator">!</span>access_path <span class="token operator">||</span> <span class="token punctuation">(</span>path<span class="token punctuation">.</span><span class="token function">index</span><span class="token punctuation">(</span>access_path<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+      has_file_access <span class="token operator">=</span> <span class="token keyword">true</span>
+    <span class="token keyword">end</span>
+    <span class="token keyword">if</span> <span class="token operator">!</span>has_file_access
+      puts <span class="token string">"[POLICY] You do not have access to push to <span class="token interpolation"><span class="token delimiter tag">#{</span>path<span class="token delimiter tag">}</span></span>"</span>
+      exit <span class="token number">1</span>
+    <span class="token keyword">end</span>
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+
+check_directory_perms
+</code></pre>
+<p>这和服务器端的脚本几乎一样，除了两个重要区别。 第一，ACL 文件的位置不同，因为这个脚本在当前工作目录运行，而非 <code>.git</code> 目录。 ACL 文件的路径必须从</p>
+<pre class=" language-ruby"><code class="language-ruby">access <span class="token operator">=</span> <span class="token function">get_acl_access_data</span><span class="token punctuation">(</span><span class="token string">'acl'</span><span class="token punctuation">)</span>
+</code></pre>
+<p>修改成：</p>
+<pre class=" language-ruby"><code class="language-ruby">access <span class="token operator">=</span> <span class="token function">get_acl_access_data</span><span class="token punctuation">(</span><span class="token string">'.git/acl'</span><span class="token punctuation">)</span>
+</code></pre>
+<p>另一个重要区别是获取被修改文件列表的方式。 在服务器端的时候使用了查看提交纪录的方式，可是目前的提交都还没被记录下来呢，所以这个列表只能从暂存区域获取。 和原来的</p>
+<pre class=" language-ruby"><code class="language-ruby">files_modified <span class="token operator">=</span> `git log <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">--</span>name<span class="token operator">-</span>only <span class="token operator">--</span>pretty<span class="token operator">=</span>format<span class="token punctuation">:</span><span class="token string">''</span> #<span class="token punctuation">{</span>ref<span class="token punctuation">}</span>`
+</code></pre>
+<p>不同，现在要用</p>
+<pre class=" language-ruby"><code class="language-ruby">files_modified <span class="token operator">=</span> `git diff<span class="token operator">-</span>index <span class="token operator">--</span>cached <span class="token operator">--</span>name<span class="token operator">-</span>only <span class="token constant">HEAD</span>`
+</code></pre>
+<p>不同的就只有这两个——除此之外，该脚本完全相同。 有一点要注意的是，它假定在本地运行的用户和推送到远程服务器端的相同。 如果这二者不一样，则需要手动设置一下 <code>$user</code> 变量。</p>
+<p>在这里，我们还可以确保推送内容中不包含非快进（non-fast-forward）的引用。 出现一个不是快进（fast-forward）的引用有两种情形，要么是在某个已经推送过的提交上作变基，要么是从本地推送一个错误的分支到远程分支上。</p>
+<p>假定为了执行这个策略，你已经在服务器上配置好了 <code>receive.denyDeletes</code> 和 <code>receive.denyNonFastForwards</code>，因而唯一还需要避免的是在某个已经推送过的提交上作变基。</p>
+<p>下面是一个检查这个问题的 <code>pre-rebase</code> 脚本示例。 它获取所有待重写的提交的列表，然后检查它们是否存在于远程引用中。 一旦发现其中一个提交是在某个远程引用中可达的（reachable），它就终止此次变基：</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true">#!/usr/bin/env ruby</span>
+
+base_branch <span class="token operator">=</span> <span class="token constant">ARGV</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+<span class="token keyword">if</span> <span class="token constant">ARGV</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+  topic_branch <span class="token operator">=</span> <span class="token constant">ARGV</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+<span class="token keyword">else</span>
+  topic_branch <span class="token operator">=</span> <span class="token string">"HEAD"</span>
+<span class="token keyword">end</span>
+
+target_shas <span class="token operator">=</span> `git rev<span class="token operator">-</span>list #<span class="token punctuation">{</span>base_branch<span class="token punctuation">}</span><span class="token punctuation">.</span><span class="token punctuation">.</span>#<span class="token punctuation">{</span>topic_branch<span class="token punctuation">}</span>`<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span>
+remote_refs <span class="token operator">=</span> `git branch <span class="token operator">-</span>r`<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>map <span class="token punctuation">{</span> <span class="token operator">|</span>r<span class="token operator">|</span> r<span class="token punctuation">.</span>strip <span class="token punctuation">}</span>
+
+target_shas<span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>sha<span class="token operator">|</span>
+  remote_refs<span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>remote_ref<span class="token operator">|</span>
+    shas_pushed <span class="token operator">=</span> `git rev<span class="token operator">-</span>list <span class="token operator">^</span>#<span class="token punctuation">{</span>sha<span class="token punctuation">}</span><span class="token operator">^</span>@ refs<span class="token operator">/</span>remotes<span class="token operator">/</span>#<span class="token punctuation">{</span>remote_ref<span class="token punctuation">}</span>`
+    <span class="token keyword">if</span> shas_pushed<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>include<span class="token operator">?</span><span class="token punctuation">(</span>sha<span class="token punctuation">)</span>
+      puts <span class="token string">"[POLICY] Commit <span class="token interpolation"><span class="token delimiter tag">#{</span>sha<span class="token delimiter tag">}</span></span> has already been pushed to <span class="token interpolation"><span class="token delimiter tag">#{</span>remote_ref<span class="token delimiter tag">}</span></span>"</span>
+      exit <span class="token number">1</span>
+    <span class="token keyword">end</span>
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+</code></pre>
+<p>这个脚本利用了一个第六章“修订版本选择”一节中不曾提到的语法。通过运行这个命令可以获得一系列之前推送过的提交：</p>
+<pre class=" language-ruby"><code class="language-ruby">`git rev<span class="token operator">-</span>list <span class="token operator">^</span>#<span class="token punctuation">{</span>sha<span class="token punctuation">}</span><span class="token operator">^</span>@ refs<span class="token operator">/</span>remotes<span class="token operator">/</span>#<span class="token punctuation">{</span>remote_ref<span class="token punctuation">}</span>`
+</code></pre>
+<p><code>SHA^@</code> 语法会被解析成该提交的所有父提交。 该命令会列出在远程分支最新的提交中可达的，却在所有我们尝试推送的提交的 SHA-1 值的所有父提交中不可达的提交——也就是快进的提交。</p>
+<p>这个解决方案主要的问题在于它有可能很慢而且常常没有必要——只要你不用 <code>-f</code> 来强制推送，服务器就会自动给出警告并且拒绝接受推送。 然而，这是个不错的练习，而且理论上能帮助你避免一次以后可能不得不回头修补的变基。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我们已经阐述了大部分通过自定义 Git 客户端和服务端来适应自己工作流程和项目内容的方式。 你已经学到各种各样的设置项、基于文件的选项和事件钩子，还建立了一个示例用的强制策略服务器。 无论创造出了什么样的工作流程，你都能使 Git 与它珠联璧合。</p>
+
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'brA0u8dhiFmWzBQJ5YDMevuw-gzGzoHsz',
+        appKey: 'InzuBbqaqOss16gJu1jiKE7F',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/07/15/Git与其他系统/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Git与其他系统">
+                        
+                        <span class="card-title">Git与其他系统</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            现实并不总是尽如人意。 通常，你不能立刻就把接触到的每一个项目都切换到 Git。 有时候你被困在使用其他 VCS 的项目中，却希望使用 Git。 在本章的第一部分我们将会了解到，怎样在你的那些托管在不同系统的项目上使用 Git 客户端。
+在
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Git/" class="post-category" target="_blank">
+                                    Git
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Git/" target="_blank">
+                        <span class="chip bg-color">Git</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/07/15/Git工具/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Git工具">
+                        
+                        <span class="card-title">Git工具</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            现在，你已经学习了管理或者维护 Git 仓库、实现代码控制所需的大多数日常命令和工作流程。 你已经尝试了跟踪和提交文件的基本操作，并且发挥了暂存区和轻量级的分支及合并的威力。
+接下来你将学习一些 Git 的强大功能，这些功能你可能并不会在日
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Git/" class="post-category" target="_blank">
+                                    Git
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Git/" target="_blank">
+                        <span class="chip bg-color">Git</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">249.9k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/chenshuoke" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:henu_chenshuoke@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2604689299" class="tooltipped" data-tooltip="QQ联系我: 2604689299" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

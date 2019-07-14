@@ -1,0 +1,1836 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="分布式Git, 孤狼的博客">
+    <meta name="description" content="你现在拥有了一个远程 Git 版本库，能为所有开发者共享代码提供服务，在一个本地工作流程下，你也已经熟悉了基本 Git 命令。你现在可以学习如何利用 Git 提供的一些分布式工作流程了。
+这一章中，你将会学习如何作为贡献者或整合者，在一个分">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>分布式Git | 孤狼的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+    <!-- 下面一句添加的 -->
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">孤狼的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">孤狼的博客</div>
+        <div class="logo-desc">
+            
+            从来没有真正的绝境，只有心灵的迷途
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/chenshuoke" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/chenshuoke" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        分布式Git
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Git/" target="_blank">
+                                <span class="chip bg-color">Git</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Git/" class="post-category" target="_blank">
+                                Git
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-07-15
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        16.5k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        61 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>你现在拥有了一个远程 Git 版本库，能为所有开发者共享代码提供服务，在一个本地工作流程下，你也已经熟悉了基本 Git 命令。你现在可以学习如何利用 Git 提供的一些分布式工作流程了。</p>
+<p>这一章中，你将会学习如何作为贡献者或整合者，在一个分布式协作的环境中使用 Git。 你会学习为一个项目成功地贡献代码，并接触一些最佳实践方式，让你和项目的维护者能轻松地完成这个过程。另外，你也会学到如何管理有很多开发者提交贡献的项目。</p>
+<h2 id="分布式工作流程"><a href="#分布式工作流程" class="headerlink" title="分布式工作流程"></a>分布式工作流程</h2><p>同传统的集中式版本控制系统（CVCS）不同，Git 的分布式特性使得开发者间的协作变得更加灵活多样。 在集中式系统中，每个开发者就像是连接在集线器上的节点，彼此的工作方式大体相像。 而在 Git 中，每个开发者同时扮演着节点和集线器的角色——也就是说，每个开发者既可以将自己的代码贡献到其他的仓库中，同时也能维护自己的公开仓库，让其他人可以在其基础上工作并贡献代码。 由此，Git 的分布式协作可以为你的项目和团队衍生出种种不同的工作流程，接下来的章节会介绍几种利用了 Git 的这种灵活性的常见应用方式。 我们将讨论每种方式的优点以及可能的缺点；你可以选择使用其中的某一种，或者将它们的特性混合搭配使用。</p>
+<h3 id="集中式工作流"><a href="#集中式工作流" class="headerlink" title="集中式工作流"></a>集中式工作流</h3><p>集中式系统中通常使用的是单点协作模型——集中式工作流。 一个中心集线器，或者说仓库，可以接受代码，所有人将自己的工作与之同步。 若干个开发者则作为节点——也就是中心仓库的消费者——并且与其进行同步。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/centralized_workflow.png" alt="集中式工作流。"></p>
+<p>Figure 54. 集中式工作流。</p>
+<p>这意味着如果两个开发者从中心仓库克隆代码下来，同时作了一些修改，那么只有第一个开发者可以顺利地把数据推送回共享服务器。 第二个开发者在推送修改之前，必须先将第一个人的工作合并进来，这样才不会覆盖第一个人的修改。 这和 Subversion （或任何 CVCS）中的概念一样，而且这个模式也可以很好地运用到 Git 中。</p>
+<p>如果在公司或者团队中，你已经习惯了使用这种集中式工作流程，完全可以继续采用这种简单的模式。 只需要搭建好一个中心仓库，并给开发团队中的每个人推送数据的权限，就可以开展工作了。Git 不会让用户覆盖彼此的修改。 例如 John 和 Jessica 同时开始工作。 John 完成了他的修改并推送到服务器。 接着 Jessica 尝试提交她自己的修改，却遭到服务器拒绝。 她被告知她的修改正通过非快进式（non-fast-forward）的方式推送，只有将数据抓取下来并且合并后方能推送。 这种模式的工作流程的使用非常广泛，因为大多数人对其很熟悉也很习惯。</p>
+<p>当然这并不局限于小团队。 利用 Git 的分支模型，通过同时在多个分支上工作的方式，即使是上百人的开发团队也可以很好地在单个项目上协作。</p>
+<h3 id="集成管理者工作流"><a href="#集成管理者工作流" class="headerlink" title="集成管理者工作流"></a>集成管理者工作流</h3><p>Git 允许多个远程仓库存在，使得这样一种工作流成为可能：每个开发者拥有自己仓库的写权限和其他所有人仓库的读权限。 这种情形下通常会有个代表`‘官方’’项目的权威的仓库。 要为这个项目做贡献，你需要从该项目克隆出一个自己的公开仓库，然后将自己的修改推送上去。 接着你可以请求官方仓库的维护者拉取更新合并到主项目。 维护者可以将你的仓库作为远程仓库添加进来，在本地测试你的变更，将其合并入他们的分支并推送回官方仓库。 这一流程的工作方式如下所示（见 <a href="https://git-scm.com/book/zh/v2/ch00/rwfdiag_b" target="_blank" rel="noopener">集成管理者工作流。</a>）：</p>
+<ol>
+<li>项目维护者推送到主仓库。</li>
+<li>贡献者克隆此仓库，做出修改。</li>
+<li>贡献者将数据推送到自己的公开仓库。</li>
+<li>贡献者给维护者发送邮件，请求拉取自己的更新。</li>
+<li>维护者在自己本地的仓库中，将贡献者的仓库加为远程仓库并合并修改。</li>
+<li>维护者将合并后的修改推送到主仓库。</li>
+</ol>
+<p><img src="https://git-scm.com/book/en/v2/images/integration-manager.png" alt="集成管理者工作流。"></p>
+<p>Figure 55. 集成管理者工作流。</p>
+<p>这是 GitHub 和 GitLab 等集线器式（hub-based）工具最常用的工作流程。人们可以容易地将某个项目派生成为自己的公开仓库，向这个仓库推送自己的修改，并为每个人所见。 这么做最主要的优点之一是你可以持续地工作，而主仓库的维护者可以随时拉取你的修改。 贡献者不必等待维护者处理完提交的更新——每一方都可以按照自己的节奏工作。</p>
+<h3 id="司令官与副官工作流"><a href="#司令官与副官工作流" class="headerlink" title="司令官与副官工作流"></a>司令官与副官工作流</h3><p>这其实是多仓库工作流程的变种。 一般拥有数百位协作开发者的超大型项目才会用到这样的工作方式，例如著名的 Linux 内核项目。 被称为副官（lieutenant）的各个集成管理者分别负责集成项目中的特定部分。 所有这些副官头上还有一位称为司令官（dictator）的总集成管理者负责统筹。 司令官维护的仓库作为参考仓库，为所有协作者提供他们需要拉取的项目代码。 整个流程看起来是这样的(见 <a href="https://git-scm.com/book/zh/v2/ch00/rwfdiag_c" target="_blank" rel="noopener">司令官与副官工作流。</a>):</p>
+<ol>
+<li>普通开发者在自己的特性分支上工作，并根据 <code>master</code> 分支进行变基。 这里是司令官的 <code>master</code> 分支。</li>
+<li>副官将普通开发者的特性分支合并到自己的 <code>master</code> 分支中。</li>
+<li>司令官将所有副官的 <code>master</code> 分支并入自己的 <code>master</code> 分支中。</li>
+<li>司令官将集成后的 <code>master</code> 分支推送到参考仓库中，以便所有其他开发者以此为基础进行变基。</li>
+</ol>
+<p><img src="https://git-scm.com/book/en/v2/images/benevolent-dictator.png" alt="司令官与副官工作流。"></p>
+<p>Figure 56. 司令官与副官工作流。</p>
+<p>这种工作流程并不常用，只有当项目极为庞杂，或者需要多级别管理时，才会体现出优势。 利用这种方式，项目总负责人（即司令官）可以把大量分散的集成工作委托给不同的小组负责人分别处理，然后在不同时刻将大块的代码子集统筹起来，用于之后的整合。</p>
+<h3 id="工作流程总结"><a href="#工作流程总结" class="headerlink" title="工作流程总结"></a>工作流程总结</h3><p>上面介绍了在 Git 等分布式系统中经常使用的工作流程，但是在实际的开发中，你会遇到许多可能适合你的特定工作流程的变种。 现在你应该已经清楚哪种工作流程组合可能比较适合你了，我们会给出一些如何扮演不同工作流程中主要角色的更具体的例子。 下一节我们将会学习为项目做贡献的一些常用模式。</p>
+<h2 id="向一个项目贡献"><a href="#向一个项目贡献" class="headerlink" title="向一个项目贡献"></a>向一个项目贡献</h2><p>描述如何向一个项目贡献的主要困难在于完成贡献有很多不同的方式。 因为 Git 非常灵活，人们可以通过不同的方式来一起工作，所以描述应该如何贡献并不是非常准确 - 每一个项目都有一点儿不同。 影响因素包括活跃贡献者的数量、选择的工作流程、提交权限与可能包含的外部贡献方法。</p>
+<p>第一个影响因素是活跃贡献者的数量 - 积极地向这个项目贡献代码的用户数量以及他们的贡献频率。 在许多情况下，你可能会有两三个开发者一天提交几次，对于不活跃的项目可能更少。 对于大一些的公司或项目，开发者的数量可能会是上千，每天都有成百上千次提交。 这很重要，因为随着开发者越来越多，在确保你的代码能干净地应用或轻松地合并时会遇到更多问题。 提交的改动可能表现为过时的，也可能在你正在做改动或者等待改动被批准应用时被合并入的工作严重损坏。 如何保证代码始终是最新的，并且提交始终是有效的？</p>
+<p>下一个影响因素是项目使用的工作流程。 它是中心化的吗，即每一个开发者都对主线代码有相同的写入权限？ 项目是否有一个检查所有补丁的维护者或整合者？ 是否所有的补丁是同行评审后批准的？ 你是否参与了那个过程？ 是否存在副官系统，你必须先将你的工作提交到上面？</p>
+<p>下一个问题是提交权限。 是否有项目的写权限会使向项目贡献所需的流程有极大的不同。 如果没有写权限，项目会选择何种方式接受贡献的工作？ 是否甚至有一个如何贡献的规范？ 你一次贡献多少工作？ 你多久贡献一次？</p>
+<p>所有这些问题都会影响实际如何向一个项目贡献，以及对你来说哪些工作流程更适合或者可用。 我们将会由浅入深，通过一系列用例来讲述其中的每一个方面；从这些例子应该能够建立实际中你需要的特定工作流程。</p>
+<h3 id="提交准则"><a href="#提交准则" class="headerlink" title="提交准则"></a>提交准则</h3><p>在我们开始查看特定的用例前，这里有一个关于提交信息的快速说明。 有一个好的创建提交的准则并且坚持使用会让与 Git 工作和与其他人协作更容易。 Git 项目提供了一个文档，其中列举了关于创建提交到提交补丁的若干好的提示 - 可以在 Git 源代码中的 <code>Documentation/SubmittingPatches</code> 文件中阅读它。</p>
+<p>首先，你不会想要把空白错误（根据 git help diff 的描述，结合下面给出的图片，空白错误是指行尾的空格、Tab 制表符，和行首空格后跟 Tab 制表符的行为）提交上去。 Git 提供了一个简单的方式来检查这点 - 在提交前，运行 <code>git diff --check</code>，它将会找到可能的空白错误并将它们为你列出来。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/git-diff-check.png" alt="`git diff --check` 的输出。"></p>
+<p>Figure 57. <code>git diff --check</code> 的输出</p>
+<p>如果在提交前运行那个命令，可以知道提交中是否包含可能会使其他开发者恼怒的空白问题。</p>
+<p>接下来，尝试让每一个提交成为一个逻辑上的独立变更集。 如果可以，尝试让改动可以理解 - 不要在整个周末编码解决五个问题，然后在周一时将它们提交为一个巨大的提交。 即使在周末期间你无法提交，在周一时使用暂存区域将你的工作最少拆分为每个问题一个提交，并且为每一个提交附带一个有用的信息。 如果其中一些改动修改了同一个文件，尝试使用 <code>git add --patch</code> 来部分暂存文件（在 <a href="https://git-scm.com/book/zh/v2/ch00/r_interactive_staging" target="_blank" rel="noopener">交互式暂存</a> 中有详细介绍）。 不管你做一个或五个提交，只要所有的改动是在同一时刻添加的，项目分支末端的快照就是独立的，使同事开发者必须审查你的改动时尽量让事情容易些。 当你之后需要时这个方法也会使拉出或还原一个变更集更容易些。 <a href="https://git-scm.com/book/zh/v2/ch00/r_rewriting_history" target="_blank" rel="noopener">重写历史</a> 描述了重写历史与交互式暂存文件的若干有用的 Git 技巧 - 在将工作发送给其他人前使用这些工具来帮助生成一个干净又易懂的历史。</p>
+<p>最后一件要牢记的事是提交信息。 有一个创建优质提交信息的习惯会使 Git 的使用与协作容易的多。 一般情况下，信息应当以少于 50 个字符（25个汉字）的单行开始且简要地描述变更，接着是一个空白行，再接着是一个更详细的解释。 Git 项目要求一个更详细的解释，包括做改动的动机和它的实现与之前行为的对比 - 这是一个值得遵循的好规则。 在这些信息中使用现在时态祈使语气也是一个好想法。 换句话说，使用命令。 使用 “Add tests for.” 而不是 “I added tests for” 或 “Adding tests for,”。 这里是一份最初由 Tim Pope 写的模板：</p>
+<pre class=" language-text"><code class="language-text">修改的摘要（50 个字符或更少）
+
+如果必要的话，加入更详细的解释文字。在
+大概 72 个字符的时候换行。在某些情形下，
+第一行被当作一封电子邮件的标题，剩下的
+文本作为正文。分隔摘要与正文的空行是
+必须的（除非你完全省略正文）；如果你将
+两者混在一起，那么类似变基等工具无法
+正常工作。
+
+空行接着更进一步的段落。
+
+  - 句号也是可以的。
+
+  - 项目符号可以使用典型的连字符或星号
+    前面一个空格，之间用空行隔开，
+    但是可以依据不同的惯例有所不同。</code></pre>
+<p>如果你所有的提交信息看起来都像这样，对你与跟你工作在一起的其他开发者来说事情会变得非常容易。 Git 项目有一个良好格式化的提交信息 - 尝试在那儿运行 <code>git log --no-merges</code> 来看看漂亮的格式化的项目提交历史像什么样。</p>
+<p>在接下来的例子中，以及贯穿本书大部分，出于简洁性的原因本书不会有像这样漂亮格式的信息；相反，我们使用 <code>-m</code> 选项的 <code>git commit</code>。 照我们说的做，而不是照我们做的做。</p>
+<h3 id="私有小型团队"><a href="#私有小型团队" class="headerlink" title="私有小型团队"></a>私有小型团队</h3><p>你可能会遇到的最简单的配置是有一两个其他开发者的私有项目。 “私有” 在这个上下文中，意味着闭源 - 不可以从外面的世界中访问到。 你和其他的开发者都有仓库的推送权限。</p>
+<p>在这个环境下，可以采用一个类似使用 Subversion 或其他集中式的系统时会使用的工作流程。 依然可以得到像离线提交、非常容易地新建分支与合并分支等高级功能，但是工作流程可以是很简单的；主要的区别是合并发生在客户端这边而不是在提交时发生在服务器那边。 让我们看看当两个开发者在一个共享仓库中一起工作时会是什么样子。 第一个开发者，John，克隆了仓库，做了改动，然后本地提交。 （为了缩短这些例子长度，协议信息已被替换为 <code>...</code>。）</p>
+<pre class=" language-console"><code class="language-console"># John's Machine
+$ git clone john@githost:simplegit.git
+Initialized empty Git repository in /home/john/simplegit/.git/
+...
+$ cd simplegit/
+$ vim lib/simplegit.rb
+$ git commit -am 'removed invalid default value'
+[master 738ee87] removed invalid default value
+ 1 files changed, 1 insertions(+), 1 deletions(-)</code></pre>
+<p>第二个开发者，Jessica，做了同样的事情 - 克隆仓库并提交了一个改动：</p>
+<pre class=" language-console"><code class="language-console"># Jessica's Machine
+$ git clone jessica@githost:simplegit.git
+Initialized empty Git repository in /home/jessica/simplegit/.git/
+...
+$ cd simplegit/
+$ vim TODO
+$ git commit -am 'add reset task'
+[master fbff5bc] add reset task
+ 1 files changed, 1 insertions(+), 0 deletions(-)</code></pre>
+<p>现在，Jessica 把她的工作推送到服务器上：</p>
+<pre class=" language-console"><code class="language-console"># Jessica's Machine
+$ git push origin master
+...
+To jessica@githost:simplegit.git
+   1edee6b..fbff5bc  master -> master</code></pre>
+<p>John 也尝试推送他的改动：</p>
+<pre class=" language-console"><code class="language-console"># John's Machine
+$ git push origin master
+To john@githost:simplegit.git
+ ! [rejected]        master -> master (non-fast forward)
+error: failed to push some refs to 'john@githost:simplegit.git'</code></pre>
+<p>不允许 John 推送是因为在同一时间 Jessica 已经推送了。 如果之前习惯于用 Subversion 那么理解这点特别重要，因为你会注意到两个开发者并没有编辑同一个文件。 尽管 Subversion 会对编辑的不同文件在服务器上自动进行一次合并，但 Git 要求你在本地合并提交。 John 必须抓取 Jessica 的改动并合并它们，才能被允许推送。</p>
+<pre class=" language-console"><code class="language-console">$ git fetch origin
+...
+From john@githost:simplegit
+ + 049d078...fbff5bc master     -> origin/master</code></pre>
+<p>在这个时候，John 的本地仓库看起来像这样：</p>
+<p><img src="https://git-scm.com/book/en/v2/images/small-team-1.png" alt="John 的分叉历史。"></p>
+<p>Figure 58. John 的分叉历史</p>
+<p>John 有一个引用指向 Jessica 推送上去的改动，但是他必须将它们合并入自己的工作中之后才能被允许推送。</p>
+<pre class=" language-console"><code class="language-console">$ git merge origin/master
+Merge made by recursive.
+ TODO |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)</code></pre>
+<p>合并进行地很顺利 - John 的提交历史现在看起来像这样：</p>
+<p><img src="https://git-scm.com/book/en/v2/images/small-team-2.png" alt="合并了 `origin/master` 之后 John 的仓库。"></p>
+<p>Figure 59. 合并了 <code>origin/master</code> 之后 John 的仓库</p>
+<p>现在，John 可以测试代码，确保它依然正常工作，然后他可以把合并的新工作推送到服务器上：</p>
+<pre class=" language-console"><code class="language-console">$ git push origin master
+...
+To john@githost:simplegit.git
+   fbff5bc..72bbc59  master -> master</code></pre>
+<p>最终，John 的提交历史看起来像这样：</p>
+<p><img src="https://git-scm.com/book/en/v2/images/small-team-3.png" alt="推送到 `origin` 服务器后 John 的历史。"></p>
+<p>Figure 60. 推送到 <code>origin</code> 服务器后 John 的历史</p>
+<p>在此期间，Jessica 在一个特性分支上工作。 她创建了一个称作 <code>issue54</code> 的特性分支并且在那个分支上做了三次提交。 她还没有抓取 John 的改动，所以她的提交历史看起来像这样：</p>
+<p><img src="https://git-scm.com/book/en/v2/images/small-team-4.png" alt="Jessica 的特性分支。"></p>
+<p>Figure 61. Jessica 的特性分支</p>
+<p>Jessica 想要与 John 同步，所以她进行了抓取操作：</p>
+<pre class=" language-console"><code class="language-console"># Jessica's Machine
+$ git fetch origin
+...
+From jessica@githost:simplegit
+   fbff5bc..72bbc59  master     -> origin/master
+</code></pre>
+<p>那会同时拉取 John 推送的工作。 Jessica 的历史现在看起来像这样：</p>
+<p><img src="https://git-scm.com/book/en/v2/images/small-team-5.png" alt="抓取 John 的改动后 Jessica 的历史。"></p>
+<p>Figure 62. 抓取 John 的改动后 Jessica 的历史</p>
+<p>Jessica 认为她的特性分支已经准备好了，但是她想要知道必须合并什么进入她的工作才能推送。 她运行 <code>git log</code> 来找出：</p>
+<pre class=" language-console"><code class="language-console">$ git log --no-merges issue54..origin/master
+commit 738ee872852dfaa9d6634e0dea7a324040193016
+Author: John Smith <jsmith@example.com>
+Date:   Fri May 29 16:01:27 2009 -0700
+
+   removed invalid default value
+</code></pre>
+<p><code>issue54..origin/master</code> 语法是一个日志过滤器，要求 Git 只显示所有在后面分支（在本例中是 <code>origin/master</code>）但不在前面分支（在本例中是 <code>issue54</code>）的提交的列表。 我们将会在 <a href="https://git-scm.com/book/zh/v2/ch00/r_commit_ranges" target="_blank" rel="noopener">提交区间</a> 中详细介绍这个语法。</p>
+<p>目前，我们可以从输出中看到有一个 John 生成的但是 Jessica 还没有合并入的提交。 如果她合并 <code>origin/master</code>，也就是说将会修改她的本地工作的那个单个提交。</p>
+<p>现在，Jessica 可以合并她的特性工作到她的 master 分支，合并 John 的工作（<code>origin/master</code>）进入她的 <code>master</code> 分支，然后再次推送回服务器。 首先，为了整合所有这些工作她切换回她的 master 分支。</p>
+<pre class=" language-console"><code class="language-console">$ git checkout master
+Switched to branch 'master'
+Your branch is behind 'origin/master' by 2 commits, and can be fast-forwarded.
+</code></pre>
+<p>她既可以先合并 <code>origin/master</code> 也可以先合并 <code>issue54</code> - 它们都是上游，所以顺序并没有关系。 不论她选择的顺序是什么最终的结果快照是完全一样的；只是历史会有一点轻微的区别。 她选择先合并入 <code>issue54</code>：</p>
+<pre class=" language-console"><code class="language-console">$ git merge issue54
+Updating fbff5bc..4af4298
+Fast forward
+ README           |    1 +
+ lib/simplegit.rb |    6 +++++-
+ 2 files changed, 6 insertions(+), 1 deletions(-)
+</code></pre>
+<p>没有发生问题；如你所见它是一次简单的快进。 现在 Jessica 合并入 John 的工作（<code>origin/master</code>）：</p>
+<pre class=" language-console"><code class="language-console">$ git merge origin/master
+Auto-merging lib/simplegit.rb
+Merge made by recursive.
+ lib/simplegit.rb |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+</code></pre>
+<p>每一个文件都干净地合并了，Jessica 的历史看起来像这样：</p>
+<p><img src="https://git-scm.com/book/en/v2/images/small-team-6.png" alt="合并了 John 的改动后 Jessica 的历史。"></p>
+<p>Figure 63. 合并了 John 的改动后 Jessica 的历史</p>
+<p>现在 <code>origin/master</code> 是可以从 Jessica 的 <code>master</code> 分支到达的，所以她应该可以成功地推送（假设同一时间 John 并没有再次推送）：</p>
+<pre class=" language-console"><code class="language-console">$ git push origin master
+...
+To jessica@githost:simplegit.git
+   72bbc59..8059c15  master -> master
+</code></pre>
+<p>每一个开发者都提交了几次并成功地合并了其他人的工作。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/small-team-7.png" alt="推送所有的改动回服务器后 Jessica 的历史。"></p>
+<p>Figure 64. 推送所有的改动回服务器后 Jessica 的历史</p>
+<p>这是一个最简单的工作流程。 你通常在一个特性分支工作一会儿，当它准备好整合时合并回你的 master 分支。 当想要共享工作时，将其合并回你自己的 master 分支，如果有改动的话然后抓取并合并 <code>origin/master</code>，最终推送到服务器上的 <code>master</code> 分支。 通常顺序像这样：</p>
+<p><img src="https://git-scm.com/book/en/v2/images/small-team-flow.png" alt="一个简单的多人 Git 工作流程的通常事件顺序。"></p>
+<p>Figure 65. 一个简单的多人 Git 工作流程的通常事件顺序</p>
+<h3 id="私有管理团队"><a href="#私有管理团队" class="headerlink" title="私有管理团队"></a>私有管理团队</h3><p>在接下来的情形中，你会看到大型私有团队中贡献者的角色。 在你将学习到的这种工作环境中，小组基于特性进行协作，这些团队的贡献将会由其他人整合。</p>
+<p>让我们假设 John 与 Jessica 在一个特性上工作，同时 Jessica 与 Josie 在第二个特性上工作。 在本例中，公司使用了一种整合-管理者工作流程，独立小组的工作只能被特定的工程师整合，主仓库的 <code>master</code> 分支只能被那些工程师更新。 在这种情况下，所有的工作都是在基于团队的分支上完成的并且稍后会被整合者拉到一起。</p>
+<p>因为 Jessica 在两个特性上工作，并且平行地与两个不同的开发者协作，让我们跟随她的工作流程。 假设她已经克隆了仓库，首先决定在 <code>featureA</code> 上工作。 她为那个特性创建了一个新分支然后在那做了一些工作：</p>
+<pre class=" language-console"><code class="language-console"># Jessica's Machine
+$ git checkout -b featureA
+Switched to a new branch 'featureA'
+$ vim lib/simplegit.rb
+$ git commit -am 'add limit to log function'
+[featureA 3300904] add limit to log function
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+</code></pre>
+<p>在这个时候，她需要将工作共享给 John，所以她推送了 <code>featureA</code> 分支的提交到服务器上。 Jessica 没有 <code>master</code> 分支的推送权限 - 只有整合者有 - 所以为了与 John 协作必须推送另一个分支。</p>
+<pre class=" language-console"><code class="language-console">$ git push -u origin featureA
+...
+To jessica@githost:simplegit.git
+ * [new branch]      featureA -> featureA
+</code></pre>
+<p>Jessica 向 John 发邮件告诉他已经推送了一些工作到 <code>featureA</code> 分支现在可以看一看。 当她等待 John 的反馈时，Jessica 决定与 Josie 开始在 <code>featureB</code> 上工作。 为了开始工作，她基于服务器的 <code>master</code> 分支开始了一个新分支。</p>
+<pre class=" language-console"><code class="language-console"># Jessica's Machine
+$ git fetch origin
+$ git checkout -b featureB origin/master
+Switched to a new branch 'featureB'
+</code></pre>
+<p>现在，Jessica 在 <code>featureB</code> 分支上创建了几次提交：</p>
+<pre class=" language-console"><code class="language-console">$ vim lib/simplegit.rb
+$ git commit -am 'made the ls-tree function recursive'
+[featureB e5b0fdc] made the ls-tree function recursive
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+$ vim lib/simplegit.rb
+$ git commit -am 'add ls-files'
+[featureB 8512791] add ls-files
+ 1 files changed, 5 insertions(+), 0 deletions(-)
+</code></pre>
+<p>Jessica 的仓库看起来像这样：</p>
+<p><img src="https://git-scm.com/book/en/v2/images/managed-team-1.png" alt="Jessica 的初始提交历史。"></p>
+<p>Figure 66. Jessica 的初始提交历史</p>
+<p>她准备好推送工作了，但是一封来自 Josie 的邮件告知一些初始工作已经被推送到服务器上的 <code>featureBee</code> 上了。 Jessica 在能推送到服务器前首先需要将那些改动与她自己的合并。 然后她可以通过 <code>git fetch</code> 抓取 Josie 的改动：</p>
+<pre class=" language-console"><code class="language-console">$ git fetch origin
+...
+From jessica@githost:simplegit
+ * [new branch]      featureBee -> origin/featureBee
+</code></pre>
+<p>Jessica 现在可以通过 <code>git merge</code> 将其合并到她做的工作中：</p>
+<pre class=" language-console"><code class="language-console">$ git merge origin/featureBee
+Auto-merging lib/simplegit.rb
+Merge made by recursive.
+ lib/simplegit.rb |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+</code></pre>
+<p>有点儿问题 - 她需要将在 <code>featureB</code> 分支上合并的工作推送到服务器上的 <code>featureBee</code> 分支。 她可以通过指定本地分支加上冒号（:）加上远程分支给 <code>git push</code> 命令来这样做：</p>
+<pre class=" language-console"><code class="language-console">$ git push -u origin featureB:featureBee
+...
+To jessica@githost:simplegit.git
+   fba9af8..cd685d1  featureB -> featureBee
+</code></pre>
+<p>这称作一个 <em>引用规格</em>。 查看 <a href="https://git-scm.com/book/zh/v2/ch00/r_refspec" target="_blank" rel="noopener">引用规格</a> 了解关于 Git 引用规格与通过它们可以做的不同的事情的详细讨论。 也要注意 <code>-u</code> 标记；这是 <code>--set-upstream</code> 的简写，该标记会为之后轻松地推送与拉取配置分支。</p>
+<p>紧接着，John 发邮件给 Jessica 说他已经推送了一些改动到 <code>featureA</code> 分支并要求她去验证它们。 她运行一个 <code>git fetch</code> 来拉取下那些改动：</p>
+<pre class=" language-console"><code class="language-console">$ git fetch origin
+...
+From jessica@githost:simplegit
+   3300904..aad881d  featureA   -> origin/featureA
+</code></pre>
+<p>然后，通过 <code>git log</code> 她可以看到哪些发生了改变：</p>
+<pre class=" language-console"><code class="language-console">$ git log featureA..origin/featureA
+commit aad881d154acdaeb2b6b18ea0e827ed8a6d671e6
+Author: John Smith <jsmith@example.com>
+Date:   Fri May 29 19:57:33 2009 -0700
+
+    changed log output to 30 from 25
+</code></pre>
+<p>最终，她合并 John 的工作到她自己的 <code>featureA</code> 分支：</p>
+<pre class=" language-console"><code class="language-console">$ git checkout featureA
+Switched to branch 'featureA'
+$ git merge origin/featureA
+Updating 3300904..aad881d
+Fast forward
+ lib/simplegit.rb |   10 +++++++++-
+1 files changed, 9 insertions(+), 1 deletions(-)
+</code></pre>
+<p>Jessica 想要轻微调整一些东西，所以她再次提交然后将其推送回服务器：</p>
+<pre class=" language-console"><code class="language-console">$ git commit -am 'small tweak'
+[featureA 774b3ed] small tweak
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+$ git push
+...
+To jessica@githost:simplegit.git
+   3300904..774b3ed  featureA -> featureA
+</code></pre>
+<p>Jessica 的提交历史现在看起来像这样：</p>
+<p><img src="https://git-scm.com/book/en/v2/images/managed-team-2.png" alt="在一个特性分支提交后 Jessica 的历史。"></p>
+<p>Figure 67. 在一个特性分支提交后 Jessica 的历史</p>
+<p>Jessica、Josie 与 John 通知整合者在服务器上的 <code>featureA</code> 与 <code>featureBee</code> 分支准备好整合到主线中了。 在整合者合并这些分支到主线后，一次抓取会拿下来一个新的合并提交，使历史看起来像这样：</p>
+<p><img src="https://git-scm.com/book/en/v2/images/managed-team-3.png" alt="合并了 Jessica 的两个特性分支后她的历史。"></p>
+<p>Figure 68. 合并了 Jessica 的两个特性分支后她的历史</p>
+<p>许多团队切换到 Git 是因为这一允许多个团队并行工作、并在之后合并不同工作的能力。 团队中更小一些的子小组可以通过远程分支协作而不必影响或妨碍整个团队的能力是 Git 的一个巨大优势。 在这儿看到的工作流程顺序类似这样：</p>
+<p><img src="https://git-scm.com/book/en/v2/images/managed-team-flow.png" alt="这种管理团队工作流程的基本顺序。"></p>
+<p>Figure 69. 这种管理团队工作流程的基本顺序</p>
+<h3 id="派生的公开项目"><a href="#派生的公开项目" class="headerlink" title="派生的公开项目"></a>派生的公开项目</h3><p>向公开项目做贡献有一点儿不同。 因为没有权限直接更新项目的分支，你必须用其他办法将工作给维护者。 第一个例子描述在支持简单派生的 Git 托管上使用派生来做贡献。 许多托管站点支持这个功能（包括 GitHub、BitBucket、Google Code、repo.or.cz 等等），许多项目维护者期望这种风格的贡献。 下一节会讨论偏好通过邮件接受贡献补丁的项目。</p>
+<p>首先，你可能想要克隆主仓库，为计划贡献的补丁或补丁序列创建一个特性分支，然后在那儿做工作。 顺序看起来基本像这样：</p>
+<pre class=" language-console"><code class="language-console">$ git clone (url)
+$ cd project
+$ git checkout -b featureA
+# (work)
+$ git commit
+# (work)
+$ git commit
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Note</th>
+<th>你可能会想要使用 <code>rebase -i</code> 来将工作压缩成一个单独的提交，或者重排提交中的工作使补丁更容易被维护者审核 - 查看 <a href="https://git-scm.com/book/zh/v2/ch00/r_rewriting_history" target="_blank" rel="noopener">重写历史</a> 了解关于交互式变基的更多信息。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>当你的分支工作完成后准备将其贡献回维护者，去原始项目中然后点击 “Fork” 按钮，创建一份自己的可写的项目派生仓库。 然后需要添加这个新仓库 URL 为第二个远程仓库，在本例中称作 <code>myfork</code>：</p>
+<pre class=" language-console"><code class="language-console">$ git remote add myfork (url)
+</code></pre>
+<p>然后需要推送工作到上面。 相对于合并到主分支再推送上去，推送你正在工作的特性分支到仓库上更简单。 原因是工作如果不被接受或者是被拣选的，就不必回退你的 master 分支。 如果维护者合并、变基或拣选你的工作，不管怎样你最终会通过拉取他们的仓库找回来你的工作。</p>
+<pre class=" language-console"><code class="language-console">$ git push -u myfork featureA
+</code></pre>
+<p>当工作已经被推送到你的派生后，你需要通知维护者。 这通常被称作一个拉取请求（pull request），你既可以通过网站生成它 - GitHub 有它自己的 Pull Request 机制，我们将会在 <a href="https://git-scm.com/book/zh/v2/ch00/ch06-github" target="_blank" rel="noopener">GitHub</a> 介绍 - 也可以运行 <code>git request-pull</code> 命令然后手动地将输出发送电子邮件给项目的维护者。</p>
+<p><code>request-pull</code> 命令接受特性分支拉入的基础分支，以及它们拉入的 Git 仓库 URL，输出请求拉入的所有修改的总结。 例如，Jessica 想要发送给 John 一个拉取请求，她已经在刚刚推送的分支上做了两次提交。她可以运行这个：</p>
+<pre class=" language-console"><code class="language-console">$ git request-pull origin/master myfork
+The following changes since commit 1edee6b1d61823a2de3b09c160d7080b8d1b3a40:
+  John Smith (1):
+        added a new function
+
+are available in the git repository at:
+
+  git://githost/simplegit.git featureA
+
+Jessica Smith (2):
+      add limit to log function
+      change log output to 30 from 25
+
+ lib/simplegit.rb |   10 +++++++++-
+ 1 files changed, 9 insertions(+), 1 deletions(-)
+</code></pre>
+<p>这个输出可以被发送给维护者 - 它告诉他们工作是从哪个分支开始、归纳的提交与从哪里拉入这些工作。</p>
+<p>在一个你不是维护者的项目上，通常有一个总是跟踪 <code>origin/master</code> 的 <code>master</code> 分支会很方便，在特性分支上做工作是因为如果它们被拒绝时你可以轻松地丢弃。 如果同一时间主仓库移动了然后你的提交不再能干净地应用，那么使工作主题独立于特性分支也会使你变基（rebase）工作时更容易。 例如，你想要提供第二个特性工作到项目，不要继续在刚刚推送的特性分支上工作 - 从主仓库的 <code>master</code> 分支重新开始：</p>
+<pre class=" language-console"><code class="language-console">$ git checkout -b featureB origin/master
+# (work)
+$ git commit
+$ git push myfork featureB
+# (email maintainer)
+$ git fetch origin
+</code></pre>
+<p>现在，每一个特性都保存在一个贮藏库中 - 类似于补丁队列 - 可以重写、变基与修改而不会让特性互相干涉或互相依赖，像这样：</p>
+<p><img src="https://git-scm.com/book/en/v2/images/public-small-1.png" alt="`featureB` 的初始提交历史。"></p>
+<p>Figure 70. <code>featureB</code> 的初始提交历史</p>
+<p>假设项目维护者已经拉取了一串其他补丁，然后尝试拉取你的第一个分支，但是没有干净地合并。 在这种情况下，可以尝试变基那个分支到 <code>origin/master</code> 的顶部，为维护者解决冲突，然后重新提交你的改动：</p>
+<pre class=" language-console"><code class="language-console">$ git checkout featureA
+$ git rebase origin/master
+$ git push -f myfork featureA
+</code></pre>
+<p>这样会重写你的历史，现在看起来像是 <a href="https://git-scm.com/book/zh/v2/ch00/rpsp_b" target="_blank" rel="noopener"><code>featureA</code> 工作之后的提交历史</a></p>
+<p><img src="https://git-scm.com/book/en/v2/images/public-small-2.png" alt="`featureA` 工作之后的提交历史。"></p>
+<p>Figure 71. <code>featureA</code> 工作之后的提交历史</p>
+<p>因为你将分支变基了，所以必须为推送命令指定 <code>-f</code> 选项，这样才能将服务器上有一个不是它的后代的提交的 <code>featureA</code> 分支替换掉。 一个替代的选项是推送这个新工作到服务器上的一个不同分支（可能称作 <code>featureAv2</code>）。</p>
+<p>让我们看一个更有可能的情况：维护者看到了你的第二个分支上的工作并且很喜欢其中的概念，但是想要你修改一下实现的细节。 你也可以利用这次机会将工作基于项目现在的 <code>master</code> 分支。 你从现在的 <code>origin/master</code> 分支开始一个新分支，在那儿压缩 <code>featureB</code> 的改动，解决任何冲突，改变实现，然后推送它为一个新分支。</p>
+<pre class=" language-console"><code class="language-console">$ git checkout -b featureBv2 origin/master
+$ git merge --squash featureB
+# (change implementation)
+$ git commit
+$ git push myfork featureBv2
+</code></pre>
+<p><code>--squash</code> 选项接受被合并的分支上的所有工作，并将其压缩至一个变更集，使仓库变成一个真正的合并发生的状态，而不会真的生成一个合并提交。 这意味着你的未来的提交将会只有一个父提交，并允许你引入另一个分支的所有改动，然后在记录一个新提交前做更多的改动。 同样 <code>--no-commit</code> 选项在默认合并过程中可以用来延迟生成合并提交。</p>
+<p>现在你可以给维护者发送一条消息，表示你已经做了要求的修改然后他们可以在你的 <code>featureBv2</code> 分支上找到那些改动。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/public-small-3.png" alt="`featureBv2` 工作之后的提交历史。"></p>
+<p>Figure 72. <code>featureBv2</code> 工作之后的提交历史</p>
+<h3 id="通过邮件的公开项目"><a href="#通过邮件的公开项目" class="headerlink" title="通过邮件的公开项目"></a>通过邮件的公开项目</h3><p>许多项目建立了接受补丁的流程 - 需要检查每一个项目的特定规则，因为它们之间有区别。 因为有几个历史悠久的、大型的项目会通过一个开发者的邮件列表接受补丁，现在我们将会通过一个例子来演示。</p>
+<p>工作流程与之前的用例是类似的 - 你为工作的每一个补丁序列创建特性分支。 区别是如何提交它们到项目中。 生成每一个提交序列的电子邮件版本然后邮寄它们到开发者邮件列表，而不是派生项目然后推送到你自己的可写版本。</p>
+<pre class=" language-console"><code class="language-console">$ git checkout -b topicA
+# (work)
+$ git commit
+# (work)
+$ git commit
+</code></pre>
+<p>现在有两个提交要发送到邮件列表。 使用 <code>git format-patch</code> 来生成可以邮寄到列表的 mbox 格式的文件 - 它将每一个提交转换为一封电子邮件，提交信息的第一行作为主题，剩余信息与提交引入的补丁作为正文。 它有一个好处是使用 <code>format-patch</code> 生成的一封电子邮件应用的提交正确地保留了所有的提交信息。</p>
+<pre class=" language-console"><code class="language-console">$ git format-patch -M origin/master
+0001-add-limit-to-log-function.patch
+0002-changed-log-output-to-30-from-25.patch
+</code></pre>
+<p><code>format-patch</code> 命令打印出它创建的补丁文件名字。 <code>-M</code> 开关告诉 Git 查找重命名。 文件最后看起来像这样：</p>
+<pre class=" language-console"><code class="language-console">$ cat 0001-add-limit-to-log-function.patch
+From 330090432754092d704da8e76ca5c05c198e71a8 Mon Sep 17 00:00:00 2001
+From: Jessica Smith <jessica@example.com>
+Date: Sun, 6 Apr 2008 10:17:23 -0700
+Subject: [PATCH 1/2] add limit to log function
+
+Limit log functionality to the first 20
+
+---
+ lib/simplegit.rb |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/lib/simplegit.rb b/lib/simplegit.rb
+index 76f47bc..f9815f1 100644
+--- a/lib/simplegit.rb
++++ b/lib/simplegit.rb
+@@ -14,7 +14,7 @@ class SimpleGit
+   end
+
+   def log(treeish = 'master')
+-    command("git log #{treeish}")
++    command("git log -n 20 #{treeish}")
+   end
+
+   def ls_tree(treeish = 'master')
+--
+2.1.0
+</code></pre>
+<p>也可以编辑这些补丁文件为邮件列表添加更多不想要在提交信息中显示出来的信息。 如果在 <code>---</code> 行与补丁开头（<code>diff --git</code> 行）之间添加文本，那么开发者就可以阅读它；但是应用补丁时会排除它。</p>
+<p>为了将其邮寄到邮件列表，你既可以将文件粘贴进电子邮件客户端，也可以通过命令行程序发送它。 粘贴文本经常会发生格式化问题，特别是那些不会合适地保留换行符与其他空白的 “更聪明的” 客户端。 幸运的是，Git 提供了一个工具帮助你通过 IMAP 发送正确格式化的补丁，这可能对你更容易些。 我们将会演示如何通过 Gmail 发送一个补丁，它正好是我们所知最好的邮件代理；可以在之前提到的 Git 源代码中的 <code>Documentation/SubmittingPatches</code> 文件的最下面了解一系列邮件程序的详细指令。</p>
+<p>首先，需要在 <code>~/.gitconfig</code> 文件中设置 imap 区块。 可以通过一系列的 <code>git config</code> 命令来分别设置每一个值，或者手动添加它们，不管怎样最后配置文件应该看起来像这样：</p>
+<pre class=" language-ini"><code class="language-ini"><span class="token selector">[imap]</span>
+<span class="token constant">  folder</span> <span class="token attr-value"><span class="token punctuation">=</span> "[Gmail]/Drafts"</span>
+<span class="token constant">  host</span> <span class="token attr-value"><span class="token punctuation">=</span> imaps://imap.gmail.com</span>
+<span class="token constant">  user</span> <span class="token attr-value"><span class="token punctuation">=</span> user@gmail.com</span>
+<span class="token constant">  pass</span> <span class="token attr-value"><span class="token punctuation">=</span> p4ssw0rd</span>
+<span class="token constant">  port</span> <span class="token attr-value"><span class="token punctuation">=</span> 993</span>
+<span class="token constant">  sslverify</span> <span class="token attr-value"><span class="token punctuation">=</span> false</span>
+</code></pre>
+<p>如果 IMAP 服务器不使用 SSL，最后两行可能没有必要，host 的值会是 <code>imap://</code> 而不是 <code>imaps://</code>。 当那些设置完成后，可以使用 <code>git imap-send</code> 将补丁序列放在特定 IMAP 服务器的 Drafts 文件夹中：</p>
+<pre class=" language-console"><code class="language-console">$ cat *.patch |git imap-send
+Resolving imap.gmail.com... ok
+Connecting to [74.125.142.109]:993... ok
+Logging in...
+sending 2 messages
+100% (2/2) done
+</code></pre>
+<p>在这个时候，你应该能够到 Drafts 文件夹中，修改收件人字段为想要发送补丁的邮件列表，可能需要抄送给维护者或负责那个部分的人，然后发送。</p>
+<p>你也可以通过一个 SMTP 服务器发送补丁。 同之前一样，你可以通过一系列的 <code>git config</code> 命令来分别设置选项，或者你可以手动地将它们添加到你的 <code>~/.gitconfig</code> 文件的 sendmail 区块：</p>
+<pre class=" language-ini"><code class="language-ini"><span class="token selector">[sendemail]</span>
+<span class="token constant">  smtpencryption</span> <span class="token attr-value"><span class="token punctuation">=</span> tls</span>
+<span class="token constant">  smtpserver</span> <span class="token attr-value"><span class="token punctuation">=</span> smtp.gmail.com</span>
+<span class="token constant">  smtpuser</span> <span class="token attr-value"><span class="token punctuation">=</span> user@gmail.com</span>
+<span class="token constant">  smtpserverport</span> <span class="token attr-value"><span class="token punctuation">=</span> 587</span>
+</code></pre>
+<p>当这完成后，你可以使用 <code>git send-email</code> 发送你的补丁：</p>
+<pre class=" language-console"><code class="language-console">$ git send-email *.patch
+0001-added-limit-to-log-function.patch
+0002-changed-log-output-to-30-from-25.patch
+Who should the emails appear to be from? [Jessica Smith <jessica@example.com>]
+Emails will be sent from: Jessica Smith <jessica@example.com>
+Who should the emails be sent to? jessica@example.com
+Message-ID to be used as In-Reply-To for the first email? y
+</code></pre>
+<p>然后，对于正在发送的每一个补丁，Git 会吐出这样的一串日志信息：</p>
+<pre class=" language-text"><code class="language-text">(mbox) Adding cc: Jessica Smith <jessica@example.com> from
+  \line 'From: Jessica Smith <jessica@example.com>'
+OK. Log says:
+Sendmail: /usr/sbin/sendmail -i jessica@example.com
+From: Jessica Smith <jessica@example.com>
+To: jessica@example.com
+Subject: [PATCH 1/2] added limit to log function
+Date: Sat, 30 May 2009 13:29:15 -0700
+Message-Id: <1243715356-61726-1-git-send-email-jessica@example.com>
+X-Mailer: git-send-email 1.6.2.rc1.20.g8c5b.dirty
+In-Reply-To: <y>
+References: <y>
+
+Result: OK
+</code></pre>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这个部分介绍了处理可能会遇到的几个迥然不同类型的 Git 项目的一些常见的工作流程，介绍了帮助管理这个过程的一些新工具。 接下来，你会了解到如何在贡献的另一面工作：维护一个 Git 项目。 你将会学习如何成为一个仁慈的独裁者或整合管理者。</p>
+<h2 id="维护项目"><a href="#维护项目" class="headerlink" title="维护项目"></a>维护项目</h2><p>除了如何有效地参与一个项目的贡献之外，你可能也需要了解如何维护项目。 这包含接受并应用别人使用 <code>format-patch</code> 生成并通过电子邮件发送过来的补丁，或对项目添加的远程版本库分支中的更改进行整合。 但无论是管理版本库，还是帮忙验证、审核收到的补丁，都需要同其他贡献者约定某种长期可持续的工作方式。</p>
+<h3 id="在特性分支中工作"><a href="#在特性分支中工作" class="headerlink" title="在特性分支中工作"></a>在特性分支中工作</h3><p>如果你想向项目中整合一些新东西，最好将这些尝试局限在特性分支——一种通常用来尝试新东西的临时分支中。 这样便于单独调整补丁，如果遇到无法正常工作的情况，可以先不用管，等到有时间的时候再来处理。 如果你基于你所尝试进行工作的特性为分支创建一个简单的名字，比如 <code>ruby_client</code> 或者具有类似描述性的其他名字，这样即使你必须暂时抛弃它，以后回来时也不会忘记。 项目的维护者一般还会为这些分支附带命名空间，比如 <code>sc/ruby_client</code>（其中 <code>sc</code> 是贡献该项工作的人名称的简写）。 你应该记得，可以使用如下方式基于 master 分支建立特性分支：</p>
+<pre class=" language-console"><code class="language-console">$ git branch sc/ruby_client master
+</code></pre>
+<p>或者如果你同时想立刻切换到新分支上的话，可以使用 <code>checkout -b</code> 选项：</p>
+<pre class=" language-console"><code class="language-console">$ git checkout -b sc/ruby_client master
+</code></pre>
+<p>现在你已经准备好将别人贡献的工作加入到这个特性分支，并考虑是否将其合并到长期分支中去了。</p>
+<h3 id="应用来自邮件的补丁"><a href="#应用来自邮件的补丁" class="headerlink" title="应用来自邮件的补丁"></a>应用来自邮件的补丁</h3><p>如果你通过电子邮件收到了一个需要整合进入项目的补丁，你需要将其应用到特性分支中进行评估。 有两种应用该种补丁的方法：使用 <code>git apply</code>，或者使用 <code>git am</code>。</p>
+<h4 id="使用-apply-命令应用补丁"><a href="#使用-apply-命令应用补丁" class="headerlink" title="使用 apply 命令应用补丁"></a>使用 <code>apply</code> 命令应用补丁</h4><p>如果你收到了一个使用 <code>git diff</code> 或 Unix <code>diff</code> 命令（不推荐使用这种方式，具体见下一节）创建的补丁，可以使用 <code>git apply</code> 命令来应用。 假设你将补丁保存在了 <code>/tmp/patch-ruby-client.patch</code>中，可以这样应用补丁：</p>
+<pre class=" language-console"><code class="language-console">$ git apply /tmp/patch-ruby-client.patch
+</code></pre>
+<p>这会修改工作目录中的文件。 它与运行 <code>patch -p1</code> 命令来应用补丁几乎是等效的，但是这种方式更加严格，相对于 patch 来说，它能够接受的模糊匹配更少。 它也能够处理 <code>git diff</code> 格式文件所描述的文件添加、删除和重命名操作，而 <code>patch</code> 则不会。 最后，<code>git apply</code> 命令采用了一种“全部应用，否则就全部撤销（apply all or abort all）”的模型，即补丁只有全部内容都被应用和完全不被应用两个状态，而 <code>patch</code> 可能会导致补丁文件被部分应用，最后使你的工作目录保持在一个比较奇怪的状态。 总体来看，<code>git apply</code> 命令要比 <code>patch</code> 谨慎得多。 并且，它不会为你创建提交——在运行之后，你需要手动暂存并提交补丁所引入的更改。</p>
+<p>在实际应用补丁前，你还可以使用 git apply 来检查补丁是否可以顺利应用——即对补丁运行 <code>git apply --check</code> 命令：</p>
+<pre class=" language-console"><code class="language-console">$ git apply --check 0001-seeing-if-this-helps-the-gem.patch
+error: patch failed: ticgit.gemspec:1
+error: ticgit.gemspec: patch does not apply
+</code></pre>
+<p>如果没有产生输出，则该补丁可以顺利应用。 如果检查失败了，该命令还会以一个非零的状态退出，所以需要时你也可以在脚本中使用它。</p>
+<h4 id="使用-am-命令应用补丁"><a href="#使用-am-命令应用补丁" class="headerlink" title="使用 am 命令应用补丁"></a>使用 <code>am</code> 命令应用补丁</h4><p>如果补丁的贡献者也是一个 Git 用户，并且其能熟练使用 <code>format-patch</code> 命令来生成补丁，这样的话你的工作会变得更加轻松，因为这种补丁中包含了作者信息和提交信息供你参考。 如果可能的话，请鼓励贡献者使用 <code>format-patch</code> 而不是 <code>diff</code> 来为你生成补丁。 而只有对老式的补丁，你才必须使用 <code>git apply</code>命令。</p>
+<p>要应用一个由 <code>format-patch</code> 命令生成的补丁，你应该使用 <code>git am</code> 命令。 从技术的角度看，<code>git am</code>是为了读取 mbox 文件而构建的，mbox 是一种用来在单个文本文件中存储一个或多个电子邮件消息的简单纯文本格式。 其大致格式如下所示：</p>
+<pre class=" language-console"><code class="language-console">From 330090432754092d704da8e76ca5c05c198e71a8 Mon Sep 17 00:00:00 2001
+From: Jessica Smith <jessica@example.com>
+Date: Sun, 6 Apr 2008 10:17:23 -0700
+Subject: [PATCH 1/2] add limit to log function
+
+Limit log functionality to the first 20
+</code></pre>
+<p>这其实就是你前面看到的 format-patch 命令输出的开始几行。 而同时它也是有效的 mbox 电子邮件格式。 如果有人使用 git send-email 命令将补丁以电子邮件的形式发送给你，你便可以将它下载为 mbox 格式的文件，之后将 git am 命令指向该文件，它会应用其中包含的所有补丁。 如果你所使用的邮件客户端能够同时将多封邮件保存为 mbox 格式的文件，你甚至能够将一系列补丁打包为单个 mbox 文件，并利用 <code>git am</code> 命令将它们一次性全部应用。</p>
+<p>然而，如果贡献者将 <code>format-patch</code> 生成的补丁文件上传到类似 Request Ticket 的任务处理系统，你可以先将其保存到本地，之后通过 <code>git am</code> 来应用补丁：</p>
+<pre class=" language-console"><code class="language-console">$ git am 0001-limit-log-function.patch
+Applying: add limit to log function
+</code></pre>
+<p>你会看到补丁被顺利地应用，并且为你自动创建了一个新的提交。 其中的作者信息来自于电子邮件头部的 <code>From</code> 和 <code>Date</code> 字段，提交消息则取自 <code>Subject</code> 和邮件正文中补丁之前的内容。 比如，应用上面那个 mbox 示例后生成的提交是这样的：</p>
+<pre><code>$ git log --pretty=fuller -1
+commit 6c5e70b984a60b3cecd395edd5b48a7575bf58e0
+Author:     Jessica Smith &lt;jessica@example.com&gt;
+AuthorDate: Sun Apr 6 10:17:23 2008 -0700
+Commit:     Scott Chacon &lt;schacon@gmail.com&gt;
+CommitDate: Thu Apr 9 09:19:06 2009 -0700
+
+   add limit to log function
+
+   Limit log functionality to the first 20
+</code></pre><p>其中 <code>Commit</code> 信息表示的是应用补丁的人和应用补丁的时间。 <code>Author</code> 信息则表示补丁的原作者和原本的创建时间。</p>
+<p>但是，有时候无法顺利地应用补丁。 这也许是因为你的主分支和创建补丁的分支相差较多，也有可能是因为这个补丁依赖于其他你尚未应用的补丁。 这种情况下，<code>git am</code> 进程将会报错并且询问你要做什么：</p>
+<pre class=" language-console"><code class="language-console">$ git am 0001-seeing-if-this-helps-the-gem.patch
+Applying: seeing if this helps the gem
+error: patch failed: ticgit.gemspec:1
+error: ticgit.gemspec: patch does not apply
+Patch failed at 0001.
+When you have resolved this problem run "git am --resolved".
+If you would prefer to skip this patch, instead run "git am --skip".
+To restore the original branch and stop patching run "git am --abort".
+</code></pre>
+<p>该命令将会在所有出现问题的文件内加入冲突标记，就和发生冲突的合并或变基操作一样。 而你解决问题的手段很大程度上也是一样的——即手动编辑那些文件来解决冲突，暂存新的文件，之后运行 <code>git am --resolved</code> 继续应用下一个补丁：</p>
+<pre class=" language-console"><code class="language-console">$ (fix the file)
+$ git add ticgit.gemspec
+$ git am --resolved
+Applying: seeing if this helps the gem
+</code></pre>
+<p>如果你希望 Git 能够尝试以更加智能的方式解决冲突，你可以对其传递 <code>-3</code> 选项来使 Git 尝试进行三方合并。 该选项默认并没有打开，因为如果用于创建补丁的提交并不在你的版本库内的话，这样做是没有用处的。 而如果你确实有那个提交的话——比如补丁是基于某个公共提交的——那么通常 <code>-3</code> 选项对于应用有冲突的补丁是更加明智的选择。</p>
+<pre class=" language-console"><code class="language-console">$ git am -3 0001-seeing-if-this-helps-the-gem.patch
+Applying: seeing if this helps the gem
+error: patch failed: ticgit.gemspec:1
+error: ticgit.gemspec: patch does not apply
+Using index info to reconstruct a base tree...
+Falling back to patching base and 3-way merge...
+No changes -- Patch already applied.
+</code></pre>
+<p>比如上面这种情况，我在之前已经应用过同样的补丁。 如果没有 <code>-3</code> 选项的话，这看起来就像是存在一个冲突。</p>
+<p>如果你正在利用一个 mbox 文件应用多个补丁，也可以在交互模式下运行 <code>am</code> 命令，这样在每个补丁之前，它会停住询问你是否要应用该补丁：</p>
+<pre class=" language-console"><code class="language-console">$ git am -3 -i mbox
+Commit Body is:
+--------------------------
+seeing if this helps the gem
+--------------------------
+Apply? [y]es/[n]o/[e]dit/[v]iew patch/[a]ccept all
+</code></pre>
+<p>这在你保存的补丁较多时很好用，因为你可以在应用之前查看忘掉内容的补丁，并且跳过已经应用过的补丁。</p>
+<p>当与你的特性相关的所有补丁都被应用并提交到分支中之后，你就可以选择是否以及如何将其整合到更长期的分支中去了。</p>
+<h3 id="检出远程分支"><a href="#检出远程分支" class="headerlink" title="检出远程分支"></a>检出远程分支</h3><p>如果你的贡献者建立了自己的版本库，并且向其中推送了若干修改，之后将版本库的 URL 和包含更改的远程分支发送给你，那么你可以将其添加为一个远程分支，并且在本地进行合并。</p>
+<p>比如 Jessica 向你发送了一封电子邮件，内容是在她的版本库中的 <code>ruby-client</code> 分支中有一个很不错的新功能，为了测试该功能，你可以将其添加为一个远程分支，并在本地检出：</p>
+<pre class=" language-console"><code class="language-console">$ git remote add jessica git://github.com/jessica/myproject.git
+$ git fetch jessica
+$ git checkout -b rubyclient jessica/ruby-client
+</code></pre>
+<p>如果她再次发邮件说另一个分支中包含另一个优秀功能，因为之前已经设置好远程分支了，你就可以直接进行抓取及检出操作。</p>
+<p>这对于与他人长期合作工作来说很有用。 而对于提交补丁频率较小的贡献者，相对于每个人维护自己的服务器，不断增删远程分支的做法，使用电子邮件来接收可能会比较省时。 况且你也不会想要加入数百个只提供一两个补丁的远程分支。 然而，脚本和托管服务在一定程度上可以简化这些工作——这很大程度上依赖于你和你的贡献者开发的方式。</p>
+<p>这种方式的另一种优点是你可以同时得到提交历史。 虽然代码合并中可能会出现问题，但是你能获知他人的工作是基于你的历史中的具体哪一个位置；所以Git 会默认进行三方合并，不需要提供 <code>-3</code> 选项，你也不需要担心补丁是基于某个你无法访问的提交生成的。</p>
+<p>对于非持续性的合作，如果你依然想要以这种方式拉取数据的话，你可以对远程版本库的 URL 调用 <code>git pull</code> 命令。 这会执行一个一次性的抓取，而不会将该 URL 存为远程引用：</p>
+<pre class=" language-console"><code class="language-console">$ git pull https://github.com/onetimeguy/project
+From https://github.com/onetimeguy/project
+ * branch            HEAD       -> FETCH_HEAD
+Merge made by recursive.
+</code></pre>
+<h3 id="确定引入了哪些东西"><a href="#确定引入了哪些东西" class="headerlink" title="确定引入了哪些东西"></a>确定引入了哪些东西</h3><p>你已经有了一个包含其他人贡献的特性分支。 现在你可以决定如何处理它们了。 本节回顾了若干命令，以便于你检查若将其合并入主分支所引入的更改。</p>
+<p>一般来说，你应该对该分支中所有 master 分支尚未包含的提交进行检查。 通过在分支名称前加入 <code>--not</code>选项，你可以排除 master 分支中的提交。 这和我们之前使用的 <code>master..contrib</code> 格式是一样的。 假设贡献者向你发送了两个补丁，为此你创建了一个名叫 <code>contrib</code> 的分支并在其上应用补丁，你可以运行：</p>
+<pre class=" language-console"><code class="language-console">$ git log contrib --not master
+commit 5b6235bd297351589efc4d73316f0a68d484f118
+Author: Scott Chacon <schacon@gmail.com>
+Date:   Fri Oct 24 09:53:59 2008 -0700
+
+    seeing if this helps the gem
+
+commit 7482e0d16d04bea79d0dba8988cc78df655f16a0
+Author: Scott Chacon <schacon@gmail.com>
+Date:   Mon Oct 22 19:38:36 2008 -0700
+
+    updated the gemspec to hopefully work better
+</code></pre>
+<p>如果要查看每次提交所引入的具体修改，你应该记得可以给 <code>git log</code> 命令传递 <code>-p</code> 选项，这样它会在每次提交后面附加对应的差异（diff）。</p>
+<p>而要查看将该特性分支与另一个分支合并的完整 diff，你可能需要使用一个有些奇怪的技巧来得到正确的结果。 你可能会想到这种方式：</p>
+<pre class=" language-console"><code class="language-console">$ git diff master
+</code></pre>
+<p>这个命令会输出一个 diff，但它可能并不是我们想要的。 如果在你创建特性分支之后，<code>master</code> 分支向前移动了，你获得的结果就会显得有些不对。 这是因为 Git 会直接将该特性分支与 <code>master</code> 分支的最新提交快照进行比较。 比如说你在 <code>master</code> 分支中向某个文件添加了一行内容，那么直接比对最新快照的结果看上去就像是你在特性分支中将这一行删除了。</p>
+<p>如果 <code>master</code> 分支是你的特性分支的直接祖先，其实是没有任何问题的；但是一旦两个分支的历史产生了分叉，上述比对产生的 diff 看上去就像是将特性分支中所有的新东西加入，并且将 <code>master</code> 分支所独有的东西删除。</p>
+<p>而你真正想要检查的东西，实际上仅仅是特性分支所添加的更改——也就是该分支与 master 分支合并所要引入的工作。 要达到此目的，你需要让 Git 对特性分支上最新的提交与该分支与 master 分支的首个公共祖先进行比较。</p>
+<p>从技术的角度讲，你可以以手工的方式找出公共祖先，并对其显式运行 diff 命令：</p>
+<pre class=" language-console"><code class="language-console">$ git merge-base contrib master
+36c7dba2c95e6bbb78dfa822519ecfec6e1ca649
+$ git diff 36c7db
+</code></pre>
+<p>然而，这种做法比较麻烦，所以 Git 提供了一种比较便捷的方式：三点语法。 对于 <code>diff</code> 命令来说，你可以通过把 <code>...</code> 置于另一个分支名后来对该分支的最新提交与两个分支的共同祖先进行比较：</p>
+<pre class=" language-console"><code class="language-console">$ git diff master...contrib
+</code></pre>
+<p>该命令仅会显示自当前特性分支与 master 分支的共同祖先起，该分支中的工作。 这个语法很有用，应该牢记。</p>
+<h3 id="将贡献的工作整合进来"><a href="#将贡献的工作整合进来" class="headerlink" title="将贡献的工作整合进来"></a>将贡献的工作整合进来</h3><p>当特性分支中所有的工作都已经准备好整合进入更靠近主线的分支时，接下来的问题就是如何进行整合了。 此外，还有一个问题是，你想使用怎样的总体工作流来维护你的项目？ 你的选择有很多，我们会介绍其中的一部分。</p>
+<h4 id="合并工作流"><a href="#合并工作流" class="headerlink" title="合并工作流"></a>合并工作流</h4><p>一种非常简单的工作流会直接将工作合并进入 <code>master</code> 分支。 在这种情况下，<code>master</code> 分支包含的代码是基本稳定的。 当你完成某个特性分支的工作，或审核通过了其他人所贡献的工作时，你会将其合并进入 master 分支，之后将特性分支删除，如此反复。 如果我们的版本库包含类似 <a href="https://git-scm.com/book/zh/v2/ch00/rmerwf_a" target="_blank" rel="noopener">包含若干特性分支的提交历史。</a> 的两个名称分别为 <code>ruby_client</code> 和 <code>php_client</code> 的分支，并且我们先合并 <code>ruby_client</code> 分支，之后合并 <code>php_client</code> 分支，那么提交历史最后会变成 <a href="https://git-scm.com/book/zh/v2/ch00/rmerwf_b" target="_blank" rel="noopener">合并特性分支之后。</a> 的样子。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/merging-workflows-1.png" alt="包含若干特性分支的提交历史。"></p>
+<p>Figure 73. 包含若干特性分支的提交历史。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/merging-workflows-2.png" alt="合并特性分支之后。"></p>
+<p>Figure 74. 合并特性分支之后。</p>
+<p>这也许是最简单的工作流了，但是当项目更大，或更稳定，你对自己所引入的工作更加在意时，它可能会带来问题。</p>
+<p>如果你的项目非常重要，你可能会使用两阶段合并循环。 在这种情况下，你会维护两个长期分支，分别是 <code>master</code> 和 <code>develop</code>，<code>master</code> 分支只会在一个非常稳定的版本发布时才会更新，而所有的新代码会首先整合进入 <code>develop</code> 分支。 你定期将这两个分支推送到公共版本库中。 每次需要合并新的特性分支时（<a href="https://git-scm.com/book/zh/v2/ch00/rmerwf_c" target="_blank" rel="noopener">合并特性分支前。</a>），你都应该合并进入 <code>develop</code> 分支（<a href="https://git-scm.com/book/zh/v2/ch00/rmerwf_d" target="_blank" rel="noopener">合并特性分支后。</a>）；当打标签发布的时候，你会将 <code>master</code> 分支快进到已经稳定的 <code>develop</code> 分支（<a href="https://git-scm.com/book/zh/v2/ch00/rmerwf_e" target="_blank" rel="noopener">一次发布之后。</a>）。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/merging-workflows-3.png" alt="合并特性分支前。"></p>
+<p>Figure 75. 合并特性分支前。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/merging-workflows-4.png" alt="合并特性分支后。"></p>
+<p>Figure 76. 合并特性分支后。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/merging-workflows-5.png" alt="一次发布之后。"></p>
+<p>Figure 77. 一次发布之后。</p>
+<p>这样当人们克隆你项目的版本库后，既可以检出 master 分支以构建最新的稳定版本并保持更新，也可以检出包含更多新东西的 develop 分支。 你也可以扩展这个概念，维护一个将所有工作合并到一起的整合分支。 当该分支的代码稳定并通过测试之后，将其合并进入 develop 分支；经过一段时间，确认其稳定之后，将其以快进的形式并入 master 分支。</p>
+<h4 id="大项目合并工作流"><a href="#大项目合并工作流" class="headerlink" title="大项目合并工作流"></a>大项目合并工作流</h4><p>Git 项目包含四个长期分支：<code>master</code>、<code>next</code>，用于新工作的 <code>pu</code>（proposed updates）和用于维护性向后移植工作（maintenance backports）的 <code>maint</code> 分支。 贡献者的新工作会以类似之前所介绍的方式收入特性分支中（见 <a href="https://git-scm.com/book/zh/v2/ch00/rmerwf_f" target="_blank" rel="noopener">管理复杂的一系列接收贡献的平行特性分支。</a>）。 之后对特性分支进行测试评估，检查其是否已经能够合并，或者仍需要更多工作。 安全的特性分支会被合并入 <code>next</code> 分支，之后该分支会被推送使得所有人都可以尝试整合到一起的特性。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/large-merges-1.png" alt="管理复杂的一系列接收贡献的平行特性分支。"></p>
+<p>Figure 78. 管理复杂的一系列接收贡献的平行特性分支。</p>
+<p>如果特性分支需要更多工作，它则会被并入 <code>pu</code> 分支。 当它们完全稳定之后，会被再次并入 <code>master</code> 分支。 这意味着 <code>master</code> 分支始终在进行快进，<code>next</code> 分支偶尔会被变基，而 <code>pu</code> 分支的变基比较频繁：</p>
+<p><img src="https://git-scm.com/book/en/v2/images/large-merges-2.png" alt="将贡献的特性分支并入长期整合分支。"></p>
+<p>Figure 79. 将贡献的特性分支并入长期整合分支。</p>
+<p>当特性分支最终被并入 <code>master</code> 分支后，便会被从版本库中删除掉。 Git 项目还有一个从上一次发布中派生出来的 <code>maint</code> 分支来提供向后移植过来的补丁以供发布维护更新。 因此，当你克隆 Git 的版本库之后，就会有四个可分别评估该项目开发的不同阶段的可检出的分支，检出哪个分支，取决于你需要多新的版本，或者你想要如何进行贡献；对于维护者来说，这套结构化的工作流能帮助它们审查新的贡献。</p>
+<h4 id="变基与拣选工作流"><a href="#变基与拣选工作流" class="headerlink" title="变基与拣选工作流"></a>变基与拣选工作流</h4><p>为了保持线性的提交历史，有些维护者更喜欢在 master 分支上对贡献过来的工作进行变基和拣选，而不是直接将其合并。 当你完成了某个特性分支中的工作，并且决定要将其整合的时候，你可以在该分支中运行变基命令，在当前 master 分支（或者是 <code>develop</code> 等分支）的基础上重新构造修改。 如果结果理想的话，你可以快进 <code>master</code> 分支，最后得到一个线性的项目提交历史。</p>
+<p>另一种将引入的工作转移到其他分支的方法是拣选。 Git 中的拣选类似于对特定的某次提交的变基。 它会提取该提交的补丁，之后尝试将其重新应用到当前分支上。 这种方式在你只想引入特性分支中的某个提交，或者特性分支中只有一个提交，而你不想运行变基时很有用。 举个例子，假设你的项目提交历史类似：</p>
+<p><img src="https://git-scm.com/book/en/v2/images/rebasing-1.png" alt="拣选之前的示例历史。"></p>
+<p>Figure 80. 拣选之前的示例历史。</p>
+<p>如果你希望将提交 <code>e43a6</code> 拉取到 master 分支，你可以运行：</p>
+<pre class=" language-console"><code class="language-console">$ git cherry-pick e43a6fd3e94888d76779ad79fb568ed180e5fcdf
+Finished one cherry-pick.
+[master]: created a0a41a9: "More friendly message when locking the index fails."
+ 3 files changed, 17 insertions(+), 3 deletions(-)
+</code></pre>
+<p>这样会拉取和 <code>e43a6</code> 相同的更改，但是因为应用的日期不同，你会得到一个新的提交 SHA-1 值。 现在你的历史会变成这样：</p>
+<p><img src="https://git-scm.com/book/en/v2/images/rebasing-2.png" alt="拣选特性分支中的一个提交后的历史。"></p>
+<p>Figure 81. 拣选特性分支中的一个提交后的历史。</p>
+<p>现在你可以删除这个特性分支，并丢弃不想拉入的提交。</p>
+<h4 id="Rerere"><a href="#Rerere" class="headerlink" title="Rerere"></a>Rerere</h4><p>如果你在进行大量的合并或变基，或维护一个长期的特性分支，Git 提供的一个叫做“rerere”的功能会有一些帮助。</p>
+<p>Rerere 是“重用已记录的冲突解决方案（reuse recorded resolution）”的意思——它是一种简化冲突解决的方法。 当启用 rerere 时，Git 将会维护一些成功合并之前和之后的镜像，当 Git 发现之前已经修复过类似的冲突时，便会使用之前的修复方案，而不需要你的干预。</p>
+<p>这个功能包含两个部分：一个配置选项和一个命令。 其中的配置选项是 <code>rerere.enabled</code>，把它放在全局配置中就可以了：</p>
+<pre class=" language-console"><code class="language-console">$ git config --global rerere.enabled true
+</code></pre>
+<p>现在每当你进行一次需要解决冲突的合并时，解决方案都会被记录在缓存中，以备之后使用。</p>
+<p>如果你需要和 rerere 的缓存交互，你可以使用 <code>git rerere</code> 命令。 当单独调用它时，Git 会检查解决方案数据库，尝试寻找一个和当前任一冲突相关的匹配项并解决冲突（尽管当 <code>rerere.enabled</code> 被设置为 <code>true</code> 时会自动进行）。 它也有若干子命令，可用来查看记录项，删除特定解决方案和清除缓存全部内容等。 我们将在 <a href="https://git-scm.com/book/zh/v2/ch00/r_rerere" target="_blank" rel="noopener">Rerere</a> 中详细探讨。</p>
+<h3 id="为发布打标签"><a href="#为发布打标签" class="headerlink" title="为发布打标签"></a>为发布打标签</h3><p>当你决定进行一次发布时，你可能想要留下一个标签，这样在之后的任何一个提交点都可以重新创建该发布。 你在 <a href="https://git-scm.com/book/zh/v2/ch00/ch02-git-basics" target="_blank" rel="noopener">Git 基础</a> 中已经了解了创建新标签的过程。 作为一个维护者，如果你决定要为标签签名的话，打标签的过程应该是这样子的：</p>
+<pre class=" language-console"><code class="language-console">$ git tag -s v1.5 -m 'my signed 1.5 tag'
+You need a passphrase to unlock the secret key for
+user: "Scott Chacon <schacon@gmail.com>"
+1024-bit DSA key, ID F721C45A, created 2009-02-09
+</code></pre>
+<p>如果你为标签签名了，你可能会遇到分发用来签名的 PGP 公钥的问题。 Git 项目的维护者已经解决了这一问题，其方法是在版本库中以 blob 对象的形式包含他们的公钥，并添加一个直接指向该内容的标签。 要完成这一任务，首先你可以通过运行 <code>gpg --list-keys</code> 找出你所想要的 key：</p>
+<pre class=" language-console"><code class="language-console">$ gpg --list-keys
+/Users/schacon/.gnupg/pubring.gpg
+---------------------------------
+pub   1024D/F721C45A 2009-02-09 [expires: 2010-02-09]
+uid                  Scott Chacon <schacon@gmail.com>
+sub   2048g/45D02282 2009-02-09 [expires: 2010-02-09]
+</code></pre>
+<p>之后你可以通过导出 key 并通过管道传递给 <code>git hash-object</code> 来直接将 key 导入到 Git 的数据库中，<code>git hash-object</code> 命令会向 Git 中写入一个包含其内容的新 blob 对象，并向你返回该 blob 对象的 SHA-1 值：</p>
+<pre class=" language-console"><code class="language-console">$ gpg -a --export F721C45A | git hash-object -w --stdin
+659ef797d181633c87ec71ac3f9ba29fe5775b92
+</code></pre>
+<p>既然 Git 中已经包含你的 key 的内容了，你就可以通过指定由 <code>hash-object</code> 命令给出的新 SHA-1 值来创建一个直接指向它的标签：</p>
+<pre class=" language-console"><code class="language-console">$ git tag -a maintainer-pgp-pub 659ef797d181633c87ec71ac3f9ba29fe5775b92
+</code></pre>
+<p>如果你运行 <code>git push --tags</code> 命令，那么 <code>maintainer-pgp-pub</code> 标签将会被共享给所有人。 需要校验标签的人可以通过从数据库中直接拉取 blob 对象并导入到 GPG 中来导入 PGP key：</p>
+<pre class=" language-console"><code class="language-console">$ git show maintainer-pgp-pub | gpg --import
+</code></pre>
+<p>人们可以使用这个 key 来校验所有由你签名的标签。 另外，如果你在标签信息中包含了一些操作说明，用户可以通过运行 <code>git show &lt;tag&gt;</code> 来获取更多关于标签校验的说明。</p>
+<h3 id="生成一个构建号"><a href="#生成一个构建号" class="headerlink" title="生成一个构建号"></a>生成一个构建号</h3><p>Git 中不存在随每次提交递增的“v123”之类的数字序列，如果你想要为提交附上一个可读的名称，可以对其运行 <code>git describe</code> 命令。 Git 将会给出一个字符串，它由最近的标签名、自该标签之后的提交数目和你所描述的提交的部分 SHA-1 值构成：</p>
+<pre class=" language-console"><code class="language-console">$ git describe master
+v1.6.2-rc1-20-g8c5b85c
+</code></pre>
+<p>这样你在导出一个快照或构建时，可以给出一个便于人们理解的命名。 实际上，如果你的 Git 是从 Git 自己的版本库克隆下来并构建的，那么 <code>git --version</code> 命令给出的结果是与此类似的。 如果你所描述的提交自身就有一个标签，那么它将只会输出标签名，没有后面两项信息。</p>
+<p>注意 <code>git describe</code> 命令只适用于有注解的标签（即使用 <code>-a</code> 或 <code>-s</code> 选项创建的标签），所以如果你在使用 <code>git describe</code> 命令的话，为了确保能为标签生成合适的名称，打发布标签时都应该采用加注解的方式。 你也可以使用这个字符串来调用 checkout 或 show 命令，但是这依赖于其末尾的简短 SHA-1 值，因此不一定一直有效。 比如，最近 Linux 内核为了保证 SHA-1 值对象的唯一性，将其位数由 8 位扩展到了 10 位，导致以前的 <code>git describe</code> 输出全部失效。</p>
+<h3 id="准备一次发布"><a href="#准备一次发布" class="headerlink" title="准备一次发布"></a>准备一次发布</h3><p>现在你可以发布一个构建了。 其中一件事情就是为那些不使用 Git 的可怜包们创建一个最新的快照归档。 使用 <code>git archive</code> 命令完成此工作：</p>
+<pre class=" language-console"><code class="language-console">$ git archive master --prefix='project/' | gzip > `git describe master`.tar.gz
+$ ls *.tar.gz
+v1.6.2-rc1-20-g8c5b85c.tar.gz
+</code></pre>
+<p>如果有人将这个压缩包解压，他就可以得到你的项目文件夹的最新快照。 你也可以以类似的方式创建一个 zip 压缩包，但此时你应该向 <code>git archive</code> 命令传递 <code>--format=zip</code> 选项：</p>
+<pre class=" language-console"><code class="language-console">$ git archive master --prefix='project/' --format=zip > `git describe master`.zip
+</code></pre>
+<p>现在你有了本次发布的一个 tar 包和一个 zip 包，可以将其上传到网站或以电子邮件的形式发送给人们。</p>
+<h3 id="制作提交简报"><a href="#制作提交简报" class="headerlink" title="制作提交简报"></a>制作提交简报</h3><p>现在是时候通知邮件列表里那些好奇你的项目发生了什么的人了。 使用 <code>git shortlog</code> 命令可以快速生成一份包含从上次发布之后项目新增内容的修改日志（changelog）类文档。 它会对你给定范围内的所有提交进行总结；比如，你的上一次发布名称是 v1.0.1，那么下面的命令可以给出上次发布以来所有提交的总结：</p>
+<pre class=" language-console"><code class="language-console">$ git shortlog --no-merges master --not v1.0.1
+Chris Wanstrath (8):
+      Add support for annotated tags to Grit::Tag
+      Add packed-refs annotated tag support.
+      Add Grit::Commit#to_patch
+      Update version and History.txt
+      Remove stray `puts`
+      Make ls_tree ignore nils
+
+Tom Preston-Werner (4):
+      fix dates in history
+      dynamic version method
+      Version bump to 1.0.2
+      Regenerated gemspec for version 1.0.2
+</code></pre>
+<p>这份整洁的总结包括了自 v1.0.1 以来的所有提交，并且已经按照作者分好组，你可以通过电子邮件将其直接发送到列表中。</p>
+<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p>你现在能自如地使用 Git 为项目做出贡献、维护自己的项目或采纳其他用户的贡献了。 恭喜你成为了一个高效的 Git 开发者！ 下一章中，你将会学到如何使用规模最大最流行的 Git 托管服务，GitHub。</p>
+
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'brA0u8dhiFmWzBQJ5YDMevuw-gzGzoHsz',
+        appKey: 'InzuBbqaqOss16gJu1jiKE7F',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/07/15/GitHub/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="GitHub">
+                        
+                        <span class="card-title">GitHub</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            GitHub 是最大的 Git 版本库托管商，是成千上万的开发者和项目能够合作进行的中心。 大部分 Git 版本库都托管在 GitHub，很多开源项目使用 GitHub 实现 Git 托管、问题追踪、代码审查以及其它事情。 所以，尽管这不是
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Git/" class="post-category" target="_blank">
+                                    Git
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Git/" target="_blank">
+                        <span class="chip bg-color">Git</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/07/15/服务器上的Git/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="服务器上的Git">
+                        
+                        <span class="card-title">服务器上的Git</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            到目前为止，你应该已经有办法使用 Git 来完成日常工作。 然而，为了使用 Git 协作功能，你还需要有远程的 Git 仓库。 尽管在技术上你可以从个人仓库进行推送（push）和拉取（pull）来修改内容，但不鼓励使用这种方法，因为一不留心
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Git/" class="post-category" target="_blank">
+                                    Git
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Git/" target="_blank">
+                        <span class="chip bg-color">Git</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">249.9k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/chenshuoke" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:henu_chenshuoke@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2604689299" class="tooltipped" data-tooltip="QQ联系我: 2604689299" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

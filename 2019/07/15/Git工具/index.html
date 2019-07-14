@@ -1,0 +1,3904 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Git工具, 孤狼的博客">
+    <meta name="description" content="现在，你已经学习了管理或者维护 Git 仓库、实现代码控制所需的大多数日常命令和工作流程。 你已经尝试了跟踪和提交文件的基本操作，并且发挥了暂存区和轻量级的分支及合并的威力。
+接下来你将学习一些 Git 的强大功能，这些功能你可能并不会在日">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Git工具 | 孤狼的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+    <!-- 下面一句添加的 -->
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">孤狼的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">孤狼的博客</div>
+        <div class="logo-desc">
+            
+            从来没有真正的绝境，只有心灵的迷途
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/chenshuoke" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/chenshuoke" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Git工具
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Git/" target="_blank">
+                                <span class="chip bg-color">Git</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Git/" class="post-category" target="_blank">
+                                Git
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-07-15
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        9k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        37 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>现在，你已经学习了管理或者维护 Git 仓库、实现代码控制所需的大多数日常命令和工作流程。 你已经尝试了跟踪和提交文件的基本操作，并且发挥了暂存区和轻量级的分支及合并的威力。</p>
+<p>接下来你将学习一些 Git 的强大功能，这些功能你可能并不会在日常操作中使用，但在某些时候你可能会需要。</p>
+<h2 id="选择修订版本"><a href="#选择修订版本" class="headerlink" title="选择修订版本"></a>选择修订版本</h2><p>Git 允许你通过几种方法来指明特定的或者一定范围内的提交。 了解它们并不是必需的，但是了解一下总没坏处。</p>
+<h3 id="单个修订版本"><a href="#单个修订版本" class="headerlink" title="单个修订版本"></a>单个修订版本</h3><p>你可以通过 Git 给出的 SHA-1 值来获取一次提交，不过还有很多更人性化的方式来做同样的事情。 本节将会介绍获取单个提交的多种方法。</p>
+<h3 id="简短的-SHA-1"><a href="#简短的-SHA-1" class="headerlink" title="简短的 SHA-1"></a>简短的 SHA-1</h3><p>Git 十分智能，你只需要提供 SHA-1 的前几个字符就可以获得对应的那次提交，当然你提供的 SHA-1 字符数量不得少于 4 个，并且没有歧义——也就是说，当前仓库中只有一个对象以这段 SHA-1 开头。</p>
+<p>例如查看一次指定的提交，假设你执行 <code>git log</code> 命令来查看之前新增一个功能的那次提交:</p>
+<pre class=" language-console"><code class="language-console">$ git log
+commit 734713bc047d87bf7eac9674765ae793478c50d3
+Author: Scott Chacon <schacon@gmail.com>
+Date:   Fri Jan 2 18:32:33 2009 -0800
+
+    fixed refs handling, added gc auto, updated tests
+
+commit d921970aadf03b3cf0e71becdaab3147ba71cdef
+Merge: 1c002dd... 35cfb2b...
+Author: Scott Chacon <schacon@gmail.com>
+Date:   Thu Dec 11 15:08:43 2008 -0800
+
+    Merge commit 'phedders/rdocs'
+
+commit 1c002dd4b536e7479fe34593e72e6c6c1819e53b
+Author: Scott Chacon <schacon@gmail.com>
+Date:   Thu Dec 11 14:58:32 2008 -0800
+
+    added some blame and merge stuff</code></pre>
+<p>假设这个提交是 <code>1c002dd....</code>，如果你想 <code>git show</code> 这个提交，下面的命令是等价的（假设简短的版本没有歧义）：</p>
+<pre class=" language-console"><code class="language-console">$ git show 1c002dd4b536e7479fe34593e72e6c6c1819e53b
+$ git show 1c002dd4b536e7479f
+$ git show 1c002d</code></pre>
+<p>Git 可以为 SHA-1 值生成出简短且唯一的缩写。 如果你在 <code>git log</code> 后加上 <code>--abbrev-commit</code> 参数，输出结果里就会显示简短且唯一的值；默认使用七个字符，不过有时为了避免 SHA-1 的歧义，会增加字符数：</p>
+<pre class=" language-console"><code class="language-console">$ git log --abbrev-commit --pretty=oneline
+ca82a6d changed the version number
+085bb3b removed unnecessary test code
+a11bef0 first commit</code></pre>
+<p>通常 8 到 10 个字符就已经足够在一个项目中避免 SHA-1 的歧义。</p>
+<p>比如 Linux 内核这个相当大的 Git 项目，目前有超过 45 万个提交，包含 360 万个对象，也只需要前 11 个字符就能保证唯一性。</p>
+<table>
+<thead>
+<tr>
+<th>Note</th>
+<th>关于 SHA-1 的简短说明许多人觉得他们的仓库里有可能出现两个 SHA-1 值相同的对象。 然后呢？如果你真的向仓库里提交了一个跟之前的某个对象具有相同 SHA-1 值的对象，Git 发现仓库里已经存在了拥有相同 HASH 值的对象，就会认为这个新的提交是已经被写入仓库的。 如果之后你想检出那个对象时，你将得到先前那个对象的数据。但是这种情况发生的概率十分渺小。 SHA-1 摘要长度是 20 字节，也就是 160 位。 2^80 个随机哈希对象才有 50% 的概率出现一次冲突 （计算冲突机率的公式是 <code>p = (n(n-1)/2) * (1/2^160))</code> ）。2^80 是 1.2 x 10^24 也就是一亿亿亿。 那是地球上沙粒总数的 1200 倍。举例说一下怎样才能产生一次 SHA-1 冲突。 如果地球上 65 亿个人类都在编程，每人每秒都在产生等价于整个 Linux 内核历史（360 万个 Git 对象）的代码，并将之提交到一个巨大的 Git 仓库里面，这样持续两年的时间才会产生足够的对象，使其拥有 50% 的概率产生一次 SHA-1 对象冲突。 这要比你编程团队的成员同一个晚上在互不相干的意外中被狼袭击并杀死的机率还要小。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="分支引用"><a href="#分支引用" class="headerlink" title="分支引用"></a>分支引用</h3><p>指明一次提交最直接的方法是有一个指向它的分支引用。 这样你就可以在任意一个 Git 命令中使用这个分支名来代替对应的提交对象或者 SHA-1 值。 例如，你想要查看一个分支的最后一次提交的对象，假设 <code>topic1</code> 分支指向 <code>ca82a6d</code> ，那么以下的命令是等价的:</p>
+<pre class=" language-console"><code class="language-console">$ git show ca82a6dff817ec66f44342007202690a93763949
+$ git show topic1</code></pre>
+<p>如果你想知道某个分支指向哪个特定的 SHA-1，或者想看任何一个例子中被简写的 SHA-1 ，你可以使用一个叫做 <code>rev-parse</code> 的 Git 探测工具。 你可以在 <a href="https://git-scm.com/book/zh/v2/ch00/ch10-git-internals" target="_blank" rel="noopener">Git 内部原理</a> 中查看更多关于探测工具的信息。简单来说，<code>rev-parse</code> 是为了底层操作而不是日常操作设计的。 不过，有时你想看 Git 现在到底处于什么状态时，它可能会很有用。 你可以在你的分支上执行 <code>rev-parse</code></p>
+<pre class=" language-console"><code class="language-console">$ git rev-parse topic1
+ca82a6dff817ec66f44342007202690a93763949</code></pre>
+<h3 id="引用日志"><a href="#引用日志" class="headerlink" title="引用日志"></a>引用日志</h3><p>当你在工作时， Git 会在后台保存一个引用日志(reflog)，引用日志记录了最近几个月你的 HEAD 和分支引用所指向的历史。</p>
+<p>你可以使用 <code>git reflog</code> 来查看引用日志</p>
+<pre class=" language-console"><code class="language-console">$ git reflog
+734713b HEAD@{0}: commit: fixed refs handling, added gc auto, updated
+d921970 HEAD@{1}: merge phedders/rdocs: Merge made by recursive.
+1c002dd HEAD@{2}: commit: added some blame and merge stuff
+1c36188 HEAD@{3}: rebase -i (squash): updating HEAD
+95df984 HEAD@{4}: commit: # This is a combination of two commits.
+1c36188 HEAD@{5}: rebase -i (squash): updating HEAD
+7e05da5 HEAD@{6}: rebase -i (pick): updating HEAD</code></pre>
+<p>每当你的 HEAD 所指向的位置发生了变化，Git 就会将这个信息存储到引用日志这个历史记录里。 通过这些数据，你可以很方便地获取之前的提交历史。 如果你想查看仓库中 HEAD 在五次前的所指向的提交，你可以使用 <code>@{n}</code> 来引用 reflog 中输出的提交记录。</p>
+<pre class=" language-console"><code class="language-console">$ git show HEAD@{5}</code></pre>
+<p>你同样可以使用这个语法来查看某个分支在一定时间前的位置。 例如，查看你的 <code>master</code> 分支在昨天的时候指向了哪个提交，你可以输入</p>
+<pre class=" language-console"><code class="language-console">$ git show master@{yesterday}</code></pre>
+<p>就会显示昨天该分支的顶端指向了哪个提交。 这个方法只对还在你引用日志里的数据有用，所以不能用来查好几个月之前的提交。</p>
+<p>可以运行 <code>git log -g</code> 来查看类似于 <code>git log</code> 输出格式的引用日志信息：</p>
+<pre class=" language-console"><code class="language-console">$ git log -g master
+commit 734713bc047d87bf7eac9674765ae793478c50d3
+Reflog: master@{0} (Scott Chacon <schacon@gmail.com>)
+Reflog message: commit: fixed refs handling, added gc auto, updated
+Author: Scott Chacon <schacon@gmail.com>
+Date:   Fri Jan 2 18:32:33 2009 -0800
+
+    fixed refs handling, added gc auto, updated tests
+
+commit d921970aadf03b3cf0e71becdaab3147ba71cdef
+Reflog: master@{1} (Scott Chacon <schacon@gmail.com>)
+Reflog message: merge phedders/rdocs: Merge made by recursive.
+Author: Scott Chacon <schacon@gmail.com>
+Date:   Thu Dec 11 15:08:43 2008 -0800
+
+    Merge commit 'phedders/rdocs'
+</code></pre>
+<p>值得注意的是，引用日志只存在于本地仓库，一个记录你在你自己的仓库里做过什么的日志。 其他人拷贝的仓库里的引用日志不会和你的相同；而你新克隆一个仓库的时候，引用日志是空的，因为你在仓库里还没有操作。 <code>git show HEAD@{2.months.ago}</code> 这条命令只有在你克隆了一个项目至少两个月时才会有用——如果你是五分钟前克隆的仓库，那么它将不会有结果返回。</p>
+<table>
+<thead>
+<tr>
+<th>Tip</th>
+<th>将引用日志想作 Git 版的 shell 历史记录如果你有 UNIX 或者 Linux 的背景，你不妨将引用日志想作 Git 版的 shell 历史记录，重点在于仅与你和你的会话相关，而与他人无关。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="祖先引用"><a href="#祖先引用" class="headerlink" title="祖先引用"></a>祖先引用</h3><p>祖先引用是另一种指明一个提交的方式。 如果你在引用的尾部加上一个 <code>^</code>， Git 会将其解析为该引用的上一个提交。 假设你的提交历史是：</p>
+<pre class=" language-console"><code class="language-console">$ git log --pretty=format:'%h %s' --graph
+* 734713b fixed refs handling, added gc auto, updated tests
+*   d921970 Merge commit 'phedders/rdocs'
+|\
+| * 35cfb2b Some rdoc changes
+* | 1c002dd added some blame and merge stuff
+|/
+* 1c36188 ignore *.gem
+* 9b29157 add open3_detach to gemspec file list
+</code></pre>
+<p>你可以使用 <code>HEAD^</code> 来查看上一个提交，也就是 “HEAD 的父提交”：</p>
+<pre class=" language-console"><code class="language-console">$ git show HEAD^
+commit d921970aadf03b3cf0e71becdaab3147ba71cdef
+Merge: 1c002dd... 35cfb2b...
+Author: Scott Chacon <schacon@gmail.com>
+Date:   Thu Dec 11 15:08:43 2008 -0800
+
+    Merge commit 'phedders/rdocs'
+</code></pre>
+<p>你也可以在 <code>^</code> 后面添加一个数字——例如 <code>d921970^2</code> 代表 “d921970 的第二父提交” 这个语法只适用于合并(merge)的提交，因为合并提交会有多个父提交。 第一父提交是你合并时所在分支，而第二父提交是你所合并的分支：</p>
+<pre class=" language-console"><code class="language-console">$ git show d921970^
+commit 1c002dd4b536e7479fe34593e72e6c6c1819e53b
+Author: Scott Chacon <schacon@gmail.com>
+Date:   Thu Dec 11 14:58:32 2008 -0800
+
+    added some blame and merge stuff
+
+$ git show d921970^2
+commit 35cfb2b795a55793d7cc56a6cc2060b4bb732548
+Author: Paul Hedderly <paul+git@mjr.org>
+Date:   Wed Dec 10 22:22:03 2008 +0000
+
+    Some rdoc changes
+</code></pre>
+<p>另一种指明祖先提交的方法是 <code>~</code>。 同样是指向第一父提交，因此 <code>HEAD~</code> 和 <code>HEAD^</code> 是等价的。 而区别在于你在后面加数字的时候。 <code>HEAD~2</code> 代表 “第一父提交的第一父提交”，也就是 “祖父提交” —— Git 会根据你指定的次数获取对应的第一父提交。 例如，在之前的列出的提交历史中，<code>HEAD~3</code> 就是</p>
+<pre class=" language-console"><code class="language-console">$ git show HEAD~3
+commit 1c3618887afb5fbcbea25b7c013f4e2114448b8d
+Author: Tom Preston-Werner <tom@mojombo.com>
+Date:   Fri Nov 7 13:47:59 2008 -0500
+
+    ignore *.gem
+</code></pre>
+<p>也可以写成 <code>HEAD^^^</code>，也是第一父提交的第一父提交的第一父提交：</p>
+<pre class=" language-console"><code class="language-console">$ git show HEAD^^^
+commit 1c3618887afb5fbcbea25b7c013f4e2114448b8d
+Author: Tom Preston-Werner <tom@mojombo.com>
+Date:   Fri Nov 7 13:47:59 2008 -0500
+
+    ignore *.gem
+</code></pre>
+<p>你也可以组合使用这两个语法 —— 你可以通过 <code>HEAD~3^2</code> 来取得之前引用的第二父提交（假设它是一个合并提交）。</p>
+<h3 id="提交区间"><a href="#提交区间" class="headerlink" title="提交区间"></a>提交区间</h3><p>你已经学会如何单次的提交，现在来看看如何指明一定区间的提交。 当你有很多分支时，这对管理你的分支时十分有用，你可以用提交区间来解决 “这个分支还有哪些提交尚未合并到主分支？” 的问题</p>
+<h4 id="双点"><a href="#双点" class="headerlink" title="双点"></a>双点</h4><p>最常用的指明提交区间语法是双点。 这种语法可以让 Git 选出在一个分支中而不在另一个分支中的提交。 例如，你有如下的提交历史 <a href="https://git-scm.com/book/zh/v2/ch00/rdouble_dot" target="_blank" rel="noopener">Example history for range selection.</a></p>
+<p><img src="https://git-scm.com/book/en/v2/images/double-dot.png" alt="Example history for range selection."></p>
+<p>Figure 137. Example history for range selection.</p>
+<p>你想要查看 experiment 分支中还有哪些提交尚未被合并入 master 分支。 你可以使用 <code>master..experiment</code> 来让 Git 显示这些提交。也就是 “在 experiment 分支中而不在 master 分支中的提交”。 为了使例子简单明了，我使用了示意图中提交对象的字母来代替真实日志的输出，所以会显示：</p>
+<pre class=" language-console"><code class="language-console">$ git log master..experiment
+D
+C
+</code></pre>
+<p>反过来，如果你想查看在 <code>master</code> 分支中而不在 <code>experiment</code> 分支中的提交，你只要交换分支名即可。<code>experiment..master</code> 会显示在 <code>master</code> 分支中而不在 <code>experiment</code> 分支中的提交：</p>
+<pre class=" language-console"><code class="language-console">$ git log experiment..master
+F
+E
+</code></pre>
+<p>这可以让你保持 <code>experiment</code> 分支跟随最新的进度以及查看你即将合并的内容。 另一个常用的场景是查看你即将推送到远端的内容：</p>
+<pre class=" language-console"><code class="language-console">$ git log origin/master..HEAD
+</code></pre>
+<p>这个命令会输出在你当前分支中而不在远程 <code>origin</code> 中的提交。 如果你执行 <code>git push</code> 并且你的当前分支正在跟踪 <code>origin/master</code>，由 <code>git log origin/master..HEAD</code> 所输出的提交就是会被传输到远端服务器的提交。 如果你留空了其中的一边， Git 会默认为 HEAD。 例如， <code>git log origin/master..</code>将会输出与之前例子相同的结果 —— Git 使用 HEAD 来代替留空的一边。</p>
+<h4 id="多点"><a href="#多点" class="headerlink" title="多点"></a>多点</h4><p>双点语法很好用，但有时候你可能需要两个以上的分支才能确定你所需要的修订，比如查看哪些提交是被包含在某些分支中的一个，但是不在你当前的分支上。 Git 允许你在任意引用前加上 <code>^</code> 字符或者 <code>--not</code> 来指明你不希望提交被包含其中的分支。 因此下列3个命令是等价的：</p>
+<pre class=" language-console"><code class="language-console">$ git log refA..refB
+$ git log ^refA refB
+$ git log refB --not refA
+</code></pre>
+<p>这个语法很好用，因为你可以在查询中指定超过两个的引用，这是双点语法无法实现的。 比如，你想查看所有被 <code>refA</code> 或 <code>refB</code> 包含的但是不被 <code>refC</code> 包含的提交，你可以输入下面中的任意一个命令</p>
+<pre class=" language-console"><code class="language-console">$ git log refA refB ^refC
+$ git log refA refB --not refC
+</code></pre>
+<p>这就构成了一个十分强大的修订查询系统，你可以通过它来查看你的分支里包含了哪些东西。</p>
+<h4 id="三点"><a href="#三点" class="headerlink" title="三点"></a>三点</h4><p>最后一种主要的区间选择语法是三点，这个语法可以选择出被两个引用中的一个包含但又不被两者同时包含的提交。 再看看之前双点例子中的提交历史。 如果你想看 <code>master</code> 或者 <code>experiment</code> 中包含的但不是两者共有的提交，你可以执行</p>
+<pre class=" language-console"><code class="language-console">$ git log master...experiment
+F
+E
+D
+C
+</code></pre>
+<p>这和通常 <code>log</code> 按日期排序的输出一样，仅仅给出了4个提交的信息。</p>
+<p>这种情形下，<code>log</code> 命令的一个常用参数是 <code>--left-right</code>，它会显示每个提交到底处于哪一侧的分支。 这会让输出数据更加清晰。</p>
+<pre class=" language-console"><code class="language-console">$ git log --left-right master...experiment
+< F
+< E
+> D
+> C
+</code></pre>
+<p>有了这些工具，你就可以十分方便地查看你 Git 仓库中的提交。</p>
+<h2 id="交互式暂存"><a href="#交互式暂存" class="headerlink" title="交互式暂存"></a>交互式暂存</h2><p>Git 自带的一些脚本可以使在命令行下工作更容易。 本节的几个交互命令可以帮助你将文件的特定部分组合成提交。 当你修改一组文件后，希望这些改动能放到若干提交而不是混杂在一起成为一个提交时，这几个工具会非常有用。 通过这种方式，可以确保提交是逻辑上独立的变更集，同时也会使其他开发者在与你工作时很容易地审核。 如果运行 <code>git add</code> 时使用 <code>-i</code> 或者 <code>--interactive</code> 选项，Git 将会进入一个交互式终端模式，显示类似下面的东西：</p>
+<pre class=" language-console"><code class="language-console">$ git add -i
+           staged     unstaged path
+  1:    unchanged        +0/-1 TODO
+  2:    unchanged        +1/-1 index.html
+  3:    unchanged        +5/-1 lib/simplegit.rb
+
+*** Commands ***
+  1: status     2: update      3: revert     4: add untracked
+  5: patch      6: diff        7: quit       8: help
+What now>
+</code></pre>
+<p>可以看到这个命令以非常不同的视图显示了暂存区 - 基本上与 <code>git status</code> 是相同的信息，但是更简明扼要一些。 它将暂存的修改列在左侧，未暂存的修改列在右侧。</p>
+<p>在这块区域后是命令区域。 在这里你可以做一些工作，包括暂存文件、取消暂存文件、暂存文件的一部分、添加未被追踪的文件、查看暂存内容的区别。</p>
+<h3 id="暂存与取消暂存文件"><a href="#暂存与取消暂存文件" class="headerlink" title="暂存与取消暂存文件"></a>暂存与取消暂存文件</h3><p>如果在 <code>What now&gt;</code> 提示符后键入 <code>2</code> 或 <code>u</code>，脚本将会提示想要暂存哪个文件：</p>
+<pre class=" language-console"><code class="language-console">What now> 2
+           staged     unstaged path
+  1:    unchanged        +0/-1 TODO
+  2:    unchanged        +1/-1 index.html
+  3:    unchanged        +5/-1 lib/simplegit.rb
+Update>>
+</code></pre>
+<p>要暂存 TODO 与 index.html 文件，可以输入数字：</p>
+<pre class=" language-console"><code class="language-console">Update>> 1,2
+           staged     unstaged path
+* 1:    unchanged        +0/-1 TODO
+* 2:    unchanged        +1/-1 index.html
+  3:    unchanged        +5/-1 lib/simplegit.rb
+Update>>
+</code></pre>
+<p>每个文件前面的 <code>*</code> 意味着选中的文件将会被暂存。 如果在 <code>Update&gt;&gt;</code> 提示符后不输入任何东西并直接按回车，Git 将会暂存之前选择的文件：</p>
+<pre class=" language-console"><code class="language-console">Update>>
+updated 2 paths
+
+*** Commands ***
+  1: status     2: update      3: revert     4: add untracked
+  5: patch      6: diff        7: quit       8: help
+What now> 1
+           staged     unstaged path
+  1:        +0/-1      nothing TODO
+  2:        +1/-1      nothing index.html
+  3:    unchanged        +5/-1 lib/simplegit.rb
+</code></pre>
+<p>现在可以看到 TODO 与 index.html 文件已经被暂存而 simplegit.rb 文件还未被暂存。 如果这时想要取消暂存 TODO 文件，使用 <code>3</code> 或 <code>r</code>（撤消）选项：</p>
+<pre class=" language-console"><code class="language-console">*** Commands ***
+  1: status     2: update      3: revert     4: add untracked
+  5: patch      6: diff        7: quit       8: help
+What now> 3
+           staged     unstaged path
+  1:        +0/-1      nothing TODO
+  2:        +1/-1      nothing index.html
+  3:    unchanged        +5/-1 lib/simplegit.rb
+Revert>> 1
+           staged     unstaged path
+* 1:        +0/-1      nothing TODO
+  2:        +1/-1      nothing index.html
+  3:    unchanged        +5/-1 lib/simplegit.rb
+Revert>> [enter]
+reverted one path
+</code></pre>
+<p>再次查看 Git 状态，可以看到已经取消暂存 TODO 文件：</p>
+<pre class=" language-console"><code class="language-console">*** Commands ***
+  1: status     2: update      3: revert     4: add untracked
+  5: patch      6: diff        7: quit       8: help
+What now> 1
+           staged     unstaged path
+  1:    unchanged        +0/-1 TODO
+  2:        +1/-1      nothing index.html
+  3:    unchanged        +5/-1 lib/simplegit.rb
+</code></pre>
+<p>如果想要查看已暂存内容的区别，可以使用 <code>6</code> 或 <code>d</code>（区别）命令。 它会显示暂存文件的一个列表，可以从中选择想要查看的暂存区别。 这跟你在命令行指定 <code>git diff --cached</code> 非常相似：</p>
+<pre class=" language-console"><code class="language-console">*** Commands ***
+  1: status     2: update      3: revert     4: add untracked
+  5: patch      6: diff        7: quit       8: help
+What now> 6
+           staged     unstaged path
+  1:        +1/-1      nothing index.html
+Review diff>> 1
+diff --git a/index.html b/index.html
+index 4d07108..4335f49 100644
+--- a/index.html
++++ b/index.html
+@@ -16,7 +16,7 @@ Date Finder
+
+ <p id="out">...</p>
+
+-<div id="footer">contact : support@github.com</div>
++<div id="footer">contact : email.support@github.com</div>
+
+ <script type="text/javascript">
+</code></pre>
+<p>通过这些基本命令，可以使用交互式添加模式来轻松地处理暂存区。</p>
+<h3 id="暂存补丁"><a href="#暂存补丁" class="headerlink" title="暂存补丁"></a>暂存补丁</h3><p>Git 也可以暂存文件的特定部分。 例如，如果在 simplegit.rb 文件中做了两处修改，但只想要暂存其中的一个而不是另一个，Git 会帮你轻松地完成。 从交互式提示符中，输入 <code>5</code> 或 <code>p</code>（补丁）。 Git 会询问你想要部分暂存哪些文件；然后，对已选择文件的每一个部分，它都会一个个地显示文件区别并询问你是否想要暂存它们：</p>
+<pre class=" language-console"><code class="language-console">diff --git a/lib/simplegit.rb b/lib/simplegit.rb
+index dd5ecc4..57399e0 100644
+--- a/lib/simplegit.rb
++++ b/lib/simplegit.rb
+@@ -22,7 +22,7 @@ class SimpleGit
+   end
+
+   def log(treeish = 'master')
+-    command("git log -n 25 #{treeish}")
++    command("git log -n 30 #{treeish}")
+   end
+
+   def blame(path)
+Stage this hunk [y,n,a,d,/,j,J,g,e,?]?
+</code></pre>
+<p>这时有很多选项。 输入 <code>?</code> 显示所有可以使用的命令列表：</p>
+<pre class=" language-console"><code class="language-console">Stage this hunk [y,n,a,d,/,j,J,g,e,?]? ?
+y - stage this hunk
+n - do not stage this hunk
+a - stage this and all the remaining hunks in the file
+d - do not stage this hunk nor any of the remaining hunks in the file
+g - select a hunk to go to
+/ - search for a hunk matching the given regex
+j - leave this hunk undecided, see next undecided hunk
+J - leave this hunk undecided, see next hunk
+k - leave this hunk undecided, see previous undecided hunk
+K - leave this hunk undecided, see previous hunk
+s - split the current hunk into smaller hunks
+e - manually edit the current hunk
+? - print help
+</code></pre>
+<p>通常情况下可以输入 y 或 n 来选择是否要暂存每一个区块，当然，暂存特定文件中的所有部分或为之后的选择跳过一个区块也是非常有用的。 如果你只暂存文件的一部分，状态输出可能会像下面这样：</p>
+<pre class=" language-console"><code class="language-console">What now> 1
+           staged     unstaged path
+  1:    unchanged        +0/-1 TODO
+  2:        +1/-1      nothing index.html
+  3:        +1/-1        +4/-0 lib/simplegit.rb
+</code></pre>
+<p>simplegit.rb 文件的状态很有趣。 它显示出若干行被暂存与若干行未被暂存。 已经部分地暂存了这个文件。 在这时，可以退出交互式添加脚本并且运行 <code>git commit</code> 来提交部分暂存的文件。</p>
+<p>也可以不必在交互式添加模式中做部分文件暂存 - 可以在命令行中使用 <code>git add -p</code> 或 <code>git add --patch</code> 来启动同样的脚本。</p>
+<p>更进一步地，可以使用 <code>reset --patch</code> 命令的补丁模式来部分重置文件，通过 <code>checkout --patch</code> 命令来部分检出文件与 <code>stash save --patch</code> 命令来部分暂存文件。 我们将会在接触这些命令的高级使用方法时了解更多详细信息。</p>
+<h2 id="储藏与清理"><a href="#储藏与清理" class="headerlink" title="储藏与清理"></a>储藏与清理</h2><p>有时，当你在项目的一部分上已经工作一段时间后，所有东西都进入了混乱的状态，而这时你想要切换到另一个分支做一点别的事情。 问题是，你不想仅仅因为过会儿回到这一点而为做了一半的工作创建一次提交。 针对这个问题的答案是 <code>git stash</code> 命令。</p>
+<p>储藏会处理工作目录的脏的状态 - 即，修改的跟踪文件与暂存改动 - 然后将未完成的修改保存到一个栈上，而你可以在任何时候重新应用这些改动。</p>
+<h3 id="储藏工作"><a href="#储藏工作" class="headerlink" title="储藏工作"></a>储藏工作</h3><p>为了演示，进入项目并改动几个文件，然后可能暂存其中的一个改动。 如果运行 <code>git status</code>，可以看到有改动的状态：</p>
+<pre class=" language-console"><code class="language-console">$ git status
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+    modified:   index.html
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+    modified:   lib/simplegit.rb
+</code></pre>
+<p>现在想要切换分支，但是还不想要提交之前的工作；所以储藏修改。 将新的储藏推送到栈上，运行 <code>git stash</code> 或 <code>git stash save</code>：</p>
+<pre class=" language-console"><code class="language-console">$ git stash
+Saved working directory and index state \
+  "WIP on master: 049d078 added the index file"
+HEAD is now at 049d078 added the index file
+(To restore them type "git stash apply")
+</code></pre>
+<p>工作目录是干净的了：</p>
+<pre class=" language-console"><code class="language-console">$ git status
+# On branch master
+nothing to commit, working directory clean
+</code></pre>
+<p>在这时，你能够轻易地切换分支并在其他地方工作；你的修改被存储在栈上。 要查看储藏的东西，可以使用 <code>git stash list</code>：</p>
+<pre class=" language-console"><code class="language-console">$ git stash list
+stash@{0}: WIP on master: 049d078 added the index file
+stash@{1}: WIP on master: c264051 Revert "added file_size"
+stash@{2}: WIP on master: 21d80a5 added number to log
+</code></pre>
+<p>在本例中，有两个之前做的储藏，所以你接触到了三个不同的储藏工作。 可以通过原来 stash 命令的帮助提示中的命令将你刚刚储藏的工作重新应用：<code>git stash apply</code>。 如果想要应用其中一个更旧的储藏，可以通过名字指定它，像这样：<code>git stash apply stash@{2}</code>。 如果不指定一个储藏，Git 认为指定的是最近的储藏：</p>
+<pre class=" language-console"><code class="language-console">$ git stash apply
+# On branch master
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#
+#      modified:   index.html
+#      modified:   lib/simplegit.rb
+#
+</code></pre>
+<p>可以看到 Git 重新修改了当你保存储藏时撤消的文件。 在本例中，当尝试应用储藏时有一个干净的工作目录，并且尝试将它应用在保存它时所在的分支；但是有一个干净的工作目录与应用在同一分支并不是成功应用储藏的充分必要条件。 可以在一个分支上保存一个储藏，切换到另一个分支，然后尝试重新应用这些修改。 当应用储藏时工作目录中也可以有修改与未提交的文件 - 如果有任何东西不能干净地应用，Git 会产生合并冲突。</p>
+<p>文件的改动被重新应用了，但是之前暂存的文件却没有重新暂存。 想要那样的话，必须使用 <code>--index</code> 选项来运行 <code>git stash apply</code> 命令，来尝试重新应用暂存的修改。 如果已经那样做了，那么你将回到原来的位置：</p>
+<pre class=" language-console"><code class="language-console">$ git stash apply --index
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#      modified:   index.html
+#
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#
+#      modified:   lib/simplegit.rb
+#
+</code></pre>
+<p>应用选项只会尝试应用暂存的工作 - 在堆栈上还有它。 可以运行 <code>git stash drop</code> 加上将要移除的储藏的名字来移除它：</p>
+<pre class=" language-console"><code class="language-console">$ git stash list
+stash@{0}: WIP on master: 049d078 added the index file
+stash@{1}: WIP on master: c264051 Revert "added file_size"
+stash@{2}: WIP on master: 21d80a5 added number to log
+$ git stash drop stash@{0}
+Dropped stash@{0} (364e91f3f268f0900bc3ee613f9f733e82aaed43)
+</code></pre>
+<p>也可以运行 <code>git stash pop</code> 来应用储藏然后立即从栈上扔掉它。</p>
+<h3 id="创造性的储藏"><a href="#创造性的储藏" class="headerlink" title="创造性的储藏"></a>创造性的储藏</h3><p>有几个储藏的变种可能也很有用。 第一个非常流行的选项是 <code>stash save</code> 命令的 <code>--keep-index</code> 选项。 它告诉 Git 不要储藏任何你通过 git add 命令已暂存的东西。</p>
+<p>当你做了几个改动并只想提交其中的一部分，过一会儿再回来处理剩余改动时，这个功能会很有用。</p>
+<pre class=" language-console"><code class="language-console">$ git status -s
+M  index.html
+ M lib/simplegit.rb
+
+$ git stash --keep-index
+Saved working directory and index state WIP on master: 1b65b17 added the index file
+HEAD is now at 1b65b17 added the index file
+
+$ git status -s
+M  index.html
+</code></pre>
+<p>另一个经常使用储藏来做的事情是像储藏跟踪文件一样储藏未跟踪文件。 默认情况下，<code>git stash</code> 只会储藏已经在索引中的文件。 如果指定 <code>--include-untracked</code> 或 <code>-u</code> 标记，Git 也会储藏任何创建的未跟踪文件。</p>
+<pre class=" language-console"><code class="language-console">$ git status -s
+M  index.html
+ M lib/simplegit.rb
+?? new-file.txt
+
+$ git stash -u
+Saved working directory and index state WIP on master: 1b65b17 added the index file
+HEAD is now at 1b65b17 added the index file
+
+$ git status -s
+$
+</code></pre>
+<p>最终，如果指定了 <code>--patch</code> 标记，Git 不会储藏所有修改过的任何东西，但是会交互式地提示哪些改动想要储藏、哪些改动需要保存在工作目录中。</p>
+<pre class=" language-console"><code class="language-console">$ git stash --patch
+diff --git a/lib/simplegit.rb b/lib/simplegit.rb
+index 66d332e..8bb5674 100644
+--- a/lib/simplegit.rb
++++ b/lib/simplegit.rb
+@@ -16,6 +16,10 @@ class SimpleGit
+         return `#{git_cmd} 2>&1`.chomp
+       end
+     end
++
++    def show(treeish = 'master')
++      command("git show #{treeish}")
++    end
+
+ end
+ test
+Stash this hunk [y,n,q,a,d,/,e,?]? y
+
+Saved working directory and index state WIP on master: 1b65b17 added the index file
+</code></pre>
+<h3 id="从储藏创建一个分支"><a href="#从储藏创建一个分支" class="headerlink" title="从储藏创建一个分支"></a>从储藏创建一个分支</h3><p>如果储藏了一些工作，将它留在那儿了一会儿，然后继续在储藏的分支上工作，在重新应用工作时可能会有问题。 如果应用尝试修改刚刚修改的文件，你会得到一个合并冲突并不得不解决它。 如果想要一个轻松的方式来再次测试储藏的改动，可以运行 <code>git stash branch</code> 创建一个新分支，检出储藏工作时所在的提交，重新在那应用工作，然后在应用成功后扔掉储藏：</p>
+<pre class=" language-console"><code class="language-console">$ git stash branch testchanges
+Switched to a new branch "testchanges"
+# On branch testchanges
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#      modified:   index.html
+#
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#
+#      modified:   lib/simplegit.rb
+#
+Dropped refs/stash@{0} (f0dfc4d5dc332d1cee34a634182e168c4efc3359)
+</code></pre>
+<p>这是在新分支轻松恢复储藏工作并继续工作的一个很不错的途径。</p>
+<h3 id="清理工作目录"><a href="#清理工作目录" class="headerlink" title="清理工作目录"></a>清理工作目录</h3><p>对于工作目录中一些工作或文件，你想做的也许不是储藏而是移除。 <code>git clean</code> 命令会帮你做这些事。</p>
+<p>有一些通用的原因比如说为了移除由合并或外部工具生成的东西，或是为了运行一个干净的构建而移除之前构建的残留。</p>
+<p>你需要谨慎地使用这个命令，因为它被设计为从工作目录中移除未被追踪的文件。 如果你改变主意了，你也不一定能找回来那些文件的内容。 一个更安全的选项是运行 <code>git stash --all</code> 来移除每一样东西并存放在栈中。</p>
+<p>你可以使用 <code>git clean</code> 命令去除冗余文件或者清理工作目录。 使用 <code>git clean -f -d</code> 命令来移除工作目录中所有未追踪的文件以及空的子目录。 <code>-f</code> 意味着 <em>强制</em> 或 “确定移除”。</p>
+<p>如果只是想要看看它会做什么，可以使用 <code>-n</code> 选项来运行命令，这意味着 “做一次演习然后告诉你 <em>将要</em> 移除什么”。</p>
+<pre class=" language-console"><code class="language-console">$ git clean -d -n
+Would remove test.o
+Would remove tmp/
+</code></pre>
+<p>默认情况下，<code>git clean</code> 命令只会移除没有忽略的未跟踪文件。 任何与 <code>.gitiignore</code> 或其他忽略文件中的模式匹配的文件都不会被移除。 如果你也想要移除那些文件，例如为了做一次完全干净的构建而移除所有由构建生成的 <code>.o</code> 文件，可以给 clean 命令增加一个 <code>-x</code> 选项。</p>
+<pre class=" language-console"><code class="language-console">$ git status -s
+ M lib/simplegit.rb
+?? build.TMP
+?? tmp/
+
+$ git clean -n -d
+Would remove build.TMP
+Would remove tmp/
+
+$ git clean -n -d -x
+Would remove build.TMP
+Would remove test.o
+Would remove tmp/
+</code></pre>
+<p>如果不知道 <code>git clean</code> 命令将会做什么，在将 <code>-n</code> 改为 <code>-f</code> 来真正做之前总是先用 <code>-n</code> 来运行它做双重检查。 另一个小心处理过程的方式是使用 <code>-i</code> 或 “interactive” 标记来运行它。</p>
+<p>这将会以交互模式运行 clean 命令。</p>
+<pre class=" language-console"><code class="language-console">$ git clean -x -i
+Would remove the following items:
+  build.TMP  test.o
+*** Commands ***
+    1: clean                2: filter by pattern    3: select by numbers    4: ask each             5: quit
+    6: help
+What now>
+</code></pre>
+<p>这种方式下可以分别地检查每一个文件或者交互地指定删除的模式。</p>
+<h2 id="签署工作"><a href="#签署工作" class="headerlink" title="签署工作"></a>签署工作</h2><p>Git 虽然是密码级安全的，但它不是万无一失的。 如果你从因特网上的其他人那里拿取工作，并且想要验证提交是不是真正地来自于可信来源，Git 提供了几种通过 GPG 来签署和验证工作的方式。</p>
+<h3 id="GPG-介绍"><a href="#GPG-介绍" class="headerlink" title="GPG 介绍"></a>GPG 介绍</h3><p>首先，在开始签名之前你需要先配置 GPG 并安装个人密钥。</p>
+<pre class=" language-console"><code class="language-console">$ gpg --list-keys
+/Users/schacon/.gnupg/pubring.gpg
+---------------------------------
+pub   2048R/0A46826A 2014-06-04
+uid                  Scott Chacon (Git signing key) <schacon@gmail.com>
+sub   2048R/874529A9 2014-06-04
+</code></pre>
+<p>如果你还没有安装一个密钥，可以使用 <code>gpg --gen-key</code> 生成一个。</p>
+<pre class=" language-console"><code class="language-console">gpg --gen-key
+</code></pre>
+<p>一旦你有一个可以签署的私钥，可以通过设置 Git 的 <code>user.signingkey</code> 选项来签署。</p>
+<pre class=" language-console"><code class="language-console">git config --global user.signingkey 0A46826A
+</code></pre>
+<p>现在 Git 默认使用你的密钥来签署标签与提交。</p>
+<h3 id="签署标签"><a href="#签署标签" class="headerlink" title="签署标签"></a>签署标签</h3><p>如果已经设置好一个 GPG 私钥，可以使用它来签署新的标签。 所有需要做的只是使用 <code>-s</code> 代替 <code>-a</code> 即可：</p>
+<pre class=" language-console"><code class="language-console">$ git tag -s v1.5 -m 'my signed 1.5 tag'
+
+You need a passphrase to unlock the secret key for
+user: "Ben Straub <ben@straub.cc>"
+2048-bit RSA key, ID 800430EB, created 2014-05-04
+</code></pre>
+<p>如果在那个标签上运行 <code>git show</code>，会看到你的 GPG 签名附属在后面：</p>
+<pre class=" language-console"><code class="language-console">$ git show v1.5
+tag v1.5
+Tagger: Ben Straub <ben@straub.cc>
+Date:   Sat May 3 20:29:41 2014 -0700
+
+my signed 1.5 tag
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iQEcBAABAgAGBQJTZbQlAAoJEF0+sviABDDrZbQH/09PfE51KPVPlanr6q1v4/Ut
+LQxfojUWiLQdg2ESJItkcuweYg+kc3HCyFejeDIBw9dpXt00rY26p05qrpnG+85b
+hM1/PswpPLuBSr+oCIDj5GMC2r2iEKsfv2fJbNW8iWAXVLoWZRF8B0MfqX/YTMbm
+ecorc4iXzQu7tupRihslbNkfvfciMnSDeSvzCpWAHl7h8Wj6hhqePmLm9lAYqnKp
+8S5B/1SSQuEAjRZgI4IexpZoeKGVDptPHxLLS38fozsyi0QyDyzEgJxcJQVMXxVi
+RUysgqjcpT8+iQM1PblGfHR4XAhuOqN5Fx06PSaFZhqvWFezJ28/CLyX5q+oIVk=
+=EFTF
+-----END PGP SIGNATURE-----
+
+commit ca82a6dff817ec66f44342007202690a93763949
+Author: Scott Chacon <schacon@gee-mail.com>
+Date:   Mon Mar 17 21:52:11 2008 -0700
+
+    changed the version number
+</code></pre>
+<h3 id="验证标签"><a href="#验证标签" class="headerlink" title="验证标签"></a>验证标签</h3><p>要验证一个签署的标签，可以运行 <code>git tag -v [tag-name]</code>。 这个命令使用 GPG 来验证签名。 为了验证能正常工作，签署者的公钥需要在你的钥匙链中。</p>
+<pre class=" language-console"><code class="language-console">$ git tag -v v1.4.2.1
+object 883653babd8ee7ea23e6a5c392bb739348b1eb61
+type commit
+tag v1.4.2.1
+tagger Junio C Hamano <junkio@cox.net> 1158138501 -0700
+
+GIT 1.4.2.1
+
+Minor fixes since 1.4.2, including git-mv and git-http with alternates.
+gpg: Signature made Wed Sep 13 02:08:25 2006 PDT using DSA key ID F3119B9A
+gpg: Good signature from "Junio C Hamano <junkio@cox.net>"
+gpg:                 aka "[jpeg image of size 1513]"
+Primary key fingerprint: 3565 2A26 2040 E066 C9A7  4A7D C0C6 D9A4 F311 9B9A
+</code></pre>
+<p>如果没有签署者的公钥，那么你将会得到类似下面的东西：</p>
+<pre class=" language-console"><code class="language-console">gpg: Signature made Wed Sep 13 02:08:25 2006 PDT using DSA key ID F3119B9A
+gpg: Can't check signature: public key not found
+error: could not verify the tag 'v1.4.2.1'
+</code></pre>
+<h3 id="签署提交"><a href="#签署提交" class="headerlink" title="签署提交"></a>签署提交</h3><p>在最新版本的 Git 中（v1.7.9 及以上），也可以签署个人提交。 如果相对于标签而言你对直接签署到提交更感兴趣的话，所有要做的只是增加一个 <code>-S</code> 到 <code>git commit</code> 命令。</p>
+<pre class=" language-console"><code class="language-console">$ git commit -a -S -m 'signed commit'
+
+You need a passphrase to unlock the secret key for
+user: "Scott Chacon (Git signing key) <schacon@gmail.com>"
+2048-bit RSA key, ID 0A46826A, created 2014-06-04
+
+[master 5c3386c] signed commit
+ 4 files changed, 4 insertions(+), 24 deletions(-)
+ rewrite Rakefile (100%)
+ create mode 100644 lib/git.rb
+</code></pre>
+<p><code>git log</code> 也有一个 <code>--show-signature</code> 选项来查看及验证这些签名。</p>
+<pre class=" language-console"><code class="language-console">$ git log --show-signature -1
+commit 5c3386cf54bba0a33a32da706aa52bc0155503c2
+gpg: Signature made Wed Jun  4 19:49:17 2014 PDT using RSA key ID 0A46826A
+gpg: Good signature from "Scott Chacon (Git signing key) <schacon@gmail.com>"
+Author: Scott Chacon <schacon@gmail.com>
+Date:   Wed Jun 4 19:49:17 2014 -0700
+
+    signed commit
+</code></pre>
+<p>另外，也可以配置 <code>git log</code> 来验证任何找到的签名并将它们以 <code>%G?</code> 格式列在输出中。</p>
+<pre class=" language-console"><code class="language-console">$ git log --pretty="format:%h %G? %aN  %s"
+
+5c3386c G Scott Chacon  signed commit
+ca82a6d N Scott Chacon  changed the version number
+085bb3b N Scott Chacon  removed unnecessary test code
+a11bef0 N Scott Chacon  first commit
+</code></pre>
+<p>这里我们可以看到只有最后一次提交是签署并有效的，而之前的提交都不是。</p>
+<p>在 Git 1.8.3 及以后的版本中，“git merge” 与“git pull” 可以使用 <code>--verify-signatures</code> 选项来检查并拒绝没有携带可信 GPG 签名的提交。</p>
+<p>如果使用这个选项来合并一个包含未签名或有效的提交的分支时，合并不会生效。</p>
+<pre class=" language-console"><code class="language-console">$ git merge --verify-signatures non-verify
+fatal: Commit ab06180 does not have a GPG signature.
+</code></pre>
+<p>如果合并包含的只有有效的签名的提交，合并命令会提示所有的签名它已经检查过了然后会继续向前。</p>
+<pre class=" language-console"><code class="language-console">$ git merge --verify-signatures signed-branch
+Commit 13ad65e has a good GPG signature by Scott Chacon (Git signing key) <schacon@gmail.com>
+Updating 5c3386c..13ad65e
+Fast-forward
+ README | 2 ++
+ 1 file changed, 2 insertions(+)
+</code></pre>
+<p>也可以给 <code>git merge</code> 命令附加 <code>-S</code> 选项来签署自己生成的合并提交。 下面的例子演示了验证将要合并的分支的每一个提交都是签名的并且签署最后生成的合并提交。</p>
+<pre class=" language-console"><code class="language-console">$ git merge --verify-signatures -S  signed-branch
+Commit 13ad65e has a good GPG signature by Scott Chacon (Git signing key) <schacon@gmail.com>
+
+You need a passphrase to unlock the secret key for
+user: "Scott Chacon (Git signing key) <schacon@gmail.com>"
+2048-bit RSA key, ID 0A46826A, created 2014-06-04
+
+Merge made by the 'recursive' strategy.
+ README | 2 ++
+ 1 file changed, 2 insertions(+)
+</code></pre>
+<h3 id="每个人必须签署"><a href="#每个人必须签署" class="headerlink" title="每个人必须签署"></a>每个人必须签署</h3><p>签署标签与提交很棒，但是如果决定在正常的工作流程中使用它，你必须确保团队中的每一个人都理解如何这样做。 如果没有，你将会花费大量时间帮助其他人找出并用签名的版本重写提交。 在采用签署成为标准工作流程的一部分前，确保你完全理解 GPG 及签署带来的好处。</p>
+<h2 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h2><p>无论仓库里的代码量有多少，你经常需要查找一个函数是在哪里调用或者定义的，或者一个方法的变更历史。 Git 提供了两个有用的工具来快速地从它的数据库中浏览代码和提交。 我们来简单的看一下。</p>
+<h3 id="Git-Grep"><a href="#Git-Grep" class="headerlink" title="Git Grep"></a>Git Grep</h3><p>Git 提供了一个 <code>grep</code> 命令，你可以很方便地从提交历史或者工作目录中查找一个字符串或者正则表达式。 我们用 Git 本身源代码的查找作为例子。</p>
+<p>默认情况下 Git 会查找你工作目录的文件。 你可以传入 <code>-n</code> 参数来输出 Git 所找到的匹配行行号。</p>
+<pre class=" language-console"><code class="language-console">$ git grep -n gmtime_r
+compat/gmtime.c:3:#undef gmtime_r
+compat/gmtime.c:8:      return git_gmtime_r(timep, &result);
+compat/gmtime.c:11:struct tm *git_gmtime_r(const time_t *timep, struct tm *result)
+compat/gmtime.c:16:     ret = gmtime_r(timep, result);
+compat/mingw.c:606:struct tm *gmtime_r(const time_t *timep, struct tm *result)
+compat/mingw.h:162:struct tm *gmtime_r(const time_t *timep, struct tm *result);
+date.c:429:             if (gmtime_r(&now, &now_tm))
+date.c:492:             if (gmtime_r(&time, tm)) {
+git-compat-util.h:721:struct tm *git_gmtime_r(const time_t *, struct tm *);
+git-compat-util.h:723:#define gmtime_r git_gmtime_r
+</code></pre>
+<p><code>grep</code> 命令有一些有趣的选项。</p>
+<p>例如，你可以使用 <code>--count</code> 选项来使 Git 输出概述的信息，仅仅包括哪些文件包含匹配以及每个文件包含了多少个匹配。</p>
+<pre class=" language-console"><code class="language-console">$ git grep --count gmtime_r
+compat/gmtime.c:4
+compat/mingw.c:1
+compat/mingw.h:1
+date.c:2
+git-compat-util.h:2
+</code></pre>
+<p>如果你想看匹配的行是属于哪一个方法或者函数，你可以传入 <code>-p</code> 选项：</p>
+<pre class=" language-console"><code class="language-console">$ git grep -p gmtime_r *.c
+date.c=static int match_multi_number(unsigned long num, char c, const char *date, char *end, struct tm *tm)
+date.c:         if (gmtime_r(&now, &now_tm))
+date.c=static int match_digit(const char *date, struct tm *tm, int *offset, int *tm_gmt)
+date.c:         if (gmtime_r(&time, tm)) {
+</code></pre>
+<p>在这里我们可以看到在 date.c 文件中有 <code>match_multi_number</code> 和 <code>match_digit</code> 两个函数调用了 <code>gmtime_r</code>。</p>
+<p>你还可以使用 <code>--and</code> 标志来查看复杂的字符串组合，也就是在同一行同时包含多个匹配。 比如，我们要查看在旧版本 1.8.0 的 Git 代码库中定义了常量名包含 “LINK” 或者 “BUF_MAX” 这两个字符串所在的行。</p>
+<p>这里我们也用到了 <code>--break</code> 和 <code>--heading</code> 选项来使输出更加容易阅读。</p>
+<pre class=" language-console"><code class="language-console">$ git grep --break --heading \
+    -n -e '#define' --and \( -e LINK -e BUF_MAX \) v1.8.0
+v1.8.0:builtin/index-pack.c
+62:#define FLAG_LINK (1u<<20)
+
+v1.8.0:cache.h
+73:#define S_IFGITLINK  0160000
+74:#define S_ISGITLINK(m)       (((m) & S_IFMT) == S_IFGITLINK)
+
+v1.8.0:environment.c
+54:#define OBJECT_CREATION_MODE OBJECT_CREATION_USES_HARDLINKS
+
+v1.8.0:strbuf.c
+326:#define STRBUF_MAXLINK (2*PATH_MAX)
+
+v1.8.0:symlinks.c
+53:#define FL_SYMLINK  (1 << 2)
+
+v1.8.0:zlib.c
+30:/* #define ZLIB_BUF_MAX ((uInt)-1) */
+31:#define ZLIB_BUF_MAX ((uInt) 1024 * 1024 * 1024) /* 1GB */
+</code></pre>
+<p>相比于一些常用的搜索命令比如 <code>grep</code> 和 <code>ack</code>，<code>git grep</code> 命令有一些的优点。 第一就是速度非常快，第二是你不仅仅可以可以搜索工作目录，还可以搜索任意的 Git 树。 在上一个例子中，我们在一个旧版本的 Git 源代码中查找，而不是当前检出的版本。</p>
+<h3 id="Git-日志搜索"><a href="#Git-日志搜索" class="headerlink" title="Git 日志搜索"></a>Git 日志搜索</h3><p>或许你不想知道某一项在 <strong>哪里</strong> ，而是想知道是什么 <strong>时候</strong> 存在或者引入的。 <code>git log</code> 命令有许多强大的工具可以通过提交信息甚至是 diff 的内容来找到某个特定的提交。</p>
+<p>例如，如果我们想找到 <code>ZLIB_BUF_MAX</code> 常量是什么时候引入的，我们可以使用 <code>-S</code> 选项来显示新增和删除该字符串的提交。</p>
+<pre class=" language-console"><code class="language-console">$ git log -SZLIB_BUF_MAX --oneline
+e01503b zlib: allow feeding more than 4GB in one go
+ef49a7a zlib: zlib can only process 4GB at a time
+</code></pre>
+<p>如果我们查看这些提交的 diff，我们可以看到在 <code>ef49a7a</code> 这个提交引入了常量，并且在 <code>e01503b</code> 这个提交中被修改了。</p>
+<p>如果你希望得到更精确的结果，你可以使用 <code>-G</code> 选项来使用正则表达式搜索。</p>
+<h4 id="行日志搜索"><a href="#行日志搜索" class="headerlink" title="行日志搜索"></a>行日志搜索</h4><p>行日志搜索是另一个相当高级并且有用的日志搜索功能。 这是一个最近新增的不太知名的功能，但却是十分有用。 在 <code>git log</code> 后加上 <code>-L</code> 选项即可调用，它可以展示代码中一行或者一个函数的历史。</p>
+<p>例如，假设我们想查看 <code>zlib.c</code> 文件中<code>git_deflate_bound</code> 函数的每一次变更，我们可以执行 <code>git log -L :git_deflate_bound:zlib.c</code>。 Git 会尝试找出这个函数的范围，然后查找历史记录，并且显示从函数创建之后一系列变更对应的补丁。</p>
+<pre class=" language-console"><code class="language-console">$ git log -L :git_deflate_bound:zlib.c
+commit ef49a7a0126d64359c974b4b3b71d7ad42ee3bca
+Author: Junio C Hamano <gitster@pobox.com>
+Date:   Fri Jun 10 11:52:15 2011 -0700
+
+    zlib: zlib can only process 4GB at a time
+
+diff --git a/zlib.c b/zlib.c
+--- a/zlib.c
++++ b/zlib.c
+@@ -85,5 +130,5 @@
+-unsigned long git_deflate_bound(z_streamp strm, unsigned long size)
++unsigned long git_deflate_bound(git_zstream *strm, unsigned long size)
+ {
+-       return deflateBound(strm, size);
++       return deflateBound(&strm->z, size);
+ }
+
+
+commit 225a6f1068f71723a910e8565db4e252b3ca21fa
+Author: Junio C Hamano <gitster@pobox.com>
+Date:   Fri Jun 10 11:18:17 2011 -0700
+
+    zlib: wrap deflateBound() too
+
+diff --git a/zlib.c b/zlib.c
+--- a/zlib.c
++++ b/zlib.c
+@@ -81,0 +85,5 @@
++unsigned long git_deflate_bound(z_streamp strm, unsigned long size)
++{
++       return deflateBound(strm, size);
++}
++
+</code></pre>
+<p>如果 Git 无法计算出如何匹配你代码中的函数或者方法，你可以提供一个正则表达式。 例如，这个命令和上面的是等同的：<code>git log -L &#39;/unsigned long git_deflate_bound/&#39;,/^}/:zlib.c</code>。 你也可以提供单行或者一个范围的行号来获得相同的输出。</p>
+<h2 id="重写历史"><a href="#重写历史" class="headerlink" title="重写历史"></a>重写历史</h2><p>许多时候，在使用 Git 时，可能会因为某些原因想要修正提交历史。 Git 很棒的一点是它允许你在最后时刻做决定。 你可以在将暂存区内容提交前决定哪些文件进入提交，可以通过 stash 命令来决定不与某些内容工作，也可以重写已经发生的提交就像它们以另一种方式发生的一样。 这可能涉及改变提交的顺序，改变提交中的信息或修改文件，将提交压缩或是拆分，或完全地移除提交 - 在将你的工作成果与他人共享之前。</p>
+<p>在本节中，你可以学到如何完成这些非常有用的工作，这样在与他人分享你的工作成果时你的提交历史将如你所愿地展示出来。</p>
+<h3 id="修改最后一次提交"><a href="#修改最后一次提交" class="headerlink" title="修改最后一次提交"></a>修改最后一次提交</h3><p>修改你最近一次提交可能是所有修改历史提交的操作中最常见的一个。 对于你的最近一次提交，你往往想做两件事情：修改提交信息，或者修改你添加、修改和移除的文件的快照。</p>
+<p>如果，你只是想修改最近一次提交的提交信息，那么很简单：</p>
+<pre class=" language-console"><code class="language-console">$ git commit --amend
+</code></pre>
+<p>这会把你带入文本编辑器，里面包含了你最近一条提交信息，供你修改。 当保存并关闭编辑器后，编辑器将会用你输入的内容替换最近一条提交信息。</p>
+<p>如果你已经完成提交，又因为之前提交时忘记添加一个新创建的文件，想通过添加或修改文件来更改提交的快照，也可以通过类似的操作来完成。 通过修改文件然后运行 <code>git add</code> 或 <code>git rm</code> 一个已追踪的文件，随后运行 <code>git commit --amend</code> 拿走当前的暂存区域并使其做为新提交的快照。</p>
+<p>使用这个技巧的时候需要小心，因为修正会改变提交的 SHA-1 校验和。 它类似于一个小的变基 - 如果已经推送了最后一次提交就不要修正它。</p>
+<h3 id="修改多个提交信息"><a href="#修改多个提交信息" class="headerlink" title="修改多个提交信息"></a>修改多个提交信息</h3><p>为了修改在提交历史中较远的提交，必须使用更复杂的工具。 Git 没有一个改变历史工具，但是可以使用变基工具来变基一系列提交，基于它们原来的 HEAD 而不是将其移动到另一个新的上面。 通过交互式变基工具，可以在任何想要修改的提交后停止，然后修改信息、添加文件或做任何想做的事情。 可以通过给 <code>git rebase</code> 增加 <code>-i</code> 选项来交互式地运行变基。 必须指定想要重写多久远的历史，这可以通过告诉命令将要变基到的提交来做到。</p>
+<p>例如，如果想要修改最近三次提交信息，或者那组提交中的任意一个提交信息，将想要修改的最近一次提交的父提交作为参数传递给 <code>git rebase -i</code> 命令，即 <code>HEAD~2^</code> 或 <code>HEAD~3</code>。 记住 <code>~3</code> 可能比较容易，因为你正尝试修改最后三次提交；但是注意实际上指定了以前的四次提交，即想要修改提交的父提交：</p>
+<pre class=" language-console"><code class="language-console">$ git rebase -i HEAD~3
+</code></pre>
+<p>再次记住这是一个变基命令 - 在 <code>HEAD~3..HEAD</code> 范围内的每一个提交都会被重写，无论你是否修改信息。 不要涉及任何已经推送到中央服务器的提交 - 这样做会产生一次变更的两个版本，因而使他人困惑。</p>
+<p>运行这个命令会在文本编辑器上给你一个提交的列表，看起来像下面这样：</p>
+<pre class=" language-console"><code class="language-console">pick f7f3f6d changed my name a bit
+pick 310154e updated README formatting and added blame
+pick a5f4a0d added cat-file
+
+# Rebase 710f0f8..a5f4a0d onto 710f0f8
+#
+# Commands:
+#  p, pick = use commit
+#  r, reword = use commit, but edit the commit message
+#  e, edit = use commit, but stop for amending
+#  s, squash = use commit, but meld into previous commit
+#  f, fixup = like "squash", but discard this commit's log message
+#  x, exec = run command (the rest of the line) using shell
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.
+#
+# Note that empty commits are commented out
+</code></pre>
+<p>需要重点注意的是相对于正常使用的 <code>log</code> 命令，这些提交显示的顺序是相反的。 运行一次 <em>log</em> 命令，会看到类似这样的东西：</p>
+<pre class=" language-console"><code class="language-console">$ git log --pretty=format:"%h %s" HEAD~3..HEAD
+a5f4a0d added cat-file
+310154e updated README formatting and added blame
+f7f3f6d changed my name a bit
+</code></pre>
+<p>注意其中的反序显示。 交互式变基给你一个它将会运行的脚本。 它将会从你在命令行中指定的提交（<code>HEAD~3</code>）开始，从上到下的依次重演每一个提交引入的修改。 它将最旧的而不是最新的列在上面，因为那会是第一个将要重演的。</p>
+<p>你需要修改脚本来让它停留在你想修改的变更上。 要达到这个目的，你只要将你想修改的每一次提交前面的 ‘pick’ 改为 ‘edit’。 例如，只想修改第三次提交信息，可以像下面这样修改文件：</p>
+<pre class=" language-console"><code class="language-console">edit f7f3f6d changed my name a bit
+pick 310154e updated README formatting and added blame
+pick a5f4a0d added cat-file
+</code></pre>
+<p>当保存并退出编辑器时，Git 将你带回到列表中的最后一次提交，把你送回命令行并提示以下信息：</p>
+<pre class=" language-console"><code class="language-console">$ git rebase -i HEAD~3
+Stopped at f7f3f6d... changed my name a bit
+You can amend the commit now, with
+
+       git commit --amend
+
+Once you’re satisfied with your changes, run
+
+       git rebase --continue
+</code></pre>
+<p>这些指令准确地告诉你该做什么。 输入</p>
+<pre class=" language-console"><code class="language-console">$ git commit --amend
+</code></pre>
+<p>修改提交信息，然后退出编辑器。 然后，运行</p>
+<pre class=" language-console"><code class="language-console">$ git rebase --continue
+</code></pre>
+<p>这个命令将会自动地应用另外两个提交，然后就完成了。 如果需要将不止一处的 pick 改为 edit，需要在每一个修改为 edit 的提交上重复这些步骤。 每一次，Git 将会停止，让你修正提交，然后继续直到完成。</p>
+<h3 id="重新排序提交"><a href="#重新排序提交" class="headerlink" title="重新排序提交"></a>重新排序提交</h3><p>也可以使用交互式变基来重新排序或完全移除提交。 如果想要移除 “added cat-file” 提交然后修改另外两个提交引入的顺序，可以将变基脚本从这样：</p>
+<pre class=" language-console"><code class="language-console">pick f7f3f6d changed my name a bit
+pick 310154e updated README formatting and added blame
+pick a5f4a0d added cat-file
+</code></pre>
+<p>改为这样：</p>
+<pre class=" language-console"><code class="language-console">pick 310154e updated README formatting and added blame
+pick f7f3f6d changed my name a bit
+</code></pre>
+<p>当保存并退出编辑器时，Git 将你的分支带回这些提交的父提交，应用 <code>310154e</code> 然后应用 <code>f7f3f6d</code>，最后停止。 事实修改了那些提交的顺序并完全地移除了 “added cat-file” 提交。</p>
+<h3 id="压缩提交"><a href="#压缩提交" class="headerlink" title="压缩提交"></a>压缩提交</h3><p>通过交互式变基工具，也可以将一连串提交压缩成一个单独的提交。 在变基信息中脚本给出了有用的指令：</p>
+<pre class=" language-console"><code class="language-console">#
+# Commands:
+#  p, pick = use commit
+#  r, reword = use commit, but edit the commit message
+#  e, edit = use commit, but stop for amending
+#  s, squash = use commit, but meld into previous commit
+#  f, fixup = like "squash", but discard this commit's log message
+#  x, exec = run command (the rest of the line) using shell
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.
+#
+# Note that empty commits are commented out
+</code></pre>
+<p>如果，指定 “squash” 而不是 “pick” 或 “edit”，Git 将应用两者的修改并合并提交信息在一起。 所以，如果想要这三次提交变为一个提交，可以这样修改脚本：</p>
+<pre class=" language-console"><code class="language-console">pick f7f3f6d changed my name a bit
+squash 310154e updated README formatting and added blame
+squash a5f4a0d added cat-file
+</code></pre>
+<p>当保存并退出编辑器时，Git 应用所有的三次修改然后将你放到编辑器中来合并三次提交信息：</p>
+<pre class=" language-console"><code class="language-console"># This is a combination of 3 commits.
+# The first commit's message is:
+changed my name a bit
+
+# This is the 2nd commit message:
+
+updated README formatting and added blame
+
+# This is the 3rd commit message:
+
+added cat-file
+</code></pre>
+<p>当你保存之后，你就拥有了一个包含前三次提交的全部变更的提交。</p>
+<h3 id="拆分提交"><a href="#拆分提交" class="headerlink" title="拆分提交"></a>拆分提交</h3><p>拆分一个提交会撤消这个提交，然后多次地部分地暂存与提交直到完成你所需次数的提交。 例如，假设想要拆分三次提交的中间那次提交。 想要将它拆分为两次提交：第一个 “updated README formatting”，第二个 “added blame” 来代替原来的 “updated README formatting and added blame”。 可以通过修改 <code>rebase -i</code> 的脚本来做到这点，将要拆分的提交的指令修改为 “edit”：</p>
+<pre class=" language-console"><code class="language-console">pick f7f3f6d changed my name a bit
+edit 310154e updated README formatting and added blame
+pick a5f4a0d added cat-file
+</code></pre>
+<p>然后，当脚本将你进入到命令行时，重置那个提交，拿到被重置的修改，从中创建几次提交。 当保存并退出编辑器时，Git 带你到列表中第一个提交的父提交，应用第一个提交（<code>f7f3f6d</code>），应用第二个提交（<code>310154e</code>），然后让你进入命令行。 那里，可以通过 <code>git reset HEAD^</code> 做一次针对那个提交的混合重置，实际上将会撤消那次提交并将修改的文件未暂存。 现在可以暂存并提交文件直到有几个提交，然后当完成时运行 <code>git rebase --continue</code>：</p>
+<pre class=" language-console"><code class="language-console">$ git reset HEAD^
+$ git add README
+$ git commit -m 'updated README formatting'
+$ git add lib/simplegit.rb
+$ git commit -m 'added blame'
+$ git rebase --continue
+</code></pre>
+<p>Git 在脚本中应用最后一次提交（<code>a5f4a0d</code>），历史记录看起来像这样：</p>
+<pre class=" language-console"><code class="language-console">$ git log -4 --pretty=format:"%h %s"
+1c002dd added cat-file
+9b29157 added blame
+35cfb2b updated README formatting
+f3cc40e changed my name a bit
+</code></pre>
+<p>再次强调，这些改动了所有在列表中的提交的 SHA-1 校验和，所以要确保列表中的提交还没有推送到共享仓库中。</p>
+<h3 id="核武器级选项：filter-branch"><a href="#核武器级选项：filter-branch" class="headerlink" title="核武器级选项：filter-branch"></a>核武器级选项：filter-branch</h3><p>有另一个历史改写的选项，如果想要通过脚本的方式改写大量提交的话可以使用它 - 例如，全局修改你的邮箱地址或从每一个提交中移除一个文件。 这个命令是 <code>filter-branch</code>，它可以改写历史中大量的提交，除非你的项目还没有公开并且其他人没有基于要改写的工作的提交做的工作，你不应当使用它。 然而，它可以很有用。 你将会学习到几个常用的用途，这样就得到了它适合使用地方的想法。</p>
+<h4 id="从每一个提交移除一个文件"><a href="#从每一个提交移除一个文件" class="headerlink" title="从每一个提交移除一个文件"></a>从每一个提交移除一个文件</h4><p>这经常发生。 有人粗心地通过 <code>git add .</code> 提交了一个巨大的二进制文件，你想要从所有地方删除它。 可能偶然地提交了一个包括一个密码的文件，然而你想要开源项目。 <code>filter-branch</code> 是一个可能会用来擦洗整个提交历史的工具。 为了从整个提交历史中移除一个叫做 passwords.txt 的文件，可以使用 <code>--tree-filter</code> 选项给 <code>filter-branch</code>：</p>
+<pre class=" language-console"><code class="language-console">$ git filter-branch --tree-filter 'rm -f passwords.txt' HEAD
+Rewrite 6b9b3cf04e7c5686a9cb838c3f36a8cb6a0fc2bd (21/21)
+Ref 'refs/heads/master' was rewritten
+</code></pre>
+<p><code>--tree-filter</code> 选项在检出项目的每一个提交后运行指定的命令然后重新提交结果。 在本例中，你从每一个快照中移除了一个叫作 passwords.txt 的文件，无论它是否存在。 如果想要移除所有偶然提交的编辑器备份文件，可以运行类似 <code>git filter-branch --tree-filter &#39;rm -f *~&#39; HEAD</code> 的命令。</p>
+<p>最后将可以看到 Git 重写树与提交然后移动分支指针。 通常一个好的想法是在一个测试分支中做这件事，然后当你决定最终结果是真正想要的，可以硬重置 master 分支。 为了让 <code>filter-branch</code> 在所有分支上运行，可以给命令传递 <code>--all</code> 选项。</p>
+<h4 id="使一个子目录做为新的根目录"><a href="#使一个子目录做为新的根目录" class="headerlink" title="使一个子目录做为新的根目录"></a>使一个子目录做为新的根目录</h4><p>假设已经从另一个源代码控制系统中导入，并且有几个没意义的子目录（trunk、tags 等等）。 如果想要让 <code>trunk</code> 子目录作为每一个提交的新的项目根目录，<code>filter-branch</code> 也可以帮助你那么做：</p>
+<pre class=" language-console"><code class="language-console">$ git filter-branch --subdirectory-filter trunk HEAD
+Rewrite 856f0bf61e41a27326cdae8f09fe708d679f596f (12/12)
+Ref 'refs/heads/master' was rewritten
+</code></pre>
+<p>现在新项目根目录是 <code>trunk</code> 子目录了。 Git 会自动移除所有不影响子目录的提交。</p>
+<h4 id="全局修改邮箱地址"><a href="#全局修改邮箱地址" class="headerlink" title="全局修改邮箱地址"></a>全局修改邮箱地址</h4><p>另一个常见的情形是在你开始工作时忘记运行 <code>git config</code> 来设置你的名字与邮箱地址，或者你想要开源一个项目并且修改所有你的工作邮箱地址为你的个人邮箱地址。 任何情形下，你也可以通过 <code>filter-branch</code> 来一次性修改多个提交中的邮箱地址。 需要小心的是只修改你自己的邮箱地址，所以你使用 <code>--commit-filter</code>：</p>
+<pre class=" language-console"><code class="language-console">$ git filter-branch --commit-filter '
+        if [ "$GIT_AUTHOR_EMAIL" = "schacon@localhost" ];
+        then
+                GIT_AUTHOR_NAME="Scott Chacon";
+                GIT_AUTHOR_EMAIL="schacon@example.com";
+                git commit-tree "$@";
+        else
+                git commit-tree "$@";
+        fi' HEAD
+</code></pre>
+<p>这会遍历并重写每一个提交来包含你的新邮箱地址。 因为提交包含了它们父提交的 SHA-1 校验和，这个命令会修改你的历史中的每一个提交的 SHA-1 校验和，而不仅仅只是那些匹配邮箱地址的提交。</p>
+<h2 id="重置揭密"><a href="#重置揭密" class="headerlink" title="重置揭密"></a>重置揭密</h2><p>在继续了解更专业的工具前，我们先讨论一下 <code>reset</code> 与 <code>checkout</code>。 在你初次遇到的 Git 命令中，这两个是最让人困惑的。 它们能做很多事情，所以看起来我们很难真正地理解并恰当地运用它们。 针对这一点，我们先来做一个简单的比喻。</p>
+<h3 id="三棵树"><a href="#三棵树" class="headerlink" title="三棵树"></a>三棵树</h3><p>理解 <code>reset</code> 和 <code>checkout</code> 的最简方法，就是以 Git 的思维框架（将其作为内容管理器）来管理三棵不同的树。 “树” 在我们这里的实际意思是 “文件的集合”，而不是指特定的数据结构。 （在某些情况下索引看起来并不像一棵树，不过我们现在的目的是用简单的方式思考它。）</p>
+<p>Git 作为一个系统，是以它的一般操作来管理并操纵这三棵树的：</p>
+<table>
+<thead>
+<tr>
+<th align="left">树</th>
+<th align="left">用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">HEAD</td>
+<td align="left">上一次提交的快照，下一次提交的父结点</td>
+</tr>
+<tr>
+<td align="left">Index</td>
+<td align="left">预期的下一次提交的快照</td>
+</tr>
+<tr>
+<td align="left">Working Directory</td>
+<td align="left">沙盒</td>
+</tr>
+</tbody></table>
+<h4 id="HEAD"><a href="#HEAD" class="headerlink" title="HEAD"></a>HEAD</h4><p>HEAD 是当前分支引用的指针，它总是指向该分支上的最后一次提交。 这表示 HEAD 将是下一次提交的父结点。 通常，理解 HEAD 的最简方式，就是将它看做 <strong>你的上一次提交</strong> 的快照。</p>
+<p>其实，查看快照的样子很容易。 下例就显示了 HEAD 快照实际的目录列表，以及其中每个文件的 SHA-1 校验和：</p>
+<pre class=" language-console"><code class="language-console">$ git cat-file -p HEAD
+tree cfda3bf379e4f8dba8717dee55aab78aef7f4daf
+author Scott Chacon  1301511835 -0700
+committer Scott Chacon  1301511835 -0700
+
+initial commit
+
+$ git ls-tree -r HEAD
+100644 blob a906cb2a4a904a152...   README
+100644 blob 8f94139338f9404f2...   Rakefile
+040000 tree 99f1a6d12cb4b6f19...   lib
+</code></pre>
+<p><code>cat-file</code> 与 <code>ls-tree</code> 是底层命令，它们一般用于底层工作，在日常工作中并不使用。不过它们能帮助我们了解到底发生了什么。</p>
+<h4 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h4><p>索引是你的 <strong>预期的下一次提交</strong>。 我们也会将这个概念引用为 Git 的 “暂存区域”，这就是当你运行 <code>git commit</code> 时 Git 看起来的样子。</p>
+<p>Git 将上一次检出到工作目录中的所有文件填充到索引区，它们看起来就像最初被检出时的样子。 之后你会将其中一些文件替换为新版本，接着通过 <code>git commit</code> 将它们转换为树来用作新的提交。</p>
+<pre class=" language-console"><code class="language-console">$ git ls-files -s
+100644 a906cb2a4a904a152e80877d4088654daad0c859 0    README
+100644 8f94139338f9404f26296befa88755fc2598c289 0    Rakefile
+100644 47c6340d6459e05787f644c2447d2595f5d3a54b 0    lib/simplegit.rb
+</code></pre>
+<p>再说一次，我们在这里又用到了 <code>ls-files</code> 这个幕后的命令，它会显示出索引当前的样子。</p>
+<p>确切来说，索引并非技术上的树结构，它其实是以扁平的清单实现的。不过对我们而言，把它当做树就够了。</p>
+<h4 id="工作目录"><a href="#工作目录" class="headerlink" title="工作目录"></a>工作目录</h4><p>最后，你就有了自己的工作目录。 另外两棵树以一种高效但并不直观的方式，将它们的内容存储在 <code>.git</code>文件夹中。 工作目录会将它们解包为实际的文件以便编辑。 你可以把工作目录当做 <strong>沙盒</strong>。在你将修改提交到暂存区并记录到历史之前，可以随意更改。</p>
+<pre class=" language-console"><code class="language-console">$ tree
+.
+├── README
+├── Rakefile
+└── lib
+    └── simplegit.rb
+
+1 directory, 3 files
+</code></pre>
+<h3 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h3><p>Git 主要的目的是通过操纵这三棵树来以更加连续的状态记录项目的快照。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/reset-workflow.png" alt="reset workflow"></p>
+<p>让我们来可视化这个过程：假设我们进入到一个新目录，其中有一个文件。 我们称其为该文件的 <strong>v1</strong> 版本，将它标记为蓝色。 现在运行 <code>git init</code>，这会创建一个 Git 仓库，其中的 HEAD 引用指向未创建的分支（<code>master</code> 还不存在）。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/reset-ex1.png" alt="reset ex1"></p>
+<p>此时，只有工作目录有内容。</p>
+<p>现在我们想要提交这个文件，所以用 <code>git add</code> 来获取工作目录中的内容，并将其复制到索引中。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/reset-ex2.png" alt="reset ex2"></p>
+<p>接着运行 <code>git commit</code>，它会取得索引中的内容并将它保存为一个永久的快照，然后创建一个指向该快照的提交对象，最后更新 <code>master</code> 来指向本次提交。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/reset-ex3.png" alt="reset ex3"></p>
+<p>此时如果我们运行 <code>git status</code>，会发现没有任何改动，因为现在三棵树完全相同。</p>
+<p>现在我们想要对文件进行修改然后提交它。 我们将会经历同样的过程；首先在工作目录中修改文件。 我们称其为该文件的 <strong>v2</strong> 版本，并将它标记为红色。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/reset-ex4.png" alt="reset ex4"></p>
+<p>如果现在运行 <code>git status</code>，我们会看到文件显示在 “Changes not staged for commit,” 下面并被标记为红色，因为该条目在索引与工作目录之间存在不同。 接着我们运行 <code>git add</code> 来将它暂存到索引中。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/reset-ex5.png" alt="reset ex5"></p>
+<p>此时，由于索引和 HEAD 不同，若运行 <code>git status</code> 的话就会看到 “Changes to be committed” 下的该文件变为绿色 ——也就是说，现在预期的下一次提交与上一次提交不同。 最后，我们运行 <code>git commit</code>来完成提交。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/reset-ex6.png" alt="reset ex6"></p>
+<p>现在运行 <code>git status</code> 会没有输出，因为三棵树又变得相同了。</p>
+<p>切换分支或克隆的过程也类似。 当检出一个分支时，它会修改 <strong>HEAD</strong> 指向新的分支引用，将 <strong>索引</strong> 填充为该次提交的快照，然后将 <strong>索引</strong> 的内容复制到 <strong>工作目录</strong> 中。</p>
+<h3 id="重置的作用"><a href="#重置的作用" class="headerlink" title="重置的作用"></a>重置的作用</h3><p>在以下情景中观察 <code>reset</code> 命令会更有意义。</p>
+<p>为了演示这些例子，假设我们再次修改了 <code>file.txt</code> 文件并第三次提交它。 现在的历史看起来是这样的：</p>
+<p><img src="https://git-scm.com/book/en/v2/images/reset-start.png" alt="reset start"></p>
+<p>让我们跟着 <code>reset</code> 看看它都做了什么。 它以一种简单可预见的方式直接操纵这三棵树。 它做了三个基本操作。</p>
+<h4 id="第-1-步：移动-HEAD"><a href="#第-1-步：移动-HEAD" class="headerlink" title="第 1 步：移动 HEAD"></a>第 1 步：移动 HEAD</h4><p><code>reset</code> 做的第一件事是移动 HEAD 的指向。 这与改变 HEAD 自身不同（<code>checkout</code> 所做的）；<code>reset</code> 移动 HEAD 指向的分支。 这意味着如果 HEAD 设置为 <code>master</code> 分支（例如，你正在 <code>master</code> 分支上），运行 <code>git reset 9e5e64a</code> 将会使 <code>master</code> 指向 <code>9e5e64a</code>。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/reset-soft.png" alt="reset soft"></p>
+<p>无论你调用了何种形式的带有一个提交的 <code>reset</code>，它首先都会尝试这样做。 使用 <code>reset --soft</code>，它将仅仅停在那儿。</p>
+<p>现在看一眼上图，理解一下发生的事情：它本质上是撤销了上一次 <code>git commit</code> 命令。 当你在运行 <code>git commit</code> 时，Git 会创建一个新的提交，并移动 HEAD 所指向的分支来使其指向该提交。 当你将它 <code>reset</code>回 <code>HEAD~</code>（HEAD 的父结点）时，其实就是把该分支移动回原来的位置，而不会改变索引和工作目录。 现在你可以更新索引并再次运行 <code>git commit</code> 来完成 <code>git commit --amend</code> 所要做的事情了（见 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_amend" target="_blank" rel="noopener">修改最后一次提交</a>）。</p>
+<h4 id="第-2-步：更新索引（–mixed）"><a href="#第-2-步：更新索引（–mixed）" class="headerlink" title="第 2 步：更新索引（–mixed）"></a>第 2 步：更新索引（–mixed）</h4><p>注意，如果你现在运行 <code>git status</code> 的话，就会看到新的 HEAD 和以绿色标出的它和索引之间的区别。</p>
+<p>接下来，<code>reset</code> 会用 HEAD 指向的当前快照的内容来更新索引。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/reset-mixed.png" alt="reset mixed"></p>
+<p>如果指定 <code>--mixed</code> 选项，<code>reset</code> 将会在这时停止。 这也是默认行为，所以如果没有指定任何选项（在本例中只是 <code>git reset HEAD~</code>），这就是命令将会停止的地方。</p>
+<p>现在再看一眼上图，理解一下发生的事情：它依然会撤销一上次 <code>提交</code>，但还会 <em>取消暂存</em> 所有的东西。 于是，我们回滚到了所有 <code>git add</code> 和 <code>git commit</code> 的命令执行之前。</p>
+<h4 id="第-3-步：更新工作目录（–hard）"><a href="#第-3-步：更新工作目录（–hard）" class="headerlink" title="第 3 步：更新工作目录（–hard）"></a>第 3 步：更新工作目录（–hard）</h4><p><code>reset</code> 要做的的第三件事情就是让工作目录看起来像索引。 如果使用 <code>--hard</code> 选项，它将会继续这一步。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/reset-hard.png" alt="reset hard"></p>
+<p>现在让我们回想一下刚才发生的事情。 你撤销了最后的提交、<code>git add</code> 和 <code>git commit</code> 命令<strong>以及</strong>工作目录中的所有工作。</p>
+<p>必须注意，<code>--hard</code> 标记是 <code>reset</code> 命令唯一的危险用法，它也是 Git 会真正地销毁数据的仅有的几个操作之一。 其他任何形式的 <code>reset</code> 调用都可以轻松撤消，但是 <code>--hard</code> 选项不能，因为它强制覆盖了工作目录中的文件。 在这种特殊情况下，我们的 Git 数据库中的一个提交内还留有该文件的 <strong>v3</strong> 版本，我们可以通过 <code>reflog</code> 来找回它。但是若该文件还未提交，Git 仍会覆盖它从而导致无法恢复。</p>
+<h4 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h4><p><code>reset</code> 命令会以特定的顺序重写这三棵树，在你指定以下选项时停止：</p>
+<ol>
+<li>移动 HEAD 分支的指向 <em>（若指定了 –soft，则到此停止）</em></li>
+<li>使索引看起来像 HEAD <em>（若未指定 –hard，则到此停止）</em></li>
+<li>使工作目录看起来像索引</li>
+</ol>
+<h3 id="通过路径来重置"><a href="#通过路径来重置" class="headerlink" title="通过路径来重置"></a>通过路径来重置</h3><p>前面讲述了 <code>reset</code> 基本形式的行为，不过你还可以给它提供一个作用路径。 若指定了一个路径，<code>reset</code>将会跳过第 1 步，并且将它的作用范围限定为指定的文件或文件集合。 这样做自然有它的道理，因为 HEAD 只是一个指针，你无法让它同时指向两个提交中各自的一部分。 不过索引和工作目录 <em>可以部分更新</em>，所以重置会继续进行第 2、3 步。</p>
+<p>现在，假如我们运行 <code>git reset file.txt</code> （这其实是 <code>git reset --mixed HEAD file.txt</code> 的简写形式，因为你既没有指定一个提交的 SHA-1 或分支，也没有指定 <code>--soft</code> 或 <code>--hard</code>），它会：</p>
+<ol>
+<li>移动 HEAD 分支的指向 <em>（已跳过）</em></li>
+<li>让索引看起来像 HEAD <em>（到此处停止）</em></li>
+</ol>
+<p>所以它本质上只是将 <code>file.txt</code> 从 HEAD 复制到索引中。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/reset-path1.png" alt="reset path1"></p>
+<p>它还有 <em>取消暂存文件</em> 的实际效果。 如果我们查看该命令的示意图，然后再想想 <code>git add</code> 所做的事，就会发现它们正好相反。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/reset-path2.png" alt="reset path2"></p>
+<p>这就是为什么 <code>git status</code> 命令的输出会建议运行此命令来取消暂存一个文件。 （查看 <a href="https://git-scm.com/book/zh/v2/ch00/r_unstaging" target="_blank" rel="noopener">取消暂存的文件</a>来了解更多。）</p>
+<p>我们可以不让 Git 从 HEAD 拉取数据，而是通过具体指定一个提交来拉取该文件的对应版本。 我们只需运行类似于 <code>git reset eb43bf file.txt</code> 的命令即可。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/reset-path3.png" alt="reset path3"></p>
+<p>它其实做了同样的事情，也就是把工作目录中的文件恢复到 <strong>v1</strong> 版本，运行 <code>git add</code> 添加它，然后再将它恢复到 <strong>v3</strong> 版本（只是不用真的过一遍这些步骤）。 如果我们现在运行 <code>git commit</code>，它就会记录一条“将该文件恢复到 <strong>v1</strong> 版本”的更改，尽管我们并未在工作目录中真正地再次拥有它。</p>
+<p>还有一点同 <code>git add</code> 一样，就是 <code>reset</code> 命令也可以接受一个 <code>--patch</code> 选项来一块一块地取消暂存的内容。 这样你就可以根据选择来取消暂存或恢复内容了。</p>
+<h3 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h3><p>我们来看看如何利用这种新的功能来做一些有趣的事情 - 压缩提交。</p>
+<p>假设你的一系列提交信息中有 “oops.”、“WIP” 和 “forgot this file”， 聪明的你就能使用 <code>reset</code> 来轻松快速地将它们压缩成单个提交，也显出你的聪明。 （<a href="https://git-scm.com/book/zh/v2/ch00/r_squashing" target="_blank" rel="noopener">压缩提交</a> 展示了另一种方式，不过在本例中用 <code>reset</code> 更简单。）</p>
+<p>假设你有一个项目，第一次提交中有一个文件，第二次提交增加了一个新的文件并修改了第一个文件，第三次提交再次修改了第一个文件。 由于第二次提交是一个未完成的工作，因此你想要压缩它。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/reset-squash-r1.png" alt="reset squash r1"></p>
+<p>那么可以运行 <code>git reset --soft HEAD~2</code> 来将 HEAD 分支移动到一个旧一点的提交上（即你想要保留的第一个提交）：</p>
+<p><img src="https://git-scm.com/book/en/v2/images/reset-squash-r2.png" alt="reset squash r2"></p>
+<p>然后只需再次运行 <code>git commit</code>：</p>
+<p><img src="https://git-scm.com/book/en/v2/images/reset-squash-r3.png" alt="reset squash r3"></p>
+<p>现在你可以查看可到达的历史，即将会推送的历史，现在看起来有个 v1 版 <code>file-a.txt</code> 的提交，接着第二个提交将 <code>file-a.txt</code> 修改成了 v3 版并增加了 <code>file-b.txt</code>。 包含 v2 版本的文件已经不在历史中了。</p>
+<h3 id="检出"><a href="#检出" class="headerlink" title="检出"></a>检出</h3><p>最后，你大概还想知道 <code>checkout</code> 和 <code>reset</code> 之间的区别。 和 <code>reset</code> 一样，<code>checkout</code> 也操纵三棵树，不过它有一点不同，这取决于你是否传给该命令一个文件路径。</p>
+<h4 id="不带路径"><a href="#不带路径" class="headerlink" title="不带路径"></a>不带路径</h4><p>运行 <code>git checkout [branch]</code> 与运行 <code>git reset --hard [branch]</code> 非常相似，它会更新所有三棵树使其看起来像 <code>[branch]</code>，不过有两点重要的区别。</p>
+<p>首先不同于 <code>reset --hard</code>，<code>checkout</code> 对工作目录是安全的，它会通过检查来确保不会将已更改的文件弄丢。 其实它还更聪明一些。它会在工作目录中先试着简单合并一下，这样所有_还未修改过的_文件都会被更新。 而 <code>reset --hard</code> 则会不做检查就全面地替换所有东西。</p>
+<p>第二个重要的区别是如何更新 HEAD。 <code>reset</code> 会移动 HEAD 分支的指向，而 <code>checkout</code> 只会移动 HEAD 自身来指向另一个分支。</p>
+<p>例如，假设我们有 <code>master</code> 和 <code>develop</code> 分支，它们分别指向不同的提交；我们现在在 <code>develop</code> 上（所以 HEAD 指向它）。 如果我们运行 <code>git reset master</code>，那么 <code>develop</code> 自身现在会和 <code>master</code> 指向同一个提交。 而如果我们运行 <code>git checkout master</code> 的话，<code>develop</code> 不会移动，HEAD 自身会移动。 现在 HEAD 将会指向 <code>master</code>。</p>
+<p>所以，虽然在这两种情况下我们都移动 HEAD 使其指向了提交 A，但_做法_是非常不同的。 <code>reset</code> 会移动 HEAD 分支的指向，而 <code>checkout</code> 则移动 HEAD 自身。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/reset-checkout.png" alt="reset checkout"></p>
+<h4 id="带路径"><a href="#带路径" class="headerlink" title="带路径"></a>带路径</h4><p>运行 <code>checkout</code> 的另一种方式就是指定一个文件路径，这会像 <code>reset</code> 一样不会移动 HEAD。 它就像 <code>git reset [branch] file</code> 那样用该次提交中的那个文件来更新索引，但是它也会覆盖工作目录中对应的文件。 它就像是 <code>git reset --hard [branch] file</code>（如果 <code>reset</code> 允许你这样运行的话）- 这样对工作目录并不安全，它也不会移动 HEAD。</p>
+<p>此外，同 <code>git reset</code> 和 <code>git add</code> 一样，<code>checkout</code> 也接受一个 <code>--patch</code> 选项，允许你根据选择一块一块地恢复文件内容。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>希望你现在熟悉并理解了 <code>reset</code> 命令，不过关于它和 <code>checkout</code> 之间的区别，你可能还是会有点困惑，毕竟不太可能记住不同调用的所有规则。</p>
+<p>下面的速查表列出了命令对树的影响。 “HEAD” 一列中的 “REF” 表示该命令移动了 HEAD 指向的分支引用，而`‘HEAD’’ 则表示只移动了 HEAD 自身。 特别注意 <em>WD Safe?</em> 一列 - 如果它标记为 <strong>NO</strong>，那么运行该命令之前请考虑一下。</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">HEAD</th>
+<th align="left">Index</th>
+<th align="left">Workdir</th>
+<th align="left">WD Safe?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Commit Level</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>reset --soft [commit]</code></td>
+<td align="left">REF</td>
+<td align="left">NO</td>
+<td align="left">NO</td>
+<td align="left">YES</td>
+</tr>
+<tr>
+<td align="left"><code>reset [commit]</code></td>
+<td align="left">REF</td>
+<td align="left">YES</td>
+<td align="left">NO</td>
+<td align="left">YES</td>
+</tr>
+<tr>
+<td align="left"><code>reset --hard [commit]</code></td>
+<td align="left">REF</td>
+<td align="left">YES</td>
+<td align="left">YES</td>
+<td align="left"><strong>NO</strong></td>
+</tr>
+<tr>
+<td align="left"><code>checkout [commit]</code></td>
+<td align="left">HEAD</td>
+<td align="left">YES</td>
+<td align="left">YES</td>
+<td align="left">YES</td>
+</tr>
+<tr>
+<td align="left"><strong>File Level</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>reset (commit) [file]</code></td>
+<td align="left">NO</td>
+<td align="left">YES</td>
+<td align="left">NO</td>
+<td align="left">YES</td>
+</tr>
+<tr>
+<td align="left"><code>checkout (commit) [file]</code></td>
+<td align="left">NO</td>
+<td align="left">YES</td>
+<td align="left">YES</td>
+<td align="left"><strong>NO</strong></td>
+</tr>
+</tbody></table>
+<h2 id="高级合并"><a href="#高级合并" class="headerlink" title="高级合并"></a>高级合并</h2><p>在 Git 中合并是相当容易的。 因为 Git 使多次合并另一个分支变得很容易，这意味着你可以有一个始终保持最新的长期分支，经常解决小的冲突，比在一系列提交后解决一个巨大的冲突要好。</p>
+<p>然而，有时也会有棘手的冲突。 不像其他的版本控制系统，Git 并不会尝试过于聪明的合并冲突解决方案。 Git 的哲学是聪明地决定无歧义的合并方案，但是如果有冲突，它不会尝试智能地自动解决它。 因此，如果很久之后才合并两个分叉的分支，你可能会撞上一些问题。</p>
+<p>在本节中，我们将会仔细查看那些问题是什么以及 Git 给了我们什么工具来帮助我们处理这些更难办的情形。我们也会了解你可以做的不同的、非标准类型的合并，也会看到如何后退到合并之前。</p>
+<h3 id="合并冲突"><a href="#合并冲突" class="headerlink" title="合并冲突"></a>合并冲突</h3><p>我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_basic_merge_conflicts" target="_blank" rel="noopener">遇到冲突时的分支合并</a> 介绍了解决合并冲突的一些基础知识，对于更复杂的冲突，Git 提供了几个工具来帮助你指出将会发生什么以及如何更好地处理冲突。</p>
+<p>首先，在做一次可能有冲突的合并前尽可能保证工作目录是干净的。 如果你有正在做的工作，要么提交到一个临时分支要么储藏它。 这使你可以撤消在这里尝试做的 <strong>任何事情</strong> 。 如果在你尝试一次合并时工作目录中有未保存的改动，下面的这些技巧可能会使你丢失那些工作。</p>
+<p>让我们通过一个非常简单的例子来了解一下。 我们有一个超级简单的打印 <em>hello world</em> 的 Ruby 文件。</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true">#! /usr/bin/env ruby</span>
+
+<span class="token keyword">def</span> hello
+  puts <span class="token string">'hello world'</span>
+<span class="token keyword">end</span>
+
+<span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>在我们的仓库中，创建一个名为 <code>whitespace</code> 的新分支并将所有 Unix 换行符修改为 DOS 换行符，实质上虽然改变了文件的每一行，但改变的都只是空白字符。 然后我们修改行 “hello world” 为 “hello mundo”。</p>
+<pre class=" language-console"><code class="language-console">$ git checkout -b whitespace
+Switched to a new branch 'whitespace'
+
+$ unix2dos hello.rb
+unix2dos: converting file hello.rb to DOS format ...
+$ git commit -am 'converted hello.rb to DOS'
+[whitespace 3270f76] converted hello.rb to DOS
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+$ vim hello.rb
+$ git diff -b
+diff --git a/hello.rb b/hello.rb
+index ac51efd..e85207e 100755
+--- a/hello.rb
++++ b/hello.rb
+@@ -1,7 +1,7 @@
+ #! /usr/bin/env ruby
+
+ def hello
+-  puts 'hello world'
++  puts 'hello mundo'^M
+ end
+
+ hello()
+
+$ git commit -am 'hello mundo change'
+[whitespace 6d338d2] hello mundo change
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</code></pre>
+<p>现在我们切换回我们的 <code>master</code> 分支并为函数增加一些注释。</p>
+<pre class=" language-console"><code class="language-console">$ git checkout master
+Switched to branch 'master'
+
+$ vim hello.rb
+$ git diff
+diff --git a/hello.rb b/hello.rb
+index ac51efd..36c06c8 100755
+--- a/hello.rb
++++ b/hello.rb
+@@ -1,5 +1,6 @@
+ #! /usr/bin/env ruby
+
++# prints out a greeting
+ def hello
+   puts 'hello world'
+ end
+
+$ git commit -am 'document the function'
+[master bec6336] document the function
+ 1 file changed, 1 insertion(+)
+</code></pre>
+<p>现在我们尝试合并入我们的 <code>whitespace</code> 分支，因为修改了空白字符，所以合并会出现冲突。</p>
+<pre class=" language-console"><code class="language-console">$ git merge whitespace
+Auto-merging hello.rb
+CONFLICT (content): Merge conflict in hello.rb
+Automatic merge failed; fix conflicts and then commit the result.
+</code></pre>
+<h4 id="中断一次合并"><a href="#中断一次合并" class="headerlink" title="中断一次合并"></a>中断一次合并</h4><p>我们现在有几个选项。 首先，让我们介绍如何摆脱这个情况。 你可能不想处理冲突这种情况，完全可以通过 <code>git merge --abort</code> 来简单地退出合并。</p>
+<pre class=" language-console"><code class="language-console">$ git status -sb
+## master
+UU hello.rb
+
+$ git merge --abort
+
+$ git status -sb
+## master
+</code></pre>
+<p><code>git merge --abort</code> 选项会尝试恢复到你运行合并前的状态。 但当运行命令前，在工作目录中有未储藏、未提交的修改时它不能完美处理，除此之外它都工作地很好。</p>
+<p>如果因为某些原因你发现自己处在一个混乱的状态中然后只是想要重来一次，也可以运行 <code>git reset --hard HEAD</code> 回到之前的状态或其他你想要恢复的状态。 请牢记这会将清除工作目录中的所有内容，所以确保你不需要保存这里的任意改动。</p>
+<h4 id="忽略空白"><a href="#忽略空白" class="headerlink" title="忽略空白"></a>忽略空白</h4><p>在这个特定的例子中，冲突与空白有关。 我们知道这点是因为这个例子很简单，但是在实际的例子中发现这样的冲突也很容易，因为每一行都被移除而在另一边每一行又被加回来了。 默认情况下，Git 认为所有这些行都改动了，所以它不会合并文件。</p>
+<p>默认合并策略可以带有参数，其中的几个正好是关于忽略空白改动的。 如果你看到在一次合并中有大量的空白问题，你可以简单地中止它并重做一次，这次使用 <code>-Xignore-all-space</code> 或 <code>-Xignore-space-change</code> 选项。 第一个选项忽略任意 <strong>数量</strong> 的已有空白的修改，第二个选项忽略所有空白修改。</p>
+<pre class=" language-console"><code class="language-console">$ git merge -Xignore-space-change whitespace
+Auto-merging hello.rb
+Merge made by the 'recursive' strategy.
+ hello.rb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</code></pre>
+<p>因为在本例中，实际上文件修改并没有冲突，一旦我们忽略空白修改，每一行都能被很好地合并。</p>
+<p>如果你的团队中的某个人可能不小心重新格式化空格为制表符或者相反的操作，这会是一个救命稻草。</p>
+<h4 id="手动文件再合并"><a href="#手动文件再合并" class="headerlink" title="手动文件再合并"></a>手动文件再合并</h4><p>虽然 Git 对空白的预处理做得很好，还有很多其他类型的修改，Git 也许无法自动处理，但是脚本可以处理它们。 例如，假设 Git 无法处理空白修改因此我们需要手动处理。</p>
+<p>我们真正想要做的是对将要合并入的文件在真正合并前运行 <code>dos2unix</code> 程序。 所以如果那样的话，我们该如何做？</p>
+<p>首先，我们进入到了合并冲突状态。 然后我们想要我的版本的文件，他们的版本的文件（从我们将要合并入的分支）和共同的版本的文件（从分支叉开时的位置）的拷贝。 然后我们想要修复任何一边的文件，并且为这个单独的文件重试一次合并。</p>
+<p>获得这三个文件版本实际上相当容易。 Git 在索引中存储了所有这些版本，在 “stages” 下每一个都有一个数字与它们关联。 Stage 1 是它们共同的祖先版本，stage 2 是你的版本，stage 3 来自于 <code>MERGE_HEAD</code>，即你将要合并入的版本（“theirs”）。</p>
+<p>通过 <code>git show</code> 命令与一个特别的语法，你可以将冲突文件的这些版本释放出一份拷贝。</p>
+<pre class=" language-console"><code class="language-console">$ git show :1:hello.rb > hello.common.rb
+$ git show :2:hello.rb > hello.ours.rb
+$ git show :3:hello.rb > hello.theirs.rb
+</code></pre>
+<p>如果你想要更专业一点，也可以使用 <code>ls-files -u</code> 底层命令来得到这些文件的 Git blob 对象的实际 SHA-1 值。</p>
+<pre class=" language-console"><code class="language-console">$ git ls-files -u
+100755 ac51efdc3df4f4fd328d1a02ad05331d8e2c9111 1    hello.rb
+100755 36c06c8752c78d2aff89571132f3bf7841a7b5c3 2    hello.rb
+100755 e85207e04dfdd5eb0a1e9febbc67fd837c44a1cd 3    hello.rb
+</code></pre>
+<p><code>:1:hello.rb</code> 只是查找那个 blob 对象 SHA-1 值的简写。</p>
+<p>既然在我们的工作目录中已经有这所有三个阶段的内容，我们可以手工修复它们来修复空白问题，然后使用鲜为人知的 <code>git merge-file</code> 命令来重新合并那个文件。</p>
+<pre class=" language-console"><code class="language-console">$ dos2unix hello.theirs.rb
+dos2unix: converting file hello.theirs.rb to Unix format ...
+
+$ git merge-file -p \
+    hello.ours.rb hello.common.rb hello.theirs.rb > hello.rb
+
+$ git diff -b
+diff --cc hello.rb
+index 36c06c8,e85207e..0000000
+--- a/hello.rb
++++ b/hello.rb
+@@@ -1,8 -1,7 +1,8 @@@
+  #! /usr/bin/env ruby
+
+ +# prints out a greeting
+  def hello
+-   puts 'hello world'
++   puts 'hello mundo'
+  end
+
+  hello()
+</code></pre>
+<p>在这时我们已经漂亮地合并了那个文件。 实际上，这比使用 <code>ignore-space-change</code> 选项要更好，因为在合并前真正地修复了空白修改而不是简单地忽略它们。 在使用 <code>ignore-space-change</code> 进行合并操作后，我们最终得到了有几行是 DOS 行尾的文件，从而使提交内容混乱了。</p>
+<p>如果你想要在最终提交前看一下我们这边与另一边之间实际的修改，你可以使用 <code>git diff</code> 来比较将要提交作为合并结果的工作目录与其中任意一个阶段的文件差异。 让我们看看它们。</p>
+<p>要在合并前比较结果与在你的分支上的内容，换一句话说，看看合并引入了什么，可以运行 <code>git diff --ours</code></p>
+<pre class=" language-console"><code class="language-console">$ git diff --ours
+* Unmerged path hello.rb
+diff --git a/hello.rb b/hello.rb
+index 36c06c8..44d0a25 100755
+--- a/hello.rb
++++ b/hello.rb
+@@ -2,7 +2,7 @@
+
+ # prints out a greeting
+ def hello
+-  puts 'hello world'
++  puts 'hello mundo'
+ end
+
+ hello()
+</code></pre>
+<p>这里我们可以很容易地看到在我们的分支上发生了什么，在这次合并中我们实际引入到这个文件的改动，是修改了其中一行。</p>
+<p>如果我们想要查看合并的结果与他们那边有什么不同，可以运行 <code>git diff --theirs</code>。 在本例及后续的例子中，我们会使用 <code>-b</code> 来去除空白，因为我们将它与 Git 中的，而不是我们清理过的 <code>hello.theirs.rb</code> 文件比较。</p>
+<pre class=" language-console"><code class="language-console">$ git diff --theirs -b
+* Unmerged path hello.rb
+diff --git a/hello.rb b/hello.rb
+index e85207e..44d0a25 100755
+--- a/hello.rb
++++ b/hello.rb
+@@ -1,5 +1,6 @@
+ #! /usr/bin/env ruby
+
++# prints out a greeting
+ def hello
+   puts 'hello mundo'
+ end
+</code></pre>
+<p>最终，你可以通过 <code>git diff --base</code> 来查看文件在两边是如何改动的。</p>
+<pre class=" language-console"><code class="language-console">$ git diff --base -b
+* Unmerged path hello.rb
+diff --git a/hello.rb b/hello.rb
+index ac51efd..44d0a25 100755
+--- a/hello.rb
++++ b/hello.rb
+@@ -1,7 +1,8 @@
+ #! /usr/bin/env ruby
+
++# prints out a greeting
+ def hello
+-  puts 'hello world'
++  puts 'hello mundo'
+ end
+
+ hello()
+</code></pre>
+<p>在这时我们可以使用 <code>git clean</code> 命令来清理我们为手动合并而创建但不再有用的额外文件。</p>
+<pre class=" language-console"><code class="language-console">$ git clean -f
+Removing hello.common.rb
+Removing hello.ours.rb
+Removing hello.theirs.rb
+</code></pre>
+<h4 id="检出冲突"><a href="#检出冲突" class="headerlink" title="检出冲突"></a>检出冲突</h4><p>也许有时我们并不满意这样的解决方案，或许有时还要手动编辑一边或者两边的冲突，但还是依旧无法正常工作，这时我们需要更多的上下文关联来解决这些冲突。</p>
+<p>让我们来稍微改动下例子。 对于本例，我们有两个长期分支，每一个分支都有几个提交，但是在合并时却创建了一个合理的冲突。</p>
+<pre class=" language-console"><code class="language-console">$ git log --graph --oneline --decorate --all
+* f1270f7 (HEAD, master) update README
+* 9af9d3b add a README
+* 694971d update phrase to hola world
+| * e3eb223 (mundo) add more tests
+| * 7cff591 add testing script
+| * c3ffff1 changed text to hello mundo
+|/
+* b7dcc89 initial hello world code
+</code></pre>
+<p>现在有只在 <code>master</code> 分支上的三次单独提交，还有其他三次提交在 <code>mundo</code> 分支上。 如果我们尝试将 <code>mundo</code> 分支合并入 <code>master</code> 分支，我们得到一个冲突。</p>
+<pre class=" language-console"><code class="language-console">$ git merge mundo
+Auto-merging hello.rb
+CONFLICT (content): Merge conflict in hello.rb
+Automatic merge failed; fix conflicts and then commit the result.
+</code></pre>
+<p>我们想要看一下合并冲突是什么。 如果我们打开这个文件，我们将会看到类似下面的内容：</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true">#! /usr/bin/env ruby</span>
+
+<span class="token keyword">def</span> hello
+<span class="token operator">&lt;</span><span class="token operator">&lt;</span><span class="token operator">&lt;</span><span class="token operator">&lt;</span><span class="token operator">&lt;</span><span class="token operator">&lt;</span><span class="token operator">&lt;</span> <span class="token constant">HEAD</span>
+  puts <span class="token string">'hola world'</span>
+<span class="token operator">===</span><span class="token operator">===</span><span class="token operator">=</span>
+  puts <span class="token string">'hello mundo'</span>
+<span class="token operator">></span><span class="token operator">></span><span class="token operator">></span><span class="token operator">></span><span class="token operator">></span><span class="token operator">></span><span class="token operator">></span> mundo
+<span class="token keyword">end</span>
+
+<span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>合并的两边都向这个文件增加了内容，但是导致冲突的原因是其中一些提交修改了文件的同一个地方。</p>
+<p>让我们探索一下现在你手边可用来查明这个冲突是如何产生的工具。 应该如何修复这个冲突看起来或许并不明显。 这时你需要更多上下文。</p>
+<p>一个很有用的工具是带 <code>--conflict</code> 选项的 <code>git checkout</code>。 这会重新检出文件并替换合并冲突标记。 如果想要重置标记并尝试再次解决它们的话这会很有用。</p>
+<p>可以传递给 <code>--conflict</code> 参数 <code>diff3</code> 或 <code>merge</code>（默认选项）。 如果传给它 <code>diff3</code>，Git 会使用一个略微不同版本的冲突标记：不仅仅只给你 “ours” 和 “theirs” 版本，同时也会有 “base” 版本在中间来给你更多的上下文。</p>
+<pre class=" language-console"><code class="language-console">$ git checkout --conflict=diff3 hello.rb
+</code></pre>
+<p>一旦我们运行它，文件看起来会像下面这样：</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true">#! /usr/bin/env ruby</span>
+
+<span class="token keyword">def</span> hello
+<span class="token operator">&lt;</span><span class="token operator">&lt;</span><span class="token operator">&lt;</span><span class="token operator">&lt;</span><span class="token operator">&lt;</span><span class="token operator">&lt;</span><span class="token operator">&lt;</span> ours
+  puts <span class="token string">'hola world'</span>
+<span class="token operator">||</span><span class="token operator">||</span><span class="token operator">||</span><span class="token operator">|</span> base
+  puts <span class="token string">'hello world'</span>
+<span class="token operator">===</span><span class="token operator">===</span><span class="token operator">=</span>
+  puts <span class="token string">'hello mundo'</span>
+<span class="token operator">></span><span class="token operator">></span><span class="token operator">></span><span class="token operator">></span><span class="token operator">></span><span class="token operator">></span><span class="token operator">></span> theirs
+<span class="token keyword">end</span>
+
+<span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>如果你喜欢这种格式，可以通过设置 <code>merge.conflictstyle</code> 选项为 <code>diff3</code> 来做为以后合并冲突的默认选项。</p>
+<pre class=" language-console"><code class="language-console">$ git config --global merge.conflictstyle diff3
+</code></pre>
+<p><code>git checkout</code> 命令也可以使用 <code>--ours</code> 和 <code>--theirs</code> 选项，这是一种无需合并的快速方式，你可以选择留下一边的修改而丢弃掉另一边修改。</p>
+<p>当有二进制文件冲突时这可能会特别有用，因为可以简单地选择一边，或者可以只合并另一个分支的特定文件 - 可以做一次合并然后在提交前检出一边或另一边的特定文件。</p>
+<h4 id="合并日志"><a href="#合并日志" class="headerlink" title="合并日志"></a>合并日志</h4><p>另一个解决合并冲突有用的工具是 <code>git log</code>。 这可以帮助你得到那些对冲突有影响的上下文。 回顾一点历史来记起为什么两条线上的开发会触碰同一片代码有时会很有用。</p>
+<p>为了得到此次合并中包含的每一个分支的所有独立提交的列表，我们可以使用之前在 <a href="https://git-scm.com/book/zh/v2/ch00/r_triple_dot" target="_blank" rel="noopener">三点</a> 学习的 “三点” 语法。</p>
+<pre class=" language-console"><code class="language-console">$ git log --oneline --left-right HEAD...MERGE_HEAD
+< f1270f7 update README
+< 9af9d3b add a README
+< 694971d update phrase to hola world
+> e3eb223 add more tests
+> 7cff591 add testing script
+> c3ffff1 changed text to hello mundo
+</code></pre>
+<p>这个漂亮的列表包含 6 个提交和每一个提交所在的不同开发路径。</p>
+<p>我们可以通过更加特定的上下文来进一步简化这个列表。 如果我们添加 <code>--merge</code> 选项到 <code>git log</code> 中，它会只显示任何一边接触了合并冲突文件的提交。</p>
+<pre class=" language-console"><code class="language-console">$ git log --oneline --left-right --merge
+< 694971d update phrase to hola world
+> c3ffff1 changed text to hello mundo
+</code></pre>
+<p>如果你运行命令时用 <code>-p</code> 选项代替，你会得到所有冲突文件的区别。 快速获得你需要帮助理解为什么发生冲突的上下文，以及如何聪明地解决它，这会 <strong>非常</strong> 有用。</p>
+<h4 id="组合式差异格式"><a href="#组合式差异格式" class="headerlink" title="组合式差异格式"></a>组合式差异格式</h4><p>因为 Git 暂存合并成功的结果，当你在合并冲突状态下运行 <code>git diff</code> 时，只会得到现在还在冲突状态的区别。 当需要查看你还需要解决哪些冲突时这很有用。</p>
+<p>在合并冲突后直接运行的 <code>git diff</code> 会给你一个相当独特的输出格式。</p>
+<pre class=" language-console"><code class="language-console">$ git diff
+diff --cc hello.rb
+index 0399cd5,59727f0..0000000
+--- a/hello.rb
++++ b/hello.rb
+@@@ -1,7 -1,7 +1,11 @@@
+  #! /usr/bin/env ruby
+
+  def hello
+++<<<<<<< HEAD
+ +  puts 'hola world'
+++=======
++   puts 'hello mundo'
+++>>>>>>> mundo
+  end
+
+  hello()
+</code></pre>
+<p>这种叫作 “组合式差异” 的格式会在每一行给你两列数据。 第一列为你显示 “ours” 分支与工作目录的文件区别（添加或删除），第二列显示 “theirs” 分支与工作目录的拷贝区别。</p>
+<p>所以在上面的例子中可以看到 <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> 与 <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> 行在工作拷贝中但是并不在合并的任意一边中。 这很有意义，合并工具因为我们的上下文被困住了，它期望我们去移除它们。</p>
+<p>如果我们解决冲突再次运行 <code>git diff</code>，我们将会看到同样的事情，但是它有一点帮助。</p>
+<pre class=" language-console"><code class="language-console">$ vim hello.rb
+$ git diff
+diff --cc hello.rb
+index 0399cd5,59727f0..0000000
+--- a/hello.rb
++++ b/hello.rb
+@@@ -1,7 -1,7 +1,7 @@@
+  #! /usr/bin/env ruby
+
+  def hello
+-   puts 'hola world'
+ -  puts 'hello mundo'
+++  puts 'hola mundo'
+  end
+
+  hello()
+</code></pre>
+<p>这里显示出 “hola world” 在我们这边但不在工作拷贝中，那个 “hello mundo” 在他们那边但不在工作拷贝中，最终 “hola mundo” 不在任何一边但是现在在工作拷贝中。 在提交解决方案前这对审核很有用。</p>
+<p>也可以在合并后通过 <code>git log</code> 来获取相同信息，并查看冲突是如何解决的。 如果你对一个合并提交运行 <code>git show</code> 命令 Git 将会输出这种格式，或者你也可以在 <code>git log -p</code>（默认情况下该命令只会展示还没有合并的补丁）命令之后加上 <code>--cc</code> 选项。</p>
+<pre class=" language-console"><code class="language-console">$ git log --cc -p -1
+commit 14f41939956d80b9e17bb8721354c33f8d5b5a79
+Merge: f1270f7 e3eb223
+Author: Scott Chacon <schacon@gmail.com>
+Date:   Fri Sep 19 18:14:49 2014 +0200
+
+    Merge branch 'mundo'
+
+    Conflicts:
+        hello.rb
+
+diff --cc hello.rb
+index 0399cd5,59727f0..e1d0799
+--- a/hello.rb
++++ b/hello.rb
+@@@ -1,7 -1,7 +1,7 @@@
+  #! /usr/bin/env ruby
+
+  def hello
+-   puts 'hola world'
+ -  puts 'hello mundo'
+++  puts 'hola mundo'
+  end
+
+  hello()
+</code></pre>
+<h3 id="撤消合并"><a href="#撤消合并" class="headerlink" title="撤消合并"></a>撤消合并</h3><p>虽然你已经知道如何创建一个合并提交，但有时出错是在所难免的。 使用 Git 最棒的一件事情是犯错是可以的，因为有可能（大多数情况下都很容易）修复它们。</p>
+<p>合并提交并无不同。 假设现在在一个特性分支上工作，不小心将其合并到 <code>master</code> 中，现在提交历史看起来是这样：</p>
+<p><img src="https://git-scm.com/book/en/v2/images/undomerge-start.png" alt="意外的合并提交"></p>
+<p>Figure 138. 意外的合并提交</p>
+<p>有两种方法来解决这个问题，这取决于你想要的结果是什么。</p>
+<h4 id="修复引用"><a href="#修复引用" class="headerlink" title="修复引用"></a>修复引用</h4><p>如果这个不想要的合并提交只存在于你的本地仓库中，最简单且最好的解决方案是移动分支到你想要它指向的地方。 大多数情况下，如果你在错误的 <code>git merge</code> 后运行 <code>git reset --hard HEAD~</code>，这会重置分支指向所以它们看起来像这样：</p>
+<p><img src="https://git-scm.com/book/en/v2/images/undomerge-reset.png" alt="在 `git reset --hard HEAD~` 之后的历史"></p>
+<p>Figure 139. 在 <code>git reset --hard HEAD~</code> 之后的历史</p>
+<p>我们之前在 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_reset" target="_blank" rel="noopener">重置揭密</a> 已经介绍了 <code>reset</code>，所以现在指出这里发生了什么并不是很困难。 让我们快速复习下：<code>reset --hard</code> 通常会经历三步：</p>
+<ol>
+<li>移动 HEAD 指向的分支。 在本例中，我们想要移动 <code>master</code> 到合并提交（<code>C6</code>）之前所在的位置。</li>
+<li>使索引看起来像 HEAD。</li>
+<li>使工作目录看起来像索引。</li>
+</ol>
+<p>这个方法的缺点是它会重写历史，在一个共享的仓库中这会造成问题的。 查阅 <a href="https://git-scm.com/book/zh/v2/ch00/r_rebase_peril" target="_blank" rel="noopener">变基的风险</a> 来了解更多可能发生的事情；用简单的话说就是如果其他人已经有你将要重写的提交，你应当避免使用 <code>reset</code>。 如果有任何其他提交在合并之后创建了，那么这个方法也会无效；移动引用实际上会丢失那些改动。</p>
+<h4 id="还原提交"><a href="#还原提交" class="headerlink" title="还原提交"></a>还原提交</h4><p>如果移动分支指针并不适合你，Git 给你一个生成一个新提交的选项，提交将会撤消一个已存在提交的所有修改。 Git 称这个操作为 “还原”，在这个特定的场景下，你可以像这样调用它：</p>
+<pre class=" language-console"><code class="language-console">$ git revert -m 1 HEAD
+[master b1d8379] Revert "Merge branch 'topic'"
+</code></pre>
+<p><code>-m 1</code> 标记指出 “mainline” 需要被保留下来的父结点。 当你引入一个合并到 <code>HEAD</code>（<code>git merge topic</code>），新提交有两个父结点：第一个是 <code>HEAD</code>（<code>C6</code>），第二个是将要合并入分支的最新提交（<code>C4</code>）。 在本例中，我们想要撤消所有由父结点 #2（<code>C4</code>）合并引入的修改，同时保留从父结点 #1（<code>C4</code>）开始的所有内容。</p>
+<p>有还原提交的历史看起来像这样：</p>
+<p><img src="https://git-scm.com/book/en/v2/images/undomerge-revert.png" alt="在 `git revert -m 1` 后的历史"></p>
+<p>Figure 140. 在 <code>git revert -m 1</code> 后的历史</p>
+<p>新的提交 <code>^M</code> 与 <code>C6</code> 有完全一样的内容，所以从这儿开始就像合并从未发生过，除了“现在还没合并”的提交依然在 <code>HEAD</code> 的历史中。 如果你尝试再次合并 <code>topic</code> 到 <code>master</code> Git 会感到困惑：</p>
+<pre class=" language-console"><code class="language-console">$ git merge topic
+Already up-to-date.
+</code></pre>
+<p><code>topic</code> 中并没有东西不能从 <code>master</code> 中追踪到达。 更糟的是，如果你在 <code>topic</code> 中增加工作然后再次合并，Git 只会引入被还原的合并 <em>之后</em> 的修改。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/undomerge-revert2.png" alt="含有坏掉合并的历史"></p>
+<p>Figure 141. 含有坏掉合并的历史</p>
+<p>解决这个最好的方式是撤消还原原始的合并，因为现在你想要引入被还原出去的修改，<strong>然后</strong> 创建一个新的合并提交：</p>
+<pre class=" language-console"><code class="language-console">$ git revert ^M
+[master 09f0126] Revert "Revert "Merge branch 'topic'""
+$ git merge topic
+</code></pre>
+<p><img src="https://git-scm.com/book/en/v2/images/undomerge-revert3.png" alt="在重新合并一个还原合并后的历史"></p>
+<p>Figure 142. 在重新合并一个还原合并后的历史</p>
+<p>在本例中，<code>M</code> 与 <code>^M</code> 抵消了。 <code>^^M</code> 事实上合并入了 <code>C3</code> 与 <code>C4</code> 的修改，<code>C8</code> 合并了 <code>C7</code> 的修改，所以现在 <code>topic</code> 已经完全被合并了。</p>
+<h3 id="其他类型的合并"><a href="#其他类型的合并" class="headerlink" title="其他类型的合并"></a>其他类型的合并</h3><p>到目前为止我们介绍的都是通过一个叫作 “recursive” 的合并策略来正常处理的两个分支的正常合并。 然而还有其他方式来合并两个分支到一起。 让我们来快速介绍其中的几个。</p>
+<h4 id="我们的或他们的偏好"><a href="#我们的或他们的偏好" class="headerlink" title="我们的或他们的偏好"></a>我们的或他们的偏好</h4><p>首先，有另一种我们可以通过 “recursive” 合并模式做的有用工作。 我们之前已经看到传递给 <code>-X</code> 的 <code>ignore-all-space</code> 与 <code>ignore-space-change</code> 选项，但是我们也可以告诉 Git 当它看见一个冲突时直接选择一边。</p>
+<p>默认情况下，当 Git 看到两个分支合并中的冲突时，它会将合并冲突标记添加到你的代码中并标记文件为冲突状态来让你解决。 如果你希望 Git 简单地选择特定的一边并忽略另外一边而不是让你手动合并冲突，你可以传递给 <code>merge</code> 命令一个 <code>-Xours</code> 或 <code>-Xtheirs</code> 参数。</p>
+<p>如果 Git 看到这个，它并不会增加冲突标记。 任何可以合并的区别，它会直接合并。 任何有冲突的区别，它会简单地选择你全局指定的一边，包括二进制文件。</p>
+<p>如果我们回到之前我们使用的 “hello world” 例子中，我们可以看到合并入我们的分支时引发了冲突。</p>
+<pre class=" language-console"><code class="language-console">$ git merge mundo
+Auto-merging hello.rb
+CONFLICT (content): Merge conflict in hello.rb
+Resolved 'hello.rb' using previous resolution.
+Automatic merge failed; fix conflicts and then commit the result.
+</code></pre>
+<p>然而如果我们运行时增加 <code>-Xours</code> 或 <code>-Xtheirs</code> 参数就不会有冲突。</p>
+<pre class=" language-console"><code class="language-console">$ git merge -Xours mundo
+Auto-merging hello.rb
+Merge made by the 'recursive' strategy.
+ hello.rb | 2 +-
+ test.sh  | 2 ++
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+ create mode 100644 test.sh
+</code></pre>
+<p>在上例中，它并不会为 “hello mundo” 与 “hola world” 标记合并冲突，它只会简单地选取 “hola world”。 然而，在那个分支上所有其他非冲突的改动都可以被成功地合并入。</p>
+<p>这个选项也可以传递给我们之前看到的 <code>git merge-file</code> 命令，通过运行类似 <code>git merge-file --ours</code> 的命令来合并单个文件。</p>
+<p>如果想要做类似的事情但是甚至并不想让 Git 尝试合并另外一边的修改，有一个更严格的选项，它是 “ours” 合并 <em>策略*。 这与 “ours” recursive 合并 *选项</em> 不同。</p>
+<p>这本质上会做一次假的合并。 它会记录一个以两边分支作为父结点的新合并提交，但是它甚至根本不关注你正合并入的分支。 它只会简单地把当前分支的代码当作合并结果记录下来。</p>
+<pre class=" language-console"><code class="language-console">$ git merge -s ours mundo
+Merge made by the 'ours' strategy.
+$ git diff HEAD HEAD~
+$
+</code></pre>
+<p>你可以看到合并后与合并前我们的分支并没有任何区别。</p>
+<p>当再次合并时从本质上欺骗 Git 认为那个分支已经合并过经常是很有用的。 例如，假设你有一个分叉的 <code>release</code> 分支并且在上面做了一些你想要在未来某个时候合并回 <code>master</code> 的工作。 与此同时 <code>master</code> 分支上的某些 bugfix 需要向后移植回 <code>release</code> 分支。 你可以合并 bugfix 分支进入 <code>release</code> 分支同时也 <code>merge -s ours</code> 合并进入你的 <code>master</code> 分支（即使那个修复已经在那儿了）这样当你之后再次合并 <code>release</code> 分支时，就不会有来自 bugfix 的冲突。</p>
+<h4 id="子树合并"><a href="#子树合并" class="headerlink" title="子树合并"></a>子树合并</h4><p>子树合并的思想是你有两个项目，并且其中一个映射到另一个项目的一个子目录，或者反过来也行。 当你执行一个子树合并时，Git 通常可以自动计算出其中一个是另外一个的子树从而实现正确的合并。</p>
+<p>我们来看一个例子如何将一个项目加入到一个已存在的项目中，然后将第二个项目的代码合并到第一个项目的子目录中。</p>
+<p>首先，我们将 Rack 应用添加到你的项目里。 我们把 Rack 项目作为一个远程的引用添加到我们的项目里，然后检出到它自己的分支。</p>
+<pre class=" language-console"><code class="language-console">$ git remote add rack_remote https://github.com/rack/rack
+$ git fetch rack_remote
+warning: no common commits
+remote: Counting objects: 3184, done.
+remote: Compressing objects: 100% (1465/1465), done.
+remote: Total 3184 (delta 1952), reused 2770 (delta 1675)
+Receiving objects: 100% (3184/3184), 677.42 KiB | 4 KiB/s, done.
+Resolving deltas: 100% (1952/1952), done.
+From https://github.com/rack/rack
+ * [new branch]      build      -> rack_remote/build
+ * [new branch]      master     -> rack_remote/master
+ * [new branch]      rack-0.4   -> rack_remote/rack-0.4
+ * [new branch]      rack-0.9   -> rack_remote/rack-0.9
+$ git checkout -b rack_branch rack_remote/master
+Branch rack_branch set up to track remote branch refs/remotes/rack_remote/master.
+Switched to a new branch "rack_branch"
+</code></pre>
+<p>现在在我们的 <code>rack_branch</code> 分支里就有 Rack 项目的根目录，而我们的项目则在 <code>master</code> 分支里。 如果你从一个分支切换到另一个分支，你可以看到它们的项目根目录是不同的：</p>
+<pre class=" language-console"><code class="language-console">$ ls
+AUTHORS         KNOWN-ISSUES   Rakefile      contrib         lib
+COPYING         README         bin           example         test
+$ git checkout master
+Switched to branch "master"
+$ ls
+README
+</code></pre>
+<p>这个是一个比较奇怪的概念。 并不是仓库中的所有分支都是必须属于同一个项目的分支. 这并不常见，因为没啥用，但是却是在不同分支里包含两条完全不同提交历史的最简单的方法。</p>
+<p>在这个例子中，我们希望将 Rack 项目拉到 <code>master</code> 项目中作为一个子目录。 我们可以在 Git 中执行 <code>git read-tree</code> 来实现。 你可以在 <a href="https://git-scm.com/book/zh/v2/ch00/ch10-git-internals" target="_blank" rel="noopener">Git 内部原理</a> 中查看更多 <code>read-tree</code> 的相关信息，现在你只需要知道它会读取一个分支的根目录树到当前的暂存区和工作目录里。 先切回你的 <code>master</code> 分支，将 <code>rack_back</code> 分支拉取到我们项目的 <code>master</code> 分支中的 <code>rack</code> 子目录。</p>
+<pre class=" language-console"><code class="language-console">$ git read-tree --prefix=rack/ -u rack_branch
+</code></pre>
+<p>当我们提交时，那个子目录中拥有所有 Rack 项目的文件 —— 就像我们直接从压缩包里复制出来的一样。 有趣的是你可以很容易地将一个分支的变更合并到另一个分支里。 所以，当 Rack 项目有更新时，我们可以切换到那个分支来拉取上游的变更。</p>
+<pre class=" language-console"><code class="language-console">$ git checkout rack_branch
+$ git pull
+</code></pre>
+<p>接着，我们可以将这些变更合并回我们的 <code>master</code> 分支。 使用 <code>--squash</code> 选项和使用 <code>-Xsubtree</code> 选项（它采用递归合并策略），都可以用来可以拉取变更并且预填充提交信息。 （递归策略在这里是默认的，提到它是为了让读者有个清晰的概念。）</p>
+<pre class=" language-console"><code class="language-console">$ git checkout master
+$ git merge --squash -s recursive -Xsubtree=rack rack_branch
+Squash commit -- not updating HEAD
+Automatic merge went well; stopped before committing as requested
+</code></pre>
+<p>Rack 项目中所有的改动都被合并了，等待被提交到本地。 你也可以用相反的方法——在 master 分支上的 <code>rack</code> 子目录中做改动然后将它们合并入你的 <code>rack_branch</code> 分支中，之后你可能将其提交给项目维护着或者将它们推送到上游。</p>
+<p>这给我们提供了一种类似子模块工作流的工作方式，但是它并不需要用到子模块（有关子模块的内容我们会在 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_submodules" target="_blank" rel="noopener">子模块</a> 中介绍）。 我们可以在自己的仓库中保持一些和其他项目相关的分支，偶尔使用子树合并将它们合并到我们的项目中。 某些时候这种方式很有用，例如当所有的代码都提交到一个地方的时候。 然而，它同时也有缺点，它更加复杂且更容易让人犯错，例如重复合并改动或者不小心将分支提交到一个无关的仓库上去。</p>
+<p>另外一个有点奇怪的地方是，当你想查看 <code>rack</code> 子目录和 <code>rack_branch</code> 分支的差异——来确定你是否需要合并它们——你不能使用普通的 <code>diff</code> 命令。 取而代之的是，你必须使用 <code>git diff-tree</code> 来和你的目标分支做比较：</p>
+<pre class=" language-console"><code class="language-console">$ git diff-tree -p rack_branch
+</code></pre>
+<p>或者，将你的 <code>rack</code> 子目和最近一次从服务器上抓取的 <code>master</code> 分支进行比较，你可以运行：</p>
+<pre class=" language-console"><code class="language-console">$ git diff-tree -p rack_remote/master
+</code></pre>
+<h2 id="Rerere"><a href="#Rerere" class="headerlink" title="Rerere"></a>Rerere</h2><p><code>git rerere</code> 功能是一个隐藏的功能。 正如它的名字 “reuse recorded resolution” 所指，它允许你让 Git 记住解决一个块冲突的方法，这样在下一次看到相同冲突时，Git 可以为你自动地解决它。</p>
+<p>有几种情形下这个功能会非常有用。 在文档中提到的一个例子是如果你想要保证一个长期分支会干净地合并，但是又不想要一串中间的合并提交。 将 <code>rerere</code> 功能打开后偶尔合并，解决冲突，然后返回到合并前。 如果你持续这样做，那么最终的合并会很容易，因为 <code>rerere</code> 可以为你自动做所有的事情。</p>
+<p>可以将同样的策略用在维持一个变基的分支时，这样就不用每次解决同样的变基冲突了。 或者你将一个分支合并并修复了一堆冲突后想要用变基来替代合并 - 你可能并不想要再次解决相同的冲突。</p>
+<p>另一个情形是当你偶尔将一堆正在改进的特性分支合并到一个可测试的头时，就像 Git 项目自身经常做的。 如果测试失败，你可以倒回合并之前然后在去除导致测试失败的那个特性分支后重做合并，而不用再次重新解决所有的冲突。</p>
+<p>为了启用 <code>rerere</code> 功能，仅仅需要运行这个配置选项：</p>
+<pre class=" language-console"><code class="language-console">$ git config --global rerere.enabled true
+</code></pre>
+<p>也通过在特定的仓库中创建 <code>.git/rr-cache</code> 目录来开启它，但是设置选项更干净并且可以应用到全局。</p>
+<p>现在我们看一个简单的例子，类似之前的那个。 假设有一个像这样的文件：</p>
+<pre class=" language-console"><code class="language-console">#! /usr/bin/env ruby
+
+def hello
+  puts 'hello world'
+end
+</code></pre>
+<p>在一个分支中修改单词 “hello” 为 “hola”，然后在另一个分支中修改 “world” 为 “mundo”，就像之前一样。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/rerere1.png" alt="rerere1"></p>
+<p>当合并两个分支到一起时，我们将会得到一个合并冲突：</p>
+<pre class=" language-console"><code class="language-console">$ git merge i18n-world
+Auto-merging hello.rb
+CONFLICT (content): Merge conflict in hello.rb
+Recorded preimage for 'hello.rb'
+Automatic merge failed; fix conflicts and then commit the result.
+</code></pre>
+<p>你会注意到那个新行 <code>Recorded preimage for FILE</code>。 除此之外它应该看起来就像一个普通的合并冲突。 在这个时候，<code>rerere</code> 可以告诉我们几件事。 和往常一样，在这个时候你可以运行 <code>git status</code> 来查看所有冲突的内容：</p>
+<pre class=" language-console"><code class="language-console">$ git status
+# On branch master
+# Unmerged paths:
+#   (use "git reset HEAD <file>..." to unstage)
+#   (use "git add <file>..." to mark resolution)
+#
+#    both modified:      hello.rb
+#
+</code></pre>
+<p>然而，<code>git rerere</code> 也会通过 <code>git rerere status</code> 告诉你它记录的合并前状态。</p>
+<pre class=" language-console"><code class="language-console">$ git rerere status
+hello.rb
+</code></pre>
+<p>并且 <code>git rerere diff</code> 将会显示解决方案的当前状态 - 开始解决前与解决后的样子。</p>
+<pre class=" language-console"><code class="language-console">$ git rerere diff
+--- a/hello.rb
++++ b/hello.rb
+@@ -1,11 +1,11 @@
+ #! /usr/bin/env ruby
+
+ def hello
+-<<<<<<<
+-  puts 'hello mundo'
+-=======
++<<<<<<< HEAD
+   puts 'hola world'
+->>>>>>>
++=======
++  puts 'hello mundo'
++>>>>>>> i18n-world
+ end
+</code></pre>
+<p>同样（这并不是真的与 <code>rerere</code> 有关系），可以使用 <code>ls-files -u</code> 来查看冲突文件的之前、左边与右边版本：</p>
+<pre class=" language-console"><code class="language-console">$ git ls-files -u
+100644 39804c942a9c1f2c03dc7c5ebcd7f3e3a6b97519 1    hello.rb
+100644 a440db6e8d1fd76ad438a49025a9ad9ce746f581 2    hello.rb
+100644 54336ba847c3758ab604876419607e9443848474 3    hello.rb
+</code></pre>
+<p>现在可以通过改为 <code>puts &#39;hola mundo&#39;</code> 来解决它，可以再次运行 <code>rerere diff</code> 命令来查看 rerere 将会记住的内容：</p>
+<pre class=" language-console"><code class="language-console">$ git rerere diff
+--- a/hello.rb
++++ b/hello.rb
+@@ -1,11 +1,7 @@
+ #! /usr/bin/env ruby
+
+ def hello
+-<<<<<<<
+-  puts 'hello mundo'
+-=======
+-  puts 'hola world'
+->>>>>>>
++  puts 'hola mundo'
+ end
+</code></pre>
+<p>所以从本质上说，当 Git 看到一个 <code>hello.rb</code> 文件的一个块冲突中有 “hello mundo” 在一边与 “hola world” 在另一边，它会将其解决为 “hola mundo”。</p>
+<p>现在我们可以将它标记为已解决并提交它：</p>
+<pre class=" language-console"><code class="language-console">$ git add hello.rb
+$ git commit
+Recorded resolution for 'hello.rb'.
+[master 68e16e5] Merge branch 'i18n'
+</code></pre>
+<p>可以看到它 “Recorded resolution for FILE”。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/rerere2.png" alt="rerere2"></p>
+<p>现在，让我们撤消那个合并然后将它变基到 master 分支顶部来替代它。可以通过使用之前在 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_reset" target="_blank" rel="noopener">重置揭密</a> 看到的 <code>reset</code> 来回滚分支。</p>
+<pre class=" language-console"><code class="language-console">$ git reset --hard HEAD^
+HEAD is now at ad63f15 i18n the hello
+</code></pre>
+<p>我们的合并被撤消了。 现在让我们变基特性分支。</p>
+<pre class=" language-console"><code class="language-console">$ git checkout i18n-world
+Switched to branch 'i18n-world'
+
+$ git rebase master
+First, rewinding head to replay your work on top of it...
+Applying: i18n one word
+Using index info to reconstruct a base tree...
+Falling back to patching base and 3-way merge...
+Auto-merging hello.rb
+CONFLICT (content): Merge conflict in hello.rb
+Resolved 'hello.rb' using previous resolution.
+Failed to merge in the changes.
+Patch failed at 0001 i18n one word
+</code></pre>
+<p>现在，正像我们期望的一样，得到了相同的合并冲突，但是看一下 <code>Resolved FILE using previous resolution</code> 这行。 如果我们看这个文件，会发现它已经被解决了，而且在它里面没有合并冲突标记。</p>
+<pre class=" language-console"><code class="language-console">$ cat hello.rb
+#! /usr/bin/env ruby
+
+def hello
+  puts 'hola mundo'
+end
+</code></pre>
+<p>同样，<code>git diff</code> 将会显示出它是如何自动地重新解决的：</p>
+<pre class=" language-console"><code class="language-console">$ git diff
+diff --cc hello.rb
+index a440db6,54336ba..0000000
+--- a/hello.rb
++++ b/hello.rb
+@@@ -1,7 -1,7 +1,7 @@@
+  #! /usr/bin/env ruby
+
+  def hello
+-   puts 'hola world'
+ -  puts 'hello mundo'
+++  puts 'hola mundo'
+  end
+</code></pre>
+<p><img src="https://git-scm.com/book/en/v2/images/rerere3.png" alt="rerere3"></p>
+<p>也可以通过 <code>checkout</code> 命令重新恢复到冲突时候的文件状态：</p>
+<pre class=" language-console"><code class="language-console">$ git checkout --conflict=merge hello.rb
+$ cat hello.rb
+#! /usr/bin/env ruby
+
+def hello
+<<<<<<< ours
+  puts 'hola world'
+=======
+  puts 'hello mundo'
+>>>>>>> theirs
+end
+</code></pre>
+<p>我们将会在 <a href="https://git-scm.com/book/zh/v2/ch00/r_advanced_merging" target="_blank" rel="noopener">高级合并</a> 中看到这个的一个例子。 然而现在，让我们通过运行 <code>rerere</code> 来重新解决它：</p>
+<pre class=" language-console"><code class="language-console">$ git rerere
+Resolved 'hello.rb' using previous resolution.
+$ cat hello.rb
+#! /usr/bin/env ruby
+
+def hello
+  puts 'hola mundo'
+end
+</code></pre>
+<p>我们通过 <code>rerere</code> 缓存的解决方案来自动重新解决了文件冲突。 现在可以添加并继续变基来完成它。</p>
+<pre class=" language-console"><code class="language-console">$ git add hello.rb
+$ git rebase --continue
+Applying: i18n one word
+</code></pre>
+<p>所以，如果做了很多次重新合并，或者想要一个特性分支始终与你的 master 分支保持最新但却不想要一大堆合并，或者经常变基，打开 <code>rerere</code> 功能可以帮助你的生活变得更美好。</p>
+<h2 id="使用-Git-调试"><a href="#使用-Git-调试" class="headerlink" title="使用 Git 调试"></a>使用 Git 调试</h2><p>Git 也提供了两个工具来辅助你调试项目中的问题。 由于 Git 被设计成适用于几乎所有类型的项目，这些工具是比较通用的，但它们可以在出现问题的时候帮助你找到 bug 或者错误。</p>
+<h3 id="文件标注"><a href="#文件标注" class="headerlink" title="文件标注"></a>文件标注</h3><p>如果你在追踪代码中的一个 bug，并且想知道是什么时候以及为何会引入，文件标注通常是最好用的工具。 它展示了文件中每一行最后一次修改的提交。 所以，如果你在代码中看到一个有问题的方法，你可以使用 <code>git blame</code> 标注这个文件，查看这个方法每一行的最后修改时间以及是被谁修改的。 这个例子使用 <code>-L</code> 选项来限制输出范围在第12至22行：</p>
+<pre class=" language-console"><code class="language-console">$ git blame -L 12,22 simplegit.rb
+^4832fe2 (Scott Chacon  2008-03-15 10:31:28 -0700 12)  def show(tree = 'master')
+^4832fe2 (Scott Chacon  2008-03-15 10:31:28 -0700 13)   command("git show #{tree}")
+^4832fe2 (Scott Chacon  2008-03-15 10:31:28 -0700 14)  end
+^4832fe2 (Scott Chacon  2008-03-15 10:31:28 -0700 15)
+9f6560e4 (Scott Chacon  2008-03-17 21:52:20 -0700 16)  def log(tree = 'master')
+79eaf55d (Scott Chacon  2008-04-06 10:15:08 -0700 17)   command("git log #{tree}")
+9f6560e4 (Scott Chacon  2008-03-17 21:52:20 -0700 18)  end
+9f6560e4 (Scott Chacon  2008-03-17 21:52:20 -0700 19)
+42cf2861 (Magnus Chacon 2008-04-13 10:45:01 -0700 20)  def blame(path)
+42cf2861 (Magnus Chacon 2008-04-13 10:45:01 -0700 21)   command("git blame #{path}")
+42cf2861 (Magnus Chacon 2008-04-13 10:45:01 -0700 22)  end
+</code></pre>
+<p>请注意，第一个字段是最后一次修改该行的提交的部分 SHA-1 值。 接下来两个字段的值是从提交中提取出来的——作者的名字以及提交的时间——所以你就可以很轻易地找到是谁在什么时候修改了那一行。 接下来就是行号和文件内容。 注意一下 <code>^4832fe2</code> 这个提交的那些行，这些指的是这个文件第一次提交的那些行。 这个提交是这个文件第一次加入到这个项目时的提交，并且这些行从未被修改过。 这会带来小小的困惑，因为你已经至少看到三种 Git 使用 <code>^</code> 来修饰一个提交的 SHA-1 值的不同含义，但这里确实就是这个意思。</p>
+<p>另一件比较酷的事情是 Git 不会显式地记录文件的重命名。 它会记录快照，然后在事后尝试计算出重命名的动作。 这其中有一个很有意思的特性就是你可以让 Git 找出所有的代码移动。 如果你在 <code>git blame</code> 后面加上一个 <code>-C</code>，Git 会分析你正在标注的文件，并且尝试找出文件中从别的地方复制过来的代码片段的原始出处。 比如，你将 <code>GITServerHandler.m</code> 这个文件拆分为数个文件，其中一个文件是 <code>GITPackUpload.m</code>。 对 <code>GITPackUpload.m</code> 执行带 <code>-C</code> 参数的blame命令，你就可以看到代码块的原始出处：</p>
+<pre class=" language-console"><code class="language-console">$ git blame -C -L 141,153 GITPackUpload.m
+f344f58d GITServerHandler.m (Scott 2009-01-04 141)
+f344f58d GITServerHandler.m (Scott 2009-01-04 142) - (void) gatherObjectShasFromC
+f344f58d GITServerHandler.m (Scott 2009-01-04 143) {
+70befddd GITServerHandler.m (Scott 2009-03-22 144)         //NSLog(@"GATHER COMMI
+ad11ac80 GITPackUpload.m    (Scott 2009-03-24 145)
+ad11ac80 GITPackUpload.m    (Scott 2009-03-24 146)         NSString *parentSha;
+ad11ac80 GITPackUpload.m    (Scott 2009-03-24 147)         GITCommit *commit = [g
+ad11ac80 GITPackUpload.m    (Scott 2009-03-24 148)
+ad11ac80 GITPackUpload.m    (Scott 2009-03-24 149)         //NSLog(@"GATHER COMMI
+ad11ac80 GITPackUpload.m    (Scott 2009-03-24 150)
+56ef2caf GITServerHandler.m (Scott 2009-01-05 151)         if(commit) {
+56ef2caf GITServerHandler.m (Scott 2009-01-05 152)                 [refDict setOb
+56ef2caf GITServerHandler.m (Scott 2009-01-05 153)
+</code></pre>
+<p>这个功能很有用。 通常来说，你会认为复制代码过来的那个提交是最原始的提交，因为那是你第一次在这个文件中修改了这几行。 但 Git 会告诉你，你第一次写这几行代码的那个提交才是原始提交，即使这是在另外一个文件里写的。</p>
+<h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><p>当你知道问题是在哪里引入的情况下文件标注可以帮助你查找问题。 如果你不知道哪里出了问题，并且自从上次可以正常运行到现在已经有数十个或者上百个提交，这个时候你可以使用 <code>git bisect</code> 来帮助查找。 <code>bisect</code> 命令会对你的提交历史进行二分查找来帮助你尽快找到是哪一个提交引入了问题。</p>
+<p>假设你刚刚在线上环境部署了你的代码，接着收到一些 bug 反馈，但这些 bug 在你之前的开发环境里没有出现过，这让你百思不得其解。 你重新查看了你的代码，发现这个问题是可以被重现的，但是你不知道哪里出了问题。 你可以用二分法来找到这个问题。 首先执行 <code>git bisect start</code> 来启动，接着执行 <code>git bisect bad</code> 来告诉系统当前你所在的提交是有问题的。 然后你必须告诉 bisect 已知的最后一次正常状态是哪次提交，使用 <code>git bisect good [good_commit]</code>：</p>
+<pre class=" language-console"><code class="language-console">$ git bisect start
+$ git bisect bad
+$ git bisect good v1.0
+Bisecting: 6 revisions left to test after this
+[ecb6e1bc347ccecc5f9350d878ce677feb13d3b2] error handling on repo
+</code></pre>
+<p>Git 发现在你标记为正常的提交(v1.0)和当前的错误版本之间有大约12次提交，于是 Git 检出中间的那个提交。 现在你可以执行测试，看看在这个提交下问题是不是还是存在。 如果还存在，说明问题是在这个提交之前引入的；如果问题不存在，说明问题是在这个提交之后引入的。 假设测试结果是没有问题的，你可以通过 <code>git bisect good</code> 来告诉 Git，然后继续寻找。</p>
+<pre class=" language-console"><code class="language-console">$ git bisect good
+Bisecting: 3 revisions left to test after this
+[b047b02ea83310a70fd603dc8cd7a6cd13d15c04] secure this thing
+</code></pre>
+<p>现在你在另一个提交上了，这个提交是刚刚那个测试通过的提交和有问题的提交的中点。 你再一次执行测试，发现这个提交下是有问题的，因此你可以通过 <code>git bisect bad</code> 告诉 Git：</p>
+<pre class=" language-console"><code class="language-console">$ git bisect bad
+Bisecting: 1 revisions left to test after this
+[f71ce38690acf49c1f3c9bea38e09d82a5ce6014] drop exceptions table
+</code></pre>
+<p>这个提交是正常的，现在 Git 拥有的信息已经可以确定引入问题的位置在哪里。 它会告诉你第一个错误提交的 SHA-1 值并显示一些提交说明，以及哪些文件在那次提交里修改过，这样你可以找出引入 bug 的根源：</p>
+<pre class=" language-console"><code class="language-console">$ git bisect good
+b047b02ea83310a70fd603dc8cd7a6cd13d15c04 is first bad commit
+commit b047b02ea83310a70fd603dc8cd7a6cd13d15c04
+Author: PJ Hyett <pjhyett@example.com>
+Date:   Tue Jan 27 14:48:32 2009 -0800
+
+    secure this thing
+
+:040000 040000 40ee3e7821b895e52c1695092db9bdc4c61d1730
+f24d3c6ebcfc639b1a3814550e62d60b8e68a8e4 M  config
+</code></pre>
+<p>当你完成这些操作之后，你应该执行 <code>git bisect reset</code> 重置你的 HEAD 指针到最开始的位置，否则你会停留在一个很奇怪的状态：</p>
+<pre class=" language-console"><code class="language-console">$ git bisect reset
+</code></pre>
+<p>这是一个可以帮助你在几分钟内从数百个提交中找到 bug 的强大工具。 事实上，如果你有一个脚本在项目是正常的情况下返回 0，在不正常的情况下返回非 0，你可以使 <code>git bisect</code> 自动化这些操作。 首先，你设定好项目正常以及不正常所在提交的二分查找范围。 你可以通过 <code>bisect start</code> 命令的参数来设定这两个提交，第一个参数是项目不正常的提交，第二个参数是项目正常的提交：</p>
+<pre class=" language-console"><code class="language-console">$ git bisect start HEAD v1.0
+$ git bisect run test-error.sh
+</code></pre>
+<p>Git 会自动在每个被检出的提交里执行 <code>test-error.sh</code> 直到找到第一个项目不正常的提交。 你也可以执行 <code>make</code> 或者 <code>make tests</code> 或者其他东西来进行自动化测试。</p>
+<h2 id="子模块"><a href="#子模块" class="headerlink" title="子模块"></a>子模块</h2><p>有种情况我们经常会遇到：某个工作中的项目需要包含并使用另一个项目。 也许是第三方库，或者你独立开发的，用于多个父项目的库。 现在问题来了：你想要把它们当做两个独立的项目，同时又想在一个项目中使用另一个。</p>
+<p>我们举一个例子。 假设你正在开发一个网站然后创建了 Atom 订阅。 你决定使用一个库，而不是写自己的 Atom 生成代码。 你可能不得不通过 CPAN 安装或 Ruby gem 来包含共享库中的代码，或者将源代码直接拷贝到自己的项目中。 如果将这个库包含进来，那么无论用何种方式都很难定制它，部署则更加困难，因为你必须确保每一个客户端都包含该库。 如果将代码复制到自己的项目中，那么你做的任何自定义修改都会使合并上游的改动变得困难。</p>
+<p>Git 通过子模块来解决这个问题。 子模块允许你将一个 Git 仓库作为另一个 Git 仓库的子目录。 它能让你将另一个仓库克隆到自己的项目中，同时还保持提交的独立。</p>
+<h3 id="开始使用子模块"><a href="#开始使用子模块" class="headerlink" title="开始使用子模块"></a>开始使用子模块</h3><p>我们将要演示如何在一个被分成一个主项目与几个子项目的项目上开发。</p>
+<p>我们首先将一个已存在的 Git 仓库添加为正在工作的仓库的子模块。 你可以通过在 <code>git submodule add</code>命令后面加上想要跟踪的项目 URL 来添加新的子模块。 在本例中，我们将会添加一个名为 “DbConnector” 的库。</p>
+<pre class=" language-console"><code class="language-console">$ git submodule add https://github.com/chaconinc/DbConnector
+Cloning into 'DbConnector'...
+remote: Counting objects: 11, done.
+remote: Compressing objects: 100% (10/10), done.
+remote: Total 11 (delta 0), reused 11 (delta 0)
+Unpacking objects: 100% (11/11), done.
+Checking connectivity... done.
+</code></pre>
+<p>默认情况下，子模块会将子项目放到一个与仓库同名的目录中，本例中是 “DbConnector”。 如果你想要放到其他地方，那么可以在命令结尾添加一个不同的路径。</p>
+<p>如果这时运行 <code>git status</code>，你会注意到几件事。</p>
+<pre class=" language-console"><code class="language-console">$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+    new file:   .gitmodules
+    new file:   DbConnector
+</code></pre>
+<p>首先应当注意到新的 <code>.gitmodules</code> 文件。 该配置文件保存了项目 URL 与已经拉取的本地目录之间的映射：</p>
+<pre class=" language-console"><code class="language-console">$ cat .gitmodules
+[submodule "DbConnector"]
+    path = DbConnector
+    url = https://github.com/chaconinc/DbConnector
+</code></pre>
+<p>如果有多个子模块，该文件中就会有多条记录。 要重点注意的是，该文件也像 <code>.gitignore</code> 文件一样受到（通过）版本控制。 它会和该项目的其他部分一同被拉取推送。 这就是克隆该项目的人知道去哪获得子模块的原因。</p>
+<table>
+<thead>
+<tr>
+<th>Note</th>
+<th>由于 .gitmodules 文件中的 URL 是人们首先尝试克隆/拉取的地方，因此请尽可能确保你使用的URL 大家都能访问。 例如，若你要使用的推送 URL 与他人的拉取 URL 不同，那么请使用他人能访问到的 URL。 你也可以根据自己的需要，通过在本地执行 <code>git config submodule.DbConnector.url &lt;私有URL&gt;</code> 来覆盖这个选项的值。 如果可行的话，一个相对路径会很有帮助。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>在 <code>git status</code> 输出中列出的另一个是项目文件夹记录。 如果你运行 <code>git diff</code>，会看到类似下面的信息：</p>
+<pre class=" language-console"><code class="language-console">$ git diff --cached DbConnector
+diff --git a/DbConnector b/DbConnector
+new file mode 160000
+index 0000000..c3f01dc
+--- /dev/null
++++ b/DbConnector
+@@ -0,0 +1 @@
++Subproject commit c3f01dc8862123d317dd46284b05b6892c7b29bc
+</code></pre>
+<p>虽然 <code>DbConnector</code> 是工作目录中的一个子目录，但 Git 还是会将它视作一个子模块。当你不在那个目录中时，Git 并不会跟踪它的内容， 而是将它看作该仓库中的一个特殊提交。</p>
+<p>如果你想看到更漂亮的差异输出，可以给 <code>git diff</code> 传递 <code>--submodule</code> 选项。</p>
+<pre class=" language-console"><code class="language-console">$ git diff --cached --submodule
+diff --git a/.gitmodules b/.gitmodules
+new file mode 100644
+index 0000000..71fc376
+--- /dev/null
++++ b/.gitmodules
+@@ -0,0 +1,3 @@
++[submodule "DbConnector"]
++       path = DbConnector
++       url = https://github.com/chaconinc/DbConnector
+Submodule DbConnector 0000000...c3f01dc (new submodule)
+</code></pre>
+<p>当你提交时，会看到类似下面的信息：</p>
+<pre class=" language-console"><code class="language-console">$ git commit -am 'added DbConnector module'
+[master fb9093c] added DbConnector module
+ 2 files changed, 4 insertions(+)
+ create mode 100644 .gitmodules
+ create mode 160000 DbConnector
+</code></pre>
+<p>注意 DbConnector 记录的 <code>160000</code> 模式。 这是 Git 中的一种特殊模式，它本质上意味着你是将一次提交记作一项目录记录的，而非将它记录成一个子目录或者一个文件。</p>
+<h3 id="克隆含有子模块的项目"><a href="#克隆含有子模块的项目" class="headerlink" title="克隆含有子模块的项目"></a>克隆含有子模块的项目</h3><p>接下来我们将会克隆一个含有子模块的项目。 当你在克隆这样的项目时，默认会包含该子模块目录，但其中还没有任何文件：</p>
+<pre class=" language-console"><code class="language-console">$ git clone https://github.com/chaconinc/MainProject
+Cloning into 'MainProject'...
+remote: Counting objects: 14, done.
+remote: Compressing objects: 100% (13/13), done.
+remote: Total 14 (delta 1), reused 13 (delta 0)
+Unpacking objects: 100% (14/14), done.
+Checking connectivity... done.
+$ cd MainProject
+$ ls -la
+total 16
+drwxr-xr-x   9 schacon  staff  306 Sep 17 15:21 .
+drwxr-xr-x   7 schacon  staff  238 Sep 17 15:21 ..
+drwxr-xr-x  13 schacon  staff  442 Sep 17 15:21 .git
+-rw-r--r--   1 schacon  staff   92 Sep 17 15:21 .gitmodules
+drwxr-xr-x   2 schacon  staff   68 Sep 17 15:21 DbConnector
+-rw-r--r--   1 schacon  staff  756 Sep 17 15:21 Makefile
+drwxr-xr-x   3 schacon  staff  102 Sep 17 15:21 includes
+drwxr-xr-x   4 schacon  staff  136 Sep 17 15:21 scripts
+drwxr-xr-x   4 schacon  staff  136 Sep 17 15:21 src
+$ cd DbConnector/
+$ ls
+$
+</code></pre>
+<p>其中有 <code>DbConnector</code> 目录，不过是空的。 你必须运行两个命令：<code>git submodule init</code> 用来初始化本地配置文件，而 <code>git submodule update</code> 则从该项目中抓取所有数据并检出父项目中列出的合适的提交。</p>
+<pre class=" language-console"><code class="language-console">$ git submodule init
+Submodule 'DbConnector' (https://github.com/chaconinc/DbConnector) registered for path 'DbConnector'
+$ git submodule update
+Cloning into 'DbConnector'...
+remote: Counting objects: 11, done.
+remote: Compressing objects: 100% (10/10), done.
+remote: Total 11 (delta 0), reused 11 (delta 0)
+Unpacking objects: 100% (11/11), done.
+Checking connectivity... done.
+Submodule path 'DbConnector': checked out 'c3f01dc8862123d317dd46284b05b6892c7b29bc'
+</code></pre>
+<p>现在 <code>DbConnector</code> 子目录是处在和之前提交时相同的状态了。</p>
+<p>不过还有更简单一点的方式。 如果给 <code>git clone</code> 命令传递 <code>--recursive</code> 选项，它就会自动初始化并更新仓库中的每一个子模块。</p>
+<pre class=" language-console"><code class="language-console">$ git clone --recursive https://github.com/chaconinc/MainProject
+Cloning into 'MainProject'...
+remote: Counting objects: 14, done.
+remote: Compressing objects: 100% (13/13), done.
+remote: Total 14 (delta 1), reused 13 (delta 0)
+Unpacking objects: 100% (14/14), done.
+Checking connectivity... done.
+Submodule 'DbConnector' (https://github.com/chaconinc/DbConnector) registered for path 'DbConnector'
+Cloning into 'DbConnector'...
+remote: Counting objects: 11, done.
+remote: Compressing objects: 100% (10/10), done.
+remote: Total 11 (delta 0), reused 11 (delta 0)
+Unpacking objects: 100% (11/11), done.
+Checking connectivity... done.
+Submodule path 'DbConnector': checked out 'c3f01dc8862123d317dd46284b05b6892c7b29bc'
+</code></pre>
+<h3 id="在包含子模块的项目上工作"><a href="#在包含子模块的项目上工作" class="headerlink" title="在包含子模块的项目上工作"></a>在包含子模块的项目上工作</h3><p>现在我们有一份包含子模块的项目副本，我们将会同时在主项目和子模块项目上与队员协作。</p>
+<h4 id="拉取上游修改"><a href="#拉取上游修改" class="headerlink" title="拉取上游修改"></a>拉取上游修改</h4><p>在项目中使用子模块的最简模型，就是只使用子项目并不时地获取更新，而并不在你的检出中进行任何更改。 我们来看一个简单的例子。</p>
+<p>如果想要在子模块中查看新工作，可以进入到目录中运行 <code>git fetch</code> 与 <code>git merge</code>，合并上游分支来更新本地代码。</p>
+<pre class=" language-console"><code class="language-console">$ git fetch
+From https://github.com/chaconinc/DbConnector
+   c3f01dc..d0354fc  master     -> origin/master
+$ git merge origin/master
+Updating c3f01dc..d0354fc
+Fast-forward
+ scripts/connect.sh | 1 +
+ src/db.c           | 1 +
+ 2 files changed, 2 insertions(+)
+</code></pre>
+<p>如果你现在返回到主项目并运行 <code>git diff --submodule</code>，就会看到子模块被更新的同时获得了一个包含新添加提交的列表。 如果你不想每次运行 <code>git diff</code> 时都输入 <code>--submodle</code>，那么可以将 <code>diff.submodule</code> 设置为 “log” 来将其作为默认行为。</p>
+<pre class=" language-console"><code class="language-console">$ git config --global diff.submodule log
+$ git diff
+Submodule DbConnector c3f01dc..d0354fc:
+  > more efficient db routine
+  > better connection routine
+</code></pre>
+<p>如果在此时提交，那么你会将子模块锁定为其他人更新时的新代码。</p>
+<p>如果你不想在子目录中手动抓取与合并，那么还有种更容易的方式。 运行 <code>git submodule update --remote</code>，Git 将会进入子模块然后抓取并更新。</p>
+<pre class=" language-console"><code class="language-console">$ git submodule update --remote DbConnector
+remote: Counting objects: 4, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 4 (delta 2), reused 4 (delta 2)
+Unpacking objects: 100% (4/4), done.
+From https://github.com/chaconinc/DbConnector
+   3f19983..d0354fc  master     -> origin/master
+Submodule path 'DbConnector': checked out 'd0354fc054692d3906c85c3af05ddce39a1c0644'
+</code></pre>
+<p>此命令默认会假定你想要更新并检出子模块仓库的 <code>master</code> 分支。 不过你也可以设置为想要的其他分支。 例如，你想要 DbConnector 子模块跟踪仓库的 “stable” 分支，那么既可以在 <code>.gitmodules</code> 文件中设置（这样其他人也可以跟踪它），也可以只在本地的 <code>.git/config</code> 文件中设置。 让我们在 <code>.gitmodules</code> 文件中设置它：</p>
+<pre class=" language-console"><code class="language-console">$ git config -f .gitmodules submodule.DbConnector.branch stable
+
+$ git submodule update --remote
+remote: Counting objects: 4, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 4 (delta 2), reused 4 (delta 2)
+Unpacking objects: 100% (4/4), done.
+From https://github.com/chaconinc/DbConnector
+   27cf5d3..c87d55d  stable -> origin/stable
+Submodule path 'DbConnector': checked out 'c87d55d4c6d4b05ee34fbc8cb6f7bf4585ae6687'
+</code></pre>
+<p>如果不用 <code>-f .gitmodules</code> 选项，那么它只会为你做修改。但是在仓库中保留跟踪信息更有意义一些，因为其他人也可以得到同样的效果。</p>
+<p>这时我们运行 <code>git status</code>，Git 会显示子模块中有 “新提交”。</p>
+<pre class=" language-console"><code class="language-console">$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+  modified:   .gitmodules
+  modified:   DbConnector (new commits)
+
+no changes added to commit (use "git add" and/or "git commit -a")
+</code></pre>
+<p>如果你设置了配置选项 <code>status.submodulesummary</code>，Git 也会显示你的子模块的更改摘要：</p>
+<pre class=" language-console"><code class="language-console">$ git config status.submodulesummary 1
+
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+    modified:   .gitmodules
+    modified:   DbConnector (new commits)
+
+Submodules changed but not updated:
+
+* DbConnector c3f01dc...c87d55d (4):
+  > catch non-null terminated lines
+</code></pre>
+<p>这时如果运行 <code>git diff</code>，可以看到我们修改了 .gitmodules 文件，同时还有几个已拉取的提交需要提交到我们自己的子模块项目中。</p>
+<pre class=" language-console"><code class="language-console">$ git diff
+diff --git a/.gitmodules b/.gitmodules
+index 6fc0b3d..fd1cc29 100644
+--- a/.gitmodules
++++ b/.gitmodules
+@@ -1,3 +1,4 @@
+ [submodule "DbConnector"]
+        path = DbConnector
+        url = https://github.com/chaconinc/DbConnector
++       branch = stable
+ Submodule DbConnector c3f01dc..c87d55d:
+  > catch non-null terminated lines
+  > more robust error handling
+  > more efficient db routine
+  > better connection routine
+</code></pre>
+<p>这非常有趣，因为我们可以直接看到将要提交到子模块中的提交日志。 提交之后，你也可以运行 <code>git log -p</code> 查看这个信息。</p>
+<pre class=" language-console"><code class="language-console">$ git log -p --submodule
+commit 0a24cfc121a8a3c118e0105ae4ae4c00281cf7ae
+Author: Scott Chacon <schacon@gmail.com>
+Date:   Wed Sep 17 16:37:02 2014 +0200
+
+    updating DbConnector for bug fixes
+
+diff --git a/.gitmodules b/.gitmodules
+index 6fc0b3d..fd1cc29 100644
+--- a/.gitmodules
++++ b/.gitmodules
+@@ -1,3 +1,4 @@
+ [submodule "DbConnector"]
+        path = DbConnector
+        url = https://github.com/chaconinc/DbConnector
++       branch = stable
+Submodule DbConnector c3f01dc..c87d55d:
+  > catch non-null terminated lines
+  > more robust error handling
+  > more efficient db routine
+  > better connection routine
+</code></pre>
+<p>当运行 <code>git submodule update --remote</code> 时，Git 默认会尝试更新<strong>所有</strong>子模块，所以如果有很多子模块的话，你可以传递想要更新的子模块的名字。</p>
+<h4 id="在子模块上工作"><a href="#在子模块上工作" class="headerlink" title="在子模块上工作"></a>在子模块上工作</h4><p>你很有可能正在使用子模块，因为你确实想在子模块中编写代码的同时，还想在主项目上编写代码（或者跨子模块工作）。 否则你大概只能用简单的依赖管理系统（如 Maven 或 Rubygems）来替代了。</p>
+<p>现在我们将通过一个例子来演示如何在子模块与主项目中同时做修改，以及如何同时提交与发布那些修改。</p>
+<p>到目前为止，当我们运行 <code>git submodule update</code> 从子模块仓库中抓取修改时，Git 将会获得这些改动并更新子目录中的文件，但是会将子仓库留在一个称作 “游离的 HEAD” 的状态。 这意味着没有本地工作分支（例如 “master”）跟踪改动。 所以你做的任何改动都不会被跟踪。</p>
+<p>为了将子模块设置得更容易进入并修改，你需要做两件事。 首先，进入每个子模块并检出其相应的工作分支。 接着，若你做了更改就需要告诉 Git 它该做什么，然后运行 <code>git submodule update --remote</code>来从上游拉取新工作。 你可以选择将它们合并到你的本地工作中，也可以尝试将你的工作变基到新的更改上。</p>
+<p>首先，让我们进入子模块目录然后检出一个分支。</p>
+<pre class=" language-console"><code class="language-console">$ git checkout stable
+Switched to branch 'stable'
+</code></pre>
+<p>然后尝试用 “merge” 选项。 为了手动指定它，我们只需给 <code>update</code> 添加 <code>--merge</code> 选项即可。 这时我们将会看到服务器上的这个子模块有一个改动并且它被合并了进来。</p>
+<pre class=" language-console"><code class="language-console">$ git submodule update --remote --merge
+remote: Counting objects: 4, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 4 (delta 2), reused 4 (delta 2)
+Unpacking objects: 100% (4/4), done.
+From https://github.com/chaconinc/DbConnector
+   c87d55d..92c7337  stable     -> origin/stable
+Updating c87d55d..92c7337
+Fast-forward
+ src/main.c | 1 +
+ 1 file changed, 1 insertion(+)
+Submodule path 'DbConnector': merged in '92c7337b30ef9e0893e758dac2459d07362ab5ea'
+</code></pre>
+<p>如果我们进入 DbConnector 目录，可以发现新的改动已经合并入本地 <code>stable</code> 分支。 现在让我们看看当我们对库做一些本地的改动而同时其他人推送另外一个修改到上游时会发生什么。</p>
+<pre class=" language-console"><code class="language-console">$ cd DbConnector/
+$ vim src/db.c
+$ git commit -am 'unicode support'
+[stable f906e16] unicode support
+ 1 file changed, 1 insertion(+)
+</code></pre>
+<p>如果我们现在更新子模块，就会看到当我们在本地做了更改时上游也有一个改动，我们需要将它并入本地。</p>
+<pre class=" language-console"><code class="language-console">$ git submodule update --remote --rebase
+First, rewinding head to replay your work on top of it...
+Applying: unicode support
+Submodule path 'DbConnector': rebased into '5d60ef9bbebf5a0c1c1050f242ceeb54ad58da94'
+</code></pre>
+<p>如果你忘记 <code>--rebase</code> 或 <code>--merge</code>，Git 会将子模块更新为服务器上的状态。并且会将项目重置为一个游离的 HEAD 状态。</p>
+<pre class=" language-console"><code class="language-console">$ git submodule update --remote
+Submodule path 'DbConnector': checked out '5d60ef9bbebf5a0c1c1050f242ceeb54ad58da94'
+</code></pre>
+<p>即便这真的发生了也不要紧，你只需回到目录中再次检出你的分支（即还包含着你的工作的分支）然后手动地合并或变基 <code>origin/stable</code>（或任何一个你想要的远程分支）就行了。</p>
+<p>如果你没有提交子模块的改动，那么运行一个子模块更新也不会出现问题，此时 Git 会只抓取更改而并不会覆盖子模块目录中未保存的工作。</p>
+<pre class=" language-console"><code class="language-console">$ git submodule update --remote
+remote: Counting objects: 4, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 4 (delta 0), reused 4 (delta 0)
+Unpacking objects: 100% (4/4), done.
+From https://github.com/chaconinc/DbConnector
+   5d60ef9..c75e92a  stable     -> origin/stable
+error: Your local changes to the following files would be overwritten by checkout:
+    scripts/setup.sh
+Please, commit your changes or stash them before you can switch branches.
+Aborting
+Unable to checkout 'c75e92a2b3855c9e5b66f915308390d9db204aca' in submodule path 'DbConnector'
+</code></pre>
+<p>如果你做了一些与上游改动冲突的改动，当运行更新时 Git 会让你知道。</p>
+<pre class=" language-console"><code class="language-console">$ git submodule update --remote --merge
+Auto-merging scripts/setup.sh
+CONFLICT (content): Merge conflict in scripts/setup.sh
+Recorded preimage for 'scripts/setup.sh'
+Automatic merge failed; fix conflicts and then commit the result.
+Unable to merge 'c75e92a2b3855c9e5b66f915308390d9db204aca' in submodule path 'DbConnector'
+</code></pre>
+<p>你可以进入子模块目录中然后就像平时那样修复冲突。</p>
+<h4 id="发布子模块改动"><a href="#发布子模块改动" class="headerlink" title="发布子模块改动"></a>发布子模块改动</h4><p>现在我们的子模块目录中有一些改动。 其中有一些是我们通过更新从上游引入的，而另一些是本地生成的，由于我们还没有推送它们，所以对任何其他人都不可用。</p>
+<pre class=" language-console"><code class="language-console">$ git diff
+Submodule DbConnector c87d55d..82d2ad3:
+  > Merge from origin/stable
+  > updated setup script
+  > unicode support
+  > remove unnecessary method
+  > add new option for conn pooling
+</code></pre>
+<p>如果我们在主项目中提交并推送但并不推送子模块上的改动，其他尝试检出我们修改的人会遇到麻烦，因为他们无法得到依赖的子模块改动。 那些改动只存在于我们本地的拷贝中。</p>
+<p>为了确保这不会发生，你可以让 Git 在推送到主项目前检查所有子模块是否已推送。 <code>git push</code> 命令接受可以设置为 “check” 或 “on-demand” 的 <code>--recurse-submodules</code> 参数。 如果任何提交的子模块改动没有推送那么 “check” 选项会直接使 <code>push</code> 操作失败。</p>
+<pre class=" language-console"><code class="language-console">$ git push --recurse-submodules=check
+The following submodule paths contain changes that can
+not be found on any remote:
+  DbConnector
+
+Please try
+
+    git push --recurse-submodules=on-demand
+
+or cd to the path and use
+
+    git push
+
+to push them to a remote.
+</code></pre>
+<p>如你所见，它也给我们了一些有用的建议，指导接下来该如何做。 最简单的选项是进入每一个子模块中然后手动推送到远程仓库，确保它们能被外部访问到，之后再次尝试这次推送。</p>
+<p>另一个选项是使用 “on-demand” 值，它会尝试为你这样做。</p>
+<pre class=" language-console"><code class="language-console">$ git push --recurse-submodules=on-demand
+Pushing submodule 'DbConnector'
+Counting objects: 9, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (8/8), done.
+Writing objects: 100% (9/9), 917 bytes | 0 bytes/s, done.
+Total 9 (delta 3), reused 0 (delta 0)
+To https://github.com/chaconinc/DbConnector
+   c75e92a..82d2ad3  stable -> stable
+Counting objects: 2, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 266 bytes | 0 bytes/s, done.
+Total 2 (delta 1), reused 0 (delta 0)
+To https://github.com/chaconinc/MainProject
+   3d6d338..9a377d1  master -> master
+</code></pre>
+<p>如你所见，Git 进入到 DbConnector 模块中然后在推送主项目前推送了它。 如果那个子模块因为某些原因推送失败，主项目也会推送失败。</p>
+<h4 id="合并子模块改动"><a href="#合并子模块改动" class="headerlink" title="合并子模块改动"></a>合并子模块改动</h4><p>如果你其他人同时改动了一个子模块引用，那么可能会遇到一些问题。 也就是说，如果子模块的历史已经分叉并且在父项目中分别提交到了分叉的分支上，那么你需要做一些工作来修复它。</p>
+<p>如果一个提交是另一个的直接祖先（一个快进式合并），那么 Git 会简单地选择之后的提交来合并，这样没什么问题。</p>
+<p>不过，Git 甚至不会尝试去进行一次简单的合并。 如果子模块提交已经分叉且需要合并，那你会得到类似下面的信息：</p>
+<pre class=" language-console"><code class="language-console">$ git pull
+remote: Counting objects: 2, done.
+remote: Compressing objects: 100% (1/1), done.
+remote: Total 2 (delta 1), reused 2 (delta 1)
+Unpacking objects: 100% (2/2), done.
+From https://github.com/chaconinc/MainProject
+   9a377d1..eb974f8  master     -> origin/master
+Fetching submodule DbConnector
+warning: Failed to merge submodule DbConnector (merge following commits not found)
+Auto-merging DbConnector
+CONFLICT (submodule): Merge conflict in DbConnector
+Automatic merge failed; fix conflicts and then commit the result.
+</code></pre>
+<p>所以本质上 Git 在这里指出了子模块历史中的两个分支记录点已经分叉并且需要合并。 它将其解释为 “merge following commits not found”（未找到接下来需要合并的提交），虽然这有点令人困惑，不过之后我们会解释为什么是这样。</p>
+<p>为了解决这个问题，你需要弄清楚子模块应该处于哪种状态。 奇怪的是，Git 并不会给你多少能帮你摆脱困境的信息，甚至连两边提交历史中的 SHA-1 值都没有。 幸运的是，这很容易解决。 如果你运行 <code>git diff</code>，就会得到试图合并的两个分支中记录的提交的 SHA-1 值。</p>
+<pre class=" language-console"><code class="language-console">$ git diff
+diff --cc DbConnector
+index eb41d76,c771610..0000000
+--- a/DbConnector
++++ b/DbConnector
+</code></pre>
+<p>所以，在本例中，<code>eb41d76</code> 是我们的子模块中<strong>大家共有</strong>的提交，而 <code>c771610</code> 是上游拥有的提交。 如果我们进入子模块目录中，它应该已经在 <code>eb41d76</code> 上了，因为合并没有动过它。 如果不是的话，无论什么原因，你都可以简单地创建并检出一个指向它的分支。</p>
+<p>来自另一边的提交的 SHA-1 值比较重要。 它是需要你来合并解决的。 你可以尝试直接通过 SHA-1 合并，也可以为它创建一个分支然后尝试合并。 我们建议后者，哪怕只是为了一个更漂亮的合并提交信息。</p>
+<p>所以，我们将会进入子模块目录，基于 <code>git diff</code> 的第二个 SHA 创建一个分支然后手动合并。</p>
+<pre class=" language-console"><code class="language-console">$ cd DbConnector
+
+$ git rev-parse HEAD
+eb41d764bccf88be77aced643c13a7fa86714135
+
+$ git branch try-merge c771610
+(DbConnector) $ git merge try-merge
+Auto-merging src/main.c
+CONFLICT (content): Merge conflict in src/main.c
+Recorded preimage for 'src/main.c'
+Automatic merge failed; fix conflicts and then commit the result.
+</code></pre>
+<p>我们在这儿得到了一个真正的合并冲突，所以如果想要解决并提交它，那么只需简单地通过结果来更新主项目。</p>
+<pre class=" language-console"><code class="language-console">$ vim src/main.c (1)
+$ git add src/main.c
+$ git commit -am 'merged our changes'
+Recorded resolution for 'src/main.c'.
+[master 9fd905e] merged our changes
+
+$ cd .. (2)
+$ git diff (3)
+diff --cc DbConnector
+index eb41d76,c771610..0000000
+--- a/DbConnector
++++ b/DbConnector
+@@@ -1,1 -1,1 +1,1 @@@
+- Subproject commit eb41d764bccf88be77aced643c13a7fa86714135
+ -Subproject commit c77161012afbbe1f58b5053316ead08f4b7e6d1d
+++Subproject commit 9fd905e5d7f45a0d4cbc43d1ee550f16a30e825a
+$ git add DbConnector (4)
+
+$ git commit -m "Merge Tom's Changes" (5)
+[master 10d2c60] Merge Tom's Changes
+</code></pre>
+<ol>
+<li>首先解决冲突</li>
+<li>然后返回到主项目目录中</li>
+<li>再次检查 SHA-1 值</li>
+<li>解决冲突的子模块记录</li>
+<li>提交我们的合并</li>
+</ol>
+<p>这可能会让你有点儿困惑，但它确实不难。</p>
+<p>有趣的是，Git 还能处理另一种情况。 如果子模块目录中存在着这样一个合并提交，它的历史中包含了的<strong>两边</strong>的提交，那么 Git 会建议你将它作为一个可行的解决方案。 它看到有人在子模块项目的某一点上合并了包含这两次提交的分支，所以你可能想要那个。</p>
+<p>这就是为什么前面的错误信息是 “merge following commits not found”，因为它不能 <strong>这样</strong> 做。 它让人困惑是因为<strong>谁能想到它会尝试这样做？</strong></p>
+<p>如果它找到了一个可以接受的合并提交，你会看到类似下面的信息：</p>
+<pre class=" language-console"><code class="language-console">$ git merge origin/master
+warning: Failed to merge submodule DbConnector (not fast-forward)
+Found a possible merge resolution for the submodule:
+ 9fd905e5d7f45a0d4cbc43d1ee550f16a30e825a: > merged our changes
+If this is correct simply add it to the index for example
+by using:
+
+  git update-index --cacheinfo 160000 9fd905e5d7f45a0d4cbc43d1ee550f16a30e825a "DbConnector"
+
+which will accept this suggestion.
+Auto-merging DbConnector
+CONFLICT (submodule): Merge conflict in DbConnector
+Automatic merge failed; fix conflicts and then commit the result.
+</code></pre>
+<p>它会建议你更新索引，就像你运行了 <code>git add</code> 那样，这样会清除冲突然后提交。不过你可能不应该这样做。你可以轻松地进入子模块目录，查看差异是什么，快进到这次提交，恰当地测试，然后提交它。</p>
+<pre class=" language-console"><code class="language-console">$ cd DbConnector/
+$ git merge 9fd905e
+Updating eb41d76..9fd905e
+Fast-forward
+
+$ cd ..
+$ git add DbConnector
+$ git commit -am 'Fast forwarded to a common submodule child'
+</code></pre>
+<p>这些命令完成了同一件事，但是通过这种方式你至少可以验证工作是否有效，以及当你在完成时可以确保子模块目录中有你的代码。</p>
+<h3 id="子模块技巧"><a href="#子模块技巧" class="headerlink" title="子模块技巧"></a>子模块技巧</h3><p>你可以做几件事情来让用子模块工作轻松一点儿。</p>
+<h4 id="子模块遍历"><a href="#子模块遍历" class="headerlink" title="子模块遍历"></a>子模块遍历</h4><p>有一个 <code>foreach</code> 子模块命令，它能在每一个子模块中运行任意命令。 如果项目中包含了大量子模块，这会非常有用。</p>
+<p>例如，假设我们想要开始开发一项新功能或者修复一些错误，并且需要在几个子模块内工作。 我们可以轻松地保存所有子模块的工作进度。</p>
+<pre class=" language-console"><code class="language-console">$ git submodule foreach 'git stash'
+Entering 'CryptoLibrary'
+No local changes to save
+Entering 'DbConnector'
+Saved working directory and index state WIP on stable: 82d2ad3 Merge from origin/stable
+HEAD is now at 82d2ad3 Merge from origin/stable
+</code></pre>
+<p>然后我们可以创建一个新分支，并将所有子模块都切换过去。</p>
+<pre class=" language-console"><code class="language-console">$ git submodule foreach 'git checkout -b featureA'
+Entering 'CryptoLibrary'
+Switched to a new branch 'featureA'
+Entering 'DbConnector'
+Switched to a new branch 'featureA'
+</code></pre>
+<p>你应该明白。 能够生成一个主项目与所有子项目的改动的统一差异是非常有用的。</p>
+<pre class=" language-console"><code class="language-console">$ git diff; git submodule foreach 'git diff'
+Submodule DbConnector contains modified content
+diff --git a/src/main.c b/src/main.c
+index 210f1ae..1f0acdc 100644
+--- a/src/main.c
++++ b/src/main.c
+@@ -245,6 +245,8 @@ static int handle_alias(int *argcp, const char ***argv)
+
+      commit_pager_choice();
+
++     url = url_decode(url_orig);
++
+      /* build alias_argv */
+      alias_argv = xmalloc(sizeof(*alias_argv) * (argc + 1));
+      alias_argv[0] = alias_string + 1;
+Entering 'DbConnector'
+diff --git a/src/db.c b/src/db.c
+index 1aaefb6..5297645 100644
+--- a/src/db.c
++++ b/src/db.c
+@@ -93,6 +93,11 @@ char *url_decode_mem(const char *url, int len)
+        return url_decode_internal(&url, len, NULL, &out, 0);
+ }
+
++char *url_decode(const char *url)
++{
++       return url_decode_mem(url, strlen(url));
++}
++
+ char *url_decode_parameter_name(const char **query)
+ {
+        struct strbuf out = STRBUF_INIT;
+</code></pre>
+<p>在这里，我们看到子模块中定义了一个函数并在主项目中调用了它。 这明显是个简化了的例子，但是希望它能让你明白这种方法的用处。</p>
+<h4 id="有用的别名"><a href="#有用的别名" class="headerlink" title="有用的别名"></a>有用的别名</h4><p>你可能想为其中一些命令设置别名，因为它们可能会非常长而你又不能设置选项作为它们的默认选项。 我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_aliases" target="_blank" rel="noopener">Git 别名</a> 介绍了设置 Git 别名，但是如果你计划在 Git 中大量使用子模块的话，这里有一些例子。</p>
+<pre class=" language-console"><code class="language-console">$ git config alias.sdiff '!'"git diff && git submodule foreach 'git diff'"
+$ git config alias.spush 'push --recurse-submodules=on-demand'
+$ git config alias.supdate 'submodule update --remote --merge'
+</code></pre>
+<p>这样当你想要更新子模块时可以简单地运行 <code>git supdate</code>，或 <code>git spush</code> 检查子模块依赖后推送。</p>
+<h3 id="子模块的问题"><a href="#子模块的问题" class="headerlink" title="子模块的问题"></a>子模块的问题</h3><p>然而使用子模块还是有一些小问题。</p>
+<p>例如在有子模块的项目中切换分支可能会造成麻烦。 如果你创建一个新分支，在其中添加一个子模块，之后切换到没有该子模块的分支上时，你仍然会有一个还未跟踪的子模块目录。</p>
+<pre class=" language-console"><code class="language-console">$ git checkout -b add-crypto
+Switched to a new branch 'add-crypto'
+
+$ git submodule add https://github.com/chaconinc/CryptoLibrary
+Cloning into 'CryptoLibrary'...
+...
+
+$ git commit -am 'adding crypto library'
+[add-crypto 4445836] adding crypto library
+ 2 files changed, 4 insertions(+)
+ create mode 160000 CryptoLibrary
+
+$ git checkout master
+warning: unable to rmdir CryptoLibrary: Directory not empty
+Switched to branch 'master'
+Your branch is up-to-date with 'origin/master'.
+
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+    CryptoLibrary/
+
+nothing added to commit but untracked files present (use "git add" to track)
+</code></pre>
+<p>移除那个目录并不困难，但是有一个目录在那儿会让人有一点困惑。 如果你移除它然后切换回有那个子模块的分支，需要运行 <code>submodule update --init</code> 来重新建立和填充。</p>
+<pre class=" language-console"><code class="language-console">$ git clean -fdx
+Removing CryptoLibrary/
+
+$ git checkout add-crypto
+Switched to branch 'add-crypto'
+
+$ ls CryptoLibrary/
+
+$ git submodule update --init
+Submodule path 'CryptoLibrary': checked out 'b8dda6aa182ea4464f3f3264b11e0268545172af'
+
+$ ls CryptoLibrary/
+Makefile    includes    scripts        src
+</code></pre>
+<p>再说一遍，这真的不难，只是会让人有点儿困惑。</p>
+<p>另一个主要的告诫是许多人遇到了将子目录转换为子模块的问题。 如果你在项目中已经跟踪了一些文件，然后想要将它们移动到一个子模块中，那么请务必小心，否则 Git 会对你发脾气。 假设项目内有一些文件在子目录中，你想要将其转换为一个子模块。 如果删除子目录然后运行 <code>submodule add</code>，Git 会朝你大喊：</p>
+<pre class=" language-console"><code class="language-console">$ rm -Rf CryptoLibrary/
+$ git submodule add https://github.com/chaconinc/CryptoLibrary
+'CryptoLibrary' already exists in the index
+</code></pre>
+<p>你必须要先取消暂存 <code>CryptoLibrary</code> 目录。 然后才可以添加子模块：</p>
+<pre class=" language-console"><code class="language-console">$ git rm -r CryptoLibrary
+$ git submodule add https://github.com/chaconinc/CryptoLibrary
+Cloning into 'CryptoLibrary'...
+remote: Counting objects: 11, done.
+remote: Compressing objects: 100% (10/10), done.
+remote: Total 11 (delta 0), reused 11 (delta 0)
+Unpacking objects: 100% (11/11), done.
+Checking connectivity... done.
+</code></pre>
+<p>现在假设你在一个分支下做了这样的工作。 如果尝试切换回的分支中那些文件还在子目录而非子模块中时 - 你会得到这个错误：</p>
+<pre class=" language-console"><code class="language-console">$ git checkout master
+error: The following untracked working tree files would be overwritten by checkout:
+  CryptoLibrary/Makefile
+  CryptoLibrary/includes/crypto.h
+  ...
+Please move or remove them before you can switch branches.
+Aborting
+</code></pre>
+<p>你可以通过 <code>checkout -f</code> 来强制切换，但是要小心，如果其中还有未保存的修改，这个命令会把它们覆盖掉。</p>
+<pre class=" language-console"><code class="language-console">$ git checkout -f master
+warning: unable to rmdir CryptoLibrary: Directory not empty
+Switched to branch 'master'
+</code></pre>
+<p>当你切换回来之后，因为某些原因你得到了一个空的 <code>CryptoLibrary</code> 目录，并且 <code>git submodule update</code> 也无法修复它。 你需要进入到子模块目录中运行 <code>git checkout .</code> 来找回所有的文件。 你也可以通过 <code>submodule foreach</code> 脚本来为多个子模块运行它。</p>
+<p>要特别注意的是，近来子模块会将它们的所有 Git 数据保存在顶级项目的 <code>.git</code> 目录中，所以不像旧版本的 Git，摧毁一个子模块目录并不会丢失任何提交或分支。</p>
+<p>拥有了这些工具，使用子模块会成为可以在几个相关但却分离的项目上同时开发的相当简单有效的方法。</p>
+<h2 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h2><p>虽然我们已经了解了网络传输 Git 数据的常用方法（如 HTTP，SSH 等），但还有另外一种不太常见却又十分有用的方式。</p>
+<p>Git 可以将它的数据 “打包” 到一个文件中。 这在许多场景中都很有用。 有可能你的网络中断了，但你又希望将你的提交传给你的合作者们。 可能你不在办公网中并且出于安全考虑没有给你接入内网的权限。 可能你的无线、有线网卡坏掉了。 可能你现在没有共享服务器的权限，你又希望通过邮件将更新发送给别人，却不希望通过 <code>format-patch</code> 的方式传输 40 个提交。</p>
+<p>这些情况下 <code>git bundle</code> 就会很有用。 <code>bundle</code> 命令会将 <code>git push</code> 命令所传输的所有内容打包成一个二进制文件，你可以将这个文件通过邮件或者闪存传给其他人，然后解包到其他的仓库中。</p>
+<p>来看看一个简单的例子。 假设你有一个包含两个提交的仓库：</p>
+<pre class=" language-console"><code class="language-console">$ git log
+commit 9a466c572fe88b195efd356c3f2bbeccdb504102
+Author: Scott Chacon <schacon@gmail.com>
+Date:   Wed Mar 10 07:34:10 2010 -0800
+
+    second commit
+
+commit b1ec3248f39900d2a406049d762aa68e9641be25
+Author: Scott Chacon <schacon@gmail.com>
+Date:   Wed Mar 10 07:34:01 2010 -0800
+
+    first commit
+</code></pre>
+<p>如果你想把这个仓库发送给其他人但你没有其他仓库的权限，或者就是懒得新建一个仓库，你就可以用 <code>git bundle create</code> 命令来打包。</p>
+<pre class=" language-console"><code class="language-console">$ git bundle create repo.bundle HEAD master
+Counting objects: 6, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (6/6), 441 bytes, done.
+Total 6 (delta 0), reused 0 (delta 0)
+</code></pre>
+<p>然后你就会有一个名为 <code>repo.bundle</code> 的文件，该文件包含了所有重建该仓库 <code>master</code> 分支所需的数据。 在使用 <code>bundle</code> 命令时，你需要列出所有你希望打包的引用或者提交的区间。 如果你希望这个仓库可以在别处被克隆，你应该像例子中那样增加一个 HEAD 引用。</p>
+<p>你可以将这个 <code>repo.bundle</code> 文件通过邮件或者U盘传给别人。</p>
+<p>另一方面，假设别人传给你一个 <code>repo.bundle</code> 文件并希望你在这个项目上工作。 你可以从这个二进制文件中克隆出一个目录，就像从一个 URL 克隆一样。</p>
+<pre class=" language-console"><code class="language-console">$ git clone repo.bundle repo
+Initialized empty Git repository in /private/tmp/bundle/repo/.git/
+$ cd repo
+$ git log --oneline
+9a466c5 second commit
+b1ec324 first commit
+</code></pre>
+<p>如果你在打包时没有包含 HEAD 引用，你还需要在命令后指定一个 <code>-b master</code> 或者其他被引入的分支，否则 Git 不知道应该检出哪一个分支。</p>
+<p>现在假设你提交了 3 个修订，并且要用邮件或者U盘将新的提交放在一个包里传回去。</p>
+<pre class=" language-console"><code class="language-console">$ git log --oneline
+71b84da last commit - second repo
+c99cf5b fourth commit - second repo
+7011d3d third commit - second repo
+9a466c5 second commit
+b1ec324 first commit
+</code></pre>
+<p>首先我们需要确认我们希望被打包的提交区间。 和网络协议不太一样，网络协议会自动计算出所需传输的最小数据集，而我们需要手动计算。 当然你可以像上面那样将整个仓库打包，但最好仅仅打包变更的部分 —— 就是我们刚刚在本地做的 3 个提交。</p>
+<p>为了实现这个目标，你需要计算出差别。 就像我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_commit_ranges" target="_blank" rel="noopener">提交区间</a> 介绍的，你有很多种方式去指明一个提交区间。 我们可以使用 <code>origin/master..master</code> 或者 <code>master ^origin/master</code> 之类的方法来获取那 3 个在我们的 master 分支而不在原始仓库中的提交。 你可以用 <code>log</code> 命令来测试。</p>
+<pre class=" language-console"><code class="language-console">$ git log --oneline master ^origin/master
+71b84da last commit - second repo
+c99cf5b fourth commit - second repo
+7011d3d third commit - second repo
+</code></pre>
+<p>这样就获取到我们希望被打包的提交列表，让我们将这些提交打包。 我们可以用 <code>git bundle create</code>命令，加上我们想用的文件名，以及要打包的提交区间。</p>
+<pre class=" language-console"><code class="language-console">$ git bundle create commits.bundle master ^9a466c5
+Counting objects: 11, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (9/9), 775 bytes, done.
+Total 9 (delta 0), reused 0 (delta 0)
+</code></pre>
+<p>现在在我们的目录下会有一个 <code>commits.bundle</code> 文件。 如果我们把这个文件发送给我们的合作者，她可以将这个文件导入到原始的仓库中，即使在这期间已经有其他的工作提交到这个仓库中。</p>
+<p>当她拿到这个包时，她可以在导入到仓库之前查看这个包里包含了什么内容。 <code>bundle verify</code> 命令可以检查这个文件是否是一个合法的 Git 包，是否拥有共同的祖先来导入。</p>
+<pre class=" language-console"><code class="language-console">$ git bundle verify ../commits.bundle
+The bundle contains 1 ref
+71b84daaf49abed142a373b6e5c59a22dc6560dc refs/heads/master
+The bundle requires these 1 ref
+9a466c572fe88b195efd356c3f2bbeccdb504102 second commit
+../commits.bundle is okay
+</code></pre>
+<p>如果打包工具仅仅把最后两个提交打包，而不是三个，原始的仓库是无法导入这个包的，因为这个包缺失了必要的提交记录。这时候 <code>verify</code> 的输出类似：</p>
+<pre class=" language-console"><code class="language-console">$ git bundle verify ../commits-bad.bundle
+error: Repository lacks these prerequisite commits:
+error: 7011d3d8fc200abe0ad561c011c3852a4b7bbe95 third commit - second repo
+</code></pre>
+<p>而我们的第一个包是合法的，所以我们可以从这个包里提取出提交。 如果你想查看这边包里可以导入哪些分支，同样有一个命令可以列出这些顶端：</p>
+<pre class=" language-console"><code class="language-console">$ git bundle list-heads ../commits.bundle
+71b84daaf49abed142a373b6e5c59a22dc6560dc refs/heads/master
+</code></pre>
+<p><code>verify</code> 子命令同样可以告诉你有哪些顶端。 该功能的目的是查看哪些是可以被拉入的，所以你可以使用 <code>fetch</code> 或者 <code>pull</code> 命令从包中导入提交。 这里我们要从包中取出 <code>master</code> 分支到我们仓库中的 <em>other-master</em> 分支：</p>
+<pre class=" language-console"><code class="language-console">$ git fetch ../commits.bundle master:other-master
+From ../commits.bundle
+ * [new branch]      master     -> other-master
+</code></pre>
+<p>可以看到我们已经将提交导入到 <em>other-master</em> 分支，以及在这期间我们自己在 <em>master</em> 分支上的提交。</p>
+<pre class=" language-console"><code class="language-console">$ git log --oneline --decorate --graph --all
+* 8255d41 (HEAD, master) third commit - first repo
+| * 71b84da (other-master) last commit - second repo
+| * c99cf5b fourth commit - second repo
+| * 7011d3d third commit - second repo
+|/
+* 9a466c5 second commit
+* b1ec324 first commit
+</code></pre>
+<p>因此，当你在没有合适的网络或者可共享仓库的情况下，<code>git bundle</code> 很适合用于共享或者网络类型的操作。</p>
+<h2 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h2><p>Git 对象是不可改变的，但它提供一种有趣的方式来用其他对象假装替换数据库中的 Git 对象。</p>
+<p><code>replace</code> 命令可以让你在 Git 中指定一个对象并可以声称“每次你遇到这个 Git 对象时，假装它是其他的东西”。 在你用一个不同的提交替换历史中的一个提交时，这会非常有用。</p>
+<p>例如，你有一个大型的代码历史并想把自己的仓库分成一个短的历史和一个更大更长久的历史，短历史供新的开发者使用，后者给喜欢数据挖掘的人使用。 你可以通过用新仓库中最早的提交 <code>replace</code> 老仓库中最新的提交来连接历史，这种方式可以把一条历史移植到其他历史上。 这意味着你不用在新历史中真正替换每一个提交（因为历史来源会影响 SHA 的值），你可以加入他们。</p>
+<p>让我们来试试吧。 首先获取一个已经存在的仓库，并将其分成两个仓库，一个是最近的仓库，一个是历史版本的仓库，然后我们将看到如何在不更改仓库 SHA 值的情况下通过 <code>replace</code> 命令来合并他们。</p>
+<p>我们将使用一个拥有 5 个提交的简单仓库：</p>
+<pre class=" language-console"><code class="language-console">$ git log --oneline
+ef989d8 fifth commit
+c6e1e95 fourth commit
+9c68fdc third commit
+945704c second commit
+c1822cf first commit
+</code></pre>
+<p>我们想将其分成拆分成两条历史。 第一个到第四个提交的作为第一个历史版本。 第四、第五个提交的作为最近的第二个历史版本。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/replace1.png" alt="replace1"></p>
+<p>创建历史版本的历史很容易，我们可以只将一个历史中的分支推送到一个新的远程仓库的 master 分支。</p>
+<pre class=" language-console"><code class="language-console">$ git branch history c6e1e95
+$ git log --oneline --decorate
+ef989d8 (HEAD, master) fifth commit
+c6e1e95 (history) fourth commit
+9c68fdc third commit
+945704c second commit
+c1822cf first commit
+</code></pre>
+<p><img src="https://git-scm.com/book/en/v2/images/replace2.png" alt="replace2"></p>
+<p>现在我们可以把这个新的 <code>history</code> 分支推送到我们新仓库的 <code>master</code> 分支：</p>
+<pre class=" language-console"><code class="language-console">$ git remote add project-history https://github.com/schacon/project-history
+$ git push project-history history:master
+Counting objects: 12, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (12/12), 907 bytes, done.
+Total 12 (delta 0), reused 0 (delta 0)
+Unpacking objects: 100% (12/12), done.
+To git@github.com:schacon/project-history.git
+ * [new branch]      history -> master
+</code></pre>
+<p>这样一来，我们的历史版本就发布了。 稍难的部分则是删减我们最近的历史来让它变得更小。 我们需要一个重叠以便于用一个相等的提交来替换另一个提交，这样一来，我们将截断到第四、五个提交。</p>
+<pre class=" language-console"><code class="language-console">$ git log --oneline --decorate
+ef989d8 (HEAD, master) fifth commit
+c6e1e95 (history) fourth commit
+9c68fdc third commit
+945704c second commit
+c1822cf first commit
+</code></pre>
+<p>在这种情况下，创建一个能够指导扩展历史的基础提交是很有用的。 这样一来，如果其他的开发者想要修改第一次提交或者其他操作时就知道要做些什么，因此，接下来我们要做的是用命令创建一个最初的提交对象，然后将剩下的提交（第四、第五个提交）变基到它的上面。</p>
+<p>为了这么做，我们需要选择一个点去拆分，对于我们而言是第三个提交（SHA 是 <code>9c68fdc</code>）。因此我们的提交将基于此提交树。我们可以使用 <code>commit-tree</code> 命令来创建基础提交，这样我们就有了一个树，并返回一个全新的、无父节点的 SHA 提交对象。</p>
+<pre class=" language-console"><code class="language-console">$ echo 'get history from blah blah blah' | git commit-tree 9c68fdc^{tree}
+622e88e9cbfbacfb75b5279245b9fb38dfea10cf
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Note</th>
+<th><code>commit-tree</code> 命令属于底层指令。有许多指令并非直接使用，而是被 <strong>其他的</strong> Git 命令用来做更小一些的工作。有时当我们做一些像这样的奇怪事情时，它们允许我们做一些不适用于日常使用但真正底层的东西。更多关于底层命令的内容请参见 <a href="https://git-scm.com/book/zh/v2/ch00/r_plumbing_porcelain" target="_blank" rel="noopener">底层命令和高层命令</a></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><img src="https://git-scm.com/book/en/v2/images/replace3.png" alt="replace3"></p>
+<p>现在我们已经有一个基础提交了，我们可以通过 <code>git rebase --onto</code> 命令来将剩余的历史变基到基础提交之上。<code>--onto</code> 参数是刚才 <code>commit-tree</code> 命令返回的 SHA 值，变基点会成为第三个提交（我们想留下的第一个提交的父提交，<code>9c68fdc</code>）：</p>
+<pre class=" language-console"><code class="language-console">$ git rebase --onto 622e88 9c68fdc
+First, rewinding head to replay your work on top of it...
+Applying: fourth commit
+Applying: fifth commit
+</code></pre>
+<p><img src="https://git-scm.com/book/en/v2/images/replace4.png" alt="replace4"></p>
+<p>我们已经用基础提交重写了最近的历史，基础提交包括如何重新组成整个历史的说明。 我们可以将新历史推送到新项目中，当其他人克隆这个仓库时，他们仅能看到最近两次提交以及一个包含上述说明的基础提交。</p>
+<p>现在我们将以想获得整个历史的人的身份来初次克隆这个项目。 在克隆这个截断后的仓库后为了得到历史数据，需要添加第二个远程的历史版本库并对其做获取操作：</p>
+<pre class=" language-console"><code class="language-console">$ git clone https://github.com/schacon/project
+$ cd project
+
+$ git log --oneline master
+e146b5f fifth commit
+81a708d fourth commit
+622e88e get history from blah blah blah
+
+$ git remote add project-history https://github.com/schacon/project-history
+$ git fetch project-history
+From https://github.com/schacon/project-history
+ * [new branch]      master     -> project-history/master
+</code></pre>
+<p>现在，协作者在 <code>master</code> 分支中拥有他们最近的提交并且在 <code>project-history/master</code> 分支中拥有过去的提交。</p>
+<pre class=" language-console"><code class="language-console">$ git log --oneline master
+e146b5f fifth commit
+81a708d fourth commit
+622e88e get history from blah blah blah
+
+$ git log --oneline project-history/master
+c6e1e95 fourth commit
+9c68fdc third commit
+945704c second commit
+c1822cf first commit
+</code></pre>
+<p>为了合并它们，你可以使用 <code>git replace</code> 命令加上你想替换的提交信息来进行替换。 这样一来，我们就可以将 master 分支中的第四个提交替换为 <code>project-history/master</code> 分支中的“第四个”提交。</p>
+<pre class=" language-console"><code class="language-console">$ git replace 81a708d c6e1e95
+</code></pre>
+<p>现在，查看 <code>master</code> 分支中的历史信息，显示如下：</p>
+<pre class=" language-console"><code class="language-console">$ git log --oneline master
+e146b5f fifth commit
+81a708d fourth commit
+9c68fdc third commit
+945704c second commit
+c1822cf first commit
+</code></pre>
+<p>很酷，是不是？不用改变上游的 SHA-1 我们就能用一个提交来替换历史中的所有不同的提交，并且所有的工具（<code>bisect</code>，<code>blame</code> 等）也都奏效。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/replace5.png" alt="replace5"></p>
+<p>有趣的是，即使是使用了 <code>c6e1e95</code> 提交数据来进行替换，它的 SHA-1 仍显示为 <code>81a708d</code>。 即使你运行了 <code>cat-file</code> 命令，它仍会显示你替换的数据：</p>
+<pre class=" language-console"><code class="language-console">$ git cat-file -p 81a708d
+tree 7bc544cf438903b65ca9104a1e30345eee6c083d
+parent 9c68fdceee073230f19ebb8b5e7fc71b479c0252
+author Scott Chacon <schacon@gmail.com> 1268712581 -0700
+committer Scott Chacon <schacon@gmail.com> 1268712581 -0700
+
+fourth commit
+</code></pre>
+<p>请记住，<code>81a708d</code> 真正的父提交是 <code>622e882</code> 占位提交，而非呈现的 <code>9c68fdce</code> 提交。</p>
+<p>另一个有趣的事情是数据将会以以下引用显示：</p>
+<pre class=" language-console"><code class="language-console">$ git for-each-ref
+e146b5f14e79d4935160c0e83fb9ebe526b8da0d commit    refs/heads/master
+c6e1e95051d41771a649f3145423f8809d1a74d4 commit    refs/remotes/history/master
+e146b5f14e79d4935160c0e83fb9ebe526b8da0d commit    refs/remotes/origin/HEAD
+e146b5f14e79d4935160c0e83fb9ebe526b8da0d commit    refs/remotes/origin/master
+c6e1e95051d41771a649f3145423f8809d1a74d4 commit    refs/replace/81a708dd0e167a3f691541c7a6463343bc457040
+</code></pre>
+<p>这意味着我们可以轻而易举的和其他人分享替换，因为我们可以将替换推送到服务器中并且其他人可以轻松地下载。 也许在历史移植情况下不是很有用（既然每个人都乐意下载最新版本和历史版本，为何还要拆分他们呢？），但在其他情况下仍然很有用。</p>
+<h2 id="凭证存储"><a href="#凭证存储" class="headerlink" title="凭证存储"></a>凭证存储</h2><p>如果你使用的是 SSH 方式连接远端，并且设置了一个没有口令的密钥，这样就可以在不输入用户名和密码的情况下安全地传输数据。 然而，这对 HTTP 协议来说是不可能的 —— 每一个连接都是需要用户名和密码的。 这在使用双重认证的情况下会更麻烦，因为你需要输入一个随机生成并且毫无规律的 token 作为密码。</p>
+<p>幸运的是，Git 拥有一个凭证系统来处理这个事情。 下面有一些 Git 的选项：</p>
+<ul>
+<li>默认所有都不缓存。 每一次连接都会询问你的用户名和密码。</li>
+<li>“cache” 模式会将凭证存放在内存中一段时间。 密码永远不会被存储在磁盘中，并且在15分钟后从内存中清除。</li>
+<li>“store” 模式会将凭证用明文的形式存放在磁盘中，并且永不过期。 这意味着除非你修改了你在 Git 服务器上的密码，否则你永远不需要再次输入你的凭证信息。 这种方式的缺点是你的密码是用明文的方式存放在你的 home 目录下。</li>
+<li>如果你使用的是 Mac，Git 还有一种 “osxkeychain” 模式，它会将凭证缓存到你系统用户的钥匙串中。 这种方式将凭证存放在磁盘中，并且永不过期，但是是被加密的，这种加密方式与存放 HTTPS 凭证以及 Safari 的自动填写是相同的。</li>
+<li>如果你使用的是 Windows，你可以安装一个叫做 “winstore” 的辅助工具。 这和上面说的 “osxkeychain” 十分类似，但是是使用 Windows Credential Store 来控制敏感信息。 可以在 <a href="https://gitcredentialstore.codeplex.com/" target="_blank" rel="noopener">https://gitcredentialstore.codeplex.com</a> 下载。</li>
+</ul>
+<p>你可以设置 Git 的配置来选择上述的一种方式</p>
+<pre class=" language-console"><code class="language-console">$ git config --global credential.helper cache
+</code></pre>
+<p>部分辅助工具有一些选项。 “store” 模式可以接受一个 <code>--file &lt;path&gt;</code> 参数，可以自定义存放密码的文件路径（默认是 <code>~/.git-credentials</code> ）。 “cache” 模式有 <code>--timeout &lt;seconds&gt;</code> 参数，可以设置后台进程的存活时间（默认是 “900”，也就是 15 分钟）。 下面是一个配置 “store” 模式自定义路径的例子：</p>
+<pre class=" language-console"><code class="language-console">$ git config --global credential.helper store --file ~/.my-credentials
+</code></pre>
+<p>Git 甚至允许你配置多个辅助工具。 当查找特定服务器的凭证时，Git 会按顺序查询，并且在找到第一个回答时停止查询。 当保存凭证时，Git 会将用户名和密码发送给 <strong>所有</strong> 配置列表中的辅助工具，它们会按自己的方式处理用户名和密码。 如果你在闪存上有一个凭证文件，但又希望在该闪存被拔出的情况下使用内存缓存来保存用户名密码，<code>.gitconfig</code> 配置文件如下：</p>
+<pre class=" language-ini"><code class="language-ini"><span class="token selector">[credential]</span>
+<span class="token constant">    helper</span> <span class="token attr-value"><span class="token punctuation">=</span> store --file /mnt/thumbdrive/.git-credentials</span>
+<span class="token constant">    helper</span> <span class="token attr-value"><span class="token punctuation">=</span> cache --timeout 30000</span>
+</code></pre>
+<h3 id="底层实现"><a href="#底层实现" class="headerlink" title="底层实现"></a>底层实现</h3><p>这些是如何实现的呢？ Git 凭证辅助工具系统的命令是 <code>git credential</code>，这个命令接收一个参数，并通过标准输入获取更多的参数。</p>
+<p>举一个例子更容易理解。 我们假设已经配置好一个凭证辅助工具，这个辅助工具保存了 <code>mygithost</code> 的凭证信息。 下面是一个使用 “fill” 命令的会话，当 Git 尝试寻找一个服务器的凭证时就会被调用。</p>
+<pre class=" language-console"><code class="language-console">$ git credential fill (1)
+protocol=https (2)
+host=mygithost
+(3)
+protocol=https (4)
+host=mygithost
+username=bob
+password=s3cre7
+$ git credential fill (5)
+protocol=https
+host=unknownhost
+
+Username for 'https://unknownhost': bob
+Password for 'https://bob@unknownhost':
+protocol=https
+host=unknownhost
+username=bob
+password=s3cre7
+</code></pre>
+<ol>
+<li>这是开始交互的命令。</li>
+<li>Git-credential 接下来会等待标准输入。 我们提供我们所知道的信息：协议和主机名。</li>
+<li>一个空行代表输入已经完成，凭证系统应该输出它所知道的信息。</li>
+<li>接下来由 Git-credential 接管，并且将找到的信息打印到标准输出。</li>
+<li>如果没有找到对应的凭证，Git 会询问用户的用户名和密码，我们将这些信息输入到在标准输出的地方（这个例子中是同一个控制台）。</li>
+</ol>
+<p>凭证系统实际调用的程序和 Git 本身是分开的；具体是哪一个以及如何调用与 <code>credential.helper</code> 配置的值有关。 这个配置有多种格式：</p>
+<table>
+<thead>
+<tr>
+<th align="left">配置值</th>
+<th align="left">行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>foo</code></td>
+<td align="left">执行 <code>git-credential-foo</code></td>
+</tr>
+<tr>
+<td align="left"><code>foo -a --opt=bcd</code></td>
+<td align="left">执行 <code>git-credential-foo -a --opt=bcd</code></td>
+</tr>
+<tr>
+<td align="left"><code>/absolute/path/foo -xyz</code></td>
+<td align="left">执行 <code>/absolute/path/foo -xyz</code></td>
+</tr>
+<tr>
+<td align="left"><code>!f() { echo &quot;password=s3cre7&quot;; }; f</code></td>
+<td align="left"><code>!</code> 后面的代码会在shell执行</td>
+</tr>
+</tbody></table>
+<p>上面描述的辅助工具可以被称做 <code>git-credential-cache</code>、<code>git-credential-store</code> 之类，我们可以配置它们来接受命令行参数。 通常的格式是 “git-credential-foo [args] <action>.” 标准输入/输出协议和 git-credential 一样，但它们使用的是一套稍微不太一样的行为：</action></p>
+<ul>
+<li><code>get</code> 是请求输入一对用户名和密码。</li>
+<li><code>store</code> 是请求保存一个凭证到辅助工具的内存。</li>
+<li><code>erase</code> 会将给定的证书从辅助工具内存中清除。</li>
+</ul>
+<p>对于 <code>store</code> 和 <code>erase</code> 两个行为是不需要返回数据的（Git 也会忽略掉）。 然而对于 <code>get</code>，Git 对辅助工具的返回信息十分感兴趣。</p>
+<p>如果辅助工具没有任何有用的信息，它可以直接退出而不需要输出任何东西，但如果它有这些信息，它在提供的信息后面增加它所拥有的信息。 这些输出会被视为一系列的赋值语句；每一个提供的数据都会将 Git 已有的数据替换掉。</p>
+<p>这有一个和上面一样的例子，但是跳过了 git-credential 这一步，直接到 git-credential-store:</p>
+<pre class=" language-console"><code class="language-console">$ git credential-store --file ~/git.store store (1)
+protocol=https
+host=mygithost
+username=bob
+password=s3cre7
+$ git credential-store --file ~/git.store get (2)
+protocol=https
+host=mygithost
+
+username=bob (3)
+password=s3cre7
+</code></pre>
+<ol>
+<li>我们告诉 <code>git-credential-store</code> 去保存凭证：当访问 <code>https://mygithost</code> 时使用用户名 “bob”，密码是 “s3cre7”。</li>
+<li>现在我们取出这个凭证。 我们提供连接这部分的信息（<code>https://mygithost</code>）以及一个空行。</li>
+<li><code>git-credential-store</code> 输出我们之前保存的用户名和密码。</li>
+</ol>
+<p><code>~/git.store</code> 文件的内容类似：</p>
+<pre><code>https://bob:s3cre7@mygithost
+</code></pre><p>仅仅是一系列包含凭证信息URL组成的行。 <code>osxkeychain</code> 和 <code>winstore</code> 辅助工具使用它们后端存储的原生格式，而 <code>cache</code> 使用它的内存格式（其他进程无法读取）。</p>
+<h3 id="自定义凭证缓存"><a href="#自定义凭证缓存" class="headerlink" title="自定义凭证缓存"></a>自定义凭证缓存</h3><p>已经知道 <code>git-credential-store</code> 之类的是和 Git 是相互独立的程序，就不难理解 Git 凭证辅助工具可以是 <em>任意</em> 程序。 虽然 Git 提供的辅助工具覆盖了大多数常见的使用场景，但并不能满足所有情况。 比如，假设你的整个团队共享一些凭证，也许是在部署时使用。 这些凭证是保存在一个共享目录里，由于这些凭证经常变更，所以你不想把它们复制到你自己的凭证仓库中。 现有的辅助工具无法满足这种情况；来看看我们如何自己实现一个。 这个程序应该拥有几个核心功能：</p>
+<ol>
+<li>我们唯一需要关注的行为是 <code>get</code>；<code>store</code> 和 <code>erase</code> 是写操作，所以当接受到这两个请求时我们直接退出即可。</li>
+<li>共享的凭证文件格式和 <code>git-credential-store</code> 使用的格式相同。</li>
+<li>凭证文件的路径一般是固定的，但我们应该允许用户传入一个自定义路径以防万一。</li>
+</ol>
+<p>我们再一次使用 Ruby 来编写这个扩展，但只要 Git 能够执行最终的程序，任何语言都是可以的。 这是我们的凭证辅助工具的完整代码：</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true">#!/usr/bin/env ruby</span>
+
+<span class="token keyword">require</span> <span class="token string">'optparse'</span>
+
+path <span class="token operator">=</span> <span class="token builtin">File</span><span class="token punctuation">.</span>expand_path <span class="token string">'~/.git-credentials'</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token constant">OptionParser</span><span class="token punctuation">.</span><span class="token keyword">new</span> <span class="token class-name">do</span> <span class="token operator">|</span>opts<span class="token operator">|</span>
+    opts<span class="token punctuation">.</span>banner <span class="token operator">=</span> <span class="token string">'USAGE: git-credential-read-only [options] &lt;action>'</span>
+    opts<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'-f'</span><span class="token punctuation">,</span> <span class="token string">'--file PATH'</span><span class="token punctuation">,</span> <span class="token string">'Specify path for backing store'</span><span class="token punctuation">)</span> <span class="token keyword">do</span> <span class="token operator">|</span>argpath<span class="token operator">|</span>
+        path <span class="token operator">=</span> <span class="token builtin">File</span><span class="token punctuation">.</span>expand_path argpath
+    <span class="token keyword">end</span>
+<span class="token keyword">end</span><span class="token punctuation">.</span>parse<span class="token operator">!</span>
+
+<span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">unless</span> <span class="token constant">ARGV</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>downcase <span class="token operator">==</span> <span class="token string">'get'</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">unless</span> <span class="token builtin">File</span><span class="token punctuation">.</span>exists<span class="token operator">?</span> path
+
+known <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token keyword">while</span> line <span class="token operator">=</span> <span class="token constant">STDIN</span><span class="token punctuation">.</span>gets
+    <span class="token keyword">break</span> <span class="token keyword">if</span> line<span class="token punctuation">.</span>strip <span class="token operator">==</span> <span class="token string">''</span>
+    k<span class="token punctuation">,</span>v <span class="token operator">=</span> line<span class="token punctuation">.</span>strip<span class="token punctuation">.</span>split <span class="token string">'='</span><span class="token punctuation">,</span> <span class="token number">2</span>
+    known<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> v
+<span class="token keyword">end</span>
+
+<span class="token builtin">File</span><span class="token punctuation">.</span><span class="token function">readlines</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>fileline<span class="token operator">|</span> <span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+    prot<span class="token punctuation">,</span>user<span class="token punctuation">,</span>pass<span class="token punctuation">,</span>host <span class="token operator">=</span> fileline<span class="token punctuation">.</span><span class="token function">scan</span><span class="token punctuation">(</span><span class="token regex">/^(.*?):\/\/(.*?):(.*?)@(.*)$/</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first
+    <span class="token keyword">if</span> prot <span class="token operator">==</span> known<span class="token punctuation">[</span><span class="token string">'protocol'</span><span class="token punctuation">]</span> <span class="token keyword">and</span> host <span class="token operator">==</span> known<span class="token punctuation">[</span><span class="token string">'host'</span><span class="token punctuation">]</span> <span class="token keyword">then</span>
+        puts <span class="token string">"protocol=<span class="token interpolation"><span class="token delimiter tag">#{</span>prot<span class="token delimiter tag">}</span></span>"</span>
+        puts <span class="token string">"host=<span class="token interpolation"><span class="token delimiter tag">#{</span>host<span class="token delimiter tag">}</span></span>"</span>
+        puts <span class="token string">"username=<span class="token interpolation"><span class="token delimiter tag">#{</span>user<span class="token delimiter tag">}</span></span>"</span>
+        puts <span class="token string">"password=<span class="token interpolation"><span class="token delimiter tag">#{</span>pass<span class="token delimiter tag">}</span></span>"</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+</code></pre>
+<ol>
+<li>我们在这里解析命令行参数，允许用户指定输入文件，默认是 <code>~/.git-credentials</code>.</li>
+<li>这个程序只有在接受到 <code>get</code> 行为的请求并且后端存储的文件存在时才会有输出。</li>
+<li>这个循环从标准输入读取数据，直到读取到第一个空行。 输入的数据被保存到 <code>known</code> 哈希表中，之后需要用到。</li>
+<li>这个循环读取存储文件中的内容，寻找匹配的行。 如果 <code>known</code> 中的协议和主机名与该行相匹配，这个程序输出结果并退出。</li>
+</ol>
+<p>我们把这个辅助工具保存为 <code>git-credential-read-only</code>，放到我们的 <code>PATH</code> 路径下并且给予执行权限。 一个交互式会话类似：</p>
+<pre class=" language-console"><code class="language-console">$ git credential-read-only --file=/mnt/shared/creds get
+protocol=https
+host=mygithost
+
+protocol=https
+host=mygithost
+username=bob
+password=s3cre7
+</code></pre>
+<p>由于这个的名字是 “git-” 开头，所以我们可以在配置值中使用简便的语法：</p>
+<pre class=" language-console"><code class="language-console">$ git config --global credential.helper read-only --file /mnt/shared/creds
+</code></pre>
+<p>正如你看到的，扩展这个系统是相当简单的，并且可以为你和你的团队解决一些常见问题。</p>
+<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p>你已经接触了很多能够精确地操控提交和暂存区的高级工具。 当你碰到问题时，你应该可以很容易找出是哪个分支在什么时候由谁引入了它们。 如果你想在项目中使用子项目，你也已经知道如何来满足这些需求。 到此，你应该能毫无压力地在命令行中使用 Git 来完成日常中的大部分事情。</p>
+
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'brA0u8dhiFmWzBQJ5YDMevuw-gzGzoHsz',
+        appKey: 'InzuBbqaqOss16gJu1jiKE7F',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/07/15/自定义Git/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="自定义Git">
+                        
+                        <span class="card-title">自定义Git</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            到目前为止，我们已经阐述了 Git 基本的运作机制和使用方式，介绍了许多 Git 提供的工具来帮助你简单且有效地使用它。 在本章，我们将演示如何借助 Git 的一些重要的配置方法和钩子机制，来满足自定义的需求。 通过这些工具，它会和你、你的
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Git/" class="post-category" target="_blank">
+                                    Git
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Git/" target="_blank">
+                        <span class="chip bg-color">Git</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/07/15/GitHub/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="GitHub">
+                        
+                        <span class="card-title">GitHub</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            GitHub 是最大的 Git 版本库托管商，是成千上万的开发者和项目能够合作进行的中心。 大部分 Git 版本库都托管在 GitHub，很多开源项目使用 GitHub 实现 Git 托管、问题追踪、代码审查以及其它事情。 所以，尽管这不是
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Git/" class="post-category" target="_blank">
+                                    Git
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Git/" target="_blank">
+                        <span class="chip bg-color">Git</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">249.9k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/chenshuoke" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:henu_chenshuoke@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2604689299" class="tooltipped" data-tooltip="QQ联系我: 2604689299" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

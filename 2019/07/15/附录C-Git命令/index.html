@@ -1,0 +1,1342 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="附录C:Git命令, 孤狼的博客">
+    <meta name="description" content="设置与配置有两个命令使用得最多了，从第一次调用 Git 到每天的日常微调及参考，这个两个命令就是： config 和help 命令。
+git configGit 做的很多工作都有一个默认方式。 对于绝大多数工作而言，你可以改变 Git 的默">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>附录C:Git命令 | 孤狼的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+    <!-- 下面一句添加的 -->
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">孤狼的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">孤狼的博客</div>
+        <div class="logo-desc">
+            
+            从来没有真正的绝境，只有心灵的迷途
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/chenshuoke" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/chenshuoke" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        附录C:Git命令
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Git/" target="_blank">
+                                <span class="chip bg-color">Git</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Git/" class="post-category" target="_blank">
+                                Git
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-07-15
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        7.9k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        27 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="设置与配置"><a href="#设置与配置" class="headerlink" title="设置与配置"></a>设置与配置</h2><p>有两个命令使用得最多了，从第一次调用 Git 到每天的日常微调及参考，这个两个命令就是： <code>config</code> 和<code>help</code> 命令。</p>
+<h3 id="git-config"><a href="#git-config" class="headerlink" title="git config"></a>git config</h3><p>Git 做的很多工作都有一个默认方式。 对于绝大多数工作而言，你可以改变 Git 的默认方式，或者根据你的偏好来设置。 这些设置涵盖了所有的事，从告诉 Git 你的名字，到指定偏好的终端颜色，以及你使用的编辑器。 此命令会从几个特定的配置文件中读取和写入配置值，以便你可以从全局或者针对特定的仓库来进行设置。</p>
+<p>本书的所有章节几乎都有用到 <code>git config</code> 命令。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_first_time" target="_blank" rel="noopener">初次运行 Git 前的配置</a> 一节中，在开始使用 Git 之前，我们用它来指定我们的名字，邮箱地址和编辑器偏好。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_aliases" target="_blank" rel="noopener">Git 别名</a> 一节中我们展示了如何创建可以展开为长选项序列的短命令，以便你不用每次都输入它们。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_rebasing" target="_blank" rel="noopener">变基</a> 一节中，执行 <code>git pull</code> 命令时，使用此命令来将 <code>--rebase</code> 作为默认选项。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_credential_caching" target="_blank" rel="noopener">凭证存储</a> 一节中，我们使用它来为你的 HTTP 密码设置一个默认的存储区域。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_keyword_expansion" target="_blank" rel="noopener">关键字展开</a> 一节中我们展示了如何设置在 Git 的内容添加和减少时使用的 smudge 过滤器 和 clean 过滤器。</p>
+<p>最后，基本上 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_config" target="_blank" rel="noopener">配置 Git</a> 整个章节都是针对此命令的。</p>
+<h3 id="git-help"><a href="#git-help" class="headerlink" title="git help"></a>git help</h3><p><code>git help</code> 命令用来显示任何命令的 Git 自带文档。 但是我们仅会在此附录中提到大部分最常用的命令，对于每一个命令的完整的可选项及标志列表，你可以随时运行 <code>git help &lt;command&gt;</code> 命令来了解。</p>
+<p>我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_help" target="_blank" rel="noopener">获取帮助</a> 一节中介绍了 <code>git help</code> 命令，同时在 <a href="https://git-scm.com/book/zh/v2/ch00/r_setting_up_server" target="_blank" rel="noopener">配置服务器</a> 一节中给你展示了如何使用它来查找更多关于 <code>git shell</code> 的信息。</p>
+<h2 id="获取与创建项目"><a href="#获取与创建项目" class="headerlink" title="获取与创建项目"></a>获取与创建项目</h2><p>有几种方式获取一个 Git 仓库。 一种是从网络上或者其他地方拷贝一个现有的仓库，另一种就是在一个目录中创建一个新的仓库。</p>
+<h3 id="git-init"><a href="#git-init" class="headerlink" title="git init"></a>git init</h3><p>你只需要简单地运行 <code>git init</code> 就可以将一个目录转变成一个 Git 仓库，这样你就可以开始对它进行版本管理了。</p>
+<p>我们一开始在 <a href="https://git-scm.com/book/zh/v2/ch00/r_getting_a_repo" target="_blank" rel="noopener">获取 Git 仓库</a> 一节中介绍了如何创建一个新的仓库来开始工作。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_remote_branches" target="_blank" rel="noopener">远程分支</a> 一节中我们简单的讨论了如何改变默认分支。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_bare_repo" target="_blank" rel="noopener">把裸仓库放到服务器上</a> 一节中我们使用此命令来为一个服务器创建一个空的祼仓库。</p>
+<p>最后，我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_plumbing_porcelain" target="_blank" rel="noopener">底层命令和高层命令</a> 一节中介绍了此命令背后工作的原理的一些细节。</p>
+<h3 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h3><p><code>git clone</code> 实际上是一个封装了其他几个命令的命令。 它创建了一个新目录，切换到新的目录，然后 <code>git init</code> 来初始化一个空的 Git 仓库， 然后为你指定的 URL 添加一个（默认名称为 <code>origin</code> 的）远程仓库（<code>git remote add</code>），再针对远程仓库执行 <code>git fetch</code>，最后通过 <code>git checkout</code> 将远程仓库的最新提交检出到本地的工作目录。</p>
+<p><code>git clone</code> 命令在本书中多次用到，这里只列举几个有意思的地方。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_cloning" target="_blank" rel="noopener">克隆现有的仓库</a> 一节中我们通过几个示例详细介绍了此命令。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_on_the_server" target="_blank" rel="noopener">在服务器上搭建 Git</a> 一节中，我们使用了 <code>--bare</code> 选项来创建一个没有任何工作目录的 Git 仓库副本。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_bundling" target="_blank" rel="noopener">打包</a> 一节中我们使用它来解包一个打包好的 Git 仓库。</p>
+<p>最后，在 <a href="https://git-scm.com/book/zh/v2/ch00/r_cloning_submodules" target="_blank" rel="noopener">克隆含有子模块的项目</a> 一节中我们学习了使用 <code>--recursive</code> 选项来让克隆一个带有子模块的仓库变得简单。</p>
+<p>虽然在本书的其他地方都有用到此命令，但是上面这些用法是特例，或者使用方式有点特别。</p>
+<h2 id="快照基础"><a href="#快照基础" class="headerlink" title="快照基础"></a>快照基础</h2><p>对于基本的暂存内容及提交到你的历史记录中的工作流，只有少数基本的命令。</p>
+<h3 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h3><p><code>git add</code> 命令将内容从工作目录添加到暂存区（或称为索引（index）区），以备下次提交。 当 <code>git commit</code> 命令执行时，默认情况下它只会检查暂存区域，因此 <code>git add</code> 是用来确定下一次提交时快照的样子的。</p>
+<p>这个命令对于 Git 来说特别的重要，所以在本书中被无数次的提及和使用。 我们将快速的过一遍一些可以看到的独特的用法。</p>
+<p>我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_tracking_files" target="_blank" rel="noopener">跟踪新文件</a> 一节中介绍并详细解释了 <code>git add</code> 命令。</p>
+<p>然后，我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_basic_merge_conflicts" target="_blank" rel="noopener">遇到冲突时的分支合并</a> 一节中提到了如何使用它来解决合并冲突。</p>
+<p>接下来，我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_interactive_staging" target="_blank" rel="noopener">交互式暂存</a> 一章中使用它来交互式的暂存一个已修改文件的特定部分。</p>
+<p>最后，在 <a href="https://git-scm.com/book/zh/v2/ch00/r_tree_objects" target="_blank" rel="noopener">树对象</a> 一节中我们在一个低层次中模拟了它的用法，以便你可以了解在这背后发生了什么。</p>
+<h3 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h3><p><code>git status</code> 命令将为你展示工作区及暂存区域中不同状态的文件。 这其中包含了已修改但未暂存，或已经暂存但没有提交的文件。 一般在它显示形式中，会给你展示一些关于如何在这些暂存区域之间移动文件的提示。</p>
+<p>首先，我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_checking_status" target="_blank" rel="noopener">检查当前文件状态</a> 一节中介绍了 <code>status</code> 的基本及简单的形式。 虽然我们在全书中都有用到它，但是绝大部分的你能用 <code>git status</code> 做的事情都在这一章讲到了。</p>
+<h3 id="git-diff"><a href="#git-diff" class="headerlink" title="git diff"></a>git diff</h3><p>当需要查看任意两棵树的差异时你可以使用 <code>git diff</code> 命令。 此命令可以查看你工作环境与你的暂存区的差异（<code>git diff</code> 默认的做法），你暂存区域与你最后提交之间的差异（<code>git diff --staged</code>），或者比较两个提交记录的差异（<code>git diff master branchB</code>）。</p>
+<p>首先，我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_diff_staged" target="_blank" rel="noopener">查看已暂存和未暂存的修改</a> 一章中研究了 <code>git diff</code> 的基本用法，在此节中我们展示了如何查看哪些变化已经暂存了，哪些没有。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_commit_guidelines" target="_blank" rel="noopener">提交准则</a> 一节中,我们在提交前使用 <code>--check</code> 选项来检查可能存在的空白字符问题。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_what_is_introduced" target="_blank" rel="noopener">确定引入了哪些东西</a> 一节中,了解了使用 <code>git diff A...B</code> 语法来更有效地比较不同分支之间的差异。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_advanced_merging" target="_blank" rel="noopener">高级合并</a> 一节中我们使用 <code>-b</code> 选项来过滤掉空白字符的差异，及通过 <code>--theirs</code>、<code>--ours</code> 和 <code>--base</code>选项来比较不同暂存区冲突文件的差异。</p>
+<p>最后，在 <a href="https://git-scm.com/book/zh/v2/ch00/r_starting_submodules" target="_blank" rel="noopener">开始使用子模块</a> 一节中,我们使用此命令合 <code>--submodule</code> 选项来有效地比较子模块的变化。</p>
+<h3 id="git-difftool"><a href="#git-difftool" class="headerlink" title="git difftool"></a>git difftool</h3><p>当你不想使用内置的 <code>git diff</code> 命令时。<code>git difftool</code> 可以用来简单地启动一个外部工具来为你展示两棵树之间的差异。</p>
+<p>我们只在 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_diff_staged" target="_blank" rel="noopener">查看已暂存和未暂存的修改</a> 一节中简单的提到了此命令。</p>
+<h3 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h3><p><code>git commit</code> 命令将所有通过 <code>git add</code> 暂存的文件内容在数据库中创建一个持久的快照，然后将当前分支上的分支指针移到其之上。</p>
+<p>首先，我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_committing_changes" target="_blank" rel="noopener">提交更新</a> 一节中涉及了此命令的基本用法。 我们演示了如何在日常的工作流程中通过使用 <code>-a</code> 标志来跳过 <code>git add</code> 这一步，及如何使用 <code>-m</code> 标志通过命令行而不启动一个编辑器来传递提交信息。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_undoing" target="_blank" rel="noopener">撤消操作</a> 一节中我们介绍了使用 <code>--amend</code> 选项来重做最后的提交。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_branches_overview" target="_blank" rel="noopener">分支简介</a>，我们探讨了 <code>git commit</code> 的更多细节，及工作原理。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_signing_commits" target="_blank" rel="noopener">签署提交</a> 一节中我们探讨了如何使用 <code>-S</code> 标志来为提交签名加密。</p>
+<p>最后，在 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_commit_objects" target="_blank" rel="noopener">提交对象</a> 一节中，我们了解了 <code>git commit</code> 在背后做了什么，及它是如何实现的。</p>
+<h3 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h3><p><code>git reset</code> 命令主要用来根据你传递给动作的参数来执行撤销操作。 它可以移动 <code>HEAD</code> 指针并且可选的改变 <code>index</code> 或者暂存区，如果你使用 <code>--hard</code> 参数的话你甚至可以改变工作区。 如果错误地为这个命令附加后面的参数，你可能会丢失你的工作，所以在使用前你要确定你已经完全理解了它。</p>
+<p>首先，我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_unstaging" target="_blank" rel="noopener">取消暂存的文件</a> 一节中介绍了 <code>git reset</code> 简单高效的用法，用来对执行过 <code>git add</code> 命令的文件取消暂存。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_reset" target="_blank" rel="noopener">重置揭密</a> 一节中我们详细介绍了此命令，几乎整节都在解释此命令。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_abort_merge" target="_blank" rel="noopener">中断一次合并</a> 一节中，我们使用 <code>git reset --hard</code> 来取消一个合并，同时我们也使用了 <code>git merge --abort</code> 命令，它是 <code>git reset</code> 的一个简单的封装。</p>
+<h3 id="git-rm"><a href="#git-rm" class="headerlink" title="git rm"></a>git rm</h3><p><code>git rm</code> 是 Git 用来从工作区，或者暂存区移除文件的命令。 在为下一次提交暂存一个移除操作上，它与 <code>git add</code> 有一点类似。</p>
+<p>我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_removing_files" target="_blank" rel="noopener">移除文件</a> 一节中提到了 <code>git rm</code> 的一些细节，包括递归地移除文件，和使用 <code>--cached</code> 选项来只移除暂存区域的文件但是保留工作区的文件。</p>
+<p>在本书的 <a href="https://git-scm.com/book/zh/v2/ch00/r_removing_objects" target="_blank" rel="noopener">移除对象</a> 一节中，介绍了 <code>git rm</code> 仅有的几种不同用法，如在执行 <code>git filter-branch</code> 中使用和解释了 <code>--ignore-unmatch</code> 选项。 这对脚本来说很有用。</p>
+<h3 id="git-mv"><a href="#git-mv" class="headerlink" title="git mv"></a>git mv</h3><p><code>git mv</code> 命令是一个便利命令，用于移到一个文件并且在新文件上执行<code>git add</code>命令及在老文件上执行<code>git rm</code>命令。</p>
+<p>我们只是在 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_mv" target="_blank" rel="noopener">移动文件</a> 一节中简单地提到了此命令。</p>
+<h3 id="git-clean"><a href="#git-clean" class="headerlink" title="git clean"></a>git clean</h3><p><code>git clean</code> 是一个用来从工作区中移除不想要的文件的命令。 可以是编译的临时文件或者合并冲突的文件。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_clean" target="_blank" rel="noopener">清理工作目录</a> 一节中我们介绍了你可能会使用 <code>clean</code> 命令的大量选项及场景。</p>
+<h2 id="分支与合并"><a href="#分支与合并" class="headerlink" title="分支与合并"></a>分支与合并</h2><p>Git 有几个实现大部的分支及合并功能的实用命令。</p>
+<h3 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h3><p><code>git branch</code> 命令实际上是某种程度上的分支管理工具。 它可以列出你所有的分支、创建新分支、删除分支及重命名分支。</p>
+<p><a href="https://git-scm.com/book/zh/v2/ch00/ch03-git-branching" target="_blank" rel="noopener">Git 分支</a> 一节主要是为 <code>branch</code> 命令来设计的，它贯穿了整个章节。 首先，我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_create_new_branch" target="_blank" rel="noopener">分支创建</a> 一节中介绍了它，然后我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_branch_management" target="_blank" rel="noopener">分支管理</a> 一节中介绍了它的其它大部分特性（列举及删除）。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_tracking_branches" target="_blank" rel="noopener">跟踪分支</a> 一节中，我们使用 <code>git branch -u</code> 选项来设置一个跟踪分支。</p>
+<p>最后，我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_refs" target="_blank" rel="noopener">Git 引用</a> 一节中讲到了它在背后做一什么。</p>
+<h3 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h3><p><code>git checkout</code> 命令用来切换分支，或者检出内容到工作目录。</p>
+<p>我们是在 <a href="https://git-scm.com/book/zh/v2/ch00/r_switching_branches" target="_blank" rel="noopener">分支切换</a> 一节中第一次认识了命令及 <code>git branch</code> 命令。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_tracking_branches" target="_blank" rel="noopener">跟踪分支</a> 一节中我们了解了如何使用 <code>--track</code> 标志来开始跟踪分支。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_checking_out_conflicts" target="_blank" rel="noopener">检出冲突</a> 一节中，我们用此命令和 <code>--conflict=diff3</code> 来重新介绍文件冲突。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_reset" target="_blank" rel="noopener">重置揭密</a> 一节中，我们进一步了解了其细节及与 <code>git reset</code> 的关系。</p>
+<p>最后，我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_the_head" target="_blank" rel="noopener">HEAD 引用</a> 一节中介绍了此命令的一些实现细节。</p>
+<h3 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge"></a>git merge</h3><p><code>git merge</code> 工具用来合并一个或者多个分支到你已经检出的分支中。 然后它将当前分支指针移动到合并结果上。</p>
+<p>我们首先在 <a href="https://git-scm.com/book/zh/v2/ch00/r_basic_branching" target="_blank" rel="noopener">新建分支</a> 一节中介绍了 <code>git merge</code> 命令。 虽然它在本书的各种地方都有用到，但是 <code>merge</code>命令只有几个变种，一般只是 <code>git merge &lt;branch&gt;</code> 带上一个你想合并进来的一个分支名称。</p>
+<p>我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_public_project" target="_blank" rel="noopener">派生的公开项目</a> 的后面介绍了如何做一个 <code>squashed merge</code> （指 Git 合并时将其当作一个新的提交而不是记录你合并时的分支的历史记录。）</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_advanced_merging" target="_blank" rel="noopener">高级合并</a> 一节中，我们介绍了合并的过程及命令，包含 <code>-Xignore-space-change</code> 命令及 <code>--abort</code>选项来中止一个有问题的提交。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_signing_commits" target="_blank" rel="noopener">签署提交</a> 一节中我们学习了如何在合并前验证签名，如果你项目正在使用 GPG 签名的话。</p>
+<p>最后，我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_subtree_merge" target="_blank" rel="noopener">子树合并</a> 一节中学习了子树合并。</p>
+<h3 id="git-mergetool"><a href="#git-mergetool" class="headerlink" title="git mergetool"></a>git mergetool</h3><p>当你在 Git 的合并中遇到问题时，可以使用 <code>git mergetool</code> 来启动一个外部的合并帮助工具。</p>
+<p>我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_basic_merge_conflicts" target="_blank" rel="noopener">遇到冲突时的分支合并</a> 中快速介绍了一下它，然后在 <a href="https://git-scm.com/book/zh/v2/ch00/r_external_merge_tools" target="_blank" rel="noopener">外部的合并与比较工具</a> 一节中介绍了如何实现你自己的外部合并工具的细节。</p>
+<h3 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h3><p><code>git log</code> 命令用来展示一个项目的可达历史记录，从最近的提交快照起。 默认情况下，它只显示你当前所在分支的历史记录，但是可以显示不同的甚至多个头记录或分支以供遍历。 此命令通常也用来在提交记录级别显示两个或多个分支之间的差异。</p>
+<p>在本书的每一章几乎都有用到此命令来描述一个项目的历史。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_viewing_history" target="_blank" rel="noopener">查看提交历史</a> 一节中我们介绍了此命令，并深入做了研究。 研究了包括 <code>-p</code> 和 <code>--stat</code> 选项来了解每一个提交引入的变更，及使用<code>--pretty</code> 和 <code>--online</code> 选项来查看简洁的历史记录。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_create_new_branch" target="_blank" rel="noopener">分支创建</a> 一节中我们使用它加 <code>--decorate</code> 选项来简单的可视化我们分支的指针所在，同时我们使用 <code>--graph</code> 选项来查看分叉的历史记录是怎么样的。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_private_team" target="_blank" rel="noopener">私有小型团队</a> 和 <a href="https://git-scm.com/book/zh/v2/ch00/r_commit_ranges" target="_blank" rel="noopener">提交区间</a> 章节中，我们介绍了在使用 <code>git log</code> 命令时用 <code>branchA..branchB</code> 的语法来查看一个分支相对于另一个分支, 哪一些提交是唯一的。 在 <a href="https://git-scm.com/book/zh/v2/ch00/r_commit_ranges" target="_blank" rel="noopener">提交区间</a> 一节中我们作了更多介绍。</p>
+<p>在 &lt;_merge_log&gt;&gt; 和 <a href="https://git-scm.com/book/zh/v2/ch00/r_triple_dot" target="_blank" rel="noopener">三点</a> 章节中，我们介绍了 <code>branchA...branchB</code> 格式和 <code>--left-right</code> 语法来查看哪些仅其中一个分支。 在 <a href="https://git-scm.com/book/zh/v2/ch00/r_merge_log" target="_blank" rel="noopener">合并日志</a> 一节中我们还研究了如何使用 <code>--merge</code> 选项来帮助合并冲突调试，同样也使用 <code>--cc</code> 选项来查看在你历史记录中的合并提交的冲突。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_reflog" target="_blank" rel="noopener">引用日志</a> 一节中我们使用此工具和 <code>-g</code> 选项 而不是遍历分支来查看 Git 的 <code>reflog</code>。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_searching" target="_blank" rel="noopener">搜索</a> 一节中我们研究了<code>-S</code> 及 <code>-L</code> 选项来进行来在代码的历史变更中进行相当优雅地搜索，如一个函数的历史。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_signing_commits" target="_blank" rel="noopener">签署提交</a> 一节中，我们了解了如何使用 <code>--show-signature</code> 来为每一个提交的 <code>git log</code> 输出中，添加一个判断是否已经合法的签名的一个验证。</p>
+<h3 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h3><p><code>git stash</code> 命令用来临时地保存一些还没有提交的工作，以便在分支上不需要提交未完成工作就可以清理工作目录。</p>
+<p><a href="https://git-scm.com/book/zh/v2/ch00/r_git_stashing" target="_blank" rel="noopener">储藏与清理</a> 一整个章节基本就是在讲这个命令。</p>
+<h3 id="git-tag"><a href="#git-tag" class="headerlink" title="git tag"></a>git tag</h3><p><code>git tag</code> 命令用来为代码历史记录中的某一个点指定一个永久的书签。 一般来说它用于发布相关事项。</p>
+<p>我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_tagging" target="_blank" rel="noopener">打标签</a> 一节中介绍了此命令及相关细节，并在 <a href="https://git-scm.com/book/zh/v2/ch00/r_tagging_releases" target="_blank" rel="noopener">为发布打标签</a> 一节实践了此命令。</p>
+<p>我也在 <a href="https://git-scm.com/book/zh/v2/ch00/r_signing" target="_blank" rel="noopener">签署工作</a> 一节中介绍了如何使用 <code>-s</code> 标志创建一个 GPG 签名的标签，然后使用 <code>-v</code> 选项来验证。</p>
+<h2 id="项目分享与更新"><a href="#项目分享与更新" class="headerlink" title="项目分享与更新"></a>项目分享与更新</h2><p>在 Git 中没有多少访问网络的命令，几乎所以的命令都是在操作本地的数据库。 当你想要分享你的工作，或者从其他地方拉取变更时，这有几个处理远程仓库的命令。</p>
+<h3 id="git-fetch"><a href="#git-fetch" class="headerlink" title="git fetch"></a>git fetch</h3><p><code>git fetch</code> 命令与一个远程的仓库交互，并且将远程仓库中有但是在当前仓库的没有的所有信息拉取下来然后存储在你本地数据库中。</p>
+<p>我们开始在 <a href="https://git-scm.com/book/zh/v2/ch00/r_fetching_and_pulling" target="_blank" rel="noopener">从远程仓库中抓取与拉取</a> 一节中介绍了此命令，然后我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_remote_branches" target="_blank" rel="noopener">远程分支</a> 中看到了几个使用示例。</p>
+<p>我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_contributing_project" target="_blank" rel="noopener">向一个项目贡献</a> 一节中有几个示例中也都有使用此命令。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_pr_refs" target="_blank" rel="noopener">合并请求引用</a> 我们用它来抓取一个在默认空间之外指定的引用，在 <a href="https://git-scm.com/book/zh/v2/ch00/r_bundling" target="_blank" rel="noopener">打包</a> 中，我们了解了怎么从一个包中获取内容。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_refspec" target="_blank" rel="noopener">引用规格</a> 章节中我们设置了高度自定义的 <code>refspec</code> 以便 <code>git fetch</code> 可以做一些跟默认不同的事情。</p>
+<h3 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a>git pull</h3><p><code>git pull</code> 命令基本上就是 <code>git fetch</code> 和 <code>git merge</code> 命令的组合体，Git 从你指定的远程仓库中抓取内容，然后马上尝试将其合并进你所在的分支中。</p>
+<p>我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_fetching_and_pulling" target="_blank" rel="noopener">从远程仓库中抓取与拉取</a> 一节中快速介绍了此命令，然后在 <a href="https://git-scm.com/book/zh/v2/ch00/r_inspecting_remote" target="_blank" rel="noopener">查看远程仓库</a> 一节中了解了如果你运行此命令的话，什么将会合并。</p>
+<p>我们也在 <a href="https://git-scm.com/book/zh/v2/ch00/r_rebase_rebase" target="_blank" rel="noopener">用变基解决变基</a> 一节中了解了如何使用此命令来来处理变基的难题。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_checking_out_conflicts" target="_blank" rel="noopener">检出冲突</a> 一节中我们展示了使用此命令如何通过一个 URL 来一次性的拉取变更。</p>
+<p>最后，我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_signing_commits" target="_blank" rel="noopener">签署提交</a> 一节中我们快速的介绍了你可以使用 <code>--verify-signatures</code> 选项来验证你正在拉取下来的经过 GPG 签名的提交。</p>
+<h3 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h3><p><code>git push</code> 命令用来与另一个仓库通信，计算你本地数据库与远程仓库的差异，然后将差异推送到另一个仓库中。 它需要有另一个仓库的写权限，因此这通常是需要验证的。</p>
+<p>我们开始在 <a href="https://git-scm.com/book/zh/v2/ch00/r_pushing_remotes" target="_blank" rel="noopener">推送到远程仓库</a> 一节中介绍了 <code>git push</code> 命令。 在这一节中主要介绍了推送一个分支到远程仓库的基本用法。 在 <a href="https://git-scm.com/book/zh/v2/ch00/r_pushing_branches" target="_blank" rel="noopener">推送</a> 一节中，我们深入了解了如何推送指定分支，在 <a href="https://git-scm.com/book/zh/v2/ch00/r_tracking_branches" target="_blank" rel="noopener">跟踪分支</a> 一节中我们了解了如何设置一个默认的推送的跟踪分支。 在 <a href="https://git-scm.com/book/zh/v2/ch00/r_delete_branches" target="_blank" rel="noopener">删除远程分支</a> 一节中我们使用 <code>--delete</code> 标志和 <code>git push</code> 命令来在删除一个在服务器上的分支。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_contributing_project" target="_blank" rel="noopener">向一个项目贡献</a> 一整节中，我们看到了几个使用 <code>git push</code> 在多个远程仓库分享分支中的工作的示例。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_sharing_tags" target="_blank" rel="noopener">共享标签</a> 一节中，我们知道了如何使用此命令加 <code>--tags</code> 选项来分享你打的标签。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_publishing_submodules" target="_blank" rel="noopener">发布子模块改动</a> 一节中，我们使用 <code>--recurse-submodules</code> 选项来检查是否我们所有的子模块的工作都已经在推送子项目之前已经推送出去了，当使用子模块时这真的很有帮助。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_other_client_hooks" target="_blank" rel="noopener">其它客户端钩子</a> 中我们简单的提到了 <code>pre-push</code> 挂钩（hook），它是一个可以用来设置成在一个推送完成之前运行的脚本，以检查推送是否被允许。</p>
+<p>最后，在 <a href="https://git-scm.com/book/zh/v2/ch00/r_pushing_refspecs" target="_blank" rel="noopener">引用规格推送</a> 一节中，我们知道了使用完整的 refspec 来推送，而不是通常使用的简写形式。 这对我们精确的指定要分享出去的工作很有帮助。</p>
+<h3 id="git-remote"><a href="#git-remote" class="headerlink" title="git remote"></a>git remote</h3><p><code>git remote</code> 命令是一个是你远程仓库记录的管理工具。 它允许你将一个长的 URL 保存成一个简写的句柄，例如 <code>origin</code> ，这样你就可以不用每次都输入他们了。 你可以有多个这样的句柄，<code>git remote</code> 可以用来添加，修改，及删除它们。</p>
+<p>此命令在 <a href="https://git-scm.com/book/zh/v2/ch00/r_remote_repos" target="_blank" rel="noopener">远程仓库的使用</a> 一节中做了详细的介绍，包括列举、添加、移除、重命名功能。</p>
+<p>几乎在此书的后续章节中都有使用此命令，但是一般是以 <code>git remote add &lt;name&gt; &lt;url&gt;</code> 这样的标准格式。</p>
+<h3 id="git-archive"><a href="#git-archive" class="headerlink" title="git archive"></a>git archive</h3><p><code>git archive</code> 命令用来创建项目一个指定快照的归档文件。</p>
+<p>我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_preparing_release" target="_blank" rel="noopener">准备一次发布</a> 一节中，使用 <code>git archive</code> 命令来创建一个项目的归档文件用于分享。</p>
+<h3 id="git-submodule"><a href="#git-submodule" class="headerlink" title="git submodule"></a>git submodule</h3><p><code>git submodule</code> 命令用来管理一个仓库的其他外部仓库。 它可以被用在库或者其他类型的共享资源上。<code>submodule</code> 命令有几个子命令, 如（<code>add</code>、<code>update</code>、<code>sync</code> 等等）用来管理这些资源。</p>
+<p>只在 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_submodules" target="_blank" rel="noopener">子模块</a> 章节中提到和详细介绍了此命令。</p>
+<h2 id="检查与比较"><a href="#检查与比较" class="headerlink" title="检查与比较"></a>检查与比较</h2><h3 id="git-show"><a href="#git-show" class="headerlink" title="git show"></a>git show</h3><p><code>git show</code> 命令可以以一种简单的人类可读的方式来显示一个 Git 对象。 你一般使用此命令来显示一个标签或一个提交的信息。</p>
+<p>我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_annotated_tags" target="_blank" rel="noopener">附注标签</a> 一节中使用此命令来显示带注解标签的信息。</p>
+<p>然后，我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_revision_selection" target="_blank" rel="noopener">选择修订版本</a> 一节中，用了很多次来显示不同的版本选择将解析出来的提交。</p>
+<p>我们使用 <code>git show</code> 做的最有意思的事情是在 <a href="https://git-scm.com/book/zh/v2/ch00/r_manual_remerge" target="_blank" rel="noopener">手动文件再合并</a> 一节中用来在合并冲突的多个暂存区域中提取指定文件的内容。</p>
+<h3 id="git-shortlog"><a href="#git-shortlog" class="headerlink" title="git shortlog"></a>git shortlog</h3><p><code>git shortlog</code> 是一个用来归纳 <code>git log</code> 的输出的命令。 它可以接受很多与 <code>git log</code> 相同的选项，但是此命令并不会列出所有的提交，而是展示一个根据作者分组的提交记录的概括性信息</p>
+<p>我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_the_shortlog" target="_blank" rel="noopener">制作提交简报</a> 一节中展示了如何使用此命令来创建一个漂亮的 changelog 文件。</p>
+<h3 id="git-describe"><a href="#git-describe" class="headerlink" title="git describe"></a>git describe</h3><p><code>git describe</code> 命令用来接受任何可以解析成一个提交的东西，然后生成一个人类可读的字符串且不可变。 这是一种获得一个提交的描述的方式，它跟一个提交的 SHA-1 值一样是无歧义，但是更具可读性。</p>
+<p>我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_build_number" target="_blank" rel="noopener">生成一个构建号</a> 及 <a href="https://git-scm.com/book/zh/v2/ch00/r_preparing_release" target="_blank" rel="noopener">准备一次发布</a> 章节中使用 <code>git describe</code> 命令来获得一个字符串来命名我们发布的文件。</p>
+<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><p>Git 有一些命令可以用来帮你调试你代码中的问题。 包括找出是什么时候，是谁引入的变更。</p>
+<h3 id="git-bisect"><a href="#git-bisect" class="headerlink" title="git bisect"></a>git bisect</h3><p><code>git bisect</code> 工具是一个非常有用的调试工具，它通过自动进行一个二分查找来找到哪一个特定的提交是导致 bug 或者问题的第一个提交。</p>
+<p>仅在 <a href="https://git-scm.com/book/zh/v2/ch00/r_binary_search" target="_blank" rel="noopener">二分查找</a> 一节中完整的介绍了此命令。</p>
+<h3 id="git-blame"><a href="#git-blame" class="headerlink" title="git blame"></a>git blame</h3><p><code>git blame</code> 命令标注任何文件的行，指出文件的每一行的最后的变更的提交及谁是那一个提交的作者。 当你要找那个人去询问关于这块特殊代码的信息时这会很有用。</p>
+<p>只有 <a href="https://git-scm.com/book/zh/v2/ch00/r_file_annotation" target="_blank" rel="noopener">文件标注</a> 一节有中提到此命令。</p>
+<h3 id="git-grep"><a href="#git-grep" class="headerlink" title="git grep"></a>git grep</h3><p><code>git grep</code> 命令可以帮助在源代码中，甚至是你项目的老版本中的任意文件中查找任何字符串或者正则表达式。</p>
+<p>只有 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_grep" target="_blank" rel="noopener">Git Grep</a> 的章节中与提到此命令。</p>
+<h2 id="补丁"><a href="#补丁" class="headerlink" title="补丁"></a>补丁</h2><p>Git 中的一些命令是以引入的变更即提交这样的概念为中心的，这样一系列的提交，就是一系列的补丁。 这些命令以这样的方式来管理你的分支。</p>
+<h3 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h3><p><code>git cherry-pick</code> 命令用来获得在单个提交中引入的变更，然后尝试将作为一个新的提交引入到你当前分支上。 从一个分支单独一个或者两个提交而不是合并整个分支的所有变更是非常有用的。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_rebase_cherry_pick" target="_blank" rel="noopener">变基与拣选工作流</a> 一节中描述和演示了 <code>Cherry picking</code></p>
+<h3 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h3><p><code>git rebase</code> 命令基本是是一个自动化的 <code>cherry-pick</code> 命令。 它计算出一系列的提交，然后再以它们在其他地方以同样的顺序一个一个的 <code>cherry-picks</code> 出它们。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_rebasing" target="_blank" rel="noopener">变基</a> 一章中详细提到了此命令，包括与已经公开的分支的变基所涉及的协作问题。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_replace" target="_blank" rel="noopener">替换</a> 中我们在一个分离历史记录到两个单独的仓库的示例中实践了此命令，同时使用了 <code>--onto</code> 选项。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_rerere" target="_blank" rel="noopener">Rerere</a> 一节中，我们研究了在变基时遇到的合并冲突的问题。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_changing_multiple" target="_blank" rel="noopener">修改多个提交信息</a> 一节中，我们也结合 <code>-i</code> 选项将其用于交互式的脚本模式。</p>
+<h3 id="git-revert"><a href="#git-revert" class="headerlink" title="git revert"></a>git revert</h3><p><code>git revert</code> 命令本质上就是一个逆向的 <code>git cherry-pick</code> 操作。 它将你提交中的变更的以完全相反的方式的应用到一个新创建的提交中，本质上就是撤销或者倒转。</p>
+<p>我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_reverse_commit" target="_blank" rel="noopener">还原提交</a> 一节中使用此命令来撤销一个合并提交。</p>
+<h2 id="邮件"><a href="#邮件" class="headerlink" title="邮件"></a>邮件</h2><p>很多 Git 项目，包括 Git 本身，基本是通过邮件列表来维护的。 从方便地生成邮件补丁到从一个邮箱中应用这些补丁,Git 都有工具来让这些操作变得简单。</p>
+<h3 id="git-apply"><a href="#git-apply" class="headerlink" title="git apply"></a>git apply</h3><p><code>git apply</code> 命令应用一个通过 <code>git diff</code> 或者甚至使用 GNU diff 命令创建的补丁。 它跟补丁命令做了差不多的工作，但还是有一些小小的差别。</p>
+<p>我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_patches_from_email" target="_blank" rel="noopener">应用来自邮件的补丁</a> 一节中演示了它的使用及什么环境下你可能会用到它。</p>
+<h3 id="git-am"><a href="#git-am" class="headerlink" title="git am"></a>git am</h3><p><code>git am</code> 命令用来应用来自邮箱的补丁。特别是那些被 mbox 格式化过的。 这对于通过邮件接受补丁并将他们轻松地应用到你的项目中很有用。</p>
+<p>我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_am" target="_blank" rel="noopener">使用 <code>am</code> 命令应用补丁</a> 命令中提到了它的用法及工作流，包括使用 <code>--resolved</code>、<code>-i</code> 及 <code>-3</code> 选项。</p>
+<p>我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_email_hooks" target="_blank" rel="noopener">电子邮件工作流钩子</a> 也提到了几条 hooks，你可以用来辅助与 <code>git am</code> 相关工作流。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_email_notifications" target="_blank" rel="noopener">邮件通知</a> 一节中我们也将用此命令来应用 格式化的 GitHub的推送请求的变更。</p>
+<h3 id="git-format-patch"><a href="#git-format-patch" class="headerlink" title="git format-patch"></a>git format-patch</h3><p><code>git format-patch</code> 命令用来以 mbox 的格式来生成一系列的补丁以便你可以发送到一个邮件列表中。</p>
+<p>我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_project_over_email" target="_blank" rel="noopener">通过邮件的公开项目</a> 一节中研究了一个使用 <code>git format-patch</code> 工具为一个项目做贡献的示例。</p>
+<h3 id="git-imap-send"><a href="#git-imap-send" class="headerlink" title="git imap-send"></a>git imap-send</h3><p><code>git imap-send</code> 将一个由 <code>git format-patch</code> 生成的邮箱上传至 IMAP 草稿文件夹。 我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_project_over_email" target="_blank" rel="noopener">通过邮件的公开项目</a> 一节中见过一个通过使用 <code>git imap-send</code> 工具向一个项目发送补丁进行贡献的例子。</p>
+<h3 id="git-send-email"><a href="#git-send-email" class="headerlink" title="git send-email"></a>git send-email</h3><p><code>git send-mail</code> 命令用来通过邮件发送那些使用 <code>git format-patch</code> 生成的补丁。</p>
+<p>我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_project_over_email" target="_blank" rel="noopener">通过邮件的公开项目</a> 一节中研究了一个使用 <code>git send-email</code> 工具发送补丁来为一个项目做贡献的示例。</p>
+<h3 id="git-request-pull"><a href="#git-request-pull" class="headerlink" title="git request-pull"></a>git request-pull</h3><p><code>git request-pull</code> 命令只是简单的用来生成一个可通过邮件发送给某个人的示例信息体。 如果你在公共服务器上有一个分支，并且想让别人知道如何集成这些变更，而不用通过邮件发送补丁，你就可以执行此命令的输出发送给这个你想拉取变更的人。</p>
+<p>我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_public_project" target="_blank" rel="noopener">派生的公开项目</a> 一节中演示了如何使用 <code>git request-pull</code> 来生成一个推送消息。</p>
+<h2 id="外部系统"><a href="#外部系统" class="headerlink" title="外部系统"></a>外部系统</h2><p>Git 有一些可以与其他的版本控制系统集成的命令。</p>
+<h3 id="git-svn"><a href="#git-svn" class="headerlink" title="git svn"></a>git svn</h3><p><code>git svn</code> 可以使 Git 作为一个客户端来与 Subversion 版本控制系统通信。 这意味着你可以使用 Git 来检出内容，或者提交到 Subversion 服务器。</p>
+<p><a href="https://git-scm.com/book/zh/v2/ch00/r_git_svn" target="_blank" rel="noopener">Git 与 Subversion</a> 一章深入讲解了此命令。</p>
+<h3 id="git-fast-import"><a href="#git-fast-import" class="headerlink" title="git fast-import"></a>git fast-import</h3><p>对于其他版本控制系统或者从其他任何的格式导入，你可以使用 <code>git fast-import</code> 快速地将其他格式映射到 Git 可以轻松记录的格式。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_custom_importer" target="_blank" rel="noopener">一个自定义的导入器</a> 一节中深入讲解了此命令。</p>
+<h2 id="管理"><a href="#管理" class="headerlink" title="管理"></a>管理</h2><p>如果你正在管理一个 Git 仓库，或者需要通过一个复杂的方法来修复某些东西，Git 提供了一些管理命令来帮助你。</p>
+<h3 id="git-gc"><a href="#git-gc" class="headerlink" title="git gc"></a>git gc</h3><p><code>git gc</code> 命令在你的仓库中执行 “garbage collection” ，删除数据库中不需要的文件和将其他文件打包成一种更有效的格式。</p>
+<p>此命令一般在背后为你工作，虽然你可以手动执行它-如果你想的话。 我们在<a href="https://git-scm.com/book/zh/v2/ch00/r_git_gc" target="_blank" rel="noopener">维护</a> 一节中研究此命令的几个示例。</p>
+<h3 id="git-fsck"><a href="#git-fsck" class="headerlink" title="git fsck"></a>git fsck</h3><p><code>git fsck</code> 命令用来检查内部数据库的问题或者不一致性。</p>
+<p>我们只在 <a href="https://git-scm.com/book/zh/v2/ch00/r_data_recovery" target="_blank" rel="noopener">数据恢复</a> 这一节中快速使用了一次此命令来搜索所有的悬空对象（dangling object）。</p>
+<h3 id="git-reflog"><a href="#git-reflog" class="headerlink" title="git reflog"></a>git reflog</h3><p><code>git reflog</code> 命令分析你所有分支的头指针的日志来查找出你在重写历史上可能丢失的提交。</p>
+<p>我们主要在 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_reflog" target="_blank" rel="noopener">引用日志</a> 一节中提到了此命令，并在展示了一般用法，及如何使用 <code>git log -g</code> 来通过 <code>git log</code> 的输出来查看同样的信息。</p>
+<p>我们同样在 <a href="https://git-scm.com/book/zh/v2/ch00/r_data_recovery" target="_blank" rel="noopener">数据恢复</a> 一节中研究了一个恢复丢失的分支的实例。</p>
+<h3 id="git-filter-branch"><a href="#git-filter-branch" class="headerlink" title="git filter-branch"></a>git filter-branch</h3><p><code>git filter-branch</code> 命令用来根据某些规则来重写大量的提交记录，例如从任何地方删除文件，或者通过过滤一个仓库中的一个单独的子目录以提取出一个项目。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_removing_file_every_commit" target="_blank" rel="noopener">从每一个提交移除一个文件</a> 一节中，我们解释了此命令，并探究了其他几个选项，例如 <code>--commit-filter</code>，<code>--subdirectory-filter</code> 及 <code>--tree-filter</code> 。</p>
+<p>在 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_p4" target="_blank" rel="noopener">Git-p4</a> 和 <a href="https://git-scm.com/book/zh/v2/ch00/r_git_tfs" target="_blank" rel="noopener">TFS</a> 的章节中我们使用它来修复已经导入的外部仓库。</p>
+<h2 id="底层命令"><a href="#底层命令" class="headerlink" title="底层命令"></a>底层命令</h2><p>在本书中我们也遇到了不少底层的命令。</p>
+<p>我们遇到的第一个底层命令是在 <a href="https://git-scm.com/book/zh/v2/ch00/r_pr_refs" target="_blank" rel="noopener">合并请求引用</a> 中的 <code>ls-remote</code> 命令。我们用它来查看服务端的原始引用。</p>
+<p>我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_manual_remerge" target="_blank" rel="noopener">手动文件再合并</a>、 <a href="https://git-scm.com/book/zh/v2/ch00/r_rerere" target="_blank" rel="noopener">Rerere</a> 及 <a href="https://git-scm.com/book/zh/v2/ch00/r_the_index" target="_blank" rel="noopener">索引</a> 章节中使用 <code>ls-files</code> 来查看暂存区的更原始的样子。</p>
+<p>我们同样在 <a href="https://git-scm.com/book/zh/v2/ch00/r_branch_references" target="_blank" rel="noopener">分支引用</a> 一节中提到了 <code>rev-parse</code> 命令，它可以接受任意字符串，并将其转成一个对象的 SHA-1 值。</p>
+<p>我们在 <a href="https://git-scm.com/book/zh/v2/ch00/ch10-git-internals" target="_blank" rel="noopener">Git 内部原理</a> 一章中对大部分的底层命令进行了介绍，这差不多正是这一章的重点所在。 我们尽量避免了在本书的其他部分使用这些命令。</p>
+
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'brA0u8dhiFmWzBQJ5YDMevuw-gzGzoHsz',
+        appKey: 'InzuBbqaqOss16gJu1jiKE7F',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/07/15/git-简易指南/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="git-简易指南">
+                        
+                        <span class="card-title">git-简易指南</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            助你开始使用 git 的简易指南，木有高深内容，;)。
+
+安装下载 git OSX 版
+下载 git Windows 版
+下载 git Linux 版
+创建新仓库创建新文件夹，打开，然后执行git init以创建新的 git 仓库。
+检出仓
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Git/" class="post-category" target="_blank">
+                                    Git
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Git/" target="_blank">
+                        <span class="chip bg-color">Git</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/07/15/附录B-将Git嵌入你的应用/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="附录B:将Git嵌入你的应用">
+                        
+                        <span class="card-title">附录B:将Git嵌入你的应用</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            假设你的应用程序的目标人群是开发者，如果它能够被整合进一些源码控制的功能，那真真是极好的。 甚至对于一个例如文档编辑器之类的不是为开发者而设计的应用程序，它们也可能从版本控制系统中受益，并且 Git 的实现方式在很多情况下都表现得非常出色。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Git/" class="post-category" target="_blank">
+                                    Git
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Git/" target="_blank">
+                        <span class="chip bg-color">Git</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">249.9k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/chenshuoke" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:henu_chenshuoke@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2604689299" class="tooltipped" data-tooltip="QQ联系我: 2604689299" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,1385 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="附录B:将Git嵌入你的应用, 孤狼的博客">
+    <meta name="description" content="假设你的应用程序的目标人群是开发者，如果它能够被整合进一些源码控制的功能，那真真是极好的。 甚至对于一个例如文档编辑器之类的不是为开发者而设计的应用程序，它们也可能从版本控制系统中受益，并且 Git 的实现方式在很多情况下都表现得非常出色。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>附录B:将Git嵌入你的应用 | 孤狼的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+    <!-- 下面一句添加的 -->
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">孤狼的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">孤狼的博客</div>
+        <div class="logo-desc">
+            
+            从来没有真正的绝境，只有心灵的迷途
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/chenshuoke" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/chenshuoke" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        附录B:将Git嵌入你的应用
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Git/" target="_blank">
+                                <span class="chip bg-color">Git</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Git/" class="post-category" target="_blank">
+                                Git
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-07-15
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        4.8k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        18 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>假设你的应用程序的目标人群是开发者，如果它能够被整合进一些源码控制的功能，那真真是极好的。 甚至对于一个例如文档编辑器之类的不是为开发者而设计的应用程序，它们也可能从版本控制系统中受益，并且 Git 的实现方式在很多情况下都表现得非常出色。</p>
+<p>如果你想将 Git 整合进你的应用程序的话，一般来说你有三种可能的选择：启动一个 shell 来使用 Git 的命令行工具；使用 Libgit2；或者使用 JGit。</p>
+<h2 id="命令行-Git-方式"><a href="#命令行-Git-方式" class="headerlink" title="命令行 Git 方式"></a>命令行 Git 方式</h2><p>一种方式就是启动一个 shell 进程并在里面使用 Git 的命令行工具来完成任务。 这种方式看起来很循规蹈矩，但是它的优点也因此而来，就是支持所有的 Git 的特性。 它也碰巧相当简单，因为几乎所有运行时环境都有一个相对简单的方式来调用一个带有命令行参数的进程。 然而，这种方式也有一些固有的缺点。</p>
+<p>一个就是所有的输出都是纯文本格式。 这意味着你将被迫解析 Git 的有时会改变的输出格式，以随时了解它工作的进度和结果。更糟糕的是，这可能是无效率并且容易出错的。</p>
+<p>另外一个就是令人捉急的错误修复能力。 如果一个版本库被莫名其妙地损毁，或者用户使用了一个奇奇怪怪的配置， Git 只会简单地拒绝表现自己的强大能力。</p>
+<p>还有一个就是进程的管理。 Git 会要求你在一个独立的进程中维护一个 shell 环境，这可能会无谓地增加复杂性。 试图协调许许多多的类似的进程（尤其是在某些情况下，当不同的进程在访问相同的版本库时）是对你的能力的极大挑战。</p>
+<h2 id="Libgit2"><a href="#Libgit2" class="headerlink" title="Libgit2"></a>Libgit2</h2><p>© 另外一种可以供你使用的是 Libgit2。 Libgit2 是一个 Git 的非依赖性的工具，它致力于为其他程序使用 Git 提供更好的 API。 你可以在 <a href="http://libgit2.github.com/" target="_blank" rel="noopener">http://libgit2.github.com</a> 找到它。</p>
+<p>首先，让我们来看一下 C API 长啥样。 这是一个旋风式旅行。</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">// 打开一个版本库</span>
+git_repository <span class="token operator">*</span>repo<span class="token punctuation">;</span>
+<span class="token keyword">int</span> error <span class="token operator">=</span> <span class="token function">git_repository_open</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>repo<span class="token punctuation">,</span> <span class="token string">"/path/to/repository"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 逆向引用 HEAD 到一个提交</span>
+git_object <span class="token operator">*</span>head_commit<span class="token punctuation">;</span>
+error <span class="token operator">=</span> <span class="token function">git_revparse_single</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>head_commit<span class="token punctuation">,</span> repo<span class="token punctuation">,</span> <span class="token string">"HEAD^{commit}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+git_commit <span class="token operator">*</span>commit <span class="token operator">=</span> <span class="token punctuation">(</span>git_commit<span class="token operator">*</span><span class="token punctuation">)</span>head_commit<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 显示这个提交的一些详情</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span> <span class="token function">git_commit_message</span><span class="token punctuation">(</span>commit<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> git_signature <span class="token operator">*</span>author <span class="token operator">=</span> <span class="token function">git_commit_author</span><span class="token punctuation">(</span>commit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s &lt;%s>\n"</span><span class="token punctuation">,</span> author<span class="token operator">-></span>name<span class="token punctuation">,</span> author<span class="token operator">-></span>email<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> git_oid <span class="token operator">*</span>tree_id <span class="token operator">=</span> <span class="token function">git_commit_tree_id</span><span class="token punctuation">(</span>commit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 清理现场</span>
+<span class="token function">git_commit_free</span><span class="token punctuation">(</span>commit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">git_repository_free</span><span class="token punctuation">(</span>repo<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>前两行打开一个 Git 版本库。 这个 <code>git_repository</code> 类型代表了一个在内存中带有缓存的指向一个版本库的句柄。 这是最简单的方法，只是你必须知道一个版本库的工作目录或者一个 <code>.git</code> 文件夹的精确路径。 另外还有 <code>git_repository_open_ext</code> ，它包括了带选项的搜索， <code>git_clone</code> 及其同类可以用来做远程版本库的本地克隆， <code>git_repository_init</code> 则可以创建一个全新的版本库。</p>
+<p>第二段代码使用了一种 rev-parse 语法（要了解更多，请看 <a href="https://git-scm.com/book/zh/v2/ch00/r_branch_references" target="_blank" rel="noopener">分支引用</a> ）来得到 HEAD 真正指向的提交。 返回类型是一个 <code>git_object</code> 指针，它指代位于版本库里的 Git 对象数据库中的某个东西。 <code>git_object</code>实际上是几种不同的对象的 “父” 类型，每个 “子” 类型的内存布局和 <code>git_object</code> 是一样的，所以你能安全地把它们转换为正确的类型。 在上面的例子中， <code>git_object_type(commit)</code> 会返回 <code>GIT_OBJ_COMMIT</code> ，所以转换成 <code>git_commit</code> 指针是安全的。</p>
+<p>下一段展示了如何访问一个提交的详情。 最后一行使用了 <code>git_oid</code> 类型，这是 Libgit2 用来表示一个 SHA-1 哈希的方法。</p>
+<p>从这个例子中，我们可以看到一些模式：</p>
+<ul>
+<li>如果你声明了一个指针，并在一个 Libgit2 调用中传递一个引用，那么这个调用可能返回一个 int 类型的错误码。 值 <code>0</code> 表示成功，比它小的则是一个错误。</li>
+<li>如果 Libgit2 为你填入一个指针，那么你有责任释放它。</li>
+<li>如果 Libgit2 在一个调用中返回一个 <code>const</code> 指针，你不需要释放它，但是当它所指向的对象被释放时它将不可用。</li>
+<li>用 C 来写有点蛋疼。</li>
+</ul>
+<p>最后一点意味着你应该不会在使用 Libgit2 时编写 C 语言程序。 但幸运的是，有许多可用的各种语言的绑定，能让你在特定的语言和环境中更加容易的操作 Git 版本库。 我们来看一下下面这个用 Libgit2 的 Ruby 绑定写成的例子，它叫 Rugged，你可以在 <a href="https://github.com/libgit2/rugged" target="_blank" rel="noopener">https://github.com/libgit2/rugged</a> 找到它。</p>
+<pre class=" language-ruby"><code class="language-ruby">repo <span class="token operator">=</span> <span class="token constant">Rugged</span><span class="token punctuation">:</span><span class="token symbol">:Repository</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span><span class="token string">'path/to/repository'</span><span class="token punctuation">)</span>
+commit <span class="token operator">=</span> repo<span class="token punctuation">.</span>head<span class="token punctuation">.</span>target
+puts commit<span class="token punctuation">.</span>message
+puts <span class="token string">"<span class="token interpolation"><span class="token delimiter tag">#{</span>commit<span class="token punctuation">.</span>author<span class="token punctuation">[</span><span class="token punctuation">:</span>name<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span> &lt;<span class="token interpolation"><span class="token delimiter tag">#{</span>commit<span class="token punctuation">.</span>author<span class="token punctuation">[</span><span class="token punctuation">:</span>email<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span>>"</span>
+tree <span class="token operator">=</span> commit<span class="token punctuation">.</span>tree</code></pre>
+<p>你可以发现，代码看起来更加清晰了。 首先， Rugged 使用异常机制，它可以抛出类似于 <code>ConfigError</code>或者 <code>ObjectError</code> 之类的东西来告知错误的情况。 其次，不需要明确资源释放，因为 Ruby 是支持垃圾回收的。 我们来看一个稍微复杂一点的例子：从头开始制作一个提交。</p>
+<pre class=" language-ruby"><code class="language-ruby">blob_id <span class="token operator">=</span> repo<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"Blob contents"</span><span class="token punctuation">,</span> <span class="token symbol">:blob</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+index <span class="token operator">=</span> repo<span class="token punctuation">.</span>index
+index<span class="token punctuation">.</span><span class="token function">read_tree</span><span class="token punctuation">(</span>repo<span class="token punctuation">.</span>head<span class="token punctuation">.</span>target<span class="token punctuation">.</span>tree<span class="token punctuation">)</span>
+index<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token symbol">:path</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'newfile.txt'</span><span class="token punctuation">,</span> <span class="token symbol">:oid</span> <span class="token operator">=</span><span class="token operator">></span> blob_id<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+sig <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token symbol">:email</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"bob@example.com"</span><span class="token punctuation">,</span>
+    <span class="token symbol">:name</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"Bob User"</span><span class="token punctuation">,</span>
+    <span class="token symbol">:time</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token builtin">Time</span><span class="token punctuation">.</span>now<span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+commit_id <span class="token operator">=</span> <span class="token constant">Rugged</span><span class="token punctuation">:</span><span class="token symbol">:Commit</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>repo<span class="token punctuation">,</span>
+    <span class="token symbol">:tree</span> <span class="token operator">=</span><span class="token operator">></span> index<span class="token punctuation">.</span><span class="token function">write_tree</span><span class="token punctuation">(</span>repo<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+    <span class="token symbol">:author</span> <span class="token operator">=</span><span class="token operator">></span> sig<span class="token punctuation">,</span>
+    <span class="token symbol">:committer</span> <span class="token operator">=</span><span class="token operator">></span> sig<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+    <span class="token symbol">:message</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"Add newfile.txt"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+    <span class="token symbol">:parents</span> <span class="token operator">=</span><span class="token operator">></span> repo<span class="token punctuation">.</span>empty<span class="token operator">?</span> <span class="token operator">?</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">:</span> <span class="token punctuation">[</span> repo<span class="token punctuation">.</span>head<span class="token punctuation">.</span>target <span class="token punctuation">]</span><span class="token punctuation">.</span>compact<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span>
+    <span class="token symbol">:update_ref</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'HEAD'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+commit <span class="token operator">=</span> repo<span class="token punctuation">.</span><span class="token function">lookup</span><span class="token punctuation">(</span>commit_id<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span></code></pre>
+<ol>
+<li>创建一个新的 blob ，它包含了一个新文件的内容。</li>
+<li>将 HEAD 提交树填入索引，并在路径 <code>newfile.txt</code> 增加新文件。</li>
+<li>这就在 ODB 中创建了一个新的树，并在一个新的提交中使用它。</li>
+<li>我们在 author 栏和 committer 栏使用相同的签名。</li>
+<li>提交的信息。</li>
+<li>当创建一个提交时，你必须指定这个新提交的父提交。 这里使用了 HEAD 的末尾作为单一的父提交。</li>
+<li>在做一个提交的过程中， Rugged （和 Libgit2 ）能在需要时更新引用。</li>
+<li>返回值是一个新提交对象的 SHA-1 哈希，你可以用它来获得一个 <code>Commit</code> 对象。</li>
+</ol>
+<p>Ruby 的代码很好很简洁，另一方面因为 Libgit2 做了大量工作，所以代码运行起来其实速度也不赖。 如果你不是一个 Ruby 程序员，我们在 <a href="https://git-scm.com/book/zh/v2/ch00/r_libgit2_bindings" target="_blank" rel="noopener">其它绑定</a> 有提到其它的一些绑定。</p>
+<h3 id="高级功能"><a href="#高级功能" class="headerlink" title="高级功能"></a>高级功能</h3><p>Libgit2 有几个超过核心 Git 的能力。 例如它的可定制性：Libgit2 允许你为一些不同类型的操作自定义的`‘后端’’，让你得以使用与原生 Git 不同的方式存储东西。 Libgit2 允许为自定义后端指定配置、引用的存储以及对象数据库，</p>
+<p>我们来看一下它究竟是怎么工作的。 下面的例子借用自 Libgit2 团队提供的后端样本集 （可以在 <a href="https://github.com/libgit2/libgit2-backends" target="_blank" rel="noopener">https://github.com/libgit2/libgit2-backends</a> 上找到）。 一个对象数据库的自定义后端是这样建立的：</p>
+<pre class=" language-c"><code class="language-c">git_odb <span class="token operator">*</span>odb<span class="token punctuation">;</span>
+<span class="token keyword">int</span> error <span class="token operator">=</span> <span class="token function">git_odb_new</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>odb<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+git_odb_backend <span class="token operator">*</span>my_backend<span class="token punctuation">;</span>
+error <span class="token operator">=</span> <span class="token function">git_odb_backend_mine</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>my_backend<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">/*…*/</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+error <span class="token operator">=</span> <span class="token function">git_odb_add_backend</span><span class="token punctuation">(</span>odb<span class="token punctuation">,</span> my_backend<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+
+git_repository <span class="token operator">*</span>repo<span class="token punctuation">;</span>
+error <span class="token operator">=</span> <span class="token function">git_repository_open</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>repo<span class="token punctuation">,</span> <span class="token string">"some-path"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+error <span class="token operator">=</span> <span class="token function">git_repository_set_odb</span><span class="token punctuation">(</span>odb<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span></code></pre>
+<p><em>(注意：这个错误被捕获了，但是没有被处理。我们希望你的代码比我们的更好。)</em></p>
+<ol>
+<li>初始化一个空的对象数据库（ ODB ） “前端”，它将被作为一个用来做真正的工作的 “后端” 的容器。</li>
+<li>初始化一个自定义 ODB 后端。</li>
+<li>为这个前端增加一个后端。</li>
+<li>打开一个版本库，并让它使用我们的 ODB 来寻找对象。</li>
+</ol>
+<p>但是 <code>git_odb_backend_mine</code> 是个什么东西呢？ 嗯，那是一个你自己的 ODB 实现的构造器，并且你能在那里做任何你想做的事，前提是你能正确地填写 <code>git_odb_backend</code> 结构。 它看起来_应该_是这样的：</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    git_odb_backend parent<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 其它的一些东西</span>
+    <span class="token keyword">void</span> <span class="token operator">*</span>custom_context<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> my_backend_struct<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">git_odb_backend_mine</span><span class="token punctuation">(</span>git_odb_backend <span class="token operator">*</span><span class="token operator">*</span>backend_out<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">/*…*/</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    my_backend_struct <span class="token operator">*</span>backend<span class="token punctuation">;</span>
+
+    backend <span class="token operator">=</span> <span class="token function">calloc</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span> <span class="token punctuation">(</span>my_backend_struct<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    backend<span class="token operator">-></span>custom_context <span class="token operator">=</span> …<span class="token punctuation">;</span>
+
+    backend<span class="token operator">-></span>parent<span class="token punctuation">.</span>read <span class="token operator">=</span> <span class="token operator">&amp;</span>my_backend__read<span class="token punctuation">;</span>
+    backend<span class="token operator">-></span>parent<span class="token punctuation">.</span>read_prefix <span class="token operator">=</span> <span class="token operator">&amp;</span>my_backend__read_prefix<span class="token punctuation">;</span>
+    backend<span class="token operator">-></span>parent<span class="token punctuation">.</span>read_header <span class="token operator">=</span> <span class="token operator">&amp;</span>my_backend__read_header<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// ……</span>
+
+    <span class="token operator">*</span>backend_out <span class="token operator">=</span> <span class="token punctuation">(</span>git_odb_backend <span class="token operator">*</span><span class="token punctuation">)</span> backend<span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> GIT_SUCCESS<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p><code>my_backend_struct</code> 的第一个成员必须是一个 <code>git_odb_backend</code> 结构，这是一个微妙的限制：这样就能确保内存布局是 Libgit2 的代码所期望的样子。 其余都是随意的，这个结构的大小可以随心所欲。</p>
+<p>这个初始化函数为该结构分配内存，设置自定义的上下文，然后填写它支持的 <code>parent</code> 结构的成员。 阅读 Libgit2 的 <code>include/git2/sys/odb_backend.h</code> 源码以了解全部调用签名，你特定的使用环境会帮你决定使用哪一种调用签名。</p>
+<h3 id="其它绑定"><a href="#其它绑定" class="headerlink" title="其它绑定"></a>其它绑定</h3><p>Libgit2 有很多种语言的绑定。 在这篇文章中，我们展现了一个使用了几个更加完整的绑定包的小例子，这些库存在于许多种语言中，包括 C++、Go、Node.js、Erlang 以及 JVM ，它们的成熟度各不相同。 官方的绑定集合可以通过浏览这个版本库得到：<a href="https://github.com/libgit2[]" target="_blank" rel="noopener">https://github.com/libgit2[]</a> 。 我们写的代码将返回当前 HEAD 指向的提交的提交信息(就像 <code>git log -1</code> 那样)。</p>
+<h4 id="LibGit2Sharp"><a href="#LibGit2Sharp" class="headerlink" title="LibGit2Sharp"></a>LibGit2Sharp</h4><p>如果你在编写一个 .NET 或者 Mono 应用，那么 LibGit2Sharp (<a href="https://github.com/libgit2/libgit2sharp" target="_blank" rel="noopener">https://github.com/libgit2/libgit2sharp</a>) 就是你所需要的。 这个绑定是用 C# 写成的，并且已经采取许多措施来用令人感到自然的 CLR API 包装原始的 Libgit2 的调用。 我们的例子看起来就像这样：</p>
+<pre class=" language-csharp"><code class="language-csharp"><span class="token keyword">new</span> <span class="token class-name">Repository</span><span class="token punctuation">(</span><span class="token string">@"C:\path\to\repo"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Head<span class="token punctuation">.</span>Tip<span class="token punctuation">.</span>Message<span class="token punctuation">;</span></code></pre>
+<p>对于 Windows 桌面应用，一个叫做 NuGet 的包会让你快速上手。</p>
+<h4 id="objective-git"><a href="#objective-git" class="headerlink" title="objective-git"></a>objective-git</h4><p>如果你的应用运行在一个 Apple 平台上，你很有可能使用 Objective-C 作为实现语言。 Objective-Git (<a href="https://github.com/libgit2/objective-git" target="_blank" rel="noopener">https://github.com/libgit2/objective-git</a>) 是这个环境下的 Libgit2 绑定。 一个例子看起来类似这样：</p>
+<pre class=" language-objc"><code class="language-objc">GTRepository *repo =
+    [[GTRepository alloc] initWithURL:[NSURL fileURLWithPath: @"/path/to/repo"] error:NULL];
+NSString *msg = [[[repo headReferenceWithError:NULL] resolvedTarget] message];</code></pre>
+<p>Objective-git 与 Swift 完美兼容，所以你把 Objective-C 落在一边的时候不用恐惧。</p>
+<h4 id="pygit2"><a href="#pygit2" class="headerlink" title="pygit2"></a>pygit2</h4><p>Python 的 Libgit2 绑定叫做 Pygit2 ，你可以在 <a href="http://www.pygit2.org/" target="_blank" rel="noopener">http://www.pygit2.org/</a> 找到它。 我们的示例程序：</p>
+<pre class=" language-python"><code class="language-python">pygit2<span class="token punctuation">.</span>Repository<span class="token punctuation">(</span><span class="token string">"/path/to/repo"</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 打开版本库</span>
+    <span class="token punctuation">.</span>head                          <span class="token comment" spellcheck="true"># get the current branch</span>
+    <span class="token punctuation">.</span>peel<span class="token punctuation">(</span>pygit2<span class="token punctuation">.</span>Commit<span class="token punctuation">)</span>           <span class="token comment" spellcheck="true"># walk down to the commit</span>
+    <span class="token punctuation">.</span>message                       <span class="token comment" spellcheck="true"># read the message</span></code></pre>
+<h3 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h3><p>当然，完全阐述 Libgit2 的能力已超出本书范围。 如果你想了解更多关于 Libgit2 的信息，可以浏览它的 API 文档： <a href="https://libgit2.github.com/libgit2" target="_blank" rel="noopener">https://libgit2.github.com/libgit2</a>, 以及一系列的指南： <a href="https://libgit2.github.com/docs" target="_blank" rel="noopener">https://libgit2.github.com/docs</a>. 对于其它的绑定，检查附带的 README 和测试文件，那里通常有简易教程，以及指向拓展阅读的链接。</p>
+<h2 id="JGit"><a href="#JGit" class="headerlink" title="JGit"></a>JGit</h2><p>如果你想在一个 Java 程序中使用 Git ，有一个功能齐全的 Git 库，那就是 JGit 。 JGit 是一个用 Java 写成的功能相对健全的 Git 的实现，它在 Java 社区中被广泛使用。 JGit 项目由 Eclipse 维护，它的主页在 <a href="http://www.eclipse.org/jgit" target="_blank" rel="noopener">http://www.eclipse.org/jgit</a> 。</p>
+<h3 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h3><p>有很多种方式可以让 JGit 连接你的项目，并依靠它去写代码。 最简单的方式也许就是使用 Maven 。你可以通过在你的 pom.xml 文件里的 <code>&lt;dependencies&gt;</code> 标签中增加像下面这样的片段来完成这个整合。</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.eclipse.jgit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>org.eclipse.jgit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>3.5.0.201409260305-r<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>在你读到这段文字时 <code>version</code> 很可能已经更新了，所以请浏览 <a href="http://mvnrepository.com/artifact/org.eclipse.jgit/org.eclipse.jgit" target="_blank" rel="noopener">http://mvnrepository.com/artifact/org.eclipse.jgit/org.eclipse.jgit</a> 以获取最新的仓库信息。 当这一步完成之后， Maven 就会自动获取并使用你所需要的 JGit 库。</p>
+<p>如果你想自己管理二进制的依赖包，那么你可以从 <a href="http://www.eclipse.org/jgit/download" target="_blank" rel="noopener">http://www.eclipse.org/jgit/download</a> 获得预构建的 JGit 二进制文件。 你可以像下面这样执行一个命令来将它们构建进你的项目。</p>
+<pre class=" language-console"><code class="language-console">javac -cp .:org.eclipse.jgit-3.5.0.201409260305-r.jar App.java
+java -cp .:org.eclipse.jgit-3.5.0.201409260305-r.jar App
+</code></pre>
+<h3 id="底层命令"><a href="#底层命令" class="headerlink" title="底层命令"></a>底层命令</h3><p>JGit 的 API 有两种基本的层次：底层命令和高层命令。 这个两个术语都来自 Git ，并且 JGit 也被按照相同的方式粗略地划分：高层 API 是一个面向普通用户级别功能的友好的前端（一系列普通用户使用 Git 命令行工具时可能用到的东西），底层 API 则直接作用于低级的仓库对象。</p>
+<p>大多数 JGit 会话会以 <code>Repository</code> 类作为起点，你首先要做的事就是创建一个它的实例。 对于一个基于文件系统的仓库来说（嗯， JGit 允许其它的存储模型），用 <code>FileRepositoryBuilder</code> 完成它。</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 创建一个新仓库</span>
+Repository newlyCreatedRepo <span class="token operator">=</span> FileRepositoryBuilder<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>
+    <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"/tmp/new_repo/.git"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+newlyCreatedRepo<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 打开一个存在的仓库</span>
+Repository existingRepo <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileRepositoryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">setGitDir</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"my_repo/.git"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>无论你的程序是否知道仓库的确切位置，builder 中的那个流畅的 API 都可以提供给它寻找仓库所需所有信息。 它可以使用环境变量 （<code>.readEnvironment()</code>） ，从工作目录的某处开始并搜索 （<code>.setWorkTree(…).findGitDir()</code>） , 或者仅仅只是像上面那样打开一个已知的 <code>.git</code> 目录。</p>
+<p>当你拥有一个 <code>Repository</code> 实例后，你就能对它做各种各样的事。 下面是一个速览：</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 获取引用</span>
+Ref master <span class="token operator">=</span> repo<span class="token punctuation">.</span><span class="token function">getRef</span><span class="token punctuation">(</span><span class="token string">"master"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 获取该引用所指向的对象</span>
+ObjectId masterTip <span class="token operator">=</span> master<span class="token punctuation">.</span><span class="token function">getObjectId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// Rev-parse</span>
+ObjectId obj <span class="token operator">=</span> repo<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">"HEAD^{tree}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 装载对象原始内容</span>
+ObjectLoader loader <span class="token operator">=</span> repo<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>masterTip<span class="token punctuation">)</span><span class="token punctuation">;</span>
+loader<span class="token punctuation">.</span><span class="token function">copyTo</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>out<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 创建分支</span>
+RefUpdate createBranch1 <span class="token operator">=</span> repo<span class="token punctuation">.</span><span class="token function">updateRef</span><span class="token punctuation">(</span><span class="token string">"refs/heads/branch1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+createBranch1<span class="token punctuation">.</span><span class="token function">setNewObjectId</span><span class="token punctuation">(</span>masterTip<span class="token punctuation">)</span><span class="token punctuation">;</span>
+createBranch1<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 删除分支</span>
+RefUpdate deleteBranch1 <span class="token operator">=</span> repo<span class="token punctuation">.</span><span class="token function">updateRef</span><span class="token punctuation">(</span><span class="token string">"refs/heads/branch1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+deleteBranch1<span class="token punctuation">.</span><span class="token function">setForceUpdate</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+deleteBranch1<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 配置</span>
+Config cfg <span class="token operator">=</span> repo<span class="token punctuation">.</span><span class="token function">getConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+String name <span class="token operator">=</span> cfg<span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span><span class="token string">"user"</span><span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>这里完成了一大堆事情，所以我们还是一次理解一段的好。</p>
+<p>第一行获取一个指向 <code>master</code> 引用的指针。 JGit 自动抓取位于 <code>refs/heads/master</code> 的 <em>真正的</em> master 引用，并返回一个允许你获取该引用的信息的对象。 你可以获取它的名字 （<code>.getName()</code>） ，或者一个直接引用的目标对象 （<code>.getObjectId()</code>） ，或者一个指向该引用的符号指针 （<code>.getTarget()</code>） 。 引用对象也经常被用来表示标签的引用和对象，所以你可以询问某个标签是否被 “削除” 了，或者说它指向一个标签对象的（也许很长的）字符串的最终目标。</p>
+<p>第二行获得以 <code>master</code> 引用的目标，它返回一个 ObjectId 实例。 不管是否存在于一个 Git 对象的数据库，ObjectId 都会代表一个对象的 SHA-1 哈希。 第三行与此相似，但是它展示了 JGit 如何处理 rev-parse 语法（要了解更多，请看 <a href="https://git-scm.com/book/zh/v2/ch00/r_branch_references" target="_blank" rel="noopener">分支引用</a> ），你可以传入任何 Git 了解的对象说明符，然后 JGit 会返回该对象的一个有效的 ObjectId ，或者 <code>null</code> 。</p>
+<p>接下来两行展示了如何装载一个对象的原始内容。 在这个例子中，我们调用 <code>ObjectLoader.copyTo()</code>直接向标准输出流输出对象的内容，除此之外 ObjectLoader 还带有读取对象的类型和长度并将它以字节数组返回的方法。 对于一个（ <code>.isLarge()</code> 返回 <code>true</code> 的）大的对象，你可以调用 <code>.openStream()</code> 来获得一个类似 InputStream 的对象，它可以在没有一次性将所有数据拉到内存的前提下读取对象的原始数据。</p>
+<p>接下来几行展现了如何创建一个新的分支。 我们创建一个 RefUpdate 实例，配置一些参数，然后调用 <code>.update()</code> 来确认这个更改。 删除相同分支的代码就在这行下面。 记住必须先 <code>.setForceUpdate(true)</code> 才能让它工作，否则调用 <code>.delete()</code> 只会返回 <code>REJECTED</code> ，然后什么都没有发生。</p>
+<p>最后一个例子展示了如何从 Git 配置文件中获取 <code>user.name</code> 的值。 这个 Config 实例使用我们先前打开的仓库做本地配置，但是它也会自动地检测并读取全局和系统的配置文件。</p>
+<p>这只是底层 API 的冰山一角，另外还有许多可以使用的方法和类。 还有一个没有放在这里说明的，就是 JGit 是用异常机制来处理错误的。 JGit API 有时使用标准的 Java 异常（例如 <code>IOException</code> ），但是它也提供了大量 JGit 自己定义的异常类型（例如 <code>NoRemoteRepositoryException</code>、 <code>CorruptObjectException</code> 和 <code>NoMergeBaseException</code>）。</p>
+<h3 id="高层命令"><a href="#高层命令" class="headerlink" title="高层命令"></a>高层命令</h3><p>底层 API 更加完善，但是有时将它们串起来以实现普通的目的非常困难，例如将一个文件添加到索引，或者创建一个新的提交。 为了解决这个问题， JGit 提供了一系列高层 API ，使用这些 API 的入口点就是 <code>Git</code>类：</p>
+<pre class=" language-java"><code class="language-java">Repository repo<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 构建仓库。。。</span>
+Git git <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Git</span><span class="token punctuation">(</span>repo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Git 类有一系列非常好的 <em>构建器</em> 风格的高层方法，它可以用来构造一些复杂的行为。 我们来看一个例子——做一件类似 <code>git ls-remote</code> 的事。</p>
+<pre class=" language-java"><code class="language-java">CredentialsProvider cp <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UsernamePasswordCredentialsProvider</span><span class="token punctuation">(</span><span class="token string">"username"</span><span class="token punctuation">,</span> <span class="token string">"p4ssw0rd"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Collection<span class="token operator">&lt;</span>Ref<span class="token operator">></span> remoteRefs <span class="token operator">=</span> git<span class="token punctuation">.</span><span class="token function">lsRemote</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">setCredentialsProvider</span><span class="token punctuation">(</span>cp<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">setRemote</span><span class="token punctuation">(</span><span class="token string">"origin"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">setTags</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">setHeads</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span>Ref ref <span class="token operator">:</span> remoteRefs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>ref<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" -> "</span> <span class="token operator">+</span> ref<span class="token punctuation">.</span><span class="token function">getObjectId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">name</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>这是一个 Git 类的公共样式，这个方法返回一个可以让你串连若干方法调用来设置参数的命令对象，当你调用 <code>.call()</code> 时它们就会被执行。 在这情况下，我们只是请求了 <code>origin</code> 远程的标签，而不是头部。 还要注意用于验证的 <code>CredentialsProvider</code> 对象的使用。</p>
+<p>在 Git 类中还可以使用许多其它的命令，包括但不限于 <code>add</code>、<code>blame</code>、<code>commit</code>、<code>clean</code>、<code>push</code>、<code>rebase</code>、<code>revert</code> 和 <code>reset</code>。</p>
+<h3 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h3><p>这只是 JGit 的全部能力的冰山一角。 如果你对这有兴趣并且想深入学习，在下面可以找到一些信息和灵感。</p>
+<ul>
+<li>JGit API 在线官方文档： <a href="http://download.eclipse.org/jgit/docs/latest/apidocs" target="_blank" rel="noopener">http://download.eclipse.org/jgit/docs/latest/apidocs</a> 。 这是基本的 Javadoc ，所以你也可以在你最喜欢的 JVM IDE 上将它们安装它们到本地。</li>
+<li>JGit Cookbook ： <a href="https://github.com/centic9/jgit-cookbook" target="_blank" rel="noopener">https://github.com/centic9/jgit-cookbook</a> 拥有许多如何利用 JGit 实现特定任务的例子。</li>
+<li><a href="http://stackoverflow.com/questions/6861881" target="_blank" rel="noopener">http://stackoverflow.com/questions/6861881</a> 指出了几个好的资源。</li>
+</ul>
+<p>在这一整本书里我们介绍了大量的 Git 命令，并尽可能的通过讲故事的的方式来介绍它们，慢慢的介绍了越来越多的命令。 但是这导致这些命令的示例用法都散落在在全书的各处。</p>
+<p>在此附录中，我们会将本书中所提到过的命令都过一遍，并根据其用途大致的分类。 我们会大致地讨论每个命的作用，指出其在本书中哪些章节使用过。</p>
+
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'brA0u8dhiFmWzBQJ5YDMevuw-gzGzoHsz',
+        appKey: 'InzuBbqaqOss16gJu1jiKE7F',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/07/15/附录C-Git命令/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="附录C:Git命令">
+                        
+                        <span class="card-title">附录C:Git命令</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            设置与配置有两个命令使用得最多了，从第一次调用 Git 到每天的日常微调及参考，这个两个命令就是： config 和help 命令。
+git configGit 做的很多工作都有一个默认方式。 对于绝大多数工作而言，你可以改变 Git 的默
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Git/" class="post-category" target="_blank">
+                                    Git
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Git/" target="_blank">
+                        <span class="chip bg-color">Git</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/07/15/附录A-其他环境中的Git/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="附录A:其他环境中的Git">
+                        
+                        <span class="card-title">附录A:其他环境中的Git</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            从头至尾读到了这里，你肯定已经掌握了不少使用 Git 命令行操作的知识。 你学会了操作本地文件，通过网络连接你的仓库，以及与他人进行有效率的合作。 但是故事并未就此结束；Git 通常只是更大的生态圈的一部分，在某些情况下使用终端并不是最合适
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Git/" class="post-category" target="_blank">
+                                    Git
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Git/" target="_blank">
+                        <span class="chip bg-color">Git</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">249.9k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/chenshuoke" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:henu_chenshuoke@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2604689299" class="tooltipped" data-tooltip="QQ联系我: 2604689299" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
