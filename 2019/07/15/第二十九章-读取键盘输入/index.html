@@ -1,0 +1,1508 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="第二十九章 读取键盘输入, 孤狼的博客">
+    <meta name="description" content="The scripts we have written so far lack a feature common in most computer programs — interactivity. That is, the ability">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>第二十九章 读取键盘输入 | 孤狼的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+    <!-- 下面一句添加的 -->
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">孤狼的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">孤狼的博客</div>
+        <div class="logo-desc">
+            
+            从来没有真正的绝境，只有心灵的迷途
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/chenshuoke" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/chenshuoke" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        第二十九章 读取键盘输入
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/TLCL/" class="post-category" target="_blank">
+                                TLCL
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-07-15
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        5.5k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        26 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>The scripts we have written so far lack a feature common in most computer programs — interactivity. That is, the ability of the program to interact with the user. While many programs don’t need to be interactive, some programs benefit from being able to accept input directly from the user. Take, for example, this script from the previous chapter:</p>
+<p>到目前为止我们编写的脚本都缺乏一项在大多数计算机程序中都很常见的功能－交互性。也就是， 程序与用户进行交互的能力。虽然许多程序不必是可交互的，但一些程序却得到益处，能够直接 接受用户的输入。以这个前面章节中的脚本为例：</p>
+<pre><code>#!/bin/bash
+# test-integer2: evaluate the value of an integer.
+INT=-5
+if [[ &quot;$INT&quot; =~ ^-?[0-9]+$ ]]; then
+    if [ $INT -eq 0 ]; then
+        echo &quot;INT is zero.&quot;
+    else
+        if [ $INT -lt 0 ]; then
+            echo &quot;INT is negative.&quot;
+        else
+            echo &quot;INT is positive.&quot;
+        fi
+        if [ $((INT % 2)) -eq 0 ]; then
+            echo &quot;INT is even.&quot;
+        else
+        echo &quot;INT is odd.&quot;
+        fi
+    fi
+else
+    echo &quot;INT is not an integer.&quot; &gt;&amp;2
+    exit 1
+fi</code></pre><p>Each time we want to change the value of <code>INT</code>, we have to edit the script. It would be much more useful if the script could ask the user for a value. In this chapter, we will begin to look at how we can add interactivity to our programs.</p>
+<p>每次我们想要改变 INT 数值的时候，我们必须编辑这个脚本。如果脚本能请求用户输入数值，那 么它会更加有用处。在这个脚本中，我们将看一下我们怎样给程序增加交互性功能。</p>
+<h3 id="read-从标准输入读取数值"><a href="#read-从标准输入读取数值" class="headerlink" title="read - 从标准输入读取数值"></a>read - 从标准输入读取数值</h3><p>The read builtin command is used to read a single line of standard input. This command can be used to read keyboard input or, when redirection is employed, a line of data from a file. The command has the following syntax:</p>
+<p>这个 read 内部命令被用来从标准输入读取单行数据。这个命令可以用来读取键盘输入，当使用 重定向的时候，读取文件中的一行数据。这个命令有以下语法形式：</p>
+<pre><code>read [-options] [variable...]</code></pre><p>where options is one or more of the available options listed below and variable is the name of one or more variables used to hold the input value. If no variable name is supplied, the shell variable REPLY contains the line of data.</p>
+<p>这里的 options 是下面列出的可用选项中的一个或多个，且 variable 是用来存储输入数值的一个或多个变量名。 如果没有提供变量名，shell 变量 REPLY 会包含数据行。</p>
+<p>Basically, <code>read</code> assigns fields from standard input to the specified variables. If we modify our integer evaluation script to use <code>read</code>, it might look like this:</p>
+<p>基本上，read 会把来自标准输入的字段赋值给具体的变量。如果我们修改我们的整数求值脚本，让其使用 read ，它可能看起来像这样：</p>
+<pre><code>#!/bin/bash
+# read-integer: evaluate the value of an integer.
+echo -n &quot;Please enter an integer -&gt; &quot;
+read int
+if [[ &quot;$int&quot; =~ ^-?[0-9]+$ ]]; then
+    if [ $int -eq 0 ]; then
+        echo &quot;$int is zero.&quot;
+    else
+        if [ $int -lt 0 ]; then
+            echo &quot;$int is negative.&quot;
+        else
+            echo &quot;$int is positive.&quot;
+        fi
+        if [ $((int % 2)) -eq 0 ]; then
+            echo &quot;$int is even.&quot;
+        else
+            echo &quot;$int is odd.&quot;
+        fi
+    fi
+else
+    echo &quot;Input value is not an integer.&quot; &gt;&amp;2
+    exit 1
+fi</code></pre><p>We use <code>echo</code> with the <code>-n</code> option (which suppresses the trailing newline on output) to display a prompt, then use <code>read</code> to input a value for the variable int. Running this script results in this:</p>
+<p>我们使用带有 -n 选项（其会删除输出结果末尾的换行符）的 echo 命令，来显示提示信息， 然后使用 read 来读入变量 int 的数值。运行这个脚本得到以下输出：</p>
+<pre><code>[me@linuxbox ~]$ read-integer
+Please enter an integer -&gt; 5
+5 is positive.
+5 is odd.</code></pre><p>read can assign input to multiple variables, as shown in this script:</p>
+<p>read 可以给多个变量赋值，正如下面脚本中所示：</p>
+<pre><code>#!/bin/bash
+# read-multiple: read multiple values from keyboard
+echo -n &quot;Enter one or more values &gt; &quot;
+read var1 var2 var3 var4 var5
+echo &quot;var1 = &#39;$var1&#39;&quot;
+echo &quot;var2 = &#39;$var2&#39;&quot;
+echo &quot;var3 = &#39;$var3&#39;&quot;
+echo &quot;var4 = &#39;$var4&#39;&quot;
+echo &quot;var5 = &#39;$var5&#39;&quot;</code></pre><p>In this script, we assign and display up to five values. Notice how <code>read</code> behaves when given different numbers of values:</p>
+<p>在这个脚本中，我们给五个变量赋值并显示其结果。注意当给定不同个数的数值后，read 怎样操作：</p>
+<pre><code>[me@linuxbox ~]$ read-multiple
+Enter one or more values &gt; a b c d e
+var1 = &#39;a&#39;
+var2 = &#39;b&#39;
+var3 = &#39;c&#39;
+var4 = &#39;d&#39;
+var5 = &#39;e&#39;
+[me@linuxbox ~]$ read-multiple
+Enter one or more values &gt; a
+var1 = &#39;a&#39;
+var2 = &#39;&#39;
+var3 = &#39;&#39;
+var4 = &#39;&#39;
+var5 = &#39;&#39;
+[me@linuxbox ~]$ read-multiple
+Enter one or more values &gt; a b c d e f g
+var1 = &#39;a&#39;
+var2 = &#39;b&#39;
+var3 = &#39;c&#39;
+var4 = &#39;d&#39;
+var5 = &#39;e f g&#39;</code></pre><p>If <code>read</code> receives fewer than the expected number, the extra variables are empty, while an excessive amount of input results in the final variable containing all of the extra input. If no variables are listed after the read command, a shell variable, <code>REPLY</code>, will be assigned all the input:</p>
+<p>如果 read 命令接受到变量值数目少于期望的数字，那么额外的变量值为空，而多余的输入数据则会 被包含到最后一个变量中。如果 read 命令之后没有列出变量名，则一个 shell 变量，REPLY，将会包含 所有的输入：</p>
+<pre><code>#!/bin/bash
+# read-single: read multiple values into default variable
+echo -n &quot;Enter one or more values &gt; &quot;
+read
+echo &quot;REPLY = &#39;$REPLY&#39;&quot;</code></pre><p>Running this script results in this:</p>
+<p>这个脚本的输出结果是：</p>
+<pre><code>[me@linuxbox ~]$ read-single
+Enter one or more values &gt; a b c d
+REPLY = &#39;a b c d&#39;</code></pre><h4 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h4><p><code>read</code> supports the following options:</p>
+<p>read 支持以下选项：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Option</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-a array</td>
+<td align="left">Assign the input to array, starting with index zero. We will cover arrays in Chapter 36.</td>
+</tr>
+<tr>
+<td align="left">-d delimiter</td>
+<td align="left">The first character in the string delimiter is used to indicate end of input, rather than a newline character.</td>
+</tr>
+<tr>
+<td align="left">-e</td>
+<td align="left">Use Readline to handle input. This permits input editing in the same manner as the command line.</td>
+</tr>
+<tr>
+<td align="left">-n num</td>
+<td align="left">Read num characters of input, rather than an entire line.</td>
+</tr>
+<tr>
+<td align="left">-p prompt</td>
+<td align="left">Display a prompt for input using the string prompt.</td>
+</tr>
+<tr>
+<td align="left">-r</td>
+<td align="left">Raw mode. Do not interpret backslash characters as escapes.</td>
+</tr>
+<tr>
+<td align="left">-s</td>
+<td align="left">Silent mode. Do not echo characters to the display as they are typed. This is useful when inputting passwords and other confidential information.</td>
+</tr>
+<tr>
+<td align="left">-t seconds</td>
+<td align="left">Timeout. Terminate input after seconds. read returns a non-zero exit status if an input times out.</td>
+</tr>
+<tr>
+<td align="left">-u fd</td>
+<td align="left">Use input from file descriptor fd, rather than standard input.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">选项</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-a array</td>
+<td align="left">把输入赋值到数组 array 中，从索引号零开始。我们 将在第36章中讨论数组问题。</td>
+</tr>
+<tr>
+<td align="left">-d delimiter</td>
+<td align="left">用字符串 delimiter 中的第一个字符指示输入结束，而不是一个换行符。</td>
+</tr>
+<tr>
+<td align="left">-e</td>
+<td align="left">使用 Readline 来处理输入。这使得与命令行相同的方式编辑输入。</td>
+</tr>
+<tr>
+<td align="left">-n num</td>
+<td align="left">读取 num 个输入字符，而不是整行。</td>
+</tr>
+<tr>
+<td align="left">-p prompt</td>
+<td align="left">为输入显示提示信息，使用字符串 prompt。</td>
+</tr>
+<tr>
+<td align="left">-r</td>
+<td align="left">Raw mode. 不把反斜杠字符解释为转义字符。</td>
+</tr>
+<tr>
+<td align="left">-s</td>
+<td align="left">Silent mode. 不会在屏幕上显示输入的字符。当输入密码和其它确认信息的时候，这会很有帮助。</td>
+</tr>
+<tr>
+<td align="left">-t seconds</td>
+<td align="left">超时. 几秒钟后终止输入。若输入超时，read 会返回一个非零退出状态。</td>
+</tr>
+<tr>
+<td align="left">-u fd</td>
+<td align="left">使用文件描述符 fd 中的输入，而不是标准输入。</td>
+</tr>
+</tbody></table>
+<p>Using the various options, we can do interesting things with read. For example, with the -p option, we can provide a prompt string:</p>
+<p>使用各种各样的选项，我们能用 read 完成有趣的事情。例如，通过-p 选项，我们能够提供提示信息：</p>
+<pre><code>#!/bin/bash
+# read-single: read multiple values into default variable
+read -p &quot;Enter one or more values &gt; &quot;
+echo &quot;REPLY = &#39;$REPLY&#39;&quot;
+</code></pre><p>With the -t and -s options we can write a script that reads “secret” input and times out if the input is not completed in a specified time:</p>
+<p>通过 -t 和 -s 选项，我们可以编写一个这样的脚本，读取“秘密”输入，并且如果在特定的时间内 输入没有完成，就终止输入。</p>
+<pre><code>#!/bin/bash
+# read-secret: input a secret pass phrase
+if read -t 10 -sp &quot;Enter secret pass phrase &gt; &quot; secret_pass; then
+    echo &quot;\nSecret pass phrase = &#39;$secret_pass&#39;&quot;
+else
+    echo &quot;\nInput timed out&quot; &gt;&amp;2
+    exit 1
+fi
+</code></pre><p>The script prompts the user for a secret pass phrase and waits ten seconds for input. If the entry is not completed within the specified time, the script exits with an error. Since the -s option is included, the characters of the pass phrase are not echoed to the display as they are typed.</p>
+<p>这个脚本提示用户输入一个密码，并等待输入10秒钟。如果在特定的时间内没有完成输入， 则脚本会退出并返回一个错误。因为包含了一个 -s 选项，所以输入的密码不会出现在屏幕上。</p>
+<h3 id="IFS"><a href="#IFS" class="headerlink" title="IFS"></a>IFS</h3><p>Normally, the shell performs word splitting on the input provided to <code>read</code>. As we have seen, this means that multiple words separated by one or more spaces become separate items on the input line, and are assigned to separate variables by read. This behavior is configured by a shell variable named <em>IFS</em> (for Internal Field Separator). The default value of <strong>IFS</strong> contains a space, a tab, and a newline character, each of which will separate items from one another.</p>
+<p>通常，shell 对提供给 read 的输入按照单词进行分离。正如我们所见到的，这意味着多个由一个或几个空格 分离开的单词在输入行中变成独立的个体，并被 read 赋值给单独的变量。这种行为由 shell 变量<strong>IFS</strong> （内部字符分隔符）配置。<em>IFS</em> 的默认值包含一个空格，一个 tab，和一个换行符，每一个都会把 字段分割开。</p>
+<p>We can adjust the value of <em>IFS</em> to control the separation of fields input to <code>read</code>. For example, the /etc/passwd file contains lines of data that use the colon character as a field separator. By changing the value of <em>IFS</em> to a single colon, we can use read to input the contents of /etc/passwd and successfully separate fields into different variables. Here we have a script that does just that:</p>
+<p>我们可以调整 <em>IFS</em> 的值来控制输入字段的分离。例如，这个 /etc/passwd 文件包含的数据行 使用冒号作为字段分隔符。通过把 <em>IFS</em> 的值更改为单个冒号，我们可以使用 read 读取 /etc/passwd 中的内容，并成功地把字段分给不同的变量。这个就是做这样的事情：</p>
+<pre><code>#!/bin/bash
+# read-ifs: read fields from a file
+FILE=/etc/passwd
+read -p &quot;Enter a user name &gt; &quot; user_name
+file_info=$(grep &quot;^$user_name:&quot; $FILE)
+if [ -n &quot;$file_info&quot; ]; then
+    IFS=&quot;:&quot; read user pw uid gid name home shell &lt;&lt;&lt; &quot;$file_info&quot;
+    echo &quot;User = &#39;$user&#39;&quot;
+    echo &quot;UID = &#39;$uid&#39;&quot;
+    echo &quot;GID = &#39;$gid&#39;&quot;
+    echo &quot;Full Name = &#39;$name&#39;&quot;
+    echo &quot;Home Dir. = &#39;$home&#39;&quot;
+    echo &quot;Shell = &#39;$shell&#39;&quot;
+else
+    echo &quot;No such user &#39;$user_name&#39;&quot; &gt;&amp;2
+    exit 1
+fi
+</code></pre><p>This script prompts the user to enter the user name of an account on the system, then displays the different fields found in the user’s record in the /etc/passwd file. The script contains two interesting lines. The first is:</p>
+<p>这个脚本提示用户输入系统中一个帐户的用户名，然后显示在文件 /etc/passwd/ 文件中关于用户记录的 不同字段。这个脚本包含有趣的两行。 第一个是：</p>
+<pre><code>file_info=$(grep &quot;^$user_name:&quot; $FILE)
+</code></pre><p>This line assigns the results of a grep command to the variable file_info. The regular expression used by grep assures that the user name will only match a single line in the /etc/passwd file.</p>
+<p>这一行把 grep 命令的输入结果赋值给变量 file_info。grep 命令使用的正则表达式 确保用户名只会在 /etc/passwd 文件中匹配一行。</p>
+<p>The second interesting line is this one:</p>
+<p>第二个有意思的一行是：</p>
+<pre><code>IFS=&quot;:&quot; read user pw uid gid name home shell &lt;&lt;&lt; &quot;$file_info&quot;
+</code></pre><p>The line consists of three parts: a variable assignment, a <code>read</code> command with a list of variable names as arguments, and a strange new redirection operator. We’ll look at the variable assignment first.</p>
+<p>这一行由三部分组成：对一个变量的赋值操作，一个带有一串参数的 read 命令，和一个奇怪的新的重定向操作符。 我们首先看一下变量赋值。</p>
+<p>The shell allows one or more variable assignments to take place immediately before a command. These assignments alter the environment for the command that follows. The effect of the assignment is temporary; only changing the environment for the duration of the command. In our case, the value of IFS is changed to a colon character. Alternately, we could have coded it this way:</p>
+<p>Shell 允许在一个命令之前给一个或多个变量赋值。这些赋值会暂时改变之后的命令的环境变量。 在这种情况下，IFS 的值被改成一个冒号。等效的，我们也可以这样写：</p>
+<pre><code>OLD_IFS=&quot;$IFS&quot;
+IFS=&quot;:&quot;
+read user pw uid gid name home shell &lt;&lt;&lt; &quot;$file_info&quot;
+IFS=&quot;$OLD_IFS&quot;
+</code></pre><p>where we store the value of IFS, assign a new value, perform the read command, then restore IFS to its original value. Clearly, placing the variable assignment in front of the command is a more concise way of doing the same thing.</p>
+<p>我们先存储 IFS 的值，然后赋给一个新值，再执行 read 命令，最后把 IFS 恢复原值。显然，完成相同的任务， 在命令之前放置变量名赋值是一种更简明的方式。</p>
+<p>The <code>&lt;&lt;&lt;</code> operator indicates a here string. A here string is like a here document, only shorter, consisting of a single string. In our example, the line of data from the /etc/passwd file is fed to the standard input of the read command. We might wonder why this rather oblique method was chosen rather than:</p>
+<p>这个 <code>&lt;&lt;&lt;</code> 操作符指示一个 here 字符串。一个 here 字符串就像一个 here 文档，只是比较简短，由 单个字符串组成。在这个例子中，来自 /etc/passwd 文件的数据发送给 read 命令的标准输入。 我们可能想知道为什么选择这种相当晦涩的方法而不是：</p>
+<pre><code>echo &quot;$file_info&quot; | IFS=&quot;:&quot; read user pw uid gid name home shell
+</code></pre><blockquote>
+<p>You Can’t Pipe read</p>
+<p>你不能把 管道用在 read 上</p>
+<p>While the read command normally takes input from standard input, you cannot do this:</p>
+<p>虽然通常 read 命令接受标准输入，但是你不能这样做：</p>
+<p><em>echo “foo” | read</em></p>
+<p>We would expect this to work, but it does not. The command will appear to succeed but the REPLY variable will always be empty. Why is this?</p>
+<p>我们期望这个命令能生效，但是它不能。这个命令将显示成功，但是 REPLY 变量 总是为空。为什么会这样？</p>
+<p>The explanation has to do with the way the shell handles pipelines. In bash (and other shells such as sh), pipelines create subshells. These are copies of the shell and its environment which are used to execute the command in the pipeline. In our example above, read is executed in a subshell.</p>
+<p>答案与 shell 处理管道线的方式有关系。在 bash（和其它 shells，例如 sh）中，管道线 会创建子 shell。这个子 shell 是为了执行执行管线中的命令而创建的shell和它的环境的副本。 上面示例中，read 命令将在子 shell 中执行。</p>
+<p>Subshells in Unix-like systems create copies of the environment for the processes to use while they execute. When the processes finishes the copy of the environment is destroyed. This means that a subshell can never alter the environment of its parent process. read assigns variables, which then become part of the environment. In the example above, read assigns the value “foo” to the variable REPLY in its subshell’s environment, but when the command exits, the subshell and its environment are destroyed, and the effect of the assignment is lost.</p>
+<p>在类 Unix 的系统中，子 shell 执行的时候，会为进程创建父环境的副本。当进程结束 之后，该副本就会被破坏掉。这意味着一个子 shell 永远不能改变父进程的环境。read 赋值变量， 然后会变为环境的一部分。在上面的例子中，read 在它的子 shell 环境中，把 foo 赋值给变量 REPLY， 但是当命令退出后，子 shell 和它的环境将被破坏掉，这样赋值的影响就会消失。</p>
+<p>Using here strings is one way to work around this behavior. Another method is discussed in Chapter 37.</p>
+<p>使用 here 字符串是解决此问题的一种方法。另一种方法将在37章中讨论。</p>
+</blockquote>
+<h3 id="校正输入"><a href="#校正输入" class="headerlink" title="校正输入"></a>校正输入</h3><p>With our new ability to have keyboard input comes an additional programming challenge, validating input. Very often the difference between a well-written program and a poorly written one is in the program’s ability to deal with the unexpected. Frequently, the unexpected appears in the form of bad input. We’ve done a little of this with our evaluation programs in the previous chapter, where we checked the value of integers and screened out empty values and non-numeric characters. It is important to perform these kinds of programming checks every time a program receives input, to guard against invalid data. This is especially important for programs that are shared by multiple users. Omitting these safeguards in the interests of economy might be excused if a program is to be used once and only by the author to perform some special task. Even then, if the program performs dangerous tasks such as deleting files, it would be wise to include data validation, just in case.</p>
+<p>从键盘输入这种新技能，带来了额外的编程挑战，校正输入。很多时候，一个良好编写的程序与 一个拙劣程序之间的区别就是程序处理意外的能力。通常，意外会以错误输入的形式出现。在前面 章节中的计算程序，我们已经这样做了一点儿，我们检查整数值，甄别空值和非数字字符。每次 程序接受输入的时候，执行这类的程序检查非常重要，为的是避免无效数据。对于 由多个用户共享的程序，这个尤为重要。如果一个程序只使用一次且只被作者用来执行一些特殊任务， 那么为了经济利益而忽略这些保护措施，可能会被原谅。即使这样，如果程序执行危险任务，比如说 删除文件，所以最好包含数据校正，以防万一。</p>
+<p>Here we have an example program that validates various kinds of input:</p>
+<p>这里我们有一个校正各种输入的示例程序：</p>
+<pre><code>#!/bin/bash
+# read-validate: validate input
+invalid_input () {
+    echo &quot;Invalid input &#39;$REPLY&#39;&quot; &gt;&amp;2
+    exit 1
+}
+read -p &quot;Enter a single item &gt; &quot;
+# input is empty (invalid)
+[[ -z $REPLY ]] &amp;&amp; invalid_input
+# input is multiple items (invalid)
+(( $(echo $REPLY | wc -w) &gt; 1 )) &amp;&amp; invalid_input
+# is input a valid filename?
+if [[ $REPLY =~ ^[-[:alnum:]\._]+$ ]]; then
+    echo &quot;&#39;$REPLY&#39; is a valid filename.&quot;
+    if [[ -e $REPLY ]]; then
+        echo &quot;And file &#39;$REPLY&#39; exists.&quot;
+    else
+        echo &quot;However, file &#39;$REPLY&#39; does not exist.&quot;
+    fi
+    # is input a floating point number?
+    if [[ $REPLY =~ ^-?[[:digit:]]*\.[[:digit:]]+$ ]]; then
+        echo &quot;&#39;$REPLY&#39; is a floating point number.&quot;
+    else
+        echo &quot;&#39;$REPLY&#39; is not a floating point number.&quot;
+    fi
+    # is input an integer?
+    if [[ $REPLY =~ ^-?[[:digit:]]+$ ]]; then
+        echo &quot;&#39;$REPLY&#39; is an integer.&quot;
+    else
+        echo &quot;&#39;$REPLY&#39; is not an integer.&quot;
+    fi
+else
+    echo &quot;The string &#39;$REPLY&#39; is not a valid filename.&quot;
+fi
+</code></pre><p>This script prompts the user to enter an item. The item is subsequently analyzed to determine its contents. As we can see, the script makes use of many of the concepts that we have covered thus far, including shell functions, <code>[[ ]]</code>, <code>(( ))</code>, the control operator <code>&amp;&amp;</code>, and if, as well as a healthy dose of regular expressions.</p>
+<p>这个脚本提示用户输入一个数字。随后，分析这个数字来决定它的内容。正如我们所看到的，这个脚本 使用了许多我们已经讨论过的概念，包括 shell 函数，<code>[[ ]]</code>，<code>(( ))</code>，控制操作符 <code>&amp;&amp;</code>，以及 <code>if</code> 和 一些正则表达式。</p>
+<h3 id="菜单"><a href="#菜单" class="headerlink" title="菜单"></a>菜单</h3><p>A common type of interactivity is called menu-driven. In menu-driven programs, the user is presented with a list of choices and is asked to choose one. For example, we could imagine a program that presented the following:</p>
+<p>一种常见的交互类型称为菜单驱动。在菜单驱动程序中，呈现给用户一系列选择，并要求用户选择一项。 例如，我们可以想象一个展示以下信息的程序：</p>
+<pre><code>Please Select:
+1.Display System Information
+2.Display Disk Space
+3.Display Home Space Utilization
+0.Quit
+Enter selection [0-3] &gt;
+</code></pre><p>Using what we learned from writing our sys_info_page program, we can construct a menu-driven program to perform the tasks on the above menu:</p>
+<p>使用我们从编写 sys_info_page 程序中所学到的知识，我们能够构建一个菜单驱动程序来执行 上述菜单中的任务：</p>
+<pre><code>#!/bin/bash
+# read-menu: a menu driven system information program
+clear
+echo &quot;
+Please Select:
+
+    1. Display System Information
+    2. Display Disk Space
+    3. Display Home Space Utilization
+    0. Quit
+&quot;
+read -p &quot;Enter selection [0-3] &gt; &quot;
+
+if [[ $REPLY =~ ^[0-3]$ ]]; then
+    if [[ $REPLY == 0 ]]; then
+        echo &quot;Program terminated.&quot;
+        exit
+    fi
+    if [[ $REPLY == 1 ]]; then
+        echo &quot;Hostname: $HOSTNAME&quot;
+        uptime
+        exit
+    fi
+    if [[ $REPLY == 2 ]]; then
+        df -h
+        exit
+    fi
+    if [[ $REPLY == 3 ]]; then
+        if [[ $(id -u) -eq 0 ]]; then
+            echo &quot;Home Space Utilization (All Users)&quot;
+            du -sh /home/*
+        else
+            echo &quot;Home Space Utilization ($USER)&quot;
+            du -sh $HOME
+        fi
+        exit
+    fi
+else
+    echo &quot;Invalid entry.&quot; &gt;&amp;2
+    exit 1
+fi
+</code></pre><p>This script is logically divided into two parts. The first part displays the menu and inputs the response from the user. The second part identifies the response and carries out the selected action. Notice the use of the <code>exit</code> command in this script. It is used here to prevent the script from executing unnecessary code after an action has been carried out. The presence of multiple ｀exit｀ points in a program is generally a bad idea (it makes program logic harder to understand), but it works in this script.</p>
+<p>从逻辑上讲，这个脚本被分为两部分。第一部分显示菜单和用户输入。第二部分确认用户反馈，并执行 选择的行动。注意脚本中使用的 exit 命令。在这里，在一个行动执行之后， exit 被用来阻止脚本执行不必要的代码。 通常在程序中出现多个 exit 代码不是一个好主意（它使程序逻辑较难理解），但是它在这个脚本中可以使用。</p>
+<h3 id="总结归纳"><a href="#总结归纳" class="headerlink" title="总结归纳"></a>总结归纳</h3><p>In this chapter, we took our first steps toward interactivity; allowing users to input data into our programs via the keyboard. Using the techniques presented thus far, it is possible to write many useful programs, such as specialized calculation programs and easy-to-use front ends for arcane command line tools. In the next chapter, we will build on the menu-driven program concept to make it even better.</p>
+<p>在这一章中，我们向着程序交互性迈出了第一步；允许用户通过键盘向程序输入数据。使用目前 已经学过的技巧，有可能编写许多有用的程序，比如说特定的计算程序和容易使用的命令行工具 前端。在下一章中，我们将继续建立菜单驱动程序概念，让它更完善。</p>
+<h4 id="友情提示"><a href="#友情提示" class="headerlink" title="友情提示"></a>友情提示</h4><p>It is important to study the programs in this chapter carefully and have a complete understanding of the way they are logically structured, as the programs to come will be increasingly complex. As an exercise, rewrite the programs in this chapter using the test command rather than the <code>[[ ]]</code>compound command. Hint: use <code>grep</code> to evaluate the regular expressions and evaluate its exit status. This will be good practice.</p>
+<p>仔细研究本章中的程序，并对程序的逻辑结构有一个完整的理解，这是非常重要的，因为即将到来的 程序会日益复杂。作为练习，用 test 命令而不是<code>[[ ]]</code>复合命令来重新编写本章中的程序。 提示：使用 grep 命令来计算正则表达式及其退出状态。这会是一个不错的练习。</p>
+<h3 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h3><ul>
+<li><p>The Bash Reference Manual contains a chapter on builtins, which includes the read command:</p>
+</li>
+<li><p>Bash 参考手册有一章关于内部命令的内容，其包括了<code>read</code>命令：</p>
+<p><a href="http://www.gnu.org/software/bash/manual/bashref.html#Bash-Builtins" target="_blank" rel="noopener">http://www.gnu.org/software/bash/manual/bashref.html#Bash-Builtins</a></p>
+</li>
+</ul>
+
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'brA0u8dhiFmWzBQJ5YDMevuw-gzGzoHsz',
+        appKey: 'InzuBbqaqOss16gJu1jiKE7F',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/07/15/第三十章-流程控制：while-until循环/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="第三十章 流程控制：while/until循环">
+                        
+                        <span class="card-title">第三十章 流程控制：while/until循环</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            In the previous chapter, we developed a menu-driven program to produce various kinds of system information. The program 
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/TLCL/" class="post-category" target="_blank">
+                                    TLCL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/07/15/第二十八章-流程控制：if分支结构/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="第二十八章 流程控制：if分支结构">
+                        
+                        <span class="card-title">第二十八章 流程控制：if分支结构</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            In the last chapter, we were presented with a problem. How can we make our report generator script adapt to the privileg
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/TLCL/" class="post-category" target="_blank">
+                                    TLCL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">456.8k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/chenshuoke" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:henu_chenshuoke@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2604689299" class="tooltipped" data-tooltip="QQ联系我: 2604689299" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

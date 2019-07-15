@@ -1,0 +1,1813 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="第二十三章 打印, 孤狼的博客">
+    <meta name="description" content="After spending the last couple of chapters manipulating text, it’s time to put that text on paper. In this chapter, we’l">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>第二十三章 打印 | 孤狼的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+    <!-- 下面一句添加的 -->
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">孤狼的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">孤狼的博客</div>
+        <div class="logo-desc">
+            
+            从来没有真正的绝境，只有心灵的迷途
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/chenshuoke" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/chenshuoke" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        第二十三章 打印
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/TLCL/" class="post-category" target="_blank">
+                                TLCL
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-07-15
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        8.5k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        40 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>After spending the last couple of chapters manipulating text, it’s time to put that text on paper. In this chapter, we’ll look at the command-line tools that are used to print files and control printer operation. We won’t be looking at how to configure printing, as that varies from distribution to distribution and is usually set up automatically during installation. Note that we will need a working printer configuration to perform the exercises in this chapter.</p>
+<p>前几章我们学习了如何操控文本，下面要做的是将文本呈于纸上。在这章中，我们将会着手用于打印文件和控制打印选项的命令行工具。通常不同发行版的打印配置各有不同且都会在其安装时自动完成，因此这里我们不讨论打印的配置过程。本章的练习需要一台正确配置的打印机来完成。</p>
+<p>We will discuss the following commands:</p>
+<p>我们将讨论一下命令：</p>
+<ul>
+<li>pr——Convert text files for printing.</li>
+<li>pr —— 转换需要打印的文本文件</li>
+<li>lpr——Print files.</li>
+<li>lpr —— 打印文件</li>
+<li>lp——Print files (System V).</li>
+<li>lp —— 打印文件（System V）</li>
+<li>a2ps——Format files for printing on a PostScript printer.</li>
+<li>a2ps —— 为 PostScript 打印机格式化文件</li>
+<li>lpstat——Show printer status information.</li>
+<li>lpstat —— 显示打印机状态信息</li>
+<li>lpq——Show printer queue status.</li>
+<li>lpq —— 显示打印机队列状态</li>
+<li>lprm——Cancel print jobs.</li>
+<li>lprm —— 取消打印任务</li>
+<li>cancel——Cancel print jobs (System V).</li>
+<li>cancel —— 取消打印任务（System V）</li>
+</ul>
+<h3 id="打印简史"><a href="#打印简史" class="headerlink" title="打印简史"></a>打印简史</h3><p>To fully understand the printing features found in Unix-like operating systems, we must first learn some history. Printing on Unix-like systems goes way back to the beginning of the operating system itself. In those days, printers and how they were used were much different from how they are today.</p>
+<p>为了较好的理解类 Unix 操作系统中的打印功能，我们必须先了解一些历史。类 Unix 系统中的打印可追溯到操作系统本身的起源，那时候打印机和它的用法与今天截然不同。</p>
+<h4 id="早期的打印"><a href="#早期的打印" class="headerlink" title="早期的打印"></a>早期的打印</h4><p>Like the computers themselves, printers in the pre-PC era tended to be large, expensive, and centralized. The typical computer user of 1980 worked at a terminal connected to a computer some distance away. The printer was located near the computer and was under the watchful eyes of the computer’s operators.</p>
+<p>和计算机一样，前 PC 时代的打印机都很大、很贵，并且很集中。1980年的计算机用户都是在离电脑很远的地方用一个连接电脑的终端来工作的，而打印机就放在电脑旁并受到计算机管理员的全方位监视。</p>
+<p>When printers were expensive and centralized, as they often were in the early days of Unix, it was common practice for many users to share a printer. To identify print jobs belonging to a particular user, a banner page displaying the name of the user was often printed at the beginning of each print job. The computer support staff would then load up a cart containing the day’s print jobs and deliver them to the individual users.</p>
+<p>由于当时打印机既昂贵又集中，而且都工作在早期的 Unix 环境下，人们从实际考虑通常都会多人共享一台打印机。为了区别不同用户的打印任务，每个打印任务的开头都会打印一张写着用户名字的标题页，然后计算机工作人员会用推车装好当天的打印任务并分发给每个用户。</p>
+<h4 id="基于字符的打印机"><a href="#基于字符的打印机" class="headerlink" title="基于字符的打印机"></a>基于字符的打印机</h4><p>The printer technology of the ’80s was very different in two respects. First, printers of that period were almost always impact printers. Impact printers use a mechanical mechanism that strikes a ribbon against the paper to form character impressions on the page. Two of the popular technologies of that time were daisy-wheel printing and dot-matrix printing.</p>
+<p>80年代的打印机技术有两方面的不同。首先，那时的打印机基本上都是打击式打印机。打击式打印机使用撞针打击色带的机械结构在纸上形成字符。这种流行的技术造就了当时的菊轮式打印和点阵式打印。</p>
+<p>The second, and more important, characteristic of early printers was that they used a fixed set of characters that were intrinsic to the device itself. For example, a daisy-wheel printer could print only the characters actually molded into the petals of the daisy wheel. This made the printers much like high-speed typewriters. As with most typewriters, they printed using monospaced (fixed-width) fonts. This means that each character has the same width. Printing was done at fixed positions on the page, and the printable area of a page contained a fixed number of characters. Most printers printed 10 characters per inch (CPI) horizontally and 6 lines per inch (LPI) vertically. Using this scheme, a US-letter sheet of paper is 85 characters wide and 66 lines high. Taking into account a small margin on each side, 80 characters was considered the maximum width of a print line. This explains why terminal displays (and our terminal emulators) are normally 80 characters wide. It provides a WYSIWYG (What You See Is What You Get) view of printed output, using a monospaced font.</p>
+<p>其次，更重要的是，早期打印机的特点是它使用设备内部固定的一组字符集。比如，一台菊轮式打印机只能打印固定在其菊花轮花瓣上的字符，就这点而言打印机更像是高速打字机。大部分打字机都使用等宽字体，意思是说每个字符的宽度相等，页面上只有固定的区域可供打印，而这些区域只能容纳固定的字符数。大部分打印机采用横向10字符每英寸（CPI）和纵向6行每英寸（LPI）的规格打印，这样一张美式信片纸就有横向85字符宽纵向66行高，加上两侧的页边距，一行的最大宽度可达80字符。据此，使用等宽字体就能提供所见即所得（WYSIWYG，What You See Is What You Get）的打印预览。</p>
+<p>Data is sent to a typewriter-like printer in a simple stream of bytes containing the characters to be printed. For example, to print an a, the ASCII character code 97 is sent. In addition, the low-numbered ASCII control codes provided a means of moving the printer’s carriage and paper, using codes 286 Chapter 22 for carriage return, line feed, form feed, and so on. Using the control codes, it’s possible to achieve some limited font effects, such as boldface, by having the printer print a character, backspace, and print the character again to get a darker print impression on the page. We can actually witness this if we use nroff to render a man page and examine the output using cat -A:</p>
+<p>接着，一台类打字机的打印机会收到以简单字节流的形式传送来的数据，其中就包含要打印的字符。例如要打印一个字母a，计算机就会发送 ASCII 码97，如果要移动打印机的滑动架和纸张，就需要使用回车、换行、换页等的小编号 ASCII 控制码。使用控制码，还能实现一些之前受限制的字体效果，比如粗体，就是让打印机先打印一个字符，然后退格再打印一遍来得到颜色较深的效果的。用 nroff 来产生一个手册页然后用 cat -A 检查输出，我们就能亲眼看看这种效果了：</p>
+<pre><code>[me@linuxbox ~]$ zcat /usr/share/man/man1/ls.1.gz | nroff -man | cat -A | head
+LS(1) User Commands LS(1)
+$
+$
+$
+N^HNA^HAM^HME^HE$
+ls - list directory contents$
+$
+S^HSY^HYN^HNO^HOP^HPS^HSI^HIS^HS$
+l^Hls^Hs [_^HO_^HP_^HT_^HI_^HO_^HN]... [_^HF_^HI_^HL_^HE]...$</code></pre><p>^H (CTRL-H) characters are the backspaces used to create the boldface effect. Likewise, we can also see a backspace/underscore sequence used to produce underlining.</p>
+<p>^H（ctrl-H）字符是用于打印粗体效果的退格符。同样，我们还可以看到用于打印下划线效果的[退格/下划线]序列。</p>
+<h4 id="图形化打印机"><a href="#图形化打印机" class="headerlink" title="图形化打印机"></a>图形化打印机</h4><p>The development of GUIs led to major changes in printer technology. As computers moved to more picture-based displays, printing moved from character-based to graphical techniques. This was facilitated by the advent of the low-cost laser printer, which, instead of printing fixed characters, could print tiny dots anywhere in the printable area of the page. This made printing proportional fonts (like those used by typesetters), and even photographs and high-quality diagrams, possible.</p>
+<p>图形用户界面（GUI）的发展催生了打印机技术中主要的变革。随着计算机的展现步入更多以图形为基础的方式，打印技术也从基于字符走向图形化技术，这一切都是源于激光打印机的到来，它不仅廉价，还可以在打印区域的任意位置打印微小的墨点，而不是使用固定的字符集。这让打印机能够打印成比例的字体（像用排字机那样），甚至是图片和高质量图表。</p>
+<p>However, moving from a character-based scheme to a graphical scheme presented a formidable technical challenge. Here’s why: The number of bytes needed to fill a page using a character-based printer can be calculated this way (assuming 60 lines per page, each containing 80 characters): 60 x 80 = 4,800 bytes.</p>
+<p>然而，从基于字符的方式到转移到图形化的方式提出了一个严峻的技术挑战。原因如下：使用基于字符的打印机时，填满一张纸所用的字节数可以这样计算出来（假设一张纸有60行，每行80个字符)：60 × 80 = 4800字节。</p>
+<p>In comparison, a 300-dot-per-inch (DPI) laser printer (assuming an 8-by-10-inch print area per page) requires (8 x 300) x (10 x 300) / 8 = 900,000 bytes.</p>
+<p>相比之下，用一台300点每英寸（DPI）分辨率的激光打印机（假设一张纸有8乘10英寸的打印区域）打印则需要 (8 × 300) × (10 × 300) / 8 = 900,000字节。</p>
+<p>Many of the slow PC networks simply could not handle the nearly 1 megabyte of data required to print a full page on a laser printer, so it was clear that a clever invention was needed.</p>
+<p>当时许多慢速的个人电脑网络无法接受激光打印机打印一页需要传输将近1兆的数据这一点，因此，很有必要发明一种更聪明的方法。</p>
+<p>That invention turned out to be the page-description language. A page-description language (PDL) is a programming language that describes the contents of a page. Basically it says, “Go to this position, draw the character a in 10-point Helvetica, go to this position….” until everything on the page is described. The first major PDL was PostScript from Adobe Systems, which is still in wide use today. The PostScript language is a complete programming language tailored for typography and other kinds of graphics and imaging. It includes built-in support for 35 standard, high-quality fonts, plus the ability Printing 287 to accept additional font definitions at runtime. At first, support for Post- Script was built into the printers themselves. This solved the data transmission problem. While the typical PostScript program was verbose in comparison to the simple byte stream of character-based printers, it was much smaller than the number of bytes required to represent the entire printed page.</p>
+<p>这种发明便是页面描述语言（PDL）。PDL 是一种描述页面内容的编程语言。简单的说就是，“到这个地方，印一个10点大小的黑体字符 a ，到这个地方。。。” 这样直到页面上的所有内容都描述完了。第一种主要的 PDL 是 Adobe 系统开发的 PostScript，直到今天，这种语言仍被广泛使用。PostScript 是专为印刷各类图形和图像设计的完整的编程语言，它内建支持35种标准的高质量字体，在工作时还能够接受其他的字体定义。最早，对 PostScript 的支持是打印机本身内建的。这样传输数据的问题就解决了。相比基于字符打印机的简单字节流，典型的 PostScript 程序更为详细，而且比表示整个页面的字节数要小很多。</p>
+<p>A PostScript printer accepted a PostScript program as input. The printer contained its own processor and memory (oftentimes making the printer a more powerful computer than the computer to which it was attached) and executed a special program called a PostScript interpreter, which read the incoming PostScript program and rendered the results into the printer’s internal memory, thus forming the pattern of bits (dots) that would be transferred to the paper. The generic name for this process of rendering something into a large bit pattern (called a bitmap) is raster image processor, or RIP.</p>
+<p>一台 PostScript 打印机接受 PostScript 程序作为输入。打印机有自己的处理器和内存（通常这让打印机比连接它的计算机更为强大），能执行一种叫做 PostScript 解析器的特殊程序用于读取输入的 PostScript 程序并生成结果导入打印机的内存，这样就形成了要转移到纸上的位（点）图。这种将页面渲染成大型位图（bitmap）的过程有个通用名称作光栅图像处理器（raster image processor），又叫 RIP。</p>
+<p>As the years went by, both computers and networks became much faster. This allowed the RIP to move from the printer to the host computer, which, in turn, permitted high-quality printers to be much less expensive.</p>
+<p>多年之后，电脑和网络都变得更快了。这使得 RIP 技术从打印机转移到了主机上，还让高品质打印机变得更便宜了。</p>
+<p>Many printers today still accept character-based streams, but many low-cost printers do not. They rely on the host computer’s RIP to provide a stream of bits to print as dots. There are still some PostScript printers, too.</p>
+<p>现在的许多打印机仍能接受基于字符的字节流，但很多廉价的打印机却不支持，因为它们依赖于主机的 RIP 提供的比特流来作为点阵打印。当然也有不少仍旧是 PostScript 打印机。</p>
+<h3 id="在-Linux-下打印"><a href="#在-Linux-下打印" class="headerlink" title="在 Linux 下打印"></a>在 Linux 下打印</h3><p>Modern Linux systems employ two software suites to perform and manage printing. The first, CUPS (Common Unix Printing System), provides print drivers and print-job management; the second, Ghostscript, a PostScript interpreter, acts as a RIP.</p>
+<p>当前 Linux 系统采用两套软件配合显示和管理打印。第一，CUPS（Common Unix Printing System，一般 Unix 打印系统），用于提供打印驱动和打印任务管理；第二，Ghostscript，一种 PostScript 解析器，作为 RIP 使用。</p>
+<p>CUPS manages printers by creating and maintaining print queues. As we discussed in our brief history lesson, Unix printing was originally designed to manage a centralized printer shared by multiple users. Since printers are slow by nature, compared to the computers that are feeding them, printing systems need a way to schedule multiple print jobs and keep things organized. CUPS also has the ability to recognize different types of data (within reason) and can convert files to a printable form.</p>
+<p>CUPS 通过创建并维护打印队列来管理打印机。如前所述，Unix 下的打印原本是设计成多用户共享中央打印机的管理模式的。由于打印机本身比连接到它的电脑要慢，打印系统就需要对打印任务进行调度使其保持顺序。CUPS 还能识别出不同类型的数据（在合理范围内）并转换文件为可打印的格式。</p>
+<h3 id="为打印准备文件"><a href="#为打印准备文件" class="headerlink" title="为打印准备文件"></a>为打印准备文件</h3><p>As command line users, we are mostly interested in printing text, though it is certainly possible to print other data formats as well.</p>
+<p>作为命令行用户，尽管打印各种格式的文本都能实现，不过打印最多的，还是文本。</p>
+<h4 id="pr-转换需要打印的文本文件"><a href="#pr-转换需要打印的文本文件" class="headerlink" title="pr - 转换需要打印的文本文件"></a>pr - 转换需要打印的文本文件</h4><p>We looked at pr a little in the previous chapter. Now we will examine some of its many options used in conjunction with printing. In our history of printing, we saw that character-based printers use monospaced fonts, resulting in 288 Chapter 22 fixed numbers of characters per line and lines per page. pr is used to adjust text to fit on a specific page size, with optional page headers and margins. Table 23-1 summarizes the most commonly used options.</p>
+<p>前面的章节我们也有提到过 pr 命令，现在我们来探讨一下这条命令结合打印使用的一些选项。我们知道，在打印的历史上，基于字符的打印机曾经用过等宽字体，致使每页只能打印固定的行数和字符数，而 pr 命令则能够根据不同的页眉和页边距排列文本使其适应指定的纸张。表23-1总结了最常用的选项。</p>
+<table>
+<thead>
+<tr>
+<th align="left">Option</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">+first[:last]</td>
+<td align="left">Output a range of pages starting with first and, optionally, ending with last.</td>
+</tr>
+<tr>
+<td align="left">-columns</td>
+<td align="left">Organize the content of the page into the number of columns specified by columns.</td>
+</tr>
+<tr>
+<td align="left">-a</td>
+<td align="left">By default, multicolumn output is listed vertically. By adding the -a (across) option, content is listed horizontally.</td>
+</tr>
+<tr>
+<td align="left">-d</td>
+<td align="left">Double-space output.</td>
+</tr>
+<tr>
+<td align="left">-D format</td>
+<td align="left">Format the date displayed in page headers using format. See the man page for the date command for a description of the format string.</td>
+</tr>
+<tr>
+<td align="left">-f</td>
+<td align="left">Use form feeds rather than carriage returns to separate pages.</td>
+</tr>
+<tr>
+<td align="left">-h header</td>
+<td align="left">In the center portion of the page header, use header rather the name of the file being processed.</td>
+</tr>
+<tr>
+<td align="left">-l length</td>
+<td align="left">Set page length to length. Default is 66 lines (US letter at 6 lines per inch).</td>
+</tr>
+<tr>
+<td align="left">-n</td>
+<td align="left">Number lines.</td>
+</tr>
+<tr>
+<td align="left">-o offset</td>
+<td align="left">Create a left margin offset characters wide.</td>
+</tr>
+<tr>
+<td align="left">-w width</td>
+<td align="left">Set page width to width. Default is 72 characters.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">选项</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">+first[:last]</td>
+<td align="left">输出从 first 到 last（默认为最后）范围内的页面。</td>
+</tr>
+<tr>
+<td align="left">-columns</td>
+<td align="left">根据 columns 指定的列数排版页面内容。</td>
+</tr>
+<tr>
+<td align="left">-a</td>
+<td align="left">默认多列输出为垂直，用 -a (across)可使其水平输出。</td>
+</tr>
+<tr>
+<td align="left">-d</td>
+<td align="left">双空格输出。</td>
+</tr>
+<tr>
+<td align="left">-D format</td>
+<td align="left">用 format 指定的格式修改页眉中显示的日期，日期命令中 format 字符串的描述详见参考手册。</td>
+</tr>
+<tr>
+<td align="left">-f</td>
+<td align="left">改用换页替换默认的回车来分割页面。</td>
+</tr>
+<tr>
+<td align="left">-h header</td>
+<td align="left">在页眉中部用 header 参数替换打印文件的名字。</td>
+</tr>
+<tr>
+<td align="left">-l length</td>
+<td align="left">设置页长为 length，默认为66行（每英寸6行的美国信纸）。</td>
+</tr>
+<tr>
+<td align="left">-n</td>
+<td align="left">输出行号。</td>
+</tr>
+<tr>
+<td align="left">-o offset</td>
+<td align="left">创建一个宽 offset 字符的左页边。</td>
+</tr>
+<tr>
+<td align="left">-w width</td>
+<td align="left">设置页宽为 width，默认为72字符。</td>
+</tr>
+</tbody></table>
+<p>pr is often used in pipelines as a filter. In this example, we will produce a directory listing of /usr/bin and format it into paginated, three-column output using pr:</p>
+<p>我们通常用管道配合 pr 命令来做筛选。下面的例子中我们会列出目录 /usr/bin 并用 pr 将其格式化为3列输出的标题页：</p>
+<pre><code>[me@linuxbox ~]$ ls /usr/bin | pr -3 -w 65 | head
+2012-02-18 14:00                    Page 1
+[                   apturl          bsd-write
+411toppm            ar              bsh
+a2p                 arecord         btcflash
+a2ps                arecordmidi     bug-buddy
+a2ps-lpr-wrapper    ark             buildhash</code></pre><h3 id="将打印任务送至打印机"><a href="#将打印任务送至打印机" class="headerlink" title="将打印任务送至打印机"></a>将打印任务送至打印机</h3><p>The CUPS printing suite supports two methods of printing historically used on Unix-like systems. One method, called Berkeley or LPD (used in the Berkeley Software Distribution version of Unix), uses the lpr program; the other method, called SysV (from the System V version of Unix), uses the lp program. Both programs do roughly the same thing. Choosing one over the other is a matter of personal taste.</p>
+<p>CUPS 打印体系支持两种曾用于类 Unix 系统的打印方式。一种，叫 Berkeley 或 LPD（用于 Unix 的 Berkeley 软件发行版），使用 lpr 程序；另一种，叫 SysV（源自 System V 版本的 Unix），使用 lp 程序。这两个程序的功能大致相同。具体使用哪个完全根据个人喜好。</p>
+<h4 id="lpr-打印文件（Berkeley-风格）"><a href="#lpr-打印文件（Berkeley-风格）" class="headerlink" title="lpr - 打印文件（Berkeley 风格）"></a>lpr - 打印文件（Berkeley 风格）</h4><p>The lpr program can be used to send files to the printer. It may also be used in pipelines, as it accepts standard input. For example, to print the results of our multicolumn directory listing above, we could do this:</p>
+<p>lpr 程序可以用来把文件传送给打印机。由于它能接收标准输入，所以能用管道来协同工作。例如，要打印刚才多列目录列表的结果，我们只需这样：</p>
+<pre><code>[me@linuxbox ~]$ ls /usr/bin | pr -3 | lpr</code></pre><p>The report would be sent to the system’s default printer. To send the file to a different printer, the -P option can used like this: lpr -P printer_name where printer_name is the name of the desired printer. To see a list of printers known to the system:</p>
+<p>报告会送到系统默认的打印机，如果要送到别的打印机，可以使用 -P 参数：</p>
+<pre><code>lpr -P printer_name</code></pre><p>printer_name 表示这台打印机的名称。若要查看系统已知的打印机列表：</p>
+<pre><code>[me@linuxbox ~]$ lpstat -a</code></pre><p>Note: Many Linux distributions allow you to define a “printer” that outputs files in PDF, rather than printing on the physical printer. This is very handy for experimenting with printing commands. Check your printer configuration program to see if it supports this configuration. On some distributions, you may need to install additional packages (such as cups-pdf) to enable this capability.</p>
+<p>注意：许多 Linux 发行版允许你定义一个输出 PDF 文件但不执行实体打印的“打印机”，这可以用来很方便的检验你的打印命令。看看你的打印机配置程序是否支持这项配置。在某些发行版中，你可能要自己安装额外的软件包（如 cups-pdf）来使用这项功能。</p>
+<p>Table 23-2 shows some of the common options for lpr.</p>
+<p>表23-2显示了 lpr 的一些常用选项</p>
+<table>
+<thead>
+<tr>
+<th align="left">Option</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-# number</td>
+<td align="left">Set number of copies to number.</td>
+</tr>
+<tr>
+<td align="left">-p</td>
+<td align="left">Print each page with a shaded header with the date, time, job name, and page number. This so-called “pretty print” option can be used when printing text files.</td>
+</tr>
+<tr>
+<td align="left">-P printer</td>
+<td align="left">Specify the name of the printer used for output. If no printer is specified, the system’s default printer is used.</td>
+</tr>
+<tr>
+<td align="left">-r</td>
+<td align="left">Delete files after printing. This would be useful for programs that produce temporary printer-output files.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">选项</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-# number</td>
+<td align="left">设定打印份数为 number。</td>
+</tr>
+<tr>
+<td align="left">-p</td>
+<td align="left">使每页页眉标题中带有日期、时间、工作名称和页码。这种所谓的“美化打印”选项可用于打印文本文件。</td>
+</tr>
+<tr>
+<td align="left">-P printer</td>
+<td align="left">指定输出打印机的名称。未指定则使用系统默认打印机。</td>
+</tr>
+<tr>
+<td align="left">-r</td>
+<td align="left">打印后删除文件。对程序产生的临时打印文件较为有用。</td>
+</tr>
+</tbody></table>
+<h4 id="lp-打印文件（System-V-风格）"><a href="#lp-打印文件（System-V-风格）" class="headerlink" title="lp - 打印文件（System V 风格）"></a>lp - 打印文件（System V 风格）</h4><p>Like lpr, lp accepts either files or standard input for printing. It differs from lpr in that it supports a different (and slightly more sophisticated) option set. Table 23-3 lists the common options.</p>
+<p>和 lpr 一样，lp 可以接收文件或标准输入为打印内容。与 lpr 不同的是 lp 支持不同的选项（略为复杂），表23-3列出了其常用选项。</p>
+<table>
+<thead>
+<tr>
+<th align="left">Option</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-d printer</td>
+<td align="left">Set the destination (printer) to printer. If no d option is specified, the system default printer is used.</td>
+</tr>
+<tr>
+<td align="left">-n number</td>
+<td align="left">Set the number of copies to number.</td>
+</tr>
+<tr>
+<td align="left">-o landscape</td>
+<td align="left">Set output to landscape orientation.</td>
+</tr>
+<tr>
+<td align="left">-o fitplot</td>
+<td align="left">Scale the file to fit the page. This is useful when printing images, such as JPEG files.</td>
+</tr>
+<tr>
+<td align="left">-o scaling=number</td>
+<td align="left">Scale file to number. The value of 100 fills the page. Values less than 100 are reduced, while values greater than 100 cause the file to be printed across multiple pages.</td>
+</tr>
+<tr>
+<td align="left">-o cpi=number</td>
+<td align="left">Set the output characters per inch to number. Default is 10.</td>
+</tr>
+<tr>
+<td align="left">-o lpi=number</td>
+<td align="left">Set the output lines per inch to number. Default is 6.</td>
+</tr>
+<tr>
+<td align="left">-o page-bottom=points -o page-left=points -o page-right=points -o page-top=points</td>
+<td align="left">Set the page margins. Values are expressed in points, a unit of typographic measurement. There are 72 points to an inch.</td>
+</tr>
+<tr>
+<td align="left">-P pages</td>
+<td align="left">Specify the list of pages. pages may be expressed as a comma-separated list and/or a range—for example 1,3,5,7-10.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">选项</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-d printer</td>
+<td align="left">设定目标（打印机）为 printer。若d 选项未指定，则使用系统默认打印机。</td>
+</tr>
+<tr>
+<td align="left">-n number</td>
+<td align="left">设定的打印份数为 number。</td>
+</tr>
+<tr>
+<td align="left">-o landscape</td>
+<td align="left">设置输出为横向。</td>
+</tr>
+<tr>
+<td align="left">-o fitplot</td>
+<td align="left">缩放文件以适应页面。打印图像时较为有用，如 JPEG 文件。</td>
+</tr>
+<tr>
+<td align="left">-o scaling=number</td>
+<td align="left">缩放文件至 number。100表示填满页面，小于100表示缩小，大于100则会打印在多页上。</td>
+</tr>
+<tr>
+<td align="left">-o cpi=number</td>
+<td align="left">设定输出为 number 字符每英寸。默认为10。</td>
+</tr>
+<tr>
+<td align="left">-o lpi=number</td>
+<td align="left">设定输出为 number 行每英寸，默认为6。</td>
+</tr>
+<tr>
+<td align="left">-o page-bottom=points -o page-left=points -o page-right=points -o page-top=points</td>
+<td align="left">设置页边距，单位为点，一种印刷上的单位。一英寸 =72点。</td>
+</tr>
+<tr>
+<td align="left">-P pages</td>
+<td align="left">指定打印的页面。pages 可以是逗号分隔的列表或范围——例如 1,3,5,7-10。</td>
+</tr>
+</tbody></table>
+<p>We’ll produce our directory listing again, this time printing 12 CPI and 8 LPI with a left margin of one-half inch. Note that we have to adjust the pr options to account for the new page size:</p>
+<p>再次打印我们的目录列表，这次我们设置12 CPI、8 LPI 和一个半英寸的左边距。注意这里我必须调整 pr 选项来适应新的页面大小：</p>
+<pre><code>[me@linuxbox ~]$ ls /usr/bin | pr -4 -w 90 -l 88 | lp -o page-left=36 -o cpi=12 -o lpi=8</code></pre><p>This pipeline produces a four-column listing using smaller type than the default. The increased number of characters per inch allows us to fit more columns on the page.</p>
+<p>这条命令用小于默认的格式产生了一个四列的列表。增加 CPI 可以让我们在页面上打印更多列。</p>
+<h4 id="另一种选择：a2ps"><a href="#另一种选择：a2ps" class="headerlink" title="另一种选择：a2ps"></a>另一种选择：a2ps</h4><p>The a2ps program is interesting. As we can surmise from its name, it’s a format conversion program, but it’s also much more. Its name originally meant ASCII to PostScript, and it was used to prepare text files for printing on PostScript printers. Over the years, however, the capabilities of the program have grown, and now its name means Anything to PostScript. While its name suggests a format-conversion program, it is actually a printing program. It sends its default output, rather than standard output, to the system’s default printer. The program’s default behavior is that of a “pretty printer,” meaning that it improves the appearance of output. We can use the program to create a PostScript file on our desktop:</p>
+<p>a2ps 程序很有趣。单从名字上看，这是个格式转换程序，但它的功能不止于此。程序名字的本意为 ASCII to PostScript，它是用来为 PostScript 打印机准备要打印的文本文件的。多年后，程序的功能得到了提升，名字的含义也变成了 Anything to PostScript。尽管名为格式转换程序，但它实际的功能却是打印。它的默认输出不是标准输出，而是系统的默认打印机。程序的默认行为被称为“漂亮的打印机”，这意味着它可以改善输出的外观。我们能用程序在桌面上创建一个 PostScript 文件：</p>
+<pre><code>[me@linuxbox ~]$ ls /usr/bin | pr -3 -t | a2ps -o ~/Desktop/ls.ps -L 66
+[stdin (plain): 11 pages on 6 sheets]
+[Total: 11 pages on 6 sheets] saved into the file `/home/me/Desktop/ls.ps&#39;</code></pre><p>Here we filter the stream with pr, using the -t option (omit headers and footers) and then, with a2ps, specifying an output file (-o option) and 66 lines per page (-L option) to match the output pagination of pr. If we view the resulting file with a suitable file viewer, we will see the output shown in Figure 23-1.</p>
+<p>这里我们用带 -t 参数（忽略页眉和页脚）的 pr 命令过滤数据流，然后用 a2ps 指定一个输出文件（-o 参数），并设定每页66行（-L 参数）来匹配 pr 的输出分页。用合适的文件查看器查看我们的输出文件，我们就会看到图23-1中显示的结果。</p>
+<p><img src="https://billie66.github.io/TLCL/book/images/23-1.png" alt="img"><br>图 23-1: 浏览 a2ps 的输出结果</p>
+<p>As we can see, the default output layout is “two up” format. This causes the contents of two pages to be printed on each sheet of paper. a2ps applies nice page headers and footers, too.</p>
+<p>可以看到，默认的输出布局是一面两页的，这将导致两页的内容被打印到一张纸上。a2ps 还能利用页眉和页脚。</p>
+<p>a2ps has a lot of options. Table 23-4 summarizes them.</p>
+<p>a2ps 有很多选项，总结在表23-4中。</p>
+<table>
+<thead>
+<tr>
+<th align="left">Option</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">–center-title text</td>
+<td align="left">Set center page title to text.</td>
+</tr>
+<tr>
+<td align="left">–columns number</td>
+<td align="left">Arrange pages into number columns. Default is 2.</td>
+</tr>
+<tr>
+<td align="left">–footer text</td>
+<td align="left">Set page footer to text.</td>
+</tr>
+<tr>
+<td align="left">–guess</td>
+<td align="left">Report the types of files given as arguments. Since a2ps tries to convert and format all types of data, this option can be useful for predicting what a2ps will do when given a particular file.</td>
+</tr>
+<tr>
+<td align="left">–left-footer text</td>
+<td align="left">Set left-page footer to text.</td>
+</tr>
+<tr>
+<td align="left">–left-title text</td>
+<td align="left">Set left-page title to text.</td>
+</tr>
+<tr>
+<td align="left">–line-numbers=interval</td>
+<td align="left">Number lines of output every interval lines.</td>
+</tr>
+<tr>
+<td align="left">–list=defauls</td>
+<td align="left">Display default settings.</td>
+</tr>
+<tr>
+<td align="left">–list=topic</td>
+<td align="left">Display settings for topic, where topic is one of the following: delegations (external programs that will be used to convert data), encodings, features, variables, media (paper sizes and the like), ppd (PostScript printer descriptions), printers, prologues (portions of code that are prefixed to normal output), stylesheets, or user options.</td>
+</tr>
+<tr>
+<td align="left">–pages range</td>
+<td align="left">Print pages in range.</td>
+</tr>
+<tr>
+<td align="left">–right-footer text</td>
+<td align="left">Set right-page footer to text.</td>
+</tr>
+<tr>
+<td align="left">–right-title text</td>
+<td align="left">Set right-page title to text.</td>
+</tr>
+<tr>
+<td align="left">–rows number</td>
+<td align="left">Arrange pages into number rows. Default is 1.</td>
+</tr>
+<tr>
+<td align="left">-B</td>
+<td align="left">No page headers.</td>
+</tr>
+<tr>
+<td align="left">-b text</td>
+<td align="left">Set page header to text.</td>
+</tr>
+<tr>
+<td align="left">-f size</td>
+<td align="left">Use size point font.</td>
+</tr>
+<tr>
+<td align="left">-l number</td>
+<td align="left">Set characters per line to number. This and the -L option (below) can be used to make files paginated with other programs, such as pr, fit correctly on the page.</td>
+</tr>
+<tr>
+<td align="left">-L number</td>
+<td align="left">Set lines per page to number.</td>
+</tr>
+<tr>
+<td align="left">-M name</td>
+<td align="left">Use media name—for example, A4.</td>
+</tr>
+<tr>
+<td align="left">-n number</td>
+<td align="left">Output number copies of each page.</td>
+</tr>
+<tr>
+<td align="left">-o file</td>
+<td align="left">Send output to file. If file is specified as -, use standard output.</td>
+</tr>
+<tr>
+<td align="left">-P printer</td>
+<td align="left">Use printer. If a printer is not specified, the system default printer is used.</td>
+</tr>
+<tr>
+<td align="left">-R</td>
+<td align="left">Portrait orientation</td>
+</tr>
+<tr>
+<td align="left">-r</td>
+<td align="left">Landscape orientation</td>
+</tr>
+<tr>
+<td align="left">-T number</td>
+<td align="left">Set tab stops to every number characters.</td>
+</tr>
+<tr>
+<td align="left">-u text</td>
+<td align="left">Underlay (watermark) pages with text.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">选项</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">–center-title text</td>
+<td align="left">设置中心页标题为 text。</td>
+</tr>
+<tr>
+<td align="left">–columns number</td>
+<td align="left">将所有页面排列成 number 列。默认为2。</td>
+</tr>
+<tr>
+<td align="left">–footer text</td>
+<td align="left">设置页脚为 text。</td>
+</tr>
+<tr>
+<td align="left">–guess</td>
+<td align="left">报告参数中文件的类型。由于 a2ps 会转换并格式化所有类型的数据，所以当给定文件类型后，这个选项可以很好的用来判断 a2ps 应该做什么。</td>
+</tr>
+<tr>
+<td align="left">–left-footer text</td>
+<td align="left">设置左页脚为 text。</td>
+</tr>
+<tr>
+<td align="left">–left-title text</td>
+<td align="left">设置页面左标题为 text。</td>
+</tr>
+<tr>
+<td align="left">–line-numbers=interval</td>
+<td align="left">每隔 interval 行输出行号。</td>
+</tr>
+<tr>
+<td align="left">–list=defauls</td>
+<td align="left">显示默认设置。</td>
+</tr>
+<tr>
+<td align="left">–list=topic</td>
+<td align="left">显示 topic 设置，topic 表示下列之一：代理程序（用来转换数据的外部程序），编码，特征，变量，媒介（页面大小等），ppd（PostScript 打印机描述信息），打印机，起始程序（为常规输出添加前缀的代码部分），样式表，或用户选项。</td>
+</tr>
+<tr>
+<td align="left">–pages range</td>
+<td align="left">打印 range 范围内的页面。</td>
+</tr>
+<tr>
+<td align="left">–right-footer text</td>
+<td align="left">设置右页脚为 text。</td>
+</tr>
+<tr>
+<td align="left">–right-title text</td>
+<td align="left">设置页面右标题为 text。</td>
+</tr>
+<tr>
+<td align="left">–rows number</td>
+<td align="left">将所有页面排列成 number 排。默认为1。</td>
+</tr>
+<tr>
+<td align="left">-B</td>
+<td align="left">没有页眉。</td>
+</tr>
+<tr>
+<td align="left">-b text</td>
+<td align="left">设置页眉为 text。</td>
+</tr>
+<tr>
+<td align="left">-f size</td>
+<td align="left">使用字体大小为 size 号。</td>
+</tr>
+<tr>
+<td align="left">-l number</td>
+<td align="left">设置每行字符数为 number。此项和 -L 选项（见下方）可以给文件用其他程序来更准确的分页，如 pr。</td>
+</tr>
+<tr>
+<td align="left">-L number</td>
+<td align="left">设置每页行数为 number。</td>
+</tr>
+<tr>
+<td align="left">-M name</td>
+<td align="left">使用打印媒介的名称——例如，A4。</td>
+</tr>
+<tr>
+<td align="left">-n number</td>
+<td align="left">每页输出 number 份。</td>
+</tr>
+<tr>
+<td align="left">-o file</td>
+<td align="left">输出到文件 file。如果指定为 - ，则输出到标准输出。</td>
+</tr>
+<tr>
+<td align="left">-P printer</td>
+<td align="left">使用打印机 printer。如果未指定，则使用系统默认打印机。</td>
+</tr>
+<tr>
+<td align="left">-R</td>
+<td align="left">纵向打印。</td>
+</tr>
+<tr>
+<td align="left">-r</td>
+<td align="left">横向打印。</td>
+</tr>
+<tr>
+<td align="left">-T number</td>
+<td align="left">设置制表位为每 number 字符。</td>
+</tr>
+<tr>
+<td align="left">-u text</td>
+<td align="left">用 text 作为页面底图（水印）。</td>
+</tr>
+</tbody></table>
+<p>This is just a summary. a2ps has several more options.</p>
+<p>以上只是对 a2ps 的总结，更多的选项尚未列出。</p>
+<p>Note: a2ps is still in active development. During my testing, I noticed different behavior on various distributions. On CentOS 4, output always went to standard output by default. On CentOS 4 and Fedora 10, output defaulted to A4 media, despite the program being configured to use letter-size media by default. I could overcome these issues by explicitly specifying the desired option. On Ubuntu 8.04, a2ps performed as documented. Also note that there is another output formatter that is useful for converting text into PostScript. Called enscript, it can perform many of the same kinds of formatting and printing tricks, but unlike a2ps, it accepts only text input.</p>
+<p>注意：a2ps 目前仍在不断的开发中。就我的测试而言，不同版本之间都多少有所变化。CentOS 4 中输出总是默认为标准输出。在 CentOS 4 和 Fedora 10 中，尽管程序配置信纸为默认媒介，输出还是默认为 A4纸。我可以明确的指定需要的选项来解决这些问题。Ubuntu 8.04 中，a2ps 表现的正如参考文档中所述。 另外，我们也要注意到另一个转换文本为 PostScript 的输出格式化工具，名叫 enscript。它具有许多相同的格式化和打印功能，但和 a2ps 唯一的不同在于，它只能处理纯文本的输入。</p>
+<h3 id="监视和控制打印任务"><a href="#监视和控制打印任务" class="headerlink" title="监视和控制打印任务"></a>监视和控制打印任务</h3><p>As Unix printing systems are designed to handle multiple print jobs from multiple users, CUPS is designed to do the same. Each printer is given a print queue, where jobs are parked until they can be spooled to the printer. CUPS supplies several command-line programs that are used to manage printer status and print queues. Like the lpr and lp programs, these management programs are modeled after the corresponding programs from the Berkeley and System V printing systems.</p>
+<p>由于 Unix 打印系统的设计是能够处理多用户的多重打印任务，CUPS 也是如此设计的。每台打印机都有一个打印队列，其中的任务直到传送到打印机才停下并进行打印。CUPS 支持一些命令行程序来管理打印机状态和打印队列。想 lpr 和 lp 这样的管理程序都是以 Berkeley 和 System V 打印系统的相应程序为依据进行排列的。</p>
+<h4 id="lpstat-显示打印系统状态"><a href="#lpstat-显示打印系统状态" class="headerlink" title="lpstat - 显示打印系统状态"></a>lpstat - 显示打印系统状态</h4><p>The lpstat program is useful for determining the names and availability of printers on the system. For example, if we had a system with both a physical printer (named printer) and a PDF virtual printer (named PDF ), we could check their status like this:</p>
+<p>lpstat 程序可用于确定系统中打印机的名字和有效性。例如，我们系统中有一台实体打印机（名叫 printer）和一台 PDF 虚拟打印机（名叫 PDF），我们可以像这样查看打印机状态：</p>
+<pre><code>[me@linuxbox ~]$ lpstat -a
+PDF accepting requests since Mon 05 Dec 2011 03:05:59 PM EST
+printer accepting requests since Tue 21 Feb 2012 08:43:22 AM EST</code></pre><p>Further, we could determine a more detailed description of the print system configuration this way:</p>
+<p>接着，我们可以查看打印系统更具体的配置信息：</p>
+<pre><code>[me@linuxbox ~]$ lpstat -s
+system default destination: printer
+device for PDF: cups-pdf:/
+device for printer: ipp://print-server:631/printers/printer
+</code></pre><p>In this example, we see that printer is the system’s default printer and that it is a network printer using Internet Printing Protocol (ipp:// ) attached to a system named print-server.</p>
+<p>上例中，我们看到 printer 是系统默认的打印机，其本身是一台网络打印机，使用网络打印协议（ipp://）通过网络连接到名为 print-server 的系统。</p>
+<p>The commonly used options are described in Table 23-5.</p>
+<p>lpstat 的常用选项列于表23-5。</p>
+<table>
+<thead>
+<tr>
+<th align="left">Option</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-a [printer…]</td>
+<td align="left">Display the state of the printer queue for printer. Note that this is the status of the printer queue’s ability to accept jobs, not the status of the physical printers. If no printers are specified, all print queues are shown.</td>
+</tr>
+<tr>
+<td align="left">-d</td>
+<td align="left">Display the name of the system’s default printer.</td>
+</tr>
+<tr>
+<td align="left">-p [printer…]</td>
+<td align="left">Display the status of the specified printer. If no printers are specified, all printers are shown.</td>
+</tr>
+<tr>
+<td align="left">-r</td>
+<td align="left">Display the status of the print server.</td>
+</tr>
+<tr>
+<td align="left">-s</td>
+<td align="left">Display a status summary.</td>
+</tr>
+<tr>
+<td align="left">-t</td>
+<td align="left">Display a complete status report.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">选项</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-a [printer…]</td>
+<td align="left">显示 printer 打印机的队列。这里显示的状态是打印机队列承受任务的能力，而不是实体打印机的状态。若未指定打印机，则显示所有打印队列。</td>
+</tr>
+<tr>
+<td align="left">-d</td>
+<td align="left">显示系统默认打印机的名称。</td>
+</tr>
+<tr>
+<td align="left">-p [printer…]</td>
+<td align="left">显示 printer 指定的打印机的状态。若未指定打印机，则显示所有打印机状态。</td>
+</tr>
+<tr>
+<td align="left">-r</td>
+<td align="left">显示打印系统的状态。</td>
+</tr>
+<tr>
+<td align="left">-s</td>
+<td align="left">显示汇总状态。</td>
+</tr>
+<tr>
+<td align="left">-t</td>
+<td align="left">显示完整状态报告。</td>
+</tr>
+</tbody></table>
+<h4 id="lpq-显示打印机队列状态"><a href="#lpq-显示打印机队列状态" class="headerlink" title="lpq - 显示打印机队列状态"></a>lpq - 显示打印机队列状态</h4><p>To see the status of a printer queue, the lpq program is used. This allows us to view the status of the queue and the print jobs it contains. Here is an example of an empty queue for a system default printer named printer :</p>
+<p>使用 lpq 程序可以查看打印机队列的状态，从中我们可以看到队列的状态和所包含的打印任务。下面的例子显示了一台名叫 printer 的系统默认打印机包含一个空队列的情况：</p>
+<pre><code>[me@linuxbox ~]$ lpq
+printer is ready
+no entries
+</code></pre><p>If we do not specify a printer (using the -P option), the system’s default printer is shown. If we send a job to the printer and then look at the queue, we will see it listed:</p>
+<p>如果我们不指定打印机（用 -P 参数），就会显示系统默认打印机。如果给打印机添加一项任务再查看队列，我们就会看到下列结果：</p>
+<pre><code>[me@linuxbox ~]$ ls *.txt | pr -3 | lp
+request id is printer-603 (1 file(s))
+[me@linuxbox ~]$ lpq
+printer is ready and printing
+Rank      Owner   Job     File(s)           Total Size
+active    me      603     (stdin)           1024 bytes
+</code></pre><h4 id="lprm-和-cancel-取消打印任务"><a href="#lprm-和-cancel-取消打印任务" class="headerlink" title="lprm 和 cancel - 取消打印任务"></a>lprm 和 cancel - 取消打印任务</h4><p>CUPS supplies two programs used to terminate print jobs and remove them from the print queue. One is Berkeley style (lprm), and the other is System V (cancel). They differ slightly in the options they support but do basically the same thing. Using our print job above as an example, we could stop the job and remove it this way:</p>
+<p>CUPS 提供两个程序来从打印队列中终止并移除打印任务。一个是 Berkeley 风格的（lprm），另一个是 System V 的（cancel）。在支持的选项上两者有较小的区别但是功能却几乎相同。以上面的打印任务为例，我们可以像这样终止并移除任务：</p>
+<pre><code>[me@linuxbox ~]$ cancel 603
+[me@linuxbox ~]$ lpq
+printer is ready
+no entries
+</code></pre><p>Each command has options for removing all the jobs belonging to a particular user, particular printer, and multiple job numbers. Their respective man pages have all the details.</p>
+<p>每个命令都有选项可用于移除某用户、某打印机或多个任务号的所有任务，相应的参考手册中都有详细的介绍。</p>
+
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'brA0u8dhiFmWzBQJ5YDMevuw-gzGzoHsz',
+        appKey: 'InzuBbqaqOss16gJu1jiKE7F',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/07/15/第二十四章-编译程序/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="第二十四章 编译程序">
+                        
+                        <span class="card-title">第二十四章 编译程序</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            In this chapter, we will look at how to build programs by compiling source code. The availability of source code is the 
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/TLCL/" class="post-category" target="_blank">
+                                    TLCL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/07/15/第二十二章-格式化输出/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="第二十二章 格式化输出">
+                        
+                        <span class="card-title">第二十二章 格式化输出</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            In this chapter, we continue our look at text related tools, focusing on programs that are used to format text output, r
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/TLCL/" class="post-category" target="_blank">
+                                    TLCL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">456.8k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/chenshuoke" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:henu_chenshuoke@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2604689299" class="tooltipped" data-tooltip="QQ联系我: 2604689299" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

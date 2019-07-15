@@ -1,0 +1,1431 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="第三十一章 疑难排解, 孤狼的博客">
+    <meta name="description" content="As our scripts become more complex, it’s time to take a look at what happens when things go wrong and they don’t do what">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>第三十一章 疑难排解 | 孤狼的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+    <!-- 下面一句添加的 -->
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">孤狼的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">孤狼的博客</div>
+        <div class="logo-desc">
+            
+            从来没有真正的绝境，只有心灵的迷途
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/chenshuoke" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/chenshuoke" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        第三十一章 疑难排解
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/TLCL/" class="post-category" target="_blank">
+                                TLCL
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-07-15
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        7.9k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        36 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>As our scripts become more complex, it’s time to take a look at what happens when things go wrong and they don’t do what we want. In this chapter, we’ll look at some of the common kinds of errors that occur in scripts, and describe a few useful techniques that can be used to track down and eradicate problems.</p>
+<p>随着我们的脚本变得越来越复杂，当脚本运行错误，执行结果出人意料的时候, 我们就应该查看一下原因了。 在这一章中，我们将会看一些脚本中出现地常见错误类型，同时还会介绍几个可以跟踪和消除问题的有用技巧。</p>
+<h3 id="语法错误"><a href="#语法错误" class="headerlink" title="语法错误"></a>语法错误</h3><p>One general class of errors is syntactic. Syntactic errors involve mis-typing some element of shell syntax. In most cases, these kinds of errors will lead to the shell refusing to execute the script.</p>
+<p>一个普通的错误类型是语法。语法错误涉及到一些 shell 语法元素的拼写错误。大多数情况下，这类错误 会导致 shell 拒绝执行此脚本。</p>
+<p>In the following the discussions, we will use this script to demonstrate common types of errors:</p>
+<p>在以下讨论中，我们将使用下面这个脚本，来说明常见的错误类型：</p>
+<pre><code>#!/bin/bash
+# trouble: script to demonstrate common errors
+number=1
+if [ $number = 1 ]; then
+    echo &quot;Number is equal to 1.&quot;
+else
+    echo &quot;Number is not equal to 1.&quot;
+fi</code></pre><p>As written, this script runs successfully:</p>
+<p>参看脚本内容，我们知道这个脚本执行成功了：</p>
+<pre><code>[me@linuxbox ~]$ trouble
+Number is equal to 1.</code></pre><h4 id="丢失引号"><a href="#丢失引号" class="headerlink" title="丢失引号"></a>丢失引号</h4><p>If we edit our script and remove the trailing quote from the argument following the first echo command:</p>
+<p>如果我们编辑我们的脚本，并从跟随第一个 echo 命令的参数中，删除其末尾的双引号：</p>
+<pre><code>#!/bin/bash
+# trouble: script to demonstrate common errors
+number=1
+if [ $number = 1 ]; then
+    echo &quot;Number is equal to 1.
+else
+    echo &quot;Number is not equal to 1.&quot;
+fi</code></pre><p>watch what happens:</p>
+<p>观察发生了什么：</p>
+<pre><code>[me@linuxbox ~]$ trouble
+/home/me/bin/trouble: line 10: unexpected EOF while looking for
+matching `&quot;&#39;
+/home/me/bin/trouble: line 13: syntax error: unexpected end of file</code></pre><p>It generates two errors. Interestingly, the line numbers reported are not where the missing quote was removed, but rather much later in the program. We can see why, if we follow the program after the missing quote. bash will continue looking for the closing quote until it finds one, which it does immediately after the second echo command. bash becomes very confused after that, and the syntax of the if command is broken because the fi statement is now inside a quoted (but open) string.</p>
+<p>这个脚本产生了两个错误。有趣地是，所报告的行号不是引号被删除的地方，而是程序中后面的文本行。 我们能知道为什么，如果我们跟随丢失引号文本行之后的程序。bash 会继续寻找右引号，直到它找到一个， 其就是这个紧随第二个 echo 命令之后的引号。找到这个引号之后，bash 变得很困惑，并且 if 命令的语法 被破坏了，因为现在这个 fi 语句在一个用引号引起来的（但是开放的）字符串里面。</p>
+<p>In long scripts, this kind of error can be quite hard to find. Using an editor with syntax highlighting will help. If a complete version of vim is installed, syntax highlighting can be enabled by entering the command:</p>
+<p>在冗长的脚本中，此类错误很难找到。使用带有语法高亮的编辑器将会帮助查找错误。如果安装了 vim 的完整版， 通过输入下面的命令，可以使语法高亮生效：</p>
+<pre><code>:syntax on</code></pre><h4 id="丢失或意外的标记"><a href="#丢失或意外的标记" class="headerlink" title="丢失或意外的标记"></a>丢失或意外的标记</h4><p>Another common mistake is forgetting to complete a compound command, such as if or while. Let’s look at what happens if we remove the semicolon after the test in the if command:</p>
+<p>另一个常见错误是忘记补全一个复合命令，比如说 if 或者是 while。让我们看一下，如果 我们删除 if 命令中测试之后的分号，会出现什么情况：</p>
+<pre><code>#!/bin/bash
+# trouble: script to demonstrate common errors
+number=1
+if [ $number = 1 ] then
+    echo &quot;Number is equal to 1.&quot;
+else
+    echo &quot;Number is not equal to 1.&quot;
+fi</code></pre><p>The result is this:</p>
+<p>结果是这样的：</p>
+<pre><code>[me@linuxbox ~]$ trouble
+/home/me/bin/trouble: line 9: syntax error near unexpected token
+`else&#39;
+/home/me/bin/trouble: line 9: `else&#39;</code></pre><p>Again, the error message points to a error that occurs later than the actual problem. What happens is really pretty interesting. As we recall, if accepts a list of commands and evaluates the exit code of the last command in the list. In our program, we intend this list to consist of a single command, [, a synonym for test. The [ command takes what follows it as a list of arguments. In our case, three arguments: $number, =, and ]. With the semicolon removed, the word then is added to the list of arguments, which is syntactically legal. The following echo command is legal, too. It’s interpreted as another command in the list of commands that if will evaluate for an exit code. The else is encountered next, but it’s out of place, since the shell recognizes it as a reserved word (a word that has special meaning to the shell) and not the name of a command, hence the error message.</p>
+<p>再次，错误信息指向一个错误，其出现的位置在实际问题所在的文本行的后面。所发生的事情真是相当有意思。我们记得， if 能够接受一系列命令，并且会计算列表中最后一个命令的退出代码。在我们的程序中，我们打算这个列表由 单个命令组成，即 [，测试的同义词。这个 [ 命令把它后面的东西看作是一个参数列表。在我们这种情况下， 有三个参数： $number，=，和 ]。由于删除了分号，单词 then 被添加到参数列表中，从语法上讲， 这是合法的。随后的 echo 命令也是合法的。它被解释为命令列表中的另一个命令，if 将会计算命令的 退出代码。接下来遇到单词 else，但是它出局了，因为 shell 把它认定为一个 保留字（对于 shell 有特殊含义的单词），而不是一个命令名，因此报告错误信息。</p>
+<h4 id="预料不到的展开"><a href="#预料不到的展开" class="headerlink" title="预料不到的展开"></a>预料不到的展开</h4><p>It’s possible to have errors that only occur intermittently in a script. Sometimes the script will run fine and other times it will fail because of results of an expansion. If we return our missing semicolon and change the value of number to an empty variable, we can demonstrate:</p>
+<p>可能有这样的错误，它们仅会间歇性地出现在一个脚本中。有时候这个脚本执行正常，其它时间会失败， 这是因为展开结果造成的。如果我们归还我们丢掉的分号，并把 number 的数值更改为一个空变量，我们 可以示范一下：</p>
+<pre><code>#!/bin/bash
+# trouble: script to demonstrate common errors
+number=
+if [ $number = 1 ]; then
+    echo &quot;Number is equal to 1.&quot;
+else
+    echo &quot;Number is not equal to 1.&quot;
+fi</code></pre><p>Running the script with this change results in the output:</p>
+<p>运行这个做了修改的脚本，得到以下输出：</p>
+<pre><code>[me@linuxbox ~]$ trouble
+/home/me/bin/trouble: line 7: [: =: unary operator expected
+Number is not equal to 1.
+</code></pre><p>We get this rather cryptic error message, followed by the output of the second echo command. The problem is the expansion of the number variable within the test command. When the command:</p>
+<p>我们得到一个相当神秘的错误信息，其后是第二个 echo 命令的输出结果。这问题是由于 test 命令中 number 变量的展开结果造成的。当此命令：</p>
+<pre><code>[ $number = 1 ]
+</code></pre><p>undergoes expansion with number being empty, the result is this:</p>
+<p>经过展开之后，number 变为空值，结果就是这样：</p>
+<pre><code>[  = 1 ]
+</code></pre><p>which is invalid and the error is generated. The = operator is a binary operator (it requires a value on each side), but the first value is missing, so the test command expects a unary operator (such as -z) instead. Further, since the test failed (because of the error), the if command receives a non-zero exit code and acts accordingly, and the second echo command is executed.</p>
+<p>这是无效的，所以就产生了错误。这个 = 操作符是一个二元操作符（它要求每边都有一个数值），但是第一个数值是缺失的， 这样 test 命令就期望用一个一元操作符（比如 -z）来代替。进一步说，因为 test 命令运行失败了（由于错误）， 这个 if 命令接收到一个非零退出代码，因此执行第二个 echo 命令。</p>
+<p>This problem can be corrected by adding quotes around the first argument in the test command:</p>
+<p>通过为 test 命令中的第一个参数添加双引号，可以更正这个问题：</p>
+<pre><code>[ &quot;$number&quot; = 1 ]
+</code></pre><p>Then when expansion occurs, the result will be this:</p>
+<p>然后当展开操作发生地时候，执行结果将会是这样：</p>
+<pre><code>[ &quot;&quot; = 1 ]
+</code></pre><p>which yields the correct number of arguments. In addition to empty strings, quotes should be used in cases where a value could expand into multi-word strings, as with filenames containing embedded spaces.</p>
+<p>其得到了正确的参数个数。除了代表空字符串之外，引号应该被用于这样的场合，一个要展开 成多单词字符串的数值，及其包含嵌入式空格的文件名。</p>
+<h3 id="逻辑错误"><a href="#逻辑错误" class="headerlink" title="逻辑错误"></a>逻辑错误</h3><p>Unlike syntactic errors, logical errors do not prevent a script from running. The script will run, but it will not produce the desired result, due to a problem with its logic. There are countless numbers of possible logical errors, but here are a few of the most common kinds found in scripts:</p>
+<p>不同于语法错误，逻辑错误不会阻止脚本执行。虽然脚本会正常运行，但是它不会产生期望的结果， 归咎于脚本的逻辑问题。虽然有不计其数的可能的逻辑错误，但下面是一些在脚本中找到的最常见的 逻辑错误类型：</p>
+<ol>
+<li>Incorrect conditional expressions. It’s easy to incorrectly code an if/then/else and have the wrong logic carried out. Sometimes the logic will be reversed or it will be incomplete.</li>
+<li>“Off by one” errors. When coding loops that employ counters, it is possible to overlook that the loop may require the counting start with zero, rather than one, for the count to conclude at the correct point. These kinds of errors result in either a loop “going off the end” by counting too far, or else missing the last iteration of the loop by terminating one iteration too soon.</li>
+<li>Unanticipated situations. Most logic errors result from a program encountering data or situations that were unforeseen by the programmer. This can also include unanticipated expansions, such as a filename that contains embedded spaces that expands into multiple command arguments rather than a single filename.</li>
+<li>不正确的条件表达式。很容易编写一个错误的 if/then/else 语句，并且执行错误的逻辑。 有时候逻辑会被颠倒，或者是逻辑结构不完整。</li>
+<li>“超出一个值”错误。当编写带有计数器的循环语句的时候，为了计数在恰当的点结束，循环语句 可能要求从 0 开始计数，而不是从 1 开始，这有可能会被忽视。这些类型的错误要不导致循环计数太多，而“超出范围”， 要不就是过早的结束了一次迭代，从而错过了最后一次迭代循环。</li>
+<li>意外情况。大多数逻辑错误来自于程序碰到了程序员没有预见到的数据或者情况。这也 可以包括出乎意料的展开，比如说一个包含嵌入式空格的文件名展开成多个命令参数而不是单个的文件名。</li>
+</ol>
+<h4 id="防错编程"><a href="#防错编程" class="headerlink" title="防错编程"></a>防错编程</h4><p>It is important to verify assumptions when programming. This means a careful evaluation of the exit status of programs and commands that are used by a script. Here is an example, based on a true story. An unfortunate system administrator wrote a script to perform a maintenance task on an important server. The script contained the following two lines of code:</p>
+<p>当编程的时候，验证假设非常重要。这意味着要仔细地计算脚本所使用的程序和命令的退出状态。 这里有个基于一个真实的故事的实例。为了在一台重要的服务器中执行维护任务，一位不幸的系统管理员写了一个脚本。 这个脚本包含下面两行代码：</p>
+<pre><code>cd $dir_name
+rm *
+</code></pre><p>There is nothing intrinsically wrong with these two lines, as long as the directory named in the variable, dir_name, exists. But what happens if it does not? In that case, the cd command fails, the script continues to the next line and deletes the files in the current working directory. Not the desired outcome at all! The hapless administrator destroyed an important part of the server because of this design decision.</p>
+<p>从本质上来说，这两行代码没有任何问题，只要是变量 dir_name 中存储的目录名字存在就可以。但是如果不是这样会发生什么事情呢？在那种情况下，cd 命令会运行失败， 脚本会继续执行下一行代码，将会删除当前工作目录中的所有文件。完成不是期望的结果！ 由于这种设计策略，这个倒霉的管理员销毁了服务器中的一个重要部分。</p>
+<p>Let’s look at some ways this design could be improved. First, it might be wise to make the execution of rm contingent on the success of cd:</p>
+<p>让我们看一些能够提高这个设计的方法。首先，在 cd 命令执行成功之后，再运行 rm 命令，可能是明智的选择。</p>
+<pre><code>cd $dir_name &amp;&amp; rm *
+</code></pre><p>This way, if the cd command fails, the rm command is not carried out. This is better, but still leaves open the possibility that the variable, dir_name, is unset or empty, which would result in the files in the user’s home directory being deleted. This could also be avoided by checking to see that dir_name actually contains the name of an existing directory:</p>
+<p>这样，如果 cd 命令运行失败后，rm 命令将不会执行。这样比较好，但是仍然有可能未设置变量 dir_name 或其变量值为空，从而导致删除了用户家目录下面的所有文件。这个问题也能够避免，通过检验变量 dir_name 中包含的目录名是否真正地存在：</p>
+<pre><code>[[ -d $dir_name ]] &amp;&amp; cd $dir_name &amp;&amp; rm *
+</code></pre><p>Often, it is best to terminate the script with an error when an situation such as the one above occurs:</p>
+<p>通常，当某种情况（比如上述问题）发生的时候，最好是终止脚本执行，并对这种情况提示错误信息：</p>
+<pre><code>if [[ -d $dir_name ]]; then
+    if cd $dir_name; then
+        rm *
+    else
+        echo &quot;cannot cd to &#39;$dir_name&#39;&quot; &gt;&amp;2
+        exit 1
+    fi
+else
+    echo &quot;no such directory: &#39;$dir_name&#39;&quot; &gt;&amp;2
+    exit 1
+fi
+</code></pre><p>Here, we check both the name, to see that it is that of an existing directory, and the success of the cd command. If either fails, a descriptive error message is sent to standard error and the script terminates with an exit status of one to indicate a failure.</p>
+<p>这里，我们检验了两种情况，一个名字，看看它是否为一个真正存在的目录，另一个是 cd 命令是否执行成功。 如果任一种情况失败，就会发送一个错误说明信息到标准错误，然后脚本终止执行，并用退出状态 1 表明脚本执行失败。</p>
+<h4 id="验证输入"><a href="#验证输入" class="headerlink" title="验证输入"></a>验证输入</h4><p>A general rule of good programming is that if a program accepts input, it must be able to deal with anything it receives. This usually means that input must be carefully screened, to ensure that only valid input is accepted for further processing. We saw an example of this in the previous chapter when we studied the read command. One script contained the following test to verify a menu selection:</p>
+<p>一个良好的编程习惯是如果一个程序可以接受输入数据，那么这个程序必须能够应对它所接受的任意数据。这 通常意味着必须非常仔细地筛选输入数据，以确保只有有效的输入数据才能被程序用来做进一步地处理。在前面章节 中我们学习 read 命令的时候，我们遇到过一个这样的例子。一个脚本中包含了下面一条测试语句， 用来验证一个选择菜单：</p>
+<pre><code>[[ $REPLY =~ ^[0-3]$ ]]
+</code></pre><p>This test is very specific. It will only return a zero exit status if the string returned by the user is a numeral in the range of zero to three. Nothing else will be accepted. Sometimes these sorts of tests can be very challenging to write, but the effort is necessary to produce a high quality script.</p>
+<p>这条测试语句非常明确。只有当用户输入是一个位于 0 到 3 范围内（包括 0 和 3）的数字的时候， 这条语句才返回一个 0 退出状态。而其它任何输入概不接受。有时候编写这类测试条件非常具有挑战性， 但是为了能产出一个高质量的脚本，付出还是必要的。</p>
+<blockquote>
+<p>Design Is A Function Of Time</p>
+<p><em>设计是时间的函数</em></p>
+<p>When I was a college student studying industrial design, a wise professor stated that the degree of design on a project was determined by the amount of time given to the designer. If you were given five minutes to design a device “that kills flies,” you designed a flyswatter. If you were given five months, you might come up with a laser-guided “anti-fly system” instead.</p>
+<p>当我还是一名大学生，在学习工业设计的时候，一位明智的教授说过一个项目的设计程度是由 给定设计师的时间量来决定的。如果给你五分钟来设计一款能够 “杀死苍蝇” 的产品，你会设计出一个苍蝇拍。如果给你五个月的时间，你可能会制作出激光制导的 “反苍蝇系统”。</p>
+<p>The same principle applies to programming. Sometimes a “quick and dirty” script will do if it’s only going to be used once and only used by the programmer. That kind of script is common and should be developed quickly to make the effort economical. Such scripts don’t need a lot of comments and defensive checks. On the other hand, if a script is intended for production use, that is, a script that will be used over and over for an important task or by multiple users, it needs much more careful development.</p>
+<p>同样的原理适用于编程。有时候一个 “快速但粗糙” 的脚本就可以解决问题， 但这个脚本只能被其作者使用一次。这类脚本很常见，为了节省气力也应该被快速地开发出来。 所以这些脚本不需要太多的注释和防错检查。相反，如果一个脚本打算用于生产使用，也就是说， 某个重要任务或者多个客户会不断地用到它，此时这个脚本就需要非常谨慎小心地开发了。</p>
+</blockquote>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>Testing is an important step in every kind of software development, including scripts. There is a saying in the open source world, “release early, release often,” which reflects this fact. By releasing early and often, software gets more exposure to use and testing. Experience has shown that bugs are much easier to find, and much less expensive to fix, if they are found early in the development cycle.</p>
+<p>在各类软件开发中（包括脚本），测试是一个重要的环节。在开源世界中有一句谚语，“早发布，常发布”，这句谚语就反映出这个事实（测试的重要性）。 通过提早和经常发布，软件能够得到更多曝光去使用和测试。经验表明如果在开发周期的早期发现 bug，那么这些 bug 就越容易定位，而且越能低成本 的修复。</p>
+<p>In a previous discussion, we saw how stubs can be used to verify program flow. From the earliest stages of script development, they are a valuable technique to check the progress of our work.</p>
+<p>在之前的讨论中，我们知道了如何使用 stubs 来验证程序流程。在脚本开发的最初阶段，它们是一项有价值的技术 来检测我们的工作进度。</p>
+<p>Let’s look at the file deletion problem above and see how this could be coded for easy testing. Testing the original fragment of code would be dangerous, since its purpose is to delete files, but we could modify the code to make the test safe:</p>
+<p>让我们看一下上面的文件删除问题，为了轻松测试，看看如何修改这些代码。测试原本那个代码片段将是危险的，因为它的目的是要删除文件， 但是我们可以修改代码，让测试安全：</p>
+<pre><code>if [[ -d $dir_name ]]; then
+    if cd $dir_name; then
+        echo rm * # TESTING
+    else
+        echo &quot;cannot cd to &#39;$dir_name&#39;&quot; &gt;&amp;2
+        exit 1
+    fi
+else
+    echo &quot;no such directory: &#39;$dir_name&#39;&quot; &gt;&amp;2
+    exit 1
+fi
+exit # TESTING
+</code></pre><p>Since the error conditions already output useful messages, we don’t have to add any. The most important change is placing an echo command just before the rm command to allow the command and its expanded argument list to be displayed, rather than the command actually being executed. This change allows safe execution of the code. At the end of the code fragment, we place an exit command to conclude the test and prevent any other part of the script from being carried out. The need for this will vary according to the design of the script.</p>
+<p>因为在满足出错条件的情况下代码可以打印出有用信息，所以我们没有必要再添加任何额外信息了。 最重要的改动是仅在 rm 命令之前放置了一个 echo 命令， 为的是把 rm 命令及其展开的参数列表打印出来，而不是执行实际的 rm 命令语句。这个改动可以安全的执行代码。 在这段代码的末尾，我们放置了一个 exit 命令来结束测试，从而防止执行脚本其它部分的代码。 这个需求会因脚本的设计不同而变化。</p>
+<p>We also include some comments that act as “markers” for our test-related changes. These can be used to help find and remove the changes when testing is complete.</p>
+<p>我们也在代码中添加了一些注释，用来标记与测试相关的改动。当测试完成之后，这些注释可以帮助我们找到并删除所有的更改。</p>
+<h4 id="测试案例"><a href="#测试案例" class="headerlink" title="测试案例"></a>测试案例</h4><p>To perform useful testing, it’s important to develop and apply good test cases. This is done by carefully choosing input data or operating conditions that reflect edge and corner cases. In our code fragment (which is very simple), we want to know how the code performs under three specific conditions:</p>
+<p>为了执行有用的测试，开发和使用好的测试案例是很重要的。这个要求可以通过谨慎地选择输入数据或者运行边缘案例和极端案例来完成。 在我们的代码片段中（是非常简单的代码），我们想要知道在下面的三种具体情况下这段代码是怎样执行的：</p>
+<ol>
+<li>dir_name contains the name of an existing directory</li>
+<li>dir_name contains the name of a non-existent directory</li>
+<li>dir_name is empty</li>
+<li>dir_name 包含一个已经存在的目录的名字</li>
+<li>dir_name 包含一个不存在的目录的名字</li>
+<li>dir_name 为空</li>
+</ol>
+<p>By performing the test with each of these conditions, good test coverage is achieved.</p>
+<p>通过执行以上每一个测试条件，就达到了一个良好的测试覆盖率。</p>
+<p>Just as with design, testing is a function of time, as well. Not every script feature needs to be extensively tested. It’s really a matter of determining what is most important. Since it could be so potentially destructive if it malfunctioned, our code fragment deserves careful consideration during both its design and testing.</p>
+<p>正如设计，测试也是一个时间的函数。不是每一个脚本功能都需要做大量的测试。问题关键是确定什么功能是最重要的。因为 测试若发生故障会存在如此潜在的破坏性，所以我们的代码片在设计和测试段期间都应值得仔细推敲。</p>
+<h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><p>If testing reveals a problem with a script, the next step is debugging. “A problem” usually means that the script is, in some way, not performing to the programmers expectations. If this is the case, we need to carefully determine exactly what the script is actually doing and why. Finding bugs can sometimes involve a lot of detective work. A well designed script will try to help. It should be programmed defensively, to detect abnormal conditions and provide useful feedback to the user. Sometimes, however, problems are quite strange and unexpected and more involved techniques are required.</p>
+<p>如果测试暴露了脚本中的一个问题，那下一步就是调试了。“一个问题”通常意味着在某种情况下，这个脚本的执行 结果不是程序员所期望的结果。若是这种情况，我们需要仔细确认这个脚本实际到底要完成什么任务，和为什么要这样做。 有时候查找 bug 要牵涉到许多监测工作。一个设计良好的脚本会对查找错误有帮助。设计良好的脚本应该具备防卫能力， 能够监测异常条件，并能为用户提供有用的反馈信息。 然而有时候，出现的问题相当稀奇，出人意料，这时候就需要更多的调试技巧了。</p>
+<h4 id="找到问题区域"><a href="#找到问题区域" class="headerlink" title="找到问题区域"></a>找到问题区域</h4><p>In some scripts, particularly long ones, it is sometimes useful to isolate the area of the script that is related to the problem. This won’t always be the actual error, but isolation will often provide insights into the actual cause. One technique that can be used to isolate code is “commenting out” sections a script. For example, our file deletion fragment could be modified to determine if the removed section was related to an error:</p>
+<p>在一些脚本中，尤其是一些代码比较长的脚本，有时候隔离脚本中与出现的问题相关的代码区域对查找问题很有帮助。 隔离的代码区域并不总是真正的错误所在，但是隔离往往可以深入了解实际的错误原因。可以用来隔离代码的一项 技巧是“添加注释”。例如，我们的文件删除代码可以修改成这样，从而决定注释掉的这部分代码是否导致了一个错误：</p>
+<pre><code>if [[ -d $dir_name ]]; then
+    if cd $dir_name; then
+        rm *
+    else
+        echo &quot;cannot cd to &#39;$dir_name&#39;&quot; &gt;&amp;2
+        exit 1
+    fi
+# else
+# echo &quot;no such directory: &#39;$dir_name&#39;&quot; &gt;&amp;2
+# exit 1
+fi
+</code></pre><p>By placing comment symbols at the beginning of each line in a logical section of a script, we prevent that section from being executed. Testing can then be performed again, to see if the removal of the code has any impact on the behavior of the bug.</p>
+<p>通过给脚本中的一个逻辑区块内的每条语句的开头添加一个注释符号，我们就阻止了这部分代码的执行。然后可以再次执行测试， 来看看清除的代码是否影响了错误的行为。</p>
+<h4 id="追踪"><a href="#追踪" class="headerlink" title="追踪"></a>追踪</h4><p>Bugs are often cases of unexpected logical flow within a script. That is, portions of the script are either never being executed, or are being executed in the wrong order or at the wrong time. To view the actual flow of the program, we use a technique called tracing.</p>
+<p>在一个脚本中，错误往往是由意想不到的逻辑流导致的。也就是说，脚本中的一部分代码或者从未执行，或是以错误的顺序， 或在错误的时间给执行了。为了查看真实的程序流，我们使用一项叫做追踪（tracing）的技术。</p>
+<p>One tracing method involves placing informative messages in a script that display the location of execution. We can add messages to our code fragment:</p>
+<p>一种追踪方法涉及到在脚本中添加可以显示程序执行位置的提示性信息。我们可以添加提示信息到我们的代码片段中：</p>
+<pre><code>echo &quot;preparing to delete files&quot; &gt;&amp;2
+if [[ -d $dir_name ]]; then
+    if cd $dir_name; then
+echo &quot;deleting files&quot; &gt;&amp;2
+        rm *
+    else
+        echo &quot;cannot cd to &#39;$dir_name&#39;&quot; &gt;&amp;2
+        exit 1
+    fi
+else
+    echo &quot;no such directory: &#39;$dir_name&#39;&quot; &gt;&amp;2
+    exit 1
+fi
+echo &quot;file deletion complete&quot; &gt;&amp;2
+</code></pre><p>We send the messages to standard error to separate them from normal output. We also do not indent the lines containing the messages, so it is easier to find when it’s time to remove them.</p>
+<p>我们把提示信息输出到标准错误输出，让其从标准输出中分离出来。我们也没有缩进包含提示信息的语句，这样 想要删除它们的时候，能比较容易找到它们。</p>
+<p>Now when the script is executed, it’s possible to see that the file deletion has been performed:</p>
+<p>当这个脚本执行的时候，就可能看到文件删除操作已经完成了：</p>
+<pre><code>[me@linuxbox ~]$ deletion-script
+preparing to delete files
+deleting files
+file deletion complete
+[me@linuxbox ~]$
+</code></pre><p>bash also provides a method of tracing, implemented by the -x option and the set command with the -x option. Using our earlier trouble script, we can activate tracing for the entire script by adding the -x option to the first line:</p>
+<p>bash 还提供了一种名为追踪的方法，这种方法可通过 -x 选项和 set 命令加上 -x 选项两种途径实现。 拿我们之前的 trouble 脚本为例，给该脚本的第一行语句添加 -x 选项，我们就能追踪整个脚本。</p>
+<pre><code>#!/bin/bash -x
+# trouble: script to demonstrate common errors
+number=1
+if [ $number = 1 ]; then
+    echo &quot;Number is equal to 1.&quot;
+else
+    echo &quot;Number is not equal to 1.&quot;
+fi
+</code></pre><p>When executed, the results look like this:</p>
+<p>当脚本执行后，输出结果看起来像这样:</p>
+<pre><code>[me@linuxbox ~]$ trouble
++ number=1
++ &#39;[&#39; 1 = 1 &#39;]&#39;
++ echo &#39;Number is equal to 1.&#39;
+Number is equal to 1.
+</code></pre><p>With tracing enabled, we see the commands performed with expansions applied. The leading plus signs indicate the display of the trace to distinguish them from lines of regular output. The plus sign is the default character for trace output. It is contained in the PS4 (prompt string 4) shell variable. The contents of this variable can be adjusted to make the prompt more useful. Here, we modify the contents of the variable to include the current line number in the script where the trace is performed. Note that single quotes are required to prevent expansion until the prompt is actually used:</p>
+<p>追踪生效后，我们看到脚本命令展开后才执行。行首的加号表明追踪的迹象，使其与常规输出结果区分开来。 加号是追踪输出的默认字符。它包含在 PS4（提示符4）shell 变量中。可以调整这个变量值让提示信息更有意义。 这里，我们修改该变量的内容，让其包含脚本中追踪执行到的当前行的行号。注意这里必须使用单引号是为了防止变量展开，直到 提示符真正使用的时候，就不需要了。</p>
+<pre><code>[me@linuxbox ~]$ export PS4=&#39;$LINENO + &#39;
+[me@linuxbox ~]$ trouble
+5 + number=1
+7 + &#39;[&#39; 1 = 1 &#39;]&#39;
+8 + echo &#39;Number is equal to 1.&#39;
+Number is equal to 1.
+</code></pre><p>To perform a trace on a selected portion of a script, rather than the entire script, we can use the set command with the -x option:</p>
+<p>我们可以使用 set 命令加上 -x 选项，为脚本中的一块选择区域，而不是整个脚本启用追踪。</p>
+<pre><code>#!/bin/bash
+# trouble: script to demonstrate common errors
+number=1
+set -x # Turn on tracing
+if [ $number = 1 ]; then
+    echo &quot;Number is equal to 1.&quot;
+else
+    echo &quot;Number is not equal to 1.&quot;
+fi
+set +x # Turn off tracing
+</code></pre><p>We use the set command with the -x option to activate tracing and the +x option to deactivate tracing. This technique can be used to examine multiple portions of a troublesome script.</p>
+<p>我们使用 set 命令加上 -x 选项来启动追踪，+x 选项关闭追踪。这种技术可以用来检查一个有错误的脚本的多个部分。</p>
+<h4 id="执行时检查数值"><a href="#执行时检查数值" class="headerlink" title="执行时检查数值"></a>执行时检查数值</h4><p>It is often useful, along with tracing, to display the content of variables to see the internal workings of a script while it is being executed. Applying additional echo statements will usually do the trick:</p>
+<p>伴随着追踪，在脚本执行的时候显示变量的内容，以此知道脚本内部的工作状态，往往是很用的。 使用额外的 echo 语句通常会奏效。</p>
+<pre><code>#!/bin/bash
+# trouble: script to demonstrate common errors
+number=1
+echo &quot;number=$number&quot; # DEBUG
+set -x # Turn on tracing
+if [ $number = 1 ]; then
+    echo &quot;Number is equal to 1.&quot;
+else
+    echo &quot;Number is not equal to 1.&quot;
+fi
+set +x # Turn off tracing
+</code></pre><p>In this trivial example, we simply display the value of the variable number and mark the added line with a comment to facilitate its later identification and removal. This technique is particularly useful when watching the behavior of loops and arithmetic within scripts.</p>
+<p>在这个简单的示例中，我们只是显示变量 number 的数值，并为其添加注释，随后利于其识别和清除。 当查看脚本中的循环和算术语句的时候，这种技术特别有用。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>In this chapter, we looked at just a few of the problems that can crop up during script de- velopment. Of course, there are many more. The techniques described here will enable finding most common bugs. Debugging is a fine art that can be developed through experience, both in knowing how to avoid bugs (testing constantly throughout development) and in finding bugs (effective use of tracing).</p>
+<p>在这一章中，我们仅仅看了几个在脚本开发期间会出现的问题。当然，还有很多。这章中描述的技术对查找 大多数的常见错误是有效的。调试是一种艺术，可以通过开发经验，在知道如何避免错误(整个开发过程中不断测试) 以及在查找 bug（有效利用追踪）两方面都会得到提升。</p>
+<h3 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h3><ul>
+<li><p>The Wikipedia has a couple of short articles on syntactic and logical errors:</p>
+</li>
+<li><p>Wikipedia 上面有两篇关于语法和逻辑错误的短文：</p>
+<p><a href="http://en.wikipedia.org/wiki/Syntax_error" target="_blank" rel="noopener">http://en.wikipedia.org/wiki/Syntax_error</a></p>
+<p><a href="http://en.wikipedia.org/wiki/logic_error" target="_blank" rel="noopener">http://en.wikipedia.org/wiki/logic_error</a></p>
+</li>
+<li><p>There are many online resources for the technical aspects of bash programming:</p>
+</li>
+<li><p>网上有很多关于技术层面的 bash 编程的资源：</p>
+<p><a href="http://mywiki.wooledge.org/BashPitfalls" target="_blank" rel="noopener">http://mywiki.wooledge.org/BashPitfalls</a></p>
+<p><a href="http://tldp.org/LDP/abs/html/gotchas.html" target="_blank" rel="noopener">http://tldp.org/LDP/abs/html/gotchas.html</a></p>
+<p><a href="http://www.gnu.org/software/bash/manual/html_node/Reserved-Word-Index.html" target="_blank" rel="noopener">http://www.gnu.org/software/bash/manual/html_node/Reserved-Word-Index.html</a></p>
+</li>
+<li><p>Eric Raymond’s <code>The Art of Unix Programming</code> is a great resource for learning the basic concepts found in well-written Unix programs. Many of these ideas apply to shell scripts:</p>
+</li>
+<li><p>想要学习从编写良好的 Unix 程序中得知的基本概念，可以参考 Eric Raymond 的《Unix 编程的艺术》这本 伟大的著作。书中的许多想法都能适用于 shell 脚本：</p>
+<p><a href="http://www.faqs.org/docs/artu/" target="_blank" rel="noopener">http://www.faqs.org/docs/artu/</a></p>
+<p><a href="http://www.faqs.org/docs/artu/ch01s06.html" target="_blank" rel="noopener">http://www.faqs.org/docs/artu/ch01s06.html</a></p>
+</li>
+<li><p>For really heavy-duty debugging, there is the Bash Debugger:</p>
+</li>
+<li><p>对于真正的高强度的调试，参考这个 Bash Debugger：</p>
+<p><a href="http://bashdb.sourceforge.net/" target="_blank" rel="noopener">http://bashdb.sourceforge.net/</a></p>
+</li>
+</ul>
+
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'brA0u8dhiFmWzBQJ5YDMevuw-gzGzoHsz',
+        appKey: 'InzuBbqaqOss16gJu1jiKE7F',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/07/15/第三十二章-流程控制：case分支/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="第三十二章 流程控制：case分支">
+                        
+                        <span class="card-title">第三十二章 流程控制：case分支</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            In this chapter, we will continue to look at flow control. In Chapter 28, we constructed some simple menus and built the
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/TLCL/" class="post-category" target="_blank">
+                                    TLCL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/07/15/第三十章-流程控制：while-until循环/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="第三十章 流程控制：while/until循环">
+                        
+                        <span class="card-title">第三十章 流程控制：while/until循环</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            In the previous chapter, we developed a menu-driven program to produce various kinds of system information. The program 
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/TLCL/" class="post-category" target="_blank">
+                                    TLCL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">456.8k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/chenshuoke" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:henu_chenshuoke@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2604689299" class="tooltipped" data-tooltip="QQ联系我: 2604689299" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

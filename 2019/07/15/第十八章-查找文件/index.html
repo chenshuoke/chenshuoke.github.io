@@ -1,0 +1,1953 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="第十八章 查找文件, 孤狼的博客">
+    <meta name="description" content="As we have wandered around our Linux system, one thing has become abundantly clear: a typical Linux system has a lot of ">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>第十八章 查找文件 | 孤狼的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+    <!-- 下面一句添加的 -->
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">孤狼的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">孤狼的博客</div>
+        <div class="logo-desc">
+            
+            从来没有真正的绝境，只有心灵的迷途
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/chenshuoke" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/chenshuoke" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        第十八章 查找文件
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/TLCL/" class="post-category" target="_blank">
+                                TLCL
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-07-15
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        11.1k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        51 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>As we have wandered around our Linux system, one thing has become abundantly clear: a typical Linux system has a lot of files! This begs the question, “how do we find things?” We already know that the Linux file system is well organized according to conventions that have been passed down from one generation of Unix-like system to the next, but the sheer number of files can present a daunting problem. In this chapter, we will look at two tools that are used to find files on a system. These tools are:</p>
+<p>随着我们在Linux 系统中的不断探索， 一件事已经变得非常清楚：一个典型的 Linux 系统包含很多文件！ 这就引发了一个问题，“我们怎样查找东西？”。虽然我们已经知道 Linux 文件系统已经根据类 Unix 系统的 代代相传的惯例而被良好地组织起来了。但是海量的文件会引起一个可怕的问题。在这一章中，我们将察看 两个用来在系统中查找文件的工具。这些工具是：</p>
+<ul>
+<li>locate – Find files by name</li>
+<li>locate – 通过名字来查找文件</li>
+<li>find – Search for files in a directory hierarchy</li>
+<li>find – 在一个目录层次结构中搜索文件</li>
+</ul>
+<p>We will also look at a command that is often used with file search commands to process the resulting list of files:</p>
+<p>我们也将看一个经常与文件搜索命令一起使用的命令，它用来处理搜索到的文件列表：</p>
+<ul>
+<li>xargs – Build and execute command lines from standard input</li>
+<li>xargs – 从标准输入生成和执行命令行</li>
+</ul>
+<p>In addition, we will introduce a couple of commands to assist us in our exploration:</p>
+<p>另外，我们将介绍两个命令以便在我们探索的过程中协助我们：</p>
+<ul>
+<li>touch – Change file times</li>
+<li>touch – 更改文件时间</li>
+<li>stat – Display file or file system status</li>
+<li>stat – 显示文件或文件系统状态</li>
+</ul>
+<h3 id="locate-查找文件的简单方法"><a href="#locate-查找文件的简单方法" class="headerlink" title="locate - 查找文件的简单方法"></a>locate - 查找文件的简单方法</h3><p>The locate program performs a rapid database search of pathnames and outputs every name that matches a given substring. Say, for example, we want to find all the programs with names that begin with “zip.” Since we are looking for programs, we can assume that the directory containing the programs would end with “bin/”. Therefore, we could try to use locate this way to find our files:</p>
+<p>这个 locate 程序会执行一次快速的路径名数据库搜索，并且输出每个与给定子字符串相匹配的路径名。比如说， 例如，我们想要找到所有名字以“zip”开头的程序。因为我们正在查找程序，可以假定包含 程序的目录以”bin/”结尾。因此，我们试着以这种方式使用 locate 命令，来找到我们的文件：</p>
+<pre><code>[me@linuxbox ~]$ locate bin/zip</code></pre><p>locate will search its database of pathnames and output any that contain the string “bin/zip”:</p>
+<p>locate 命令将会搜索它的路径名数据库，输出任一个包含字符串“bin/zip”的路径名：</p>
+<pre><code>/usr/bin/zip
+/usr/bin/zipcloak
+/usr/bin/zipgrep
+/usr/bin/zipinfo
+/usr/bin/zipnote
+/usr/bin/zipsplit</code></pre><p>If the search requirement is not so simple, locate can be combined with other tools such as grep to design more interesting searches:</p>
+<p>如果搜索要求没有这么简单，locate 可以结合其它工具，比如说 grep 命令，来设计更加 有趣的搜索：</p>
+<pre><code>[me@linuxbox ~]$ locate zip | grep bin
+/bin/bunzip2
+/bin/bzip2
+/bin/bzip2recover
+/bin/gunzip
+/bin/gzip
+/usr/bin/funzip
+/usr/bin/gpg-zip
+/usr/bin/preunzip
+/usr/bin/prezip
+/usr/bin/prezip-bin
+/usr/bin/unzip
+/usr/bin/unzipsfx
+/usr/bin/zip
+/usr/bin/zipcloak
+/usr/bin/zipgrep
+/usr/bin/zipinfo
+/usr/bin/zipnote
+/usr/bin/zipsplit</code></pre><p>The locate program has been around for a number of years, and there are several different variants in common use. The two most common ones found in modern Linux distributions are slocate and mlocate, though they are usually accessed by a symbolic link named locate. The different versions of locate have overlapping options sets. Some versions include regular expression matching (which we’ll cover in an upcoming chapter) and wild card support. Check the man page for locate to determine which version of locate is installed.</p>
+<p>这个 locate 程序已经存在了很多年了，它有几个不同的变体被普遍使用着。在现在 Linux 发行版中两个最常见的变体是 slocate 和 mlocate，尽管它们通常被名为 locate 的 符号链接访问。不同版本的 locate 命令拥有重叠的选项集合。一些版本包括正则表达式 匹配（我们会在下一章中讨论）和通配符支持。可以查看 locate 命令的手册来确定安装了 哪个版本的 locate 程序。</p>
+<blockquote>
+<p>Where Does The locate Database Come From?</p>
+<p>locate 数据库来自何方？</p>
+<p>You may notice that, on some distributions, locate fails to work just after the system is installed, but if you try again the next day, it works fine. What gives? The locate database is created by another program named updatedb. Usually, it is run periodically as a cron job; that is, a task performed at regular intervals by the cron daemon. Most systems equipped with locate run updatedb once a day. Since the database is not updated continuously, you will notice that very recent files do not show up when using locate. To overcome this, it’s possible to run the updatedb program manually by becoming the superuser and running updatedb at the prompt.</p>
+<p>你可能注意到了，在一些发行版中，仅仅在系统安装之后，locate 不能工作， 但是如果你第二天再试一下，它就正常工作了。怎么回事呢？locate 数据库由另一个叫做 updatedb 的程序创建。通常，这个程序作为一个定时任务（jobs）周期性运转；也就是说，一个任务 在特定的时间间隔内被 cron 守护进程执行。大多数装有 locate 的系统会每隔一天运行一回 updatedb 程序。因为数据库不能被持续地更新，所以当使用 locate 时，你会发现 目前最新的文件不会出现。为了克服这个问题，通过更改为超级用户身份，在提示符下运行 updatedb 命令， 可以手动运行 updatedb 程序。</p>
+</blockquote>
+<h3 id="find-查找文件的复杂方式"><a href="#find-查找文件的复杂方式" class="headerlink" title="find - 查找文件的复杂方式"></a>find - 查找文件的复杂方式</h3><p>While the locate program can find a file based solely on its name, the find program searches a given directory (and its subdirectories) for files based on a variety of attributes. We’re going to spend a lot of time with find because it has a lot of interesting features that we will see again and again when we start to cover programming concepts in later chapters.</p>
+<p>locate 程序只能依据文件名来查找文件，而 find 程序能基于各种各样的属性 搜索一个给定目录（以及它的子目录），来查找文件。我们将要花费大量的时间学习 find 命令，因为 它有许多有趣的特性，当我们开始在随后的章节里面讨论编程概念的时候，我们将会重复看到这些特性。</p>
+<p>In its simplest use, find is given one or more names of directories to search. For example, to produce a list of our home directory:</p>
+<p>在它的最简单的使用方式中，find 命令接收一个或多个目录名来执行搜索。例如，输出我们的家目录的路径名列表（包括文件及目录，译者注）。</p>
+<pre><code>[me@linuxbox ~]$ find ~</code></pre><p>On most active user accounts, this will produce a large list. Since the list is sent to standard output, we can pipe the list into other programs. Let’s use wc to count the number of files:</p>
+<p>在最活跃的用户帐号中，这将产生一张很大的列表。因为这张列表被发送到标准输出， 我们可以把这个列表管道到其它的程序中。让我们使用 wc 程序来计算出文件的数量：</p>
+<pre><code>[me@linuxbox ~]$ find ~ | wc -l
+47068</code></pre><p>Wow, we’ve been busy! The beauty of find is that it can be used to identify files that meet specific criteria. It does this through the (slightly strange) application of options, tests, and actions. We’ll look at the tests first.</p>
+<p>哇，我们一直很忙（在 home 路径下执行了很多操作，译者注）！find 命令的魅力所在就是它能够被用来找到符合特定标准的文件。它通过 （有点奇怪）应用选项，测试条件，和操作来做到这一点。我们先看一下测试条件：</p>
+<h4 id="Tests"><a href="#Tests" class="headerlink" title="Tests"></a>Tests</h4><p>Let’s say that we want a list of directories from our search. To do this, we could add the following test:</p>
+<p>比如说我们想在我们的搜索中得到目录列表。我们可以添加以下测试条件：</p>
+<pre><code>[me@linuxbox ~]$ find ~ -type d | wc -l
+1695</code></pre><p>Adding the test -type d limited the search to directories. Conversely, we could have limited the search to regular files with this test:</p>
+<p>添加测试条件-type d 限制了只搜索目录。相反地，我们可以使用这个测试条件来限定搜索普通文件：</p>
+<pre><code>[me@linuxbox ~]$ find ~ -type f | wc -l
+38737</code></pre><p>Here are the common file type tests supported by find:</p>
+<p>这里是 find 命令支持的常见文件类型测试条件：</p>
+<table>
+<thead>
+<tr>
+<th align="left">File Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">b</td>
+<td align="left">Block special device file</td>
+</tr>
+<tr>
+<td align="left">c</td>
+<td align="left">Character special device file</td>
+</tr>
+<tr>
+<td align="left">d</td>
+<td align="left">Directory</td>
+</tr>
+<tr>
+<td align="left">f</td>
+<td align="left">Regular file</td>
+</tr>
+<tr>
+<td align="left">l</td>
+<td align="left">Symbolic link</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">文件类型</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">b</td>
+<td align="left">块特殊设备文件</td>
+</tr>
+<tr>
+<td align="left">c</td>
+<td align="left">字符特殊设备文件</td>
+</tr>
+<tr>
+<td align="left">d</td>
+<td align="left">目录</td>
+</tr>
+<tr>
+<td align="left">f</td>
+<td align="left">普通文件</td>
+</tr>
+<tr>
+<td align="left">l</td>
+<td align="left">符号链接</td>
+</tr>
+</tbody></table>
+<p>We can also search by file size and filename by adding some additional tests: Let’s look for all the regular files that match the wild card pattern “*.JPG” and are larger than one megabyte:</p>
+<p>我们也可以通过加入一些额外的测试条件，根据文件大小和文件名来搜索：让我们查找所有文件名匹配 通配符模式“*.JPG”和文件大小大于1M 的普通文件：</p>
+<pre><code>[me@linuxbox ~]$ find ~ -type f -name &quot;*.JPG&quot; -size +1M | wc -l
+840</code></pre><p>In this example, we add the -name test followed by the wild card pattern. Notice how we enclose it in quotes to prevent pathname expansion by the shell. Next, we add the -size test followed by the string “+1M”. The leading plus sign indicates that we are looking for files larger than the specified number. A leading minus sign would change the meaning of the string to be smaller than the specified number. No sign means, “match the value exactly.” The trailing letter “M” indicates that the unit of measurement is megabytes. The following characters may be used to specify units:</p>
+<p>在这个例子里面，我们加入了 -name 测试条件，后面跟通配符模式。注意，我们把它用双引号引起来， 从而阻止 shell 展开路径名。紧接着，我们加入 -size 测试条件，后跟字符串“+1M”。开头的加号表明 我们正在寻找文件大小大于指定数的文件。若字符串以减号开头，则意味着查找小于指定数的文件。 若没有符号意味着“精确匹配这个数”。结尾字母“M”表明测量单位是兆字节。下面的字符可以 被用来指定测量单位：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Character</th>
+<th align="left">Unit</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">b</td>
+<td align="left">512 byte blocks. This is the default if no unit is specified.</td>
+</tr>
+<tr>
+<td align="left">c</td>
+<td align="left">Bytes</td>
+</tr>
+<tr>
+<td align="left">w</td>
+<td align="left">Two byte words</td>
+</tr>
+<tr>
+<td align="left">k</td>
+<td align="left">Kilobytes (Units of 1024 bytes)</td>
+</tr>
+<tr>
+<td align="left">M</td>
+<td align="left">Megabytes (Units of 1048576 bytes)</td>
+</tr>
+<tr>
+<td align="left">G</td>
+<td align="left">Gigabytes (Units of 1073741824 bytes)</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">字符</th>
+<th align="left">单位</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">b</td>
+<td align="left">512 个字节块。如果没有指定单位，则这是默认值。</td>
+</tr>
+<tr>
+<td align="left">c</td>
+<td align="left">字节</td>
+</tr>
+<tr>
+<td align="left">w</td>
+<td align="left">两个字节的字</td>
+</tr>
+<tr>
+<td align="left">k</td>
+<td align="left">千字节(1024个字节单位)</td>
+</tr>
+<tr>
+<td align="left">M</td>
+<td align="left">兆字节(1048576个字节单位)</td>
+</tr>
+<tr>
+<td align="left">G</td>
+<td align="left">千兆字节(1073741824个字节单位)</td>
+</tr>
+</tbody></table>
+<p>find supports a large number of different tests. Below is a rundown of the common ones. Note that in cases where a numeric argument is required, the same “+” and “-” notation discussed above can be applied:</p>
+<p>find 命令支持大量不同的测试条件。下表是列出了一些常见的测试条件。请注意，在需要数值参数的 情况下，可以应用以上讨论的“+”和“-”符号表示法：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Test</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-cmin n</td>
+<td align="left">Match files or directories whose content or attributes were last modified exactly n minutes ago. To specify less than n minutes ago, use -n and to specify more than n minutes ago, use +n.</td>
+</tr>
+<tr>
+<td align="left">-cnewer file</td>
+<td align="left">Match files or directories whose contents or attributes were last modified more recently than those of file.</td>
+</tr>
+<tr>
+<td align="left">-ctime n</td>
+<td align="left">Match files or directories whose contents or attributes were last modified n*24 hours ago.</td>
+</tr>
+<tr>
+<td align="left">-empty</td>
+<td align="left">Match empty files and directories.</td>
+</tr>
+<tr>
+<td align="left">-group name</td>
+<td align="left">Match file or directories belonging to group. group may be expressed as either a group name or as a numeric group ID.</td>
+</tr>
+<tr>
+<td align="left">-iname pattern</td>
+<td align="left">Like the -name test but case insensitive.</td>
+</tr>
+<tr>
+<td align="left">-inum n</td>
+<td align="left">Match files with inode number n. This is helpful for finding all the hard links to a particular inode.</td>
+</tr>
+<tr>
+<td align="left">-mmin n</td>
+<td align="left">Match files or directories whose contents were modified n minutes ago.</td>
+</tr>
+<tr>
+<td align="left">-mtime n</td>
+<td align="left">Match files or directories whose contents were modified n*24 hours ago.</td>
+</tr>
+<tr>
+<td align="left">-name pattern</td>
+<td align="left">Match files and directories with the specified wild card pattern.</td>
+</tr>
+<tr>
+<td align="left">-newer file</td>
+<td align="left">Match files and directories whose contents were modified more recently than the specified file. This is very useful when writing shell scripts that perform file backups. Each time you make a backup, update a file (such as a log), then use find to determine which files that have changed since the last update.</td>
+</tr>
+<tr>
+<td align="left">-nouser</td>
+<td align="left">Match file and directories that do not belong to a valid user. This can be used to find files belonging to deleted accounts or to detect activity by attackers.</td>
+</tr>
+<tr>
+<td align="left">-nogroup</td>
+<td align="left">Match files and directories that do not belong to a valid group.</td>
+</tr>
+<tr>
+<td align="left">-perm mode</td>
+<td align="left">Match files or directories that have permissions set to the specified mode. mode may be expressed by either octal or symbolic notation.</td>
+</tr>
+<tr>
+<td align="left">-samefile name</td>
+<td align="left">Similar to the -inum test. Matches files that share the same inode number as file name.</td>
+</tr>
+<tr>
+<td align="left">-size n</td>
+<td align="left">Match files of size n.</td>
+</tr>
+<tr>
+<td align="left">-type c</td>
+<td align="left">Match files of type c.</td>
+</tr>
+<tr>
+<td align="left">-user name</td>
+<td align="left">Match files or directories belonging to user name. The user may be expressed by a user name or by a numeric user ID.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">测试条件</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-cmin n</td>
+<td align="left">匹配内容或属性最后修改时间正好在 n 分钟之前的文件或目录。 指定少于 n 分钟之前，使用 -n，指定多于 n 分钟之前，使用 +n。</td>
+</tr>
+<tr>
+<td align="left">-cnewer file</td>
+<td align="left">匹配内容或属性最后修改时间晚于 file 的文件或目录。</td>
+</tr>
+<tr>
+<td align="left">-ctime n</td>
+<td align="left">匹配内容和属性最后修改时间在 n*24小时之前的文件和目录。</td>
+</tr>
+<tr>
+<td align="left">-empty</td>
+<td align="left">匹配空文件和目录。</td>
+</tr>
+<tr>
+<td align="left">-group name</td>
+<td align="left">匹配属于一个组的文件或目录。组可以用组名或组 ID 来表示。</td>
+</tr>
+<tr>
+<td align="left">-iname pattern</td>
+<td align="left">就像-name 测试条件，但是不区分大小写。</td>
+</tr>
+<tr>
+<td align="left">-inum n</td>
+<td align="left">匹配 inode 号是 n的文件。这对于找到某个特殊 inode 的所有硬链接很有帮助。</td>
+</tr>
+<tr>
+<td align="left">-mmin n</td>
+<td align="left">匹配内容被修改于 n 分钟之前的文件或目录。</td>
+</tr>
+<tr>
+<td align="left">-mtime n</td>
+<td align="left">匹配的文件或目录的内容被修改于 n*24小时之前。</td>
+</tr>
+<tr>
+<td align="left">-name pattern</td>
+<td align="left">用指定的通配符模式匹配的文件和目录。</td>
+</tr>
+<tr>
+<td align="left">-newer file</td>
+<td align="left">匹配内容晚于指定的文件的文件和目录。这在编写执行备份的 shell 脚本的时候很有帮。 每次你制作一个备份，更新文件（比如说日志），然后使用 find 命令来判断哪些文件自从上一次更新之后被更改了。</td>
+</tr>
+<tr>
+<td align="left">-nouser</td>
+<td align="left">匹配不属于一个有效用户的文件和目录。这可以用来查找 属于被删除的帐户的文件或监测攻击行为。</td>
+</tr>
+<tr>
+<td align="left">-nogroup</td>
+<td align="left">匹配不属于一个有效的组的文件和目录。</td>
+</tr>
+<tr>
+<td align="left">-perm mode</td>
+<td align="left">匹配权限已经设置为指定的 mode的文件或目录。mode 可以用 八进制或符号表示法。</td>
+</tr>
+<tr>
+<td align="left">-samefile name</td>
+<td align="left">类似于-inum 测试条件。匹配和文件 name 享有同样 inode 号的文件。</td>
+</tr>
+<tr>
+<td align="left">-size n</td>
+<td align="left">匹配大小为 n 的文件</td>
+</tr>
+<tr>
+<td align="left">-type c</td>
+<td align="left">匹配文件类型是 c 的文件。</td>
+</tr>
+<tr>
+<td align="left">-user name</td>
+<td align="left">匹配属于某个用户的文件或目录。这个用户可以通过用户名或用户 ID 来表示。</td>
+</tr>
+</tbody></table>
+<p>This is not a complete list. The find man page has all the details.</p>
+<p>这不是一个完整的列表。find 命令手册有更详细的说明。</p>
+<h4 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h4><p>Even with all the tests that find provides, we may still need a better way to describe the logical relationships between the tests. For example, what if we needed to determine if all the files and subdirectories in a directory had secure permissions? We would look for all the files with permissions that are not 0600 and the directories with permissions that are not 0700. Fortunately, find provides a way to combine tests using logical operators to create more complex logical relationships. To express the aforementioned test, we could do this:</p>
+<p>即使拥有了 find 命令提供的所有测试条件，我们还需要一个更好的方式来描述测试条件之间的逻辑关系。例如， 如果我们需要确定是否一个目录中的所有的文件和子目录拥有安全权限，怎么办呢？ 我们可以查找权限不是0600的文件和权限不是0700的目录。幸运地是，find 命令提供了 一种方法来结合测试条件，通过使用逻辑操作符来创建更复杂的逻辑关系。 为了表达上述的测试条件，我们可以这样做：</p>
+<pre><code>[me@linuxbox ~]$ find ~ \( -type f -not -perm 0600 \) -or \( -type d -not -perm 0700 \)
+</code></pre><p>Yikes! That sure looks weird. What is all this stuff? Actually, the operators are not that complicated once you get to know them. Here is the list:</p>
+<p>呀！这的确看起来很奇怪。这些是什么东西？实际上，这些操作符没有那么复杂，一旦你知道了它们的原理。 这里是操作符列表：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Operator</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-and</td>
+<td align="left">Match if the tests on both sides of the operator are true. May be shortened to -a. Note that when no operator is present, -and is implied by default.</td>
+</tr>
+<tr>
+<td align="left">-or</td>
+<td align="left">Match if a test on either side of the operator is true. May be shortened to -o.</td>
+</tr>
+<tr>
+<td align="left">-not</td>
+<td align="left">Match if the test following the operator is false. May be abbreviated with an exclamation point (!).</td>
+</tr>
+<tr>
+<td align="left">()</td>
+<td align="left">Groups tests and operators together to form larger expressions. This is used to control the precedence of the logical evaluations. By default, find evaluates from left to right. It is often necessary to override the default evaluation order to obtain the desired result. Even if not needed, it is helpful sometimes to include the grouping characters to improve readability of the command. Note that since the parentheses characters have special meaning to the shell, they must be quoted when using them on the command line to allow them to be passed as arguments to find. Usually the backslash character is used to escape them.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">操作符</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-and</td>
+<td align="left">如果操作符两边的测试条件都是真，则匹配。可以简写为 -a。 注意若没有使用操作符，则默认使用 -and。</td>
+</tr>
+<tr>
+<td align="left">-or</td>
+<td align="left">若操作符两边的任一个测试条件为真，则匹配。可以简写为 -o。</td>
+</tr>
+<tr>
+<td align="left">-not</td>
+<td align="left">若操作符后面的测试条件是假，则匹配。可以简写为一个感叹号（!）。</td>
+</tr>
+<tr>
+<td align="left">()</td>
+<td align="left">把测试条件和操作符组合起来形成更大的表达式。这用来控制逻辑计算的优先级。 默认情况下，find 命令按照从左到右的顺序计算。经常有必要重写默认的求值顺序，以得到期望的结果。 即使没有必要，有时候包括组合起来的字符，对提高命令的可读性是很有帮助的。注意 因为圆括号字符对于 shell 来说有特殊含义，所以在命令行中使用它们的时候，它们必须 用引号引起来，才能作为实参传递给 find 命令。通常反斜杠字符被用来转义圆括号字符。</td>
+</tr>
+</tbody></table>
+<p>With this list of operators in hand, let’s deconstruct our find command. When viewed from the uppermost level, we see that our tests are arranged as two groupings separated by an -or operator:</p>
+<p>通过这张操作符列表，我们重建 find 命令。从最外层看，我们看到测试条件被分为两组，由一个 -or 操作符分开：</p>
+<pre><code>( expression 1 ) -or ( expression 2 )
+</code></pre><p>This makes sense, since we are searching for files with a certain set of permissions and for directories with a different set. If we are looking for both files and directories, why do we use -or instead of -and? Because as find scans through the files and directories, each one is evaluated to see if it matches the specified tests. We want to know if it is either a file with bad permissions or a directory with bad permissions. It can’t be both at the same time. So if we expand the grouped expressions, we can see it this way:</p>
+<p>这看起来合理，因为我们正在搜索具有不同权限集合的文件和目录。如果我们文件和目录两者都查找， 那为什么要用 -or 来代替 -and 呢？因为 find 命令扫描文件和目录时，会计算每一个对象，看看它是否 匹配指定的测试条件。我们想要知道它是具有错误权限的文件还是有错误权限的目录。它不可能同时符合这 两个条件。所以如果展开组合起来的表达式，我们能这样解释它：</p>
+<pre><code>( file with bad perms ) -or ( directory with bad perms )
+</code></pre><p>Our next challenge is how to test for “bad permissions.” How do we do that? Actually we don’t. What we will test for is “not good permissions,” since we know what “good permissions” are. In the case of files, we define good as 0600 and for directories, as</p>
+<ol>
+<li>The expression that will test files for “not good” permissions is:</li>
+</ol>
+<p>下一个挑战是怎样来检查“错误权限”，这个怎样做呢？事实上我们不从这个角度入手。我们将测试 “不是正确权限”，因为我们知道什么是“正确权限”。对于文件，我们定义正确权限为0600， 目录则为0700。测试具有“不正确”权限的文件表达式为：</p>
+<pre><code>-type f -and -not -perms 0600
+</code></pre><p>and for directories:</p>
+<p>对于目录，表达式为：</p>
+<pre><code>-type d -and -not -perms 0700
+</code></pre><p>As noted in the table of operators above, the -and operator can be safely removed, since it is implied by default. So if we put this all back together, we get our final command:</p>
+<p>正如上述操作符列表中提到的，这个-and 操作符能够被安全地删除，因为它是默认使用的操作符。 所以如果我们把这两个表达式连起来，就得到最终的命令：</p>
+<pre><code>find ~ ( -type f -not -perms 0600 ) -or ( -type d -not -perms 0700 )
+</code></pre><p>However, since the parentheses have special meaning to the shell, we must escape them to prevent the shell from trying to interpret them. Preceding each one with a backslash character does the trick.</p>
+<p>然而，因为圆括号对于 shell 有特殊含义，我们必须转义它们，来阻止 shell 解释它们。在圆括号字符 之前加上一个反斜杠字符来转义它们。</p>
+<p>There is another feature of logical operators that is important to understand. Let’s say that we have two expressions separated by a logical operator:</p>
+<p>逻辑操作符还有另外一个特性要重点理解。比方说我们有两个由逻辑操作符分开的表达式：</p>
+<pre><code>expr1 -operator expr2
+</code></pre><p>In all cases, expr1 will always be performed; however the operator will determine if expr2 is performed. Here’s how it works:</p>
+<p>在所有情况下，总会执行表达式 expr1；然而操作符将决定是否执行表达式 expr2。这里 列出了它是怎样工作的：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Results of expr1</th>
+<th align="left">Operator</th>
+<th align="left">expr2 is…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">True</td>
+<td align="left">-and</td>
+<td align="left">Always performed</td>
+</tr>
+<tr>
+<td align="left">False</td>
+<td align="left">-and</td>
+<td align="left">Never performed</td>
+</tr>
+<tr>
+<td align="left">Ture</td>
+<td align="left">-or</td>
+<td align="left">Never performed</td>
+</tr>
+<tr>
+<td align="left">False</td>
+<td align="left">-or</td>
+<td align="left">Always performed</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">expr1 的结果</th>
+<th align="left">操作符</th>
+<th align="left">expr2 is…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">真</td>
+<td align="left">-and</td>
+<td align="left">总要执行</td>
+</tr>
+<tr>
+<td align="left">假</td>
+<td align="left">-and</td>
+<td align="left">从不执行</td>
+</tr>
+<tr>
+<td align="left">真</td>
+<td align="left">-or</td>
+<td align="left">从不执行</td>
+</tr>
+<tr>
+<td align="left">假</td>
+<td align="left">-or</td>
+<td align="left">总要执行</td>
+</tr>
+</tbody></table>
+<p>Why does this happen? It’s done to improve performance. Take -and, for example. We know that the expression expr1 -and expr2 cannot be true if the result of expr1 is false, so there is no point in performing expr2. Likewise, if we have the expression expr1 -or expr2 and the result of expr1 is true, there is no point in performing expr2, as we already know that the expression expr1 -or expr2 is true. OK, so it helps it go faster. Why is this important? It’s important because we can rely on this behavior to control how actions are performed, as we shall soon see..</p>
+<p>为什么这会发生呢？这样做是为了提高性能。以 -and 为例，我们知道如果表达式 expr1的结果为假， 表达式 expr1 -and expr2不能为真，所以没有必要执行 expr2。同样地，如果我们有表达式 expr1 -or expr2，并且表达式 expr1的结果为真，那么就没有必要执行 expr2，因为我们已经知道 表达式 expr1 -or expr2 为真。好，这样会执行快一些。为什么这个很重要？ 它很重要是因为我们能依靠这种行为来控制怎样来执行操作。我们会很快看到…</p>
+<h3 id="预定义的操作"><a href="#预定义的操作" class="headerlink" title="预定义的操作"></a>预定义的操作</h3><p>Let’s get some work done! Having a list of results from our find command is useful, but what we really want to do is act on the items on the list. Fortunately, find allows actions to be performed based on the search results. There are a set of predefined actions and several ways to apply user-defined actions. First let’s look at a few of the predefined actions:</p>
+<p>让我们做一些工作吧！执行 find 命令得到结果列表很有用处，但是我们真正想要做的事情是操作列表 中的某些条目。幸运地是，find 命令允许基于搜索结果来执行操作。有许多预定义的操作和几种方式来 应用用户定义的操作。首先，让我们看一下几个预定义的操作：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Action</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-delete</td>
+<td align="left">Delete the currently matching file.</td>
+</tr>
+<tr>
+<td align="left">-ls</td>
+<td align="left">Perform the equivalent of ls -dils on the matching file. Output is sent to standard output.</td>
+</tr>
+<tr>
+<td align="left">-print</td>
+<td align="left">Output the full pathname of the matching file to standard output. This is the default action if no other action is specified.</td>
+</tr>
+<tr>
+<td align="left">-quit</td>
+<td align="left">Quit once a match has been made.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-delete</td>
+<td align="left">删除当前匹配的文件。</td>
+</tr>
+<tr>
+<td align="left">-ls</td>
+<td align="left">对匹配的文件执行等同的 ls -dils 命令。并将结果发送到标准输出。</td>
+</tr>
+<tr>
+<td align="left">-print</td>
+<td align="left">把匹配文件的全路径名输送到标准输出。如果没有指定其它操作，这是 默认操作。</td>
+</tr>
+<tr>
+<td align="left">-quit</td>
+<td align="left">一旦找到一个匹配，退出。</td>
+</tr>
+</tbody></table>
+<p>As with the tests, there are many more actions. See the find man page for full details. In our very first example, we did this:</p>
+<p>和测试条件一样，还有更多的操作。查看 find 命令手册得到更多细节。在第一个例子里， 我们这样做：</p>
+<pre><code>find ~
+</code></pre><p>which produced a list of every file and subdirectory contained within our home directory. It produced a list because the -print action is implied if no other action is specified. Thus our command could also be expressed as:</p>
+<p>这个命令输出了我们家目录中包含的每个文件和子目录。它会输出一个列表，因为会默认使用-print 操作 ，如果没有指定其它操作的话。因此我们的命令也可以这样表述：</p>
+<pre><code>find ~ -print
+</code></pre><p>We can use find to delete files that meet certain criteria. For example, to delete files that have the file extension “.BAK” (which is often used to designate backup files), we could use this command:</p>
+<p>我们可以使用 find 命令来删除符合一定条件的文件。例如，来删除扩展名为“.BAK”（这通常用来指定备份文件） 的文件，我们可以使用这个命令：</p>
+<pre><code>find ~ -type f -name &#39;*.BAK&#39; -delete
+</code></pre><p>In this example, every file in the user’s home directory (and its subdirectories) is searched for filenames ending in .BAK. When they are found, they are deleted.</p>
+<p>在这个例子里面，用户家目录（和它的子目录）下的每个文件中搜索以.BAK 结尾的文件名。当找到后，就删除它们。</p>
+<hr>
+<p>Warning: It should go without saying that you should use extreme caution when using the -delete action. Always test the command first by substituting the -print action for -delete to confirm the search results.</p>
+<p>警告：当使用 -delete 操作时，不用说，你应该格外小心。每次都应该首先用 -print 操作代替 -delete 测试一下命令，来确认搜索结果。</p>
+<hr>
+<p>Before we go on, let’s take another look at how the logical operators affect actions. Consider the following command:</p>
+<p>在我们继续之前，让我们看一下逻辑运算符是怎样影响操作的。考虑以下命令：</p>
+<pre><code>find ~ -type f -name &#39;*.BAK&#39; -print
+</code></pre><p>As we have seen, this command will look for every regular file (-type f) whose name ends with .BAK (-name ‘*.BAK’) and will output the relative pathname of each matching file to standard output (-print). However, the reason the command performs the way it does is determined by the logical relationships between each of the tests and actions. Remember, there is, by default, an implied -and relationship between each test and action. We could also express the command this way to make the logical relationships easier to see:</p>
+<p>正如我们所见到的，这个命令会查找每个文件名以.BAK (-name ‘*.BAK’) 结尾的普通文件 (-type f)， 并把每个匹配文件的相对路径名输出到标准输出 (-print)。然而，此命令按这个方式执行的原因，是 由每个测试和操作之间的逻辑关系决定的。记住，在每个测试和操作之间会默认应用 -and 逻辑运算符。 我们也可以这样表达这个命令，使逻辑关系更容易看出：</p>
+<pre><code>find ~ -type f -and -name &#39;*.BAK&#39; -and -print
+</code></pre><p>With our command fully expressed, let’s look at how the logical operators affect its execution:</p>
+<p>当命令被充分表达之后，让我们看看逻辑运算符是如何影响其执行的：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Test/Action</th>
+<th align="left">Is Performed Only If…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-print</td>
+<td align="left">-type f and -name ‘*.BAK’ are true</td>
+</tr>
+<tr>
+<td align="left">-name ‘*.BAK’</td>
+<td align="left">-type f is true</td>
+</tr>
+<tr>
+<td align="left">-type f</td>
+<td align="left">Is always performed, since it is the first test/action in an -and relationship.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">测试／行为</th>
+<th align="left">只有…的时候，才被执行</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-print</td>
+<td align="left">只有 -type f and -name ‘*.BAK’为真的时候</td>
+</tr>
+<tr>
+<td align="left">-name ‘*.BAK’</td>
+<td align="left">只有 -type f 为真的时候</td>
+</tr>
+<tr>
+<td align="left">-type f</td>
+<td align="left">总是被执行，因为它是与 -and 关系中的第一个测试／行为。</td>
+</tr>
+</tbody></table>
+<p>Since the logical relationship between the tests and actions determines which of them are performed, we can see that the order of the tests and actions is important. For instance, if we were to reorder the tests and actions so that the -print action was the first one, the command would behave much differently:</p>
+<p>因为测试和行为之间的逻辑关系决定了哪一个会被执行，我们可以看出知道测试和行为的顺序很重要。例如， 如果我们重新安排测试和行为之间的顺序，让 -print 行为是第一个，那么这个命令执行起来会截然不同：</p>
+<pre><code>find ~ -print -and -type f -and -name &#39;*.BAK&#39;
+</code></pre><p>This version of the command will print each file (the -print action always evaluates to true) and then test for file type and the specified file extension.</p>
+<p>这个版本的命令会打印出每个文件（-print 行为总是为真），然后测试文件类型和指定的文件扩展名。</p>
+<h3 id="用户定义的行为"><a href="#用户定义的行为" class="headerlink" title="用户定义的行为"></a>用户定义的行为</h3><p>In addition to the predefined actions, we can also invoke arbitrary commands. The traditional way of doing this is with the -exec action. This action works like this:</p>
+<p>除了预定义的行为之外，我们也可以调用任意的命令。传统方式是通过 -exec 行为。这个 行为像这样工作：</p>
+<pre><code>-exec command {} ;
+</code></pre><p>where command is the name of a command, {} is a symbolic representation of the current pathname and the semicolon is a required delimiter indicating the end of the command. Here’s an example of using -exec to act like the -delete action discussed earlier:</p>
+<p>这里的 command 就是指一个命令的名字，{}是当前路径名的符号表示，分号是必要的分隔符 表明命令的结束。这里是一个使用 -exec 行为的例子，其作用如之前讨论的 -delete 行为：</p>
+<pre><code>-exec rm &#39;{}&#39; &#39;;&#39;
+</code></pre><p>Again, since the brace and semicolon characters have special meaning to the shell, they must be quoted or escaped.</p>
+<p>重述一遍，因为花括号和分号对于 shell 有特殊含义，所以它们必须被引起来或被转义。</p>
+<p>It’s also possible to execute a user defined action interactively. By using the -ok action in place of -exec, the user is prompted before execution of each specified command:</p>
+<p>我们也可以交互式地执行一个用户定义的行为。通过使用 -ok 行为来代替 -exec，在执行每个指定的命令之前， 会提示用户：</p>
+<pre><code>find ~ -type f -name &#39;foo*&#39; -ok ls -l &#39;{}&#39; &#39;;&#39;
+&lt; ls ... /home/me/bin/foo &gt; ? y
+-rwxr-xr-x 1 me    me 224 2007-10-29 18:44 /home/me/bin/foo
+&lt; ls ... /home/me/foo.txt &gt; ? y
+-rw-r--r-- 1 me    me 0 2008-09-19 12:53 /home/me/foo.txt
+</code></pre><p>In this example, we search for files with names starting with the string “foo” and execute the command ls -l each time one is found. Using the -ok action prompts the user before the ls command is executed.</p>
+<p>在这个例子里面，我们搜索以字符串“foo”开头的文件名，并且对每个匹配的文件执行 ls -l 命令。 使用 -ok 行为，会在 ls 命令执行之前提示用户。</p>
+<h3 id="提高效率"><a href="#提高效率" class="headerlink" title="提高效率"></a>提高效率</h3><p>When the -exec action is used, it launches a new instance of the specified command each time a matching file is found. There are times when we might prefer to combine all of the search results and launch a single instance of the command. For example, rather than executing the commands like this:</p>
+<p>当 -exec 行为被使用的时候，若每次找到一个匹配的文件，它会启动一个新的指定命令的实例。 我们可能更愿意把所有的搜索结果结合起来，再运行一个命令的实例。例如，与其像这样执行命令：</p>
+<pre><code>ls -l file1
+ls -l file2
+</code></pre><p>we may prefer to execute it this way:</p>
+<p>我们更喜欢这样执行命令：</p>
+<pre><code>ls -l file1 file2
+</code></pre><p>thus causing the command to be executed only one time rather than multiple times. There are two ways we can do this. The traditional way, using the external command xargs and the alternate way, using a new feature in find itself. We’ll talk about the alternate way first.</p>
+<p>这样就导致命令只被执行一次而不是多次。有两种方法可以这样做。传统方式是使用外部命令 xargs，另一种方法是，使用 find 命令自己的一个新功能。我们先讨论第二种方法。</p>
+<p>By changing the trailing semicolon character to a plus sign, we activate the ability of find to combine the results of the search into an argument list for a single execution of the desired command. Going back to our example, this:</p>
+<p>通过把末尾的分号改为加号，就激活了 find 命令的一个功能，把搜索结果结合为一个参数列表， 然后用于所期望的命令的一次执行。再看一下之前的例子，这个例子中：</p>
+<pre><code>find ~ -type f -name &#39;foo*&#39; -exec ls -l &#39;{}&#39; &#39;;&#39;
+-rwxr-xr-x 1 me     me 224 2007-10-29 18:44 /home/me/bin/foo
+-rw-r--r-- 1 me     me 0 2008-09-19 12:53 /home/me/foo.txt
+</code></pre><p>will execute ls each time a matching file is found. By changing the command to:</p>
+<p>每次找到一个匹配的文件， 就会执行一次 ls 命令。通过把命令改为：</p>
+<pre><code>find ~ -type f -name &#39;foo*&#39; -exec ls -l &#39;{}&#39; +
+-rwxr-xr-x 1 me     me 224 2007-10-29 18:44 /home/me/bin/foo
+-rw-r--r-- 1 me     me 0 2008-09-19 12:53 /home/me/foo.txt
+</code></pre><p>we get the same results, but the system only has to execute the ls command once.</p>
+<p>虽然我们得到一样的结果，但是系统只需要执行一次 ls 命令。</p>
+<h4 id="xargs"><a href="#xargs" class="headerlink" title="xargs"></a>xargs</h4><p>The xargs command performs an interesting function. It accepts input from standard input and converts it into an argument list for a specified command. With our example, we would use it like this:</p>
+<p>这个 xargs 命令会执行一个有趣的函数。它从标准输入接受输入，并把输入转换为一个特定命令的 参数列表。对于我们的例子，我们可以这样使用它：</p>
+<pre><code>find ~ -type f -name &#39;foo*&#39; -print | xargs ls -l
+-rwxr-xr-x 1 me     me 224 2007-10-29 18:44 /home/me/bin/foo
+-rw-r--r-- 1 me     me 0 2008-09-19 12:53 /home/me/foo.txt
+</code></pre><p>Here we see the output of the find command piped into xargs which, in turn, constructs an argument list for ls command and then executes it.</p>
+<p>这里我们看到 find 命令的输出被管道到 xargs 命令，之后，xargs 会为 ls 命令构建 参数列表，然后执行 ls 命令。</p>
+<hr>
+<p>Note: While the number of arguments that can be placed into a command line is quite large, it’s not unlimited. It is possible to create commands that are too long for the shell to accept. When a command line exceeds the maximum length supported by the system, xargs executes the specified command with the maximum number of arguments possible and then repeats this process until standard input is exhausted. To see the maximum size of the command line, execute xargs with the –show-limits option.</p>
+<p>注意：当被放置到命令行中的参数个数相当大时，参数个数是有限制的。有可能创建的命令 太长以至于 shell 不能接受。当命令行超过系统支持的最大长度时，xargs 会执行带有最大 参数个数的指定命令，然后重复这个过程直到耗尽标准输入。执行带有 –show–limits 选项 的 xargs 命令，来查看命令行的最大值。</p>
+<hr>
+<blockquote>
+<p>Dealing With Funny Filenames</p>
+<p>处理古怪的文件名</p>
+<p>Unix-like systems allow embedded spaces (and even newlines!) in filenames. This causes problems for programs like xargs that construct argument lists for other programs. An embedded space will be treated as a delimiter and the resulting command will interpret each space-separated word as a separate argument. To overcome this, find and xarg allow the optional use of a null character as argument separator. A null character is defined in ASCII as the character represented by the number zero (as opposed to, for example, the space character, which is defined in ASCII as the character represented by the number 32). The find command provides the action -print0, which produces null separated output, and the xargs command has the –null option, which accepts null separated input. Here’s an example:</p>
+<p>类 Unix 的系统允许在文件名中嵌入空格（甚至换行符）。这就给一些程序，如为其它 程序构建参数列表的 xargs 程序，造成了问题。一个嵌入的空格会被看作是一个分隔符，生成的 命令会把每个空格分离的单词解释为单独的参数。为了解决这个问题，find 命令和 xarg 程序 允许使用一个可选的 null 字符作为参数分隔符。一个 null 字符被定义在 ASCII 码中，由数字 零来表示（相反的，例如，空格字符在 ASCII 码中由数字32表示）。find 命令提供的 -print0 行为， 则会产生由 null 字符分离的输出，并且 xargs 命令有一个 –null 选项，这个选项会接受由 null 字符 分离的输入。这里有一个例子：</p>
+<table>
+<thead>
+<tr>
+<th>find ~ -iname ‘*.jpg’ -print0</th>
+<th>xargs –null ls -l</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>Using this technique, we can ensure that all files, even those containing embedded spaces in their names, are handled correctly.</p>
+<p>使用这项技术，我们可以保证所有文件，甚至那些文件名中包含空格的文件，都能被正确地处理。</p>
+</blockquote>
+<h3 id="返回操练场"><a href="#返回操练场" class="headerlink" title="返回操练场"></a>返回操练场</h3><p>It’s time to put find to some (almost) practical use. We’ll create a playground and try out some of what we have learned.</p>
+<p>到实际使用 find 命令的时候了。我们将会创建一个操练场，来实践一些我们所学到的知识。</p>
+<p>First, let’s create a playground with lots of subdirectories and files:</p>
+<p>首先，让我们创建一个包含许多子目录和文件的操练场：</p>
+<pre><code>[me@linuxbox ~]$ mkdir -p playground/dir-{00{1..9},0{10..99},100}
+[me@linuxbox ~]$ touch playground/dir-{00{1..9},0{10..99},100}/file-{A..Z}
+</code></pre><p>Marvel in the power of the command line! With these two lines, we created a playground directory containing one hundred subdirectories each containing twenty-six empty files. Try that with the GUI!</p>
+<p>惊叹于命令行的强大功能！只用这两行，我们就创建了一个包含一百个子目录，每个子目录中 包含了26个空文件的操练场。试试用 GUI 来创建它！</p>
+<p>The method we employed to accomplish this magic involved a familiar command (mkdir), an exotic shell expansion (braces) and a new command, touch. By combining mkdir with the -p option (which causes mkdir to create the parent directories of the specified paths) with brace expansion, we were able to create one hundred directories.</p>
+<p>我们用来创造这个奇迹的方法中包含一个熟悉的命令（mkdir），一个奇异的 shell 扩展（花括号） 和一个新命令，touch。通过结合 mkdir 命令和-p 选项（导致 mkdir 命令创建指定路径的父目录），以及 花括号展开，我们能够创建一百个目录。</p>
+<p>The touch command is usually used to set or update the access, change, and modify times of files. However, if a filename argument is that of a nonexistent file, an empty file is created.</p>
+<p>这个 touch 命令通常被用来设置或更新文件的访问，更改，和修改时间。然而，如果一个文件名参数是一个 不存在的文件，则会创建一个空文件。</p>
+<p>In our playground, we created one hundred instances of a file named file-A. Let’s find them:</p>
+<p>在我们的操练场中，我们创建了一百个名为 file-A 的文件实例。让我们找到它们：</p>
+<pre><code>[me@linuxbox ~]$ find playground -type f -name &#39;file-A&#39;
+</code></pre><p>Note that unlike ls, find does not produce results in sorted order. Its order is determined by the layout of the storage device. To confirm that we actually have one hundred instances of the file we can confirm it this way:</p>
+<p>注意不同于 ls 命令，find 命令的输出结果是无序的。其顺序由存储设备的布局决定。为了确定实际上 我们拥有一百个此文件的实例，我们可以用这种方式来确认：</p>
+<pre><code>[me@linuxbox ~]$ find playground -type f -name &#39;file-A&#39; | wc -l
+</code></pre><p>Next, let’s look at finding files based on their modification times. This will be helpful when creating backups or organizing files in chronological order. To do this, we will first create a reference file against which we will compare modification time:</p>
+<p>下一步，让我们看一下基于文件的修改时间来查找文件。当创建备份文件或者以年代顺序来 组织文件的时候，这会很有帮助。为此，首先我们将创建一个参考文件，我们将与其比较修改时间：</p>
+<pre><code>[me@linuxbox ~]$ touch playground/timestamp
+</code></pre><p>This creates an empty file named timestamp and sets its modification time to the current time. We can verify this by using another handy command, stat, which is a kind of souped-up version of ls. The stat command reveals all that the system understands about a file and its attributes:</p>
+<p>这个创建了一个空文件，名为 timestamp，并且把它的修改时间设置为当前时间。我们能够验证 它通过使用另一个方便的命令，stat，是一款加大马力的 ls 命令版本。这个 stat 命令会展示系统对 某个文件及其属性所知道的所有信息：</p>
+<pre><code>[me@linuxbox ~]$ stat playground/timestamp
+File: &#39;playground/timestamp&#39;
+Size: 0 Blocks: 0 IO Block: 4096 regular empty file
+Device: 803h/2051d Inode: 14265061 Links: 1
+Access: (0644/-rw-r--r--) Uid: ( 1001/ me) Gid: ( 1001/ me)
+Access: 2008-10-08 15:15:39.000000000 -0400
+Modify: 2008-10-08 15:15:39.000000000 -0400
+Change: 2008-10-08 15:15:39.000000000 -0400
+</code></pre><p>If we touch the file again and then examine it with stat, we will see that the file’s times have been updated.</p>
+<p>如果我们再次 touch 这个文件，然后用 stat 命令检测它，我们会发现所有文件的时间已经更新了。</p>
+<pre><code>[me@linuxbox ~]$ touch playground/timestamp
+[me@linuxbox ~]$ stat playground/timestamp
+File: &#39;playground/timestamp&#39;
+Size: 0 Blocks: 0 IO Block: 4096 regular empty file
+Device: 803h/2051d Inode: 14265061 Links: 1
+Access: (0644/-rw-r--r--) Uid: ( 1001/ me) Gid: ( 1001/ me)
+Access: 2008-10-08 15:23:33.000000000 -0400
+Modify: 2008-10-08 15:23:33.000000000 -0400
+Change: 2008-10-08 15:23:33.000000000 -0400
+</code></pre><p>Next, let’s use find to update some of our playground files:</p>
+<p>下一步，让我们使用 find 命令来更新一些操练场中的文件：</p>
+<pre><code>[me@linuxbox ~]$ find playground -type f -name &#39;file-B&#39; -exec touch &#39;{}&#39; &#39;;&#39;
+</code></pre><p>This updates all files in the playground named file-B. Next we’ll use find to identify the updated files by comparing all the files to the reference file timestamp:</p>
+<p>这会更新操练场中所有名为 file-B 的文件。接下来我们会使用 find 命令 通过把所有文件与参考文件 timestamp 做比较，来找到已更新的文件：</p>
+<pre><code>[me@linuxbox ~]$ find playground -type f -newer playground/timestamp
+</code></pre><p>The results contain all one hundred instances of file-B. Since we performed a touch on all the files in the playground named file-B after we updated timestamp, they are now “newer” than timestamp and thus can be identified with the -newer test.</p>
+<p>搜索结果包含所有一百个文件 file-B 的实例。因为我们在更新了文件 timestamp 之后， touch 了操练场中名为 file-B 的所有文件，所以现在它们“新于”timestamp 文件，因此能被用 -newer 测试条件找到。</p>
+<p>Finally, let’s go back to the bad permissions test we performed earlier and apply it to playground:</p>
+<p>最后，让我们回到之前那个错误权限的例子中，把它应用于操练场里：</p>
+<pre><code>[me@linuxbox ~]$ find playground \( -type f -not -perm 0600 \) -or \( -type d -not -perm 0700 \)
+</code></pre><p>This command lists all one hundred directories and twenty-six hundred files in playground (as well as timestamp and playground itself, for a total of 2702) because none of them meets our definition of “good permissions.” With our knowledge of operators and actions, we can add actions to this command to apply new permissions to the files and directories in our playground:</p>
+<p>这个命令列出了操练场中所有一百个目录和二百六十个文件（还有 timestamp 和操练场本身，共 2702 个） ，因为没有一个符合我们“正确权限”的定义。通过对运算符和行为知识的了解，我们可以给这个命令 添加行为，对实战场中的文件和目录应用新的权限。</p>
+<pre><code>[me@linuxbox ~]$ find playground \( -type f -not -perm 0600 -exec chmod 0600 &#39;{}&#39; &#39;;&#39; \)
+   -or \( -type d -not -perm 0711 -exec chmod 0700 &#39;{}&#39; &#39;;&#39; \)
+</code></pre><p>On a day-to-day basis, we might find it easier to issue two commands, one for the directories and one for the files, rather than this one large compound command, but it’s nice to know that we can do it this way. The important point here is to understand how the operators and actions can be used together to perform useful tasks.</p>
+<p>在日常的基础上，我们可能发现运行两个命令会比较容易一些，一个操作目录，另一个操作文件， 而不是这一个长长的复合命令，但是很高兴知道，我们能这样执行命令。这里最重要的一点是要 理解怎样把操作符和行为结合起来使用，来执行有用的任务。</p>
+<h4 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h4><p>Finally, we have the options. The options are used to control the scope of a find search. They may be included with other tests and actions when constructing find expressions. Here is a list of the most commonly used ones:</p>
+<p>最后，我们有这些选项。这些选项被用来控制 find 命令的搜索范围。当构建 find 表达式的时候， 它们可能被其它的测试条件和行为包含，这里有一个最常被使用的选项的列表：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Option</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-depth</td>
+<td align="left">Direct find to process a directory’s files before the directory itself. This option is automatically applied when the -delete action is specified.</td>
+</tr>
+<tr>
+<td align="left">-maxdepth levels</td>
+<td align="left">Set the maximum number of levels that find will descend into a directory tree when performing tests and actions.</td>
+</tr>
+<tr>
+<td align="left">-mindepth levels</td>
+<td align="left">Set the minimum number of levels that find will descend into a directory tree before applying tests and actions.</td>
+</tr>
+<tr>
+<td align="left">-mount</td>
+<td align="left">Direct find not to traverse directories that are mounted on other file systems.</td>
+</tr>
+<tr>
+<td align="left">-noleaf</td>
+<td align="left">Direct find not to optimize its search based on the assumption that it is searching a Unix-like file system. This is needed when scanning DOS/Windows file systems and CD-ROMs.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">选项</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-depth</td>
+<td align="left">指示 find 程序先处理目录中的文件，再处理目录自身。当指定-delete 行为时，会自动 应用这个选项。</td>
+</tr>
+<tr>
+<td align="left">-maxdepth levels</td>
+<td align="left">当执行测试条件和行为的时候，设置 find 程序陷入目录树的最大级别数</td>
+</tr>
+<tr>
+<td align="left">-mindepth levels</td>
+<td align="left">在应用测试条件和行为之前，设置 find 程序陷入目录数的最小级别数。</td>
+</tr>
+<tr>
+<td align="left">-mount</td>
+<td align="left">指示 find 程序不要搜索挂载到其它文件系统上的目录。</td>
+</tr>
+<tr>
+<td align="left">-noleaf</td>
+<td align="left">指示 find 程序不要基于自己在搜索 Unix 的文件系统的假设，来优化它的搜索。 在搜索DOS/Windows 文件系统和CD/ROMS的时候，我们需要这个选项</td>
+</tr>
+</tbody></table>
+<h3 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h3><ul>
+<li><p>The locate, updatedb, find, and xargs programs are all part the GNU Project’s findutils package. The GNU Project provides a website with extensive on-line documentation, which is quite good and should be read if you are using these programs in high security environments:</p>
+</li>
+<li><p>程序 locate，updatedb，find 和 xargs 都是 GNU 项目 findutils 软件包的一部分。 这个 GUN 项目提供了大量的在线文档，这些文档相当出色，如果你在高安全性的 环境中使用这些程序，你应该读读这些文档。</p>
+<p><a href="http://www.gnu.org/software/findutils/" target="_blank" rel="noopener">http://www.gnu.org/software/findutils/</a></p>
+</li>
+</ul>
+
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'brA0u8dhiFmWzBQJ5YDMevuw-gzGzoHsz',
+        appKey: 'InzuBbqaqOss16gJu1jiKE7F',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/07/15/第十九章-归档和备份/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="第十九章 归档和备份">
+                        
+                        <span class="card-title">第十九章 归档和备份</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            One of the primary tasks of a computer system’s administrator is keeping the system’s data secure. One way this is done 
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/TLCL/" class="post-category" target="_blank">
+                                    TLCL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/07/15/第十七章-网络系统/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="第十七章 网络系统">
+                        
+                        <span class="card-title">第十七章 网络系统</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            When it comes to networking, there is probably nothing that cannot be done with Linux. Linux is used to build all sorts 
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/TLCL/" class="post-category" target="_blank">
+                                    TLCL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">456.8k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/chenshuoke" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:henu_chenshuoke@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2604689299" class="tooltipped" data-tooltip="QQ联系我: 2604689299" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.chenshuoke.top/"/>
-  <updated>2019-07-14T18:22:15.663Z</updated>
+  <updated>2019-07-15T15:09:13.698Z</updated>
   <id>http://blog.chenshuoke.top/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>git-简易指南</title>
-    <link href="http://blog.chenshuoke.top/2019/07/15/git-%E7%AE%80%E6%98%93%E6%8C%87%E5%8D%97/"/>
-    <id>http://blog.chenshuoke.top/2019/07/15/git-简易指南/</id>
-    <published>2019-07-14T18:21:26.000Z</published>
-    <updated>2019-07-14T18:22:15.663Z</updated>
+    <title>第三十七章 奇珍异宝</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%83%E7%AB%A0-%E5%A5%87%E7%8F%8D%E5%BC%82%E5%AE%9D/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第三十七章-奇珍异宝/</id>
+    <published>2019-07-15T13:55:20.000Z</published>
+    <updated>2019-07-15T15:09:13.698Z</updated>
     
     <summary type="html">
     
@@ -29,350 +29,7 @@
       
         
         
-          &lt;p&gt;助你开始使用 git 的简易指南，木有高深内容，;)。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.bootcss.com/p/git-guide/img/arrow.png&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
-    
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>附录C:Git命令</title>
-    <link href="http://blog.chenshuoke.top/2019/07/15/%E9%99%84%E5%BD%95C-Git%E5%91%BD%E4%BB%A4/"/>
-    <id>http://blog.chenshuoke.top/2019/07/15/附录C-Git命令/</id>
-    <published>2019-07-14T18:20:48.000Z</published>
-    <updated>2019-07-14T18:27:15.054Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;设置与配置&quot;&gt;&lt;a href=&quot;#设置与配置&quot; class=&quot;headerlink&quot; title=&quot;设置与配置&quot;&gt;&lt;/a&gt;设置与配置&lt;/h2&gt;&lt;p&gt;有两个命令使用得最多了，从第一次调用 Git 到每天的日常微调及参考，这个两个命令就是：
-        
-      
-    
-    </summary>
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
-    
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>附录B:将Git嵌入你的应用</title>
-    <link href="http://blog.chenshuoke.top/2019/07/15/%E9%99%84%E5%BD%95B-%E5%B0%86Git%E5%B5%8C%E5%85%A5%E4%BD%A0%E7%9A%84%E5%BA%94%E7%94%A8/"/>
-    <id>http://blog.chenshuoke.top/2019/07/15/附录B-将Git嵌入你的应用/</id>
-    <published>2019-07-14T18:20:33.000Z</published>
-    <updated>2019-07-14T18:26:54.940Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;假设你的应用程序的目标人群是开发者，如果它能够被整合进一些源码控制的功能，那真真是极好的。 甚至对于一个例如文档编辑器之类的不是为开发者而设计的应用程序，它们也可能从版本控制系统中受益，并且 Git 的实现方式在很多情况下都表现得非常出色。&lt;/p&gt;
-&lt;p&gt;如果你想将
-        
-      
-    
-    </summary>
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
-    
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>附录A:其他环境中的Git</title>
-    <link href="http://blog.chenshuoke.top/2019/07/15/%E9%99%84%E5%BD%95A-%E5%85%B6%E4%BB%96%E7%8E%AF%E5%A2%83%E4%B8%AD%E7%9A%84Git/"/>
-    <id>http://blog.chenshuoke.top/2019/07/15/附录A-其他环境中的Git/</id>
-    <published>2019-07-14T18:20:12.000Z</published>
-    <updated>2019-07-14T18:26:34.458Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;从头至尾读到了这里，你肯定已经掌握了不少使用 Git 命令行操作的知识。 你学会了操作本地文件，通过网络连接你的仓库，以及与他人进行有效率的合作。 但是故事并未就此结束；Git 通常只是更大的生态圈的一部分，在某些情况下使用终端并不是最合适的方式。
-        
-      
-    
-    </summary>
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
-    
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git内部原理</title>
-    <link href="http://blog.chenshuoke.top/2019/07/15/Git%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86/"/>
-    <id>http://blog.chenshuoke.top/2019/07/15/Git内部原理/</id>
-    <published>2019-07-14T18:19:49.000Z</published>
-    <updated>2019-07-14T18:24:14.945Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;无论是从之前的章节直接跳到本章，还是读完了其余章节一直到这——你都将在本章见识到 Git 的内部工作原理和实现方式。 我们发现学习这部分内容对于理解 Git 的用途和强大至关重要。不过也有人认为这些内容对于初学者而言可能难以理解且过于复杂。
-        
-      
-    
-    </summary>
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
-    
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git与其他系统</title>
-    <link href="http://blog.chenshuoke.top/2019/07/15/Git%E4%B8%8E%E5%85%B6%E4%BB%96%E7%B3%BB%E7%BB%9F/"/>
-    <id>http://blog.chenshuoke.top/2019/07/15/Git与其他系统/</id>
-    <published>2019-07-14T18:19:40.000Z</published>
-    <updated>2019-07-14T18:24:55.136Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;现实并不总是尽如人意。 通常，你不能立刻就把接触到的每一个项目都切换到 Git。 有时候你被困在使用其他 VCS 的项目中，却希望使用 Git。 在本章的第一部分我们将会了解到，怎样在你的那些托管在不同系统的项目上使用 Git
-        
-      
-    
-    </summary>
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
-    
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>自定义Git</title>
-    <link href="http://blog.chenshuoke.top/2019/07/15/%E8%87%AA%E5%AE%9A%E4%B9%89Git/"/>
-    <id>http://blog.chenshuoke.top/2019/07/15/自定义Git/</id>
-    <published>2019-07-14T18:19:25.000Z</published>
-    <updated>2019-07-14T18:27:35.016Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;到目前为止，我们已经阐述了 Git 基本的运作机制和使用方式，介绍了许多 Git 提供的工具来帮助你简单且有效地使用它。 在本章，我们将演示如何借助 Git 的一些重要的配置方法和钩子机制，来满足自定义的需求。
-        
-      
-    
-    </summary>
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
-    
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git工具</title>
-    <link href="http://blog.chenshuoke.top/2019/07/15/Git%E5%B7%A5%E5%85%B7/"/>
-    <id>http://blog.chenshuoke.top/2019/07/15/Git工具/</id>
-    <published>2019-07-14T18:19:13.000Z</published>
-    <updated>2019-07-14T18:23:21.565Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;现在，你已经学习了管理或者维护 Git 仓库、实现代码控制所需的大多数日常命令和工作流程。 你已经尝试了跟踪和提交文件的基本操作，并且发挥了暂存区和轻量级的分支及合并的威力。&lt;/p&gt;
-&lt;p&gt;接下来你将学习一些 Git
-        
-      
-    
-    </summary>
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
-    
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GitHub</title>
-    <link href="http://blog.chenshuoke.top/2019/07/15/GitHub/"/>
-    <id>http://blog.chenshuoke.top/2019/07/15/GitHub/</id>
-    <published>2019-07-14T18:19:04.000Z</published>
-    <updated>2019-07-14T18:25:19.262Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;GitHub 是最大的 Git 版本库托管商，是成千上万的开发者和项目能够合作进行的中心。 大部分 Git 版本库都托管在 GitHub，很多开源项目使用 GitHub 实现 Git 托管、问题追踪、代码审查以及其它事情。 所以，尽管这不是 Git
-        
-      
-    
-    </summary>
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
-    
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>分布式Git</title>
-    <link href="http://blog.chenshuoke.top/2019/07/15/%E5%88%86%E5%B8%83%E5%BC%8FGit/"/>
-    <id>http://blog.chenshuoke.top/2019/07/15/分布式Git/</id>
-    <published>2019-07-14T18:18:53.000Z</published>
-    <updated>2019-07-14T18:25:46.119Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;你现在拥有了一个远程 Git 版本库，能为所有开发者共享代码提供服务，在一个本地工作流程下，你也已经熟悉了基本 Git 命令。你现在可以学习如何利用 Git
-        
-      
-    
-    </summary>
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
-    
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>服务器上的Git</title>
-    <link href="http://blog.chenshuoke.top/2019/07/15/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84Git/"/>
-    <id>http://blog.chenshuoke.top/2019/07/15/服务器上的Git/</id>
-    <published>2019-07-14T18:18:45.000Z</published>
-    <updated>2019-07-14T18:26:09.452Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;到目前为止，你应该已经有办法使用 Git 来完成日常工作。 然而，为了使用 Git 协作功能，你还需要有远程的 Git 仓库。 尽管在技术上你可以从个人仓库进行推送（push）和拉取（pull）来修改内容，但不鼓励使用这种方法，因为一不留心就很容易弄混其他人的进度。
-        
-      
-    
-    </summary>
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
-    
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git分支</title>
-    <link href="http://blog.chenshuoke.top/2019/07/15/Git%E5%88%86%E6%94%AF/"/>
-    <id>http://blog.chenshuoke.top/2019/07/15/Git分支/</id>
-    <published>2019-07-14T18:18:31.000Z</published>
-    <updated>2019-07-14T18:22:53.849Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;几乎所有的版本控制系统都以某种形式支持分支。 使用分支意味着你可以把你的工作从开发主线上分离开来，以免影响开发主线。 在很多版本控制系统中，这是一个略微低效的过程——常常需要完全创建一个源代码目录的副本。对于大项目来说，这样的过程会耗费很多时间。&lt;/p&gt;
-&lt;p&gt;有人把
-        
-      
-    
-    </summary>
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
-    
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git基础</title>
-    <link href="http://blog.chenshuoke.top/2019/07/15/Git%E5%9F%BA%E7%A1%80/"/>
-    <id>http://blog.chenshuoke.top/2019/07/15/Git基础/</id>
-    <published>2019-07-14T18:18:22.000Z</published>
-    <updated>2019-07-14T18:23:44.434Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;假如你只能阅读一章来学习 Git，本章就是你的不二选择。 本章内容涵盖你在使用 Git 完成各种工作中将要使用的各种基本命令。
-        
-      
-    
-    </summary>
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/categories/Git/"/>
-    
-    
-      <category term="Git" scheme="http://blog.chenshuoke.top/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>第十一章 进程</title>
-    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E8%BF%9B%E7%A8%8B/"/>
-    <id>http://blog.chenshuoke.top/2019/07/15/第十一章-进程/</id>
-    <published>2019-07-14T18:09:19.000Z</published>
-    <updated>2019-07-14T18:16:25.050Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;Modern operating systems are usually multitasking, meaning that they create the illusion of doing more than one thing at once by rapidly
+          &lt;p&gt;In this, the final chapter of our journey, we will look at some odds and ends. While we have certainly covered a lot of ground in the
         
       
     
@@ -384,11 +41,11 @@
   </entry>
   
   <entry>
-    <title>第十章 权限</title>
-    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E5%8D%81%E7%AB%A0-%E6%9D%83%E9%99%90/"/>
-    <id>http://blog.chenshuoke.top/2019/07/15/第十章-权限/</id>
-    <published>2019-07-14T18:09:08.000Z</published>
-    <updated>2019-07-14T18:15:50.189Z</updated>
+    <title>第三十六章 数组</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E4%B8%89%E5%8D%81%E5%85%AD%E7%AB%A0-%E6%95%B0%E7%BB%84/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第三十六章-数组/</id>
+    <published>2019-07-15T13:55:09.000Z</published>
+    <updated>2019-07-15T14:08:08.809Z</updated>
     
     <summary type="html">
     
@@ -396,7 +53,7 @@
       
         
         
-          &lt;p&gt;Operating systems in the Unix tradition differ from those in the MS-DOS tradition in that they are not only multitasking systems, but
+          &lt;p&gt;In the last chapter, we looked at how the shell can manipulate strings and numbers. The data types we have looked at so far are known in
         
       
     
@@ -408,11 +65,11 @@
   </entry>
   
   <entry>
-    <title>第九章 键盘高级操作技巧</title>
-    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E9%94%AE%E7%9B%98%E9%AB%98%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8A%80%E5%B7%A7/"/>
-    <id>http://blog.chenshuoke.top/2019/07/15/第九章-键盘高级操作技巧/</id>
-    <published>2019-07-14T18:08:49.000Z</published>
-    <updated>2019-07-14T18:15:23.484Z</updated>
+    <title>第三十五章 字符串和数字</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E4%B8%89%E5%8D%81%E4%BA%94%E7%AB%A0%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E6%95%B0%E5%AD%97/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第三十五章 字符串和数字/</id>
+    <published>2019-07-15T13:54:52.000Z</published>
+    <updated>2019-07-15T16:39:50.358Z</updated>
     
     <summary type="html">
     
@@ -420,7 +77,7 @@
       
         
         
-          &lt;p&gt;I often kiddingly describe Unix as “the operating system for people who like to type.” Of course, the fact that it even has a command
+          &lt;p&gt;Computer programs are all about working with data. In past chapters, we have focused on processing data at the file level. However, many
         
       
     
@@ -432,11 +89,11 @@
   </entry>
   
   <entry>
-    <title>第八章 从shell眼中看世界</title>
-    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E5%85%AB%E7%AB%A0-%E4%BB%8Eshell%E7%9C%BC%E4%B8%AD%E7%9C%8B%E4%B8%96%E7%95%8C/"/>
-    <id>http://blog.chenshuoke.top/2019/07/15/第八章-从shell眼中看世界/</id>
-    <published>2019-07-14T18:08:23.000Z</published>
-    <updated>2019-07-14T18:14:52.659Z</updated>
+    <title>第三十四章 流程控制：for循环</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E4%B8%89%E5%8D%81%E5%9B%9B%E7%AB%A0-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%EF%BC%9Afor%E5%BE%AA%E7%8E%AF/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第三十四章-流程控制：for循环/</id>
+    <published>2019-07-15T13:54:28.000Z</published>
+    <updated>2019-07-15T14:07:16.029Z</updated>
     
     <summary type="html">
     
@@ -444,7 +101,7 @@
       
         
         
-          &lt;p&gt;In this chapter we are going to look at some of the “magic” that occurs on the command line when you press the enter key. While we will
+          &lt;p&gt;In this final chapter on flow control, we will look at another of the shell’s looping constructs. The for loop differs from the while
         
       
     
@@ -456,11 +113,11 @@
   </entry>
   
   <entry>
-    <title>第七章 重定义</title>
-    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E9%87%8D%E5%AE%9A%E4%B9%89/"/>
-    <id>http://blog.chenshuoke.top/2019/07/15/第七章-重定义/</id>
-    <published>2019-07-14T18:08:01.000Z</published>
-    <updated>2019-07-14T18:14:19.521Z</updated>
+    <title>第三十三章 位置参数</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%89%E7%AB%A0-%E4%BD%8D%E7%BD%AE%E5%8F%82%E6%95%B0/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第三十三章-位置参数/</id>
+    <published>2019-07-15T13:54:10.000Z</published>
+    <updated>2019-07-15T14:06:42.361Z</updated>
     
     <summary type="html">
     
@@ -468,7 +125,7 @@
       
         
         
-          &lt;p&gt;In this lesson we are going to unleash what may be the coolest feature of the command line. It’s called I/O redirection. The “I/O”
+          &lt;p&gt;One feature that has been missing from our programs is the ability to accept and process command line options and arguments. In this
         
       
     
@@ -480,11 +137,11 @@
   </entry>
   
   <entry>
-    <title>第六章 使用命令</title>
-    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
-    <id>http://blog.chenshuoke.top/2019/07/15/第六章-使用命令/</id>
-    <published>2019-07-14T18:07:44.000Z</published>
-    <updated>2019-07-14T18:13:52.896Z</updated>
+    <title>第三十二章 流程控制：case分支</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E4%B8%89%E5%8D%81%E4%BA%8C%E7%AB%A0-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%EF%BC%9Acase%E5%88%86%E6%94%AF/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第三十二章-流程控制：case分支/</id>
+    <published>2019-07-15T13:53:54.000Z</published>
+    <updated>2019-07-15T14:06:10.117Z</updated>
     
     <summary type="html">
     
@@ -492,7 +149,7 @@
       
         
         
-          &lt;p&gt;Up to this point, we have seen a series of mysterious commands, each with its own mysterious options and arguments. In this chapter, we
+          &lt;p&gt;In this chapter, we will continue to look at flow control. In Chapter 28, we constructed some simple menus and built the logic used to
         
       
     
@@ -504,11 +161,11 @@
   </entry>
   
   <entry>
-    <title>第五章 操作文件和目录</title>
-    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/"/>
-    <id>http://blog.chenshuoke.top/2019/07/15/第五章-操作文件和目录/</id>
-    <published>2019-07-14T18:07:28.000Z</published>
-    <updated>2019-07-14T18:13:13.715Z</updated>
+    <title>第三十一章 疑难排解</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%80%E7%AB%A0-%E7%96%91%E9%9A%BE%E6%8E%92%E8%A7%A3/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第三十一章-疑难排解/</id>
+    <published>2019-07-15T13:53:16.000Z</published>
+    <updated>2019-07-15T14:05:37.000Z</updated>
     
     <summary type="html">
     
@@ -516,7 +173,309 @@
       
         
         
-          &lt;p&gt;At this point, we are ready for some real work! This chapter will introduce the following
+          &lt;p&gt;As our scripts become more complex, it’s time to take a look at what happens when things go wrong and they don’t do what we want. In
+        
+      
+    
+    </summary>
+    
+      <category term="TLCL" scheme="http://blog.chenshuoke.top/categories/TLCL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>第三十章 流程控制：while/until循环</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E4%B8%89%E5%8D%81%E7%AB%A0-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%EF%BC%9Awhile-until%E5%BE%AA%E7%8E%AF/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第三十章-流程控制：while-until循环/</id>
+    <published>2019-07-15T13:52:45.000Z</published>
+    <updated>2019-07-15T14:05:16.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;In the previous chapter, we developed a menu-driven program to produce various kinds of system information. The program works, but it
+        
+      
+    
+    </summary>
+    
+      <category term="TLCL" scheme="http://blog.chenshuoke.top/categories/TLCL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>第二十九章 读取键盘输入</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B9%9D%E7%AB%A0-%E8%AF%BB%E5%8F%96%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第二十九章-读取键盘输入/</id>
+    <published>2019-07-15T13:52:15.000Z</published>
+    <updated>2019-07-15T14:04:50.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;The scripts we have written so far lack a feature common in most computer programs — interactivity. That is, the ability of the program
+        
+      
+    
+    </summary>
+    
+      <category term="TLCL" scheme="http://blog.chenshuoke.top/categories/TLCL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>第二十八章 流程控制：if分支结构</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%85%AB%E7%AB%A0-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%EF%BC%9Aif%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第二十八章-流程控制：if分支结构/</id>
+    <published>2019-07-15T13:51:41.000Z</published>
+    <updated>2019-07-15T16:15:47.371Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;In the last chapter, we were presented with a problem. How can we make our report generator script adapt to the privileges of the user
+        
+      
+    
+    </summary>
+    
+      <category term="TLCL" scheme="http://blog.chenshuoke.top/categories/TLCL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>第二十七章 自顶向下设计</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%83%E7%AB%A0-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AE%BE%E8%AE%A1/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第二十七章-自顶向下设计/</id>
+    <published>2019-07-15T13:50:48.000Z</published>
+    <updated>2019-07-15T13:50:48.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>第二十六章 启动一个项目</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%85%AD%E7%AB%A0-%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第二十六章-启动一个项目/</id>
+    <published>2019-07-15T13:49:52.000Z</published>
+    <updated>2019-07-15T14:04:24.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Starting with this chapter, we will begin to build a program. The purpose of this project is to see how various shell features are used
+        
+      
+    
+    </summary>
+    
+      <category term="TLCL" scheme="http://blog.chenshuoke.top/categories/TLCL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>第二十五章 编写第一个Shell脚本</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%94%E7%AB%A0-%E7%BC%96%E5%86%99%E7%AC%AC%E4%B8%80%E4%B8%AAShell%E8%84%9A%E6%9C%AC/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第二十五章-编写第一个Shell脚本/</id>
+    <published>2019-07-15T13:49:27.000Z</published>
+    <updated>2019-07-15T14:03:51.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;In the preceding chapters, we have assembled an arsenal of command line tools. While these tools can solve many kinds of computing
+        
+      
+    
+    </summary>
+    
+      <category term="TLCL" scheme="http://blog.chenshuoke.top/categories/TLCL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>第二十四章 编译程序</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%9B%9B%E7%AB%A0-%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第二十四章-编译程序/</id>
+    <published>2019-07-15T13:48:55.000Z</published>
+    <updated>2019-07-15T14:03:31.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;In this chapter, we will look at how to build programs by compiling source code. The availability of source code is the essential
+        
+      
+    
+    </summary>
+    
+      <category term="TLCL" scheme="http://blog.chenshuoke.top/categories/TLCL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>第二十三章 打印</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%89%E7%AB%A0-%E6%89%93%E5%8D%B0/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第二十三章-打印/</id>
+    <published>2019-07-15T13:48:43.000Z</published>
+    <updated>2019-07-15T14:03:03.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;After spending the last couple of chapters manipulating text, it’s time to put that text on paper. In this chapter, we’ll look at the
+        
+      
+    
+    </summary>
+    
+      <category term="TLCL" scheme="http://blog.chenshuoke.top/categories/TLCL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>第二十二章 格式化输出</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E7%AB%A0-%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第二十二章-格式化输出/</id>
+    <published>2019-07-15T13:48:32.000Z</published>
+    <updated>2019-07-15T14:02:38.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;In this chapter, we continue our look at text related tools, focusing on programs that are used to format text output, rather than
+        
+      
+    
+    </summary>
+    
+      <category term="TLCL" scheme="http://blog.chenshuoke.top/categories/TLCL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>第二十一章 文本处理</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%80%E7%AB%A0-%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第二十一章-文本处理/</id>
+    <published>2019-07-15T13:48:07.000Z</published>
+    <updated>2019-07-15T14:02:11.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;All Unix-like operating systems rely heavily on text files for several types of data storage. So it makes sense that there are many
+        
+      
+    
+    </summary>
+    
+      <category term="TLCL" scheme="http://blog.chenshuoke.top/categories/TLCL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>第二十章 正则表达式</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E4%BA%8C%E5%8D%81%E7%AB%A0-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第二十章-正则表达式/</id>
+    <published>2019-07-15T13:47:53.000Z</published>
+    <updated>2019-07-15T14:01:44.246Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;In the next few chapters, we are going to look at tools used to manipulate text. As we have seen, text data plays an important role on
+        
+      
+    
+    </summary>
+    
+      <category term="TLCL" scheme="http://blog.chenshuoke.top/categories/TLCL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>第十九章 归档和备份</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E5%8D%81%E4%B9%9D%E7%AB%A0-%E5%BD%92%E6%A1%A3%E5%92%8C%E5%A4%87%E4%BB%BD/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第十九章-归档和备份/</id>
+    <published>2019-07-15T13:47:22.000Z</published>
+    <updated>2019-07-15T14:01:19.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;One of the primary tasks of a computer system’s administrator is keeping the system’s data secure. One way this is done is by performing
+        
+      
+    
+    </summary>
+    
+      <category term="TLCL" scheme="http://blog.chenshuoke.top/categories/TLCL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>第十八章 查找文件</title>
+    <link href="http://blog.chenshuoke.top/2019/07/15/%E7%AC%AC%E5%8D%81%E5%85%AB%E7%AB%A0-%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6/"/>
+    <id>http://blog.chenshuoke.top/2019/07/15/第十八章-查找文件/</id>
+    <published>2019-07-15T13:47:06.000Z</published>
+    <updated>2019-07-15T14:00:50.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;As we have wandered around our Linux system, one thing has become abundantly clear: a typical Linux system has a lot of files! This begs
         
       
     

@@ -1,0 +1,1991 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="第十三章 vi简介, 孤狼的博客">
+    <meta name="description" content="There is an old joke about a visitor to New York City asking a passerby for directions to the city’s famous classical mu">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>第十三章 vi简介 | 孤狼的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+    <!-- 下面一句添加的 -->
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">孤狼的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">孤狼的博客</div>
+        <div class="logo-desc">
+            
+            从来没有真正的绝境，只有心灵的迷途
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/chenshuoke" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/chenshuoke" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        第十三章 vi简介
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/TLCL/" class="post-category" target="_blank">
+                                TLCL
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-07-15
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        10.7k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        50 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>There is an old joke about a visitor to New York City asking a passerby for directions to the city’s famous classical music venue:</p>
+<p>Visitor: Excuse me, how do I get to Carnegie Hall?</p>
+<p>Passerby: Practice, practice, practice!</p>
+<p>有一个古老的笑话，说是一个在纽约的游客向行人打听这座城市中著名古典音乐场馆的方向：</p>
+<p>游客： 请问一下，我怎样去卡内基音乐大厅？</p>
+<p>行人： 练习，练习，练习!</p>
+<p>Learning the Linux command line, like becoming an accomplished pianist, is not something that we pick up in an afternoon. It takes years of practice. In this chapter, we will introduce the vi (pronounced “vee eye”) text editor, one of the core programs in the Unix tradition. vi is somewhat notorious for its difficult user interface, but when we see a master sit down at the keyboard and begin to “play,” we will indeed be witness to some great art. We won’t become masters in this chapter, but when we are done, we will know how to play “chopsticks” in vi.</p>
+<p>学习 Linux 命令行，就像要成为一名造诣很深的钢琴家一样，它不是我们一下午就能学会的技能。这需要 经历几年的勤苦练习。在这一章中，我们将介绍 vi（发音“vee eye”）文本编辑器，它是 Unix 传统中核心程序之一。 vi 因它难用的用户界面而有点声名狼藉，但是当我们看到一位大师坐在钢琴前开始演奏时，我们的确成了 伟大艺术的见证人。虽然我们在这里不能成为 vi 大师，但是当我们学完这一章后， 我们会知道怎样在 vi 中弹奏像“Chopsticks”那样的钢琴小品。</p>
+<p>Why We Should Learn vi</p>
+<h3 id="为什么我们应该学习-vi"><a href="#为什么我们应该学习-vi" class="headerlink" title="为什么我们应该学习 vi"></a>为什么我们应该学习 vi</h3><p>In this modern age of graphical editors and easy-to-use text-based editors such as nano, why should we learn vi? There are three good reasons:</p>
+<p>在现在这个图形化编辑器和易于使用的基于文本编辑器的时代，比如说 nano，为什么我们还应该学习 vi 呢？ 下面有三个充分的理由：</p>
+<ul>
+<li>vi is always available. This can be a lifesaver if we have a system with no graphical interface, such as a remote server or a local system with a broken X configuration. nano, while increasingly popular is still not universal. POSIX, a standard for program compatibility on Unix systems, requires that vi be present.</li>
+<li>vi 很多系统都预装。如果我们的系统没有图形界面，比方说一台远端服务器或者是一个 X 配置损坏了的本地系统，那么 vi 就成了我们的救星。虽然 nano 逐渐流行起来，但是它 还没有普及。POSIX，这套 Unix 系统中程序兼容的标准，就要求系统要预装 vi。</li>
+<li>vi is lightweight and fast. For many tasks, it’s easier to bring up vi than it is to find the graphical text editor in the menus and wait for its multiple megabytes to load. In addition, vi is designed for typing speed. As we shall see, a skilled vi user never has to lift his or her fingers from the keyboard while editing.</li>
+<li>vi 轻量级且执行快。对于许多任务来说，启动 vi 比起在菜单中找到一个图形化文本编辑器，  再等待其数倍兆字节的数据加载而言，要容易的多。另外，vi 是为了加快输入速度而设计的。 我们将会看到，当一名熟练的 vi 用户在编辑文件时，他或她的手从不需要移开键盘。</li>
+<li>We don’t want other Linux and Unix users to think we are sissies.</li>
+<li>我们不希望其他 Linux 和 Unix 用户把我们看作胆小鬼。</li>
+</ul>
+<p>Okay, maybe two good reasons.</p>
+<p>好吧，可能只有两个充分的理由。</p>
+<p>A Little Background</p>
+<h3 id="一点儿背景介绍"><a href="#一点儿背景介绍" class="headerlink" title="一点儿背景介绍"></a>一点儿背景介绍</h3><p>The first version of vi was written in 1976 by Bill Joy, a University of California at Berkley student who later went on to co-found Sun Microsystems. vi derives its name from the word “visual,” because it was intended to allow editing on a video terminal with a moving cursor. Previous to visual editors, there were line editors which operated on a single line of text at a time. To specify a change, we tell a line editor to go to a particular line and describe what change to make, such as adding or deleting text. With the advent of video terminals (rather than printer-based terminals like teletypes) visual editing became possible. vi actually incorporates a powerful line editor called ex, and we can use line editing commands while using vi.</p>
+<p>第一版 vi 是在1976由 Bill Joy 写成的，当时他是加州大学伯克利分校的学生， 后来他共同创建了 Sun 微系统公司。vi 这个名字 来源于单词“visual”，因为它打算在带有可移动光标的视频终端上编辑文本。在发明可视化编辑器之前， 有一次只能操作一行文本的行编辑器。为了编辑，我们需要告诉行编辑器到一个特殊行并且 说明做什么修改，比方说添加或删除文本。视频终端（而不是基于打印机的终端，像电传打印机）的出现 ，使可视化编辑成为可能。vi 实际上整合了一个强大的行编辑器 ———— ex , 所以我们在使用 vi 时能运行行编辑命令。</p>
+<p>Most Linux distributions don’t include real vi; rather, they ship with an enhanced replacement called vim (which is short for “vi improved”) written by Bram Moolenaar. vim is a substantial improvement over traditional Unix vi and is usually symbolically linked (or aliased) to the name “vi” on Linux systems. In the discussions that follow, we will assume that we have a program called “vi” that is really vim.</p>
+<p>大多数 Linux 发行版不包含真正的 vi；而是自带一款高级替代版本，叫做 vim（它是“vi improved”的简写）由 Bram Moolenaar 开发的。vim 相对于传统的 Unix vi 来说，取得了实质性进步。通常，vim 在 Linux 系统中是“vi”的符号链接（或别名）。 在随后的讨论中，我们将会假定我们有一个叫做“vi”的程序，但它其实是 vim。</p>
+<p>Starting And Stopping vi</p>
+<h3 id="启动和退出-vi"><a href="#启动和退出-vi" class="headerlink" title="启动和退出 vi"></a>启动和退出 vi</h3><p>To start vi, we simply type the following:</p>
+<p>要想启动 vi，只要简单地输入以下命令：</p>
+<pre><code>[me@linuxbox ~]$ vi</code></pre><p>And a screen like this should appear:</p>
+<p>一个像这样的屏幕应该出现：</p>
+<pre><code>VIM - Vi Improved
+....</code></pre><p>Just as we did with nano earlier, the first thing to learn is how to exit. To exit, we enter the following command (note that the colon character is part of the command):</p>
+<p>正如我们之前操作 nano 时，首先要学的是怎样退出 vi。要退出 vi，输入下面的命令（注意冒号是命令的一部分）：</p>
+<pre><code>:q</code></pre><p>The shell prompt should return. If, for some reason, vi will not quit (usually because we made a change to a file that has not yet been saved), we can tell vi that we really mean it by adding an exclamation point to the command:</p>
+<p>shell 提示符应该重新出现。如果由于某种原因，vi 不能退出（通常因为我们对文件做了修改，却没有保存文件）。 通过给命令加上叹号，我们可以告诉 vi 我们真要退出 vi。（注意感叹号是命令的一部分）</p>
+<pre><code>:q!</code></pre><p>Tip: If you get “lost” in vi, try pressing the Esc key twice to find your way again.</p>
+<p>小贴示：如果你在 vi 中“迷失”了，试着按下 Esc 键两次来回到普通模式。</p>
+<blockquote>
+<p>Compatibility Mode</p>
+<p>兼容模式</p>
+<p>In the example startup screen above (taken from Ubuntu 8.04), we see the text “Running in Vi compatible mode.” This means that vim will run in a mode that is closer to the normal behavior of vi rather than the enhanced behavior of vim. For purposes of this chapter, we will want to run vim with its enhanced behavior. To do this, you have a few options:</p>
+<p>在上面的截屏中（来自于 Ubuntu 8.04），我们看到一行文字 “运行于 Vi 兼容模式。” 这意味着 vim 将以近似于 vi 的普通的模式 运行，而不是以 vim 的高级的模式运行。出于本章的教学目的，我们将使用 vim 和它的的高级模式。 要这样使用vim，可以通过如下方法：</p>
+<p>Try running vim instead of vi.</p>
+<p>用 vim 来代替 vi。</p>
+<p>If that works, consider adding alias vi=’vim’ to your .bashrc file.</p>
+<p>如果命令生效，考虑在你的.bashrc 文件中添加 alias vi=’vim’。</p>
+<p>Alternately, use this command to add a line to your vim configuration file:</p>
+<p>或者，使用以下命令在你的 vim 配置文件中添加一行：</p>
+<p><em>echo “set nocp” &gt;&gt; ~/.vimrc</em></p>
+<p>Different Linux distributions package vim in different ways. Some distributions install a minimal version of vim by default that only supports a limiting set of vim features. While preforming the lessons that follow, you may encounter missing features. If this is the case, install the full version of vim.</p>
+<p>不同 Linux 发行版自带的 vim 软件包各不相同。一些发行版预装了 vim 的最简版， 其只支持很有限的 vim 特性。在随后练习里，你可能发现你的 vim 缺失一些特性。 若是如此，请安装 vim 的完整版。</p>
+</blockquote>
+<p>Editing Modes</p>
+<h3 id="编辑模式"><a href="#编辑模式" class="headerlink" title="编辑模式"></a>编辑模式</h3><p>Let’s start up vi again, this time passing to it the name of a nonexistent file. This is how we can create a new file with vi:</p>
+<p>再次启动 vi，这次传递给 vi 一个不存在的文件名。这也是用 vi 创建新文件的方法。</p>
+<pre><code>[me@linuxbox ~]$ rm -f foo.txt
+[me@linuxbox ~]$ vi foo.txt</code></pre><p>If all goes well, we should get a screen like this:</p>
+<p>如果一切正常，我们应该获得一个像这样的屏幕：</p>
+<pre><code>....
+&quot;foo.txt&quot; [New File]</code></pre><p>The leading tilde characters (”~”) indicate that no text exists on that line. This shows that we have an empty file. Do not type anything yet!</p>
+<p>每行开头的波浪号（”~”）表示那一行没有文本。这里我们有一个空文件。先别进行输入！</p>
+<p>The second most important thing to learn about vi (after learning how to exit) is that vi is a modal editor. When vi starts up, it begins in command mode. In this mode, almost every key is a command, so if we were to start typing, vi would basically go crazy and make a big mess.</p>
+<p>关于 vi ，第二重要的事是知晓vi 是一个模式编辑器。（第一件事是如何退出 vi ）vi 启动后会直接进入 命令模式。这种模式下，几乎每个按键都是一个命令，所以如果我们直接输入文本，vi 会发疯，弄得一团糟。</p>
+<p>Entering Insert Mode</p>
+<h4 id="插入模式"><a href="#插入模式" class="headerlink" title="插入模式"></a>插入模式</h4><p>In order to add some text to our file, we must first enter insert mode. To do this, we press the “i” key. Afterwards, we should see the following at the bottom of the screen if vim is running in its usual enhanced mode (this will not appear in vi compatible mode):</p>
+<p>为了在文件中添加文本，我们需要先进入插入模式。按下”i”键进入插入模式。之后，我们应当 在屏幕底部看到如下的信息，如果 vi 运行在高级模式下（ vi 在兼容模式下不会显示这行信息）：</p>
+<pre><code>-- INSERT --</code></pre><p>Now we can enter some text. Try this:</p>
+<p>现在我们能输入一些文本了。试着输入这些文本：</p>
+<pre><code>The quick brown fox jumped over the lazy dog.</code></pre><p>To exit insert mode and return to command mode, press the Esc key.</p>
+<p>若要退出插入模式返回命令模式，按下 Esc 按键。</p>
+<p>Saving Our Work</p>
+<h4 id="保存我们的工作"><a href="#保存我们的工作" class="headerlink" title="保存我们的工作"></a>保存我们的工作</h4><p>To save the change we just made to our file, we must enter an ex command while in command mode. This is easily done by pressing the “:” key. After doing this, a colon character should appear at the bottom of the screen:</p>
+<p>为了保存我们刚才对文件所做的修改，我们必须在命令模式下输入一个 ex 命令。 通过按下”:”键，这很容易完成。按下冒号键之后，一个冒号字符应该出现在屏幕的底部：</p>
+<pre><code>:
+</code></pre><p>To write our modified file, we follow the colon with a “w” then Enter:</p>
+<p>为了写入我们修改的文件，我们在冒号之后输入”w”字符，然后按下回车键：</p>
+<pre><code>:w
+</code></pre><p>The file will be written to the hard drive and we should get a confirmation message at the bottom of the screen, like this:</p>
+<p>文件将会写入到硬盘，而且我们会在屏幕底部看到一行确认信息，就像这样：</p>
+<pre><code>&quot;foo.txt&quot; [New] 1L, 46C written
+</code></pre><p>Tip: If you read the vim documentation, you will notice that (confusingly) command mode is called normal mode and ex commands are called command mode. Beware.</p>
+<p>小贴示：如果你阅读 vim 的文档，你会发现命令模式被（令人困惑地）叫做普通模式，ex 命令 叫做命令模式。当心。</p>
+<p>Moving The Cursor Around</p>
+<h3 id="移动光标"><a href="#移动光标" class="headerlink" title="移动光标"></a>移动光标</h3><p>While in command mode, vi offers a large number of movement commands, some of which it shares with less. Here is a subset:</p>
+<p>当在 vi 命令模式下时，vi 提供了大量的移动命令，其中一些与 less 阅读器的相同。这里 列举了一些：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Key</th>
+<th align="left">Move The Cursor</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">l or Right Arrow</td>
+<td align="left">Right one character.</td>
+</tr>
+<tr>
+<td align="left">h or Left Arrow</td>
+<td align="left">Left one character</td>
+</tr>
+<tr>
+<td align="left">j or Down Arrow</td>
+<td align="left">Down one line</td>
+</tr>
+<tr>
+<td align="left">k or Up Arrow</td>
+<td align="left">Up one line</td>
+</tr>
+<tr>
+<td align="left">0 (zero)</td>
+<td align="left">To the beginning of the current line.</td>
+</tr>
+<tr>
+<td align="left">^</td>
+<td align="left">To the first non-whitespace character on the current line.</td>
+</tr>
+<tr>
+<td align="left">$</td>
+<td align="left">To the end of the current line.</td>
+</tr>
+<tr>
+<td align="left">w</td>
+<td align="left">To the beginning of the next word or puntuation character.</td>
+</tr>
+<tr>
+<td align="left">W</td>
+<td align="left">To the beginning of the next word, ignoring puntuation character.</td>
+</tr>
+<tr>
+<td align="left">b</td>
+<td align="left">To the beginning of the previous word or punctuation character.</td>
+</tr>
+<tr>
+<td align="left">B</td>
+<td align="left">To the beginning of the previous word, ignoring punctuation characters.</td>
+</tr>
+<tr>
+<td align="left">Ctrl-f or Page Down</td>
+<td align="left">Down one page.</td>
+</tr>
+<tr>
+<td align="left">Ctrl-b or Page Up</td>
+<td align="left">Up one page.</td>
+</tr>
+<tr>
+<td align="left">numberG</td>
+<td align="left">To line number. For example, 1G moves to the first line of the file.</td>
+</tr>
+<tr>
+<td align="left">G</td>
+<td align="left">To the last line of the file.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">按键</th>
+<th align="left">移动光标</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">l or 右箭头</td>
+<td align="left">向右移动一个字符</td>
+</tr>
+<tr>
+<td align="left">h or 左箭头</td>
+<td align="left">向左移动一个字符</td>
+</tr>
+<tr>
+<td align="left">j or 下箭头</td>
+<td align="left">向下移动一行</td>
+</tr>
+<tr>
+<td align="left">k or 上箭头</td>
+<td align="left">向上移动一行</td>
+</tr>
+<tr>
+<td align="left">0 (零按键)</td>
+<td align="left">移动到当前行的行首。</td>
+</tr>
+<tr>
+<td align="left">^</td>
+<td align="left">移动到当前行的第一个非空字符。</td>
+</tr>
+<tr>
+<td align="left">$</td>
+<td align="left">移动到当前行的末尾。</td>
+</tr>
+<tr>
+<td align="left">w</td>
+<td align="left">移动到下一个单词或标点符号的开头。</td>
+</tr>
+<tr>
+<td align="left">W</td>
+<td align="left">移动到下一个单词的开头，忽略标点符号。</td>
+</tr>
+<tr>
+<td align="left">b</td>
+<td align="left">移动到上一个单词或标点符号的开头。</td>
+</tr>
+<tr>
+<td align="left">B</td>
+<td align="left">移动到上一个单词的开头，忽略标点符号。</td>
+</tr>
+<tr>
+<td align="left">Ctrl-f or Page Down</td>
+<td align="left">向下翻一页</td>
+</tr>
+<tr>
+<td align="left">Ctrl-b or Page Up</td>
+<td align="left">向上翻一页</td>
+</tr>
+<tr>
+<td align="left">numberG</td>
+<td align="left">移动到第 number 行。例如，1G 移动到文件的第一行。</td>
+</tr>
+<tr>
+<td align="left">G</td>
+<td align="left">移动到文件末尾。</td>
+</tr>
+</tbody></table>
+<p>Why are the h, j, k, and l keys used for cursor movement? Because when vi was originally written, not all video terminals had arrow keys, and skilled typists could use regular keyboard keys to move the cursor without ever having to lift their fingers from the keyboard.</p>
+<p>为什么 h，j，k，和 l 按键被用来移动光标呢？因为在开发 vi 之初，并不是所有的视频终端都有 箭头按键，熟练的打字员可以使用组合键来移动光标，他们的手指从不需要移开键盘。</p>
+<p>Many commands in vi can be prefixed with a number, as with the “G” command listed above. By prefixing a command with a number, we may specify the number of times a command is to be carried out. For example, the command “5j” causes vi to move the cursor down five lines.</p>
+<p>vi 中的许多命令都可以在前面加上一个数字，比方说上面提到的”G”命令。在命令之前加上一个 数字，我们就可以指定命令执行的次数。例如，命令”5j”将光标下移5行。</p>
+<p>Basic Editing</p>
+<h3 id="基本编辑"><a href="#基本编辑" class="headerlink" title="基本编辑"></a>基本编辑</h3><p>Most editing consists of a few basic operations such as inserting text, deleting text and moving text around by cutting and pasting. vi, of course, supports all of these operations in its own unique way. vi also provides a limited form of undo. If we press the “u” key while in command mode, vi will undo the last change that you made. This will come in handy as we try out some of the basic editing commands.</p>
+<p>大多数编辑工作由一些基本的操作组成，比如说插入文本，删除文本和通过剪切和粘贴来移动文本。 vi，当然，有它独特方式来实现所有的操作。vi 也提供了撤销功能，但有些限制。如果我们按下“u” 按键，当在命令模式下，vi 将会撤销你所做的最后一次修改。当我们试着执行一些基本的 编辑命令时，这会很方便。</p>
+<p>Appending Text</p>
+<h4 id="追加文本"><a href="#追加文本" class="headerlink" title="追加文本"></a>追加文本</h4><p>vi has several different ways of entering insert mode. We have already used the i command to insert text.</p>
+<p>vi 有几种不同进入插入模式的方法。我们已经使用了 i 命令来插入文本。</p>
+<p>Let’s go back to our foo.txt file for a moment:</p>
+<p>让我们再次进入到我们的 foo.txt 文件：</p>
+<pre><code>The quick brown fox jumped over the lazy dog.
+</code></pre><p>If we wanted to add some text to the end of this sentence, we would discover that the i command will not do it, since we can’t move the cursor beyond the end of the line. vi provides a command to append text, the sensibly named “a” command. If we move the cursor to the end of the line and type “a”, the cursor will move past the end of the line and vi will enter insert mode. This will allow us to add some more text:</p>
+<p>如果我们想要在这个句子的末尾添加一些文本，我们会发现 i 命令不能完成任务，因为我们不能把 光标移到行尾。vi 提供了追加文本的命令，明智地命名为”a”。如果我们把光标移动到行尾，输入”a”, 光标就会越过行尾，同时 vi 会进入插入模式。这让我们能添加文本到行末：</p>
+<pre><code>The quick brown fox jumped over the lazy dog. It was cool.
+</code></pre><p>Remember to press the Esc key to exit insert mode.</p>
+<p>记得按 Esc 键来退出插入模式。</p>
+<p>Since we will almost always want to append text to the end of a line, vi offers a shortcut to move to end of the current line and start appending. It’s the “A” command. Let’s try it and add some more lines to our file.</p>
+<p>因为我们几乎总是想要在行尾添加文本，所以 vi 提供了一个快捷键。光标将移动到行尾，同时 vi 进入输入模式。 它是”A”命令。试着用一下它，向文件添加更多行。</p>
+<p>First, we’ll move the cursor to the beginning of the line using the “0” (zero) command. Now we type “A” and add the following lines of text:</p>
+<p>首先，使用”0”(零)命令，将光标移动到行首。现在我们输入”A”，然后输入下面这些文本：</p>
+<pre><code>The quick brown fox jumped over the lazy dog. It was cool.
+Line 2
+Line 3
+Line 4
+Line 5
+</code></pre><p>Again, press the Esc key to exit insert mode.</p>
+<p>再一次，按下 Esc 键退出插入模式。</p>
+<p>As we can see, the “A” command is more useful as it moves the cursor to the end of the line before starting insert mode.</p>
+<p>正如我们所看到的， “A” 命令非常有用，因为它在进入到插入模式前，先将光标移到了行尾。</p>
+<p>Opening A Line</p>
+<h4 id="打开一行"><a href="#打开一行" class="headerlink" title="打开一行"></a>打开一行</h4><p>Another way we can insert text is by “opening” a line. This inserts a blank line between two existing lines and enters insert mode. This has two variants:</p>
+<p>我们插入文本的另一种方式是“打开（open）”一行。这会在两行之间插入一个空白行，并且进入到插入模式。 这种方式有两个变体：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Command</th>
+<th align="left">Opens</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">o</td>
+<td align="left">The line below the current line.</td>
+</tr>
+<tr>
+<td align="left">O</td>
+<td align="left">The line above the current line.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">打开行</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">o</td>
+<td align="left">当前行的下方打开一行。</td>
+</tr>
+<tr>
+<td align="left">O</td>
+<td align="left">当前行的上方打开一行。</td>
+</tr>
+</tbody></table>
+<p>We can demonstrate this as follows: place the cursor on “Line 3” then press the o key.</p>
+<p>我们可以演示一下：把光标移到”Line 3”上，再按下小 o 按键。</p>
+<pre><code>The quick brown fox jumped over the lazy dog. It was cool.
+Line 2
+Line 3
+
+line 4
+line 5
+</code></pre><p>A new line was opened below the third line and we entered insert mode. Exit insert mode by pressing the Esc key. Press the u key to undo our change.</p>
+<p>在第三行之下打开了新的一行，并且进入插入模式。按下 Esc，退出插入模式。按下 u 按键，撤销我们的修改。</p>
+<p>Press the O key to open the line above the cursor:</p>
+<p>按下大 O 按键在光标之上打开新的一行：</p>
+<pre><code>The quick brown fox jumped over the lazy dog. It was cool.
+Line 2
+
+Line 3
+Line 4
+Line 5
+</code></pre><p>Exit insert mode by pressing the Esc key and undo our change by pressing u.</p>
+<p>按下 Esc 按键，退出插入模式，并且按下 u 按键，撤销我们的更改。</p>
+<p>Deleting Text</p>
+<h4 id="删除文本"><a href="#删除文本" class="headerlink" title="删除文本"></a>删除文本</h4><p>As we might expect, vi offers a variety of ways to delete text, all of which contain one of two keystrokes. First, the x key will delete a character at the cursor location. x may be preceded by a number specifying how many characters are to be deleted. The d key is more general purpose. Like x, it may be preceded by a number specifying the number of times the deletion is to be performed. In addition, d is always followed by a movement command that controls the size of the deletion. Here are some examples:</p>
+<p>正如我们所愿，vi 提供了各种删除文本到的方法，而且只需一或两个按键。首先， x 按键会删除光标位置的一个字符。可以在 x 命令之前带上一个数字，来指明要删除的字符个数。 d 按键更通用一些。跟 x 命令一样，d 命令之前可以带上一个数字，来指定要执行的删除次数。另外， d 命令之后总是带上一个移动命令，用来控制删除的范围。这里有些实例：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Command</th>
+<th align="left">Deletes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">x</td>
+<td align="left">The current character.</td>
+</tr>
+<tr>
+<td align="left">3x</td>
+<td align="left">The current character and the next two character.</td>
+</tr>
+<tr>
+<td align="left">dd</td>
+<td align="left">The current line.</td>
+</tr>
+<tr>
+<td align="left">5dd</td>
+<td align="left">The current line and the next four lines.</td>
+</tr>
+<tr>
+<td align="left">dW</td>
+<td align="left">From the cursor position to the beginning of the next word.</td>
+</tr>
+<tr>
+<td align="left">d$</td>
+<td align="left">From the cursor position to the end of the current line.</td>
+</tr>
+<tr>
+<td align="left">d0</td>
+<td align="left">From the cursor position to the beginning of the current line.</td>
+</tr>
+<tr>
+<td align="left">d^</td>
+<td align="left">From the cursor position to the first non-whitespace character of the line.</td>
+</tr>
+<tr>
+<td align="left">dG</td>
+<td align="left">From the current line to the end of the file.</td>
+</tr>
+<tr>
+<td align="left">d20G</td>
+<td align="left">From the current line to the twentieth line of the file.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">删除的文本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">x</td>
+<td align="left">当前字符</td>
+</tr>
+<tr>
+<td align="left">3x</td>
+<td align="left">当前字符及其后的两个字符。</td>
+</tr>
+<tr>
+<td align="left">dd</td>
+<td align="left">当前行。</td>
+</tr>
+<tr>
+<td align="left">5dd</td>
+<td align="left">当前行及随后的四行文本。</td>
+</tr>
+<tr>
+<td align="left">dW</td>
+<td align="left">从光标位置开始到下一个单词的开头。</td>
+</tr>
+<tr>
+<td align="left">d$</td>
+<td align="left">从光标位置开始到当前行的行尾。</td>
+</tr>
+<tr>
+<td align="left">d0</td>
+<td align="left">从光标位置开始到当前行的行首。</td>
+</tr>
+<tr>
+<td align="left">d^</td>
+<td align="left">从光标位置开始到文本行的第一个非空字符。</td>
+</tr>
+<tr>
+<td align="left">dG</td>
+<td align="left">从当前行到文件的末尾。</td>
+</tr>
+<tr>
+<td align="left">d20G</td>
+<td align="left">从当前行到文件的第20行。</td>
+</tr>
+</tbody></table>
+<p>Place the cursor on the word “It” on the first line of our text. Press the x key repeatedly until the rest of the sentence is deleted. Next, press the u key repeatedly until the deletion is undone.</p>
+<p>把光标放到第一行单词“It”之上。重复按下 x 按键直到删除剩下的部分。下一步，重复按下 u 按键 直到恢复原貌。</p>
+<p>Note: Real vi only supports a single level of undo. vim supports multiple levels.</p>
+<p>注意：真正的 vi 只是支持单层面的 undo 命令。vim 则支持多个层面的。</p>
+<p>Let’s try the deletion again, this time using the d command. Again, move the cursor to the word “It” and press dW to delete the word:</p>
+<p>我们再次执行删除命令，这次使用 d 命令。还是移动光标到单词”It”之上，按下的 dW 来删除单词：</p>
+<pre><code>The quick brown fox jumped over the lazy dog. was cool.
+Line 2
+Line 3
+Line 4
+Line 5
+</code></pre><p>Press d$ to delete from the cursor position to the end of the line:</p>
+<p>按下 d$删除从光标位置到行尾的文本：</p>
+<pre><code>The quick brown fox jumped over the lazy dog.
+Line 2
+Line 3
+Line 4
+Line 5
+</code></pre><p>Press dG to delete from the current line to the end of the file:</p>
+<p>按下 dG 按键删除从当前行到文件末尾的所有行：</p>
+<pre><code>~
+....
+</code></pre><p>Press u three times to undo the deletion.</p>
+<p>连续按下 u 按键三次，来恢复删除部分。</p>
+<p>Cutting, Copying And Pasting Text</p>
+<h4 id="剪切，复制和粘贴文本"><a href="#剪切，复制和粘贴文本" class="headerlink" title="剪切，复制和粘贴文本"></a>剪切，复制和粘贴文本</h4><p>The d command not only deletes text, it also “cuts” text. Each time we use the d command the deletion is copied into a paste buffer (think clipboard) that we can later recall with the p command to paste the contents of the buffer after the cursor or the P command to paste the contents before the cursor.</p>
+<p>这个 d 命令不仅删除文本，它还“剪切”文本。每次我们使用 d 命令，删除的部分被复制到一个 粘贴缓冲区中（看作剪切板）。过后我们执行小 p 命令把剪切板中的文本粘贴到光标位置之后， 或者是大 P 命令把文本粘贴到光标之前。</p>
+<p>The y command is used to “yank” (copy) text in much the same way the d command is used to cut text. Here are some examples combining the y command with various movement commands:</p>
+<p>y 命令用来“拉”（复制）文本，和 d 命令剪切文本的方式差不多。这里有些把 y 命令和各种移动命令 结合起来使用的实例：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Command</th>
+<th align="left">Copies</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">yy</td>
+<td align="left">The current line.</td>
+</tr>
+<tr>
+<td align="left">5yy</td>
+<td align="left">The current line and the next four lines.</td>
+</tr>
+<tr>
+<td align="left">yW</td>
+<td align="left">From the current cursor position to the beginning of the next word.</td>
+</tr>
+<tr>
+<td align="left">y$</td>
+<td align="left">From the current cursor location to the end of the current line.</td>
+</tr>
+<tr>
+<td align="left">y0</td>
+<td align="left">From the current cursor location to the beginning of the line.</td>
+</tr>
+<tr>
+<td align="left">y^</td>
+<td align="left">From the current cursor location to the first non- whitespace character in the line.</td>
+</tr>
+<tr>
+<td align="left">yG</td>
+<td align="left">From the current line to the end of the file.</td>
+</tr>
+<tr>
+<td align="left">y20G</td>
+<td align="left">From the current line to the twentieth line of the file.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">复制的内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">yy</td>
+<td align="left">当前行。</td>
+</tr>
+<tr>
+<td align="left">5yy</td>
+<td align="left">当前行及随后的四行文本。</td>
+</tr>
+<tr>
+<td align="left">yW</td>
+<td align="left">从当前光标位置到下一个单词的开头。</td>
+</tr>
+<tr>
+<td align="left">y$</td>
+<td align="left">从当前光标位置到当前行的末尾。</td>
+</tr>
+<tr>
+<td align="left">y0</td>
+<td align="left">从当前光标位置到行首。</td>
+</tr>
+<tr>
+<td align="left">y^</td>
+<td align="left">从当前光标位置到文本行的第一个非空字符。</td>
+</tr>
+<tr>
+<td align="left">yG</td>
+<td align="left">从当前行到文件末尾。</td>
+</tr>
+<tr>
+<td align="left">y20G</td>
+<td align="left">从当前行到文件的第20行。</td>
+</tr>
+</tbody></table>
+<p>Let’s try some copy and paste. Place the cursor on the first line of the text and type yy to copy the current line. Next, move the cursor to the last line (G) and type p to paste the line below the current line:</p>
+<p>我们试着做些复制和粘贴工作。把光标放到文本第一行，输入 yy 来复制当前行。下一步，把光标移到 最后一行（G），输入小写的 p 把复制的一行粘贴到当前行的下面：</p>
+<pre><code>The quick brown fox jumped over the lazy dog. It was cool.
+Line 2
+Line 3
+Line 4
+Line 5
+The quick brown fox jumped over the lazy dog. It was cool.
+</code></pre><p>Just as before, the u command will undo our change. With the cursor still positioned on the last line of the file, type P to paste the text above the current line:</p>
+<p>和以前一样，u 命令会撤销我们的修改。这时光标仍位于文件的最后一行，输入大写的 P 命令把 所复制的文本粘贴到当前行之上：</p>
+<pre><code>The quick brown fox jumped over the lazy dog. It was cool.
+Line 2
+Line 3
+Line 4
+The quick brown fox jumped over the lazy dog. It was cool.
+Line 5
+</code></pre><p>Try out some of the other y commands in the table above and get to know the behavior of both the p and P commands. When you are done, return the file to its original state.</p>
+<p>试着执行上表中其他的一些 y 命令，了解小写 p 和大写 P 命令的行为。当你完成练习之后，把文件 恢复原样。</p>
+<p>Joining Lines</p>
+<h4 id="连接行"><a href="#连接行" class="headerlink" title="连接行"></a>连接行</h4><p>vi is rather strict about its idea of a line. Normally, it is not possible to move the cursor to the end of a line and delete the end-of-line character to join one line with the one below it. Because of this, vi provides a specific command, J (not to be confused with j, which is for cursor movement) to join lines together.</p>
+<p>vi 对于行的概念相当严格。通常，用户不可能通过删除“行尾结束符”（end-of-line character）来连接 当前行和它下面的一行。由于这个原因，vi 提供了一个特定的命令，大写的 J（不要与小写的 j 混淆了， j 是用来移动光标的）用于链接行与行。</p>
+<p>If we place the cursor on line 3 and type the J command, here’s what happens:</p>
+<p>如果我们把光标放到 line 3上，输入大写的 J 命令，看看发生什么情况：</p>
+<pre><code>The quick brown fox jumped over the lazy dog. It was cool.
+Line 2
+Line 3 Line 4
+Line 5
+</code></pre><p>Search And Replace</p>
+<h3 id="查找和替换"><a href="#查找和替换" class="headerlink" title="查找和替换"></a>查找和替换</h3><p>vi has the ability to move the cursor to locations based on searches. It can do this on both a single line or over an entire file. It can also perform text replacements with or without confirmation from the user.</p>
+<p>vi 能把光标移到搜索到的匹配项上。vi 不仅能在搜索一特定行，还能进行全文搜索。 它也可以在有或没有用户确认的情况下实现文本替换。</p>
+<p>Searching Within A Line</p>
+<h4 id="查找一行"><a href="#查找一行" class="headerlink" title="查找一行"></a>查找一行</h4><p>The f command searches a line and moves the cursor to the next instance of a specified character. For example, the command fa would move the cursor to the next occurrence of the character “a” within the current line. After performing a character search within a line, the search may be repeated by typing a semicolon.</p>
+<p>f 命令能搜索一特定行，并将光标移动到下一个匹配的字符上。例如，命令 fa 会把光标定位到同一行中 下一个出现的”a”字符上。在进行了一次行内搜索后，输入分号能重复这次搜索。</p>
+<p>Searching The Entire File</p>
+<h4 id="查找整个文件"><a href="#查找整个文件" class="headerlink" title="查找整个文件"></a>查找整个文件</h4><p>To move the cursor to the next occurrence of a word or phrase, the / command is used. This works the same way as we learned earlier in the less program. When you type the / command a “/” will appear at the bottom of the screen. Next, type the word or phrase to be searched for, followed by the Enter key. The cursor will move to the next location containing the search string. A search may be repeated using the previous search string with the n command. Here’s an example:</p>
+<p>移动光标到下一个出现的单词或短语上，使用 / 命令。这个命令和我们之前在 less 程序中学到 的一样。当你输入/命令后，一个”/”字符会出现在屏幕底部。接下来，输入要查找的单词或短语， 按下回车。光标就会移动到下一个包含所查找字符串的位置。通过 n 命令来重复先前的查找。 这里有个例子：</p>
+<pre><code>The quick brown fox jumped over the lazy dog. It was cool.
+Line 2
+Line 3
+Line 4
+Line 5
+</code></pre><p>Place the cursor on the first line of the file. Type:</p>
+<p>移动光标到文件的第一行。输入：</p>
+<pre><code>/Line
+</code></pre><p>followed by the Enter key. The cursor will move to line 2. Next, type n and the cursor will move to line 3. Repeating the n command will move the cursor down the file until it runs out of matches. While we have so far only used words and phrases for our search patterns, vi allows the use of regular expressions, a powerful method of expressing complex text patterns. We will cover regular expressions in some detail in a later chapter.</p>
+<p>然后敲回车。光标会移动到第二行。然后输入 n，这时光标移动到第三行。重复键入 n 命令，光标会 继续向下移动直到遍历所有的匹配项。至此我们只是通过输入单词和短语进行搜索，但 vi 支持正则 表达式，一种用于表达复杂文本的方法。我们将会在之后的章节中详细讲解正则表达式。</p>
+<p>Global Search And Replace</p>
+<h4 id="全局查找和替代"><a href="#全局查找和替代" class="headerlink" title="全局查找和替代"></a>全局查找和替代</h4><p>vi uses an ex command to perform search and replace operations (called “substitution” in vi) over a range of lines or the entire file. To change the word “Line” to “line” for the entire file, we would enter the following command:</p>
+<p>vi 使用 ex 命令来执行查找和替代操作（vi 中叫做“替换”）。将整个文件中的单词“Line”更改为“line”， 输入以下命令：</p>
+<pre><code>:%s/Line/line/g
+</code></pre><p>Let’s break this command down into separate items and see what each one does:</p>
+<p>我们把这个命令分解为几个单独的部分，看一下每部分的含义：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Item</th>
+<th align="left">Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">:</td>
+<td align="left">The colon character starts an ex command.</td>
+</tr>
+<tr>
+<td align="left">%</td>
+<td align="left">Specifies the range of lines for the operation. % is a shortcut meaning from the first line to the last line. Alternately, the range could have been specified 1,5 (since our file is five lines long), or 1,$ which means “from line 1 to the last line in the file.” If the range of lines is omitted, the operation is only performed on the current line.</td>
+</tr>
+<tr>
+<td align="left">s</td>
+<td align="left">Specifies the operation. In this case, substitution (search and replace).</td>
+</tr>
+<tr>
+<td align="left">/Line/line</td>
+<td align="left">The search pattern and the replacement text.</td>
+</tr>
+<tr>
+<td align="left">g</td>
+<td align="left">This means “global” in the sense that the search and replace is performed on every instance of the search string in the line. If omitted, only the first instance of the search string on each line is replaced.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">条目</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">:</td>
+<td align="left">冒号字符运行一个 ex 命令。</td>
+</tr>
+<tr>
+<td align="left">%</td>
+<td align="left">指定要操作的行数。% 是一个快捷方式，表示从第一行到最后一行。另外，操作范围也 可以用 1,5 来代替（因为我们的文件只有5行文本），或者用 1,$ 来代替，意思是 “ 从第一行到文件的最后一行。” 如果省略了文本行的范围，那么操作只对当前行生效。</td>
+</tr>
+<tr>
+<td align="left">s</td>
+<td align="left">指定操作。在这种情况下是，替换（查找与替代）。</td>
+</tr>
+<tr>
+<td align="left">/Line/line</td>
+<td align="left">查找类型与替代文本。</td>
+</tr>
+<tr>
+<td align="left">g</td>
+<td align="left">这是“全局”的意思，意味着对文本行中所有匹配的字符串执行查找和替换操作。如果省略 g，则 只替换每个文本行中第一个匹配的字符串。</td>
+</tr>
+</tbody></table>
+<p>After executing our search and replace command our file looks like this:</p>
+<p>执行完查找和替代命令之后，我们的文件看起来像这样：</p>
+<pre><code>The quick brown fox jumped over the lazy dog. It was cool.
+line 2
+line 3
+line 4
+line 5
+</code></pre><p>We can also specify a substitution command with user confirmation. This is done by adding a “c” to the end of the command. For example:</p>
+<p>我们也可以指定一个需要用户确认的替换命令。通过添加一个”c”字符到这个命令的末尾，来完成 这个替换命令。例如：</p>
+<pre><code>:%s/line/Line/gc
+</code></pre><p>This command will change our file back to its previous form; however, before each substitution, vi stops and asks us to confirm the substitution with this message:</p>
+<p>这个命令会把我们的文件恢复先前的模样；然而，在执行每个替换命令之前，vi 会停下来， 通过下面的信息，来要求我们确认这个替换：</p>
+<pre><code>replace with Line (y/n/a/q/l/^E/^Y)?
+</code></pre><p>Each of the characters within the parentheses is a possible choice as follows:</p>
+<p>括号中的每个字符都是一个可能的选择，如下所示：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Key</th>
+<th align="left">Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">y</td>
+<td align="left">Perform the substitution.</td>
+</tr>
+<tr>
+<td align="left">n</td>
+<td align="left">Skip this instance of the pattern.</td>
+</tr>
+<tr>
+<td align="left">a</td>
+<td align="left">Perform the substitution on this and all subsequent instances of the pattern.</td>
+</tr>
+<tr>
+<td align="left">q or esc</td>
+<td align="left">Quit the substitution.</td>
+</tr>
+<tr>
+<td align="left">l</td>
+<td align="left">Perform this substitution and then quit. Short for”last”.</td>
+</tr>
+<tr>
+<td align="left">Ctrl-e, Ctrl-y</td>
+<td align="left">Scroll down and scroll up, respectively. Useful for viewing the context of the proposed substitution.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">按键</th>
+<th align="left">行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">y</td>
+<td align="left">执行替换操作</td>
+</tr>
+<tr>
+<td align="left">n</td>
+<td align="left">跳过这个匹配的实例</td>
+</tr>
+<tr>
+<td align="left">a</td>
+<td align="left">对这个及随后所有匹配的字符串执行替换操作。</td>
+</tr>
+<tr>
+<td align="left">q or esc</td>
+<td align="left">退出替换操作。</td>
+</tr>
+<tr>
+<td align="left">l</td>
+<td align="left">执行这次替换并退出。l 是 “last” 的简写。</td>
+</tr>
+<tr>
+<td align="left">Ctrl-e, Ctrl-y</td>
+<td align="left">分别是向下滚动和向上滚动。用于查看建议替换的上下文。</td>
+</tr>
+</tbody></table>
+<p>If you type y, the substitution will be performed, n will cause vi to skip this instance and move on to the next one.</p>
+<p>如果你输入 y，则执行这个替换，输入 n 则会导致 vi 跳过这个实例，而移到下一个匹配项上。</p>
+<p>Editing Multiple Files</p>
+<h3 id="编辑多个文件"><a href="#编辑多个文件" class="headerlink" title="编辑多个文件"></a>编辑多个文件</h3><p>It’s often useful to edit more than one file at a time. You might need to make changes to multiple files or you may need to copy content from one file into another. With vi we can open multiple files for editing by specifying them on the command line:</p>
+<p>同时能够编辑多个文件是很有用的。你可能需要更改多个文件或者从一个文件复制内容到 另一个文件。通过 vi，我们可以打开多个文件来编辑，只要在命令行中指定要编辑的文件名。</p>
+<pre><code>vi file1 file2 file3...
+</code></pre><p>Let’s exit our existing vi session and create a new file for editing. Type :wq to exit vi saving our modified text. Next, we’ll create an additional file in our home directory that we can play with. We’ll create the file by capturing some output from the ls command:</p>
+<p>我们先退出已经存在的 vi 会话，然后创建一个新文件来编辑。输入:wq 来退出 vi 并且保存了所做的修改。 下一步，我们将在家目录下创建一个额外的用来玩耍的文件。通过获取从 ls 命令的输出，来创建这个文件。</p>
+<pre><code>[me@linuxbox ~]$ ls -l /usr/bin &gt; ls-output.txt
+</code></pre><p>Let’s edit our old file and our new one with vi:</p>
+<p>用 vi 来编辑我们的原文件和新创建的文件：</p>
+<pre><code>[me@linuxbox ~]$ vi foo.txt ls-output.txt
+</code></pre><p>vi will start up and we will see the first file on the screen:</p>
+<p>vi 启动，我们会看到第一个文件显示出来：</p>
+<pre><code>The quick brown fox jumped over the lazy dog. It was cool.
+Line 2
+Line 3
+Line 4
+Line 5
+</code></pre><p>Switching Between Files</p>
+<h4 id="文件之间切换"><a href="#文件之间切换" class="headerlink" title="文件之间切换"></a>文件之间切换</h4><p>To switch from one file to the next, use this ex command:</p>
+<p>从这个文件切换下一个文件，使用这个 ex 命令：</p>
+<pre><code>:n
+</code></pre><p>To move back to the previous file use:</p>
+<p>回到先前的文件使用：</p>
+<pre><code>:N
+</code></pre><p>While we can move from one file to another, vi enforces a policy that prevents us from switching files if the current file has unsaved changes. To force vi to switch files and abandon your changes, add an exclamation point (!) to the command.</p>
+<p>当我们从一个文件移到另一个文件时，如果当前文件没有保存修改，vi 会阻止我们切换文件， 这是 vi 强制执行的政策。在命令之后添加感叹号，可以强迫 vi 放弃修改而转换文件。</p>
+<p>In addition to the switching method described above, vim (and some versions of vi) also provide some ex commands that make multiple files easier to manage. We can view a list of files being edited with the :buffers command. Doing so will display a list of the files at the bottom of the display:</p>
+<p>另外，上面所描述的切换方法，vim（和一些版本的 vi）也提供了一些 ex 命令，这些命令使 多个文件更容易管理。我们可以查看正在编辑的文件列表，使用:buffers 命令。运行这个 命令后，屏幕顶部就会显示出一个文件列表：</p>
+<pre><code>:buffers
+1 #     &quot;foo.txt&quot;                 line 1
+2 %a    &quot;ls-output.txt&quot;           line 0
+Press ENTER or type command to continue
+</code></pre><p>To switch to another buffer (file), type :buffer followed by the number of the buffer you wish to edit. For example, to switch from buffer 1 which contains the file foo.txt to buffer 2 containing the file ls-output.txt we would type this:</p>
+<p>要切换到另一个缓冲区（文件），输入 :buffer, 紧跟着你想要编辑的缓冲器编号。比如，要从包含文件 foo.txt 的1号缓冲区切换到包含文件 ls-output.txt 的2号缓冲区，我们会这样输入：</p>
+<pre><code>:buffer 2
+</code></pre><p>and our screen now displays the second file.</p>
+<p>我们的屏幕现在会显示第二个文件。</p>
+<p>Opening Additional Files For Editing</p>
+<h4 id="打开另一个文件并编辑"><a href="#打开另一个文件并编辑" class="headerlink" title="打开另一个文件并编辑"></a>打开另一个文件并编辑</h4><p>It’s also possible to add files to our current editing session. The ex command :e (short for “edit”) followed by a filename will open an additional file. Let’s end our current editing session and return to the command line.</p>
+<p>在我们的当前的编辑会话里也能添加别的文件。ex 命令 :e (编辑(edit) 的简写) 紧跟要打开的文件名将会打开 另外一个文件。 让我们结束当前的会话回到命令行。</p>
+<p>Start vi again with just one file:</p>
+<p>重新启动vi并只打开一个文件</p>
+<pre><code>[me@linuxbox ~]$ vi foo.txt
+</code></pre><p>To add our second file, enter:</p>
+<p>要加入我们的第二个文件，输入：</p>
+<pre><code>:e ls-output.txt
+</code></pre><p>And it should appear on the screen. The first file is still present as we can verify:</p>
+<p>它应该显示在屏幕上。 我们可以这样来确认第一个文件仍然存在：</p>
+<pre><code>:buffers
+ 1 # &quot;foo.txt&quot; line 1
+ 2 %a &quot;ls-output.txt&quot; line 0
+Press ENTER or type command to continue 
+</code></pre><p>Note: You cannot switch to files loaded with the :e command using either the :n or :N command. To switch files, use the :buffer command followed by the buffer number.</p>
+<p>注意：当文件由 ：e 命令加载，你将无法用 :n 或 :N 命令来切换文件。 这时要使用 :buffer 命令加缓冲区号码，来切换文件。</p>
+<p>Copying Content From One File Into Another</p>
+<h4 id="跨文件复制黏贴"><a href="#跨文件复制黏贴" class="headerlink" title="跨文件复制黏贴"></a>跨文件复制黏贴</h4><p>Often while editing multiple files, we will want to copy a portion of one file into another file that we are editing. This is easily done using the usual yank and paste commands we used earlier. We can demonstrate as follows. First, using our two files, switch to buffer 1 (foo.txt) by entering:</p>
+<p>当我们编辑多个文件时，经常地要复制文件的一部分到另一个正在编辑的文件。使用之前我们学到的 拉（yank）和粘贴命令，这很容易完成。说明如下。以打开的两个文件为例，首先转换到缓冲区1（foo.txt） ，输入：</p>
+<pre><code>:buffer 1
+</code></pre><p>which should give us this:</p>
+<p>我们应该得到如下输出：</p>
+<pre><code>The quick brown fox jumped over the lazy dog. It was cool.
+Line 2
+Line 3
+Line 4
+Line 5
+</code></pre><p>Next, move the cursor to the first line, and type yy to yank (copy) the line.</p>
+<p>下一步，把光标移到第一行，并且输入 yy 来复制这一行。</p>
+<p>Switch to the second buffer by entering:</p>
+<p>转换到第二个缓冲区，输入：</p>
+<pre><code>:buffer 2
+</code></pre><p>The screen will now contain some file listings like this (only a portion is shown here):</p>
+<p>现在屏幕会包含一些文件列表（这里只列出了一部分）：</p>
+<pre><code>total 343700
+-rwxr-xr-x 1 root root    31316  2007-12-05  08:58 [
+....
+</code></pre><p>Move the cursor to the first line and paste the line we copied from the preceding file by typing the p command:</p>
+<p>移动光标到第一行，输入 p 命令把我们从前面文件中复制的一行粘贴到这个文件中：</p>
+<pre><code>total 343700
+The quick brown fox jumped over the lazy dog. It was cool.
+-rwxr-xr-x 1 root root    31316  2007-12-05  08:58 [
+....
+</code></pre><p>Inserting An Entire File Into Another</p>
+<h4 id="插入整个文件到另一个文件"><a href="#插入整个文件到另一个文件" class="headerlink" title="插入整个文件到另一个文件"></a>插入整个文件到另一个文件</h4><p>It’s also possible to insert an entire file into one that we are editing. To see this in action, let’s end our vi session and start a new one with just a single file:</p>
+<p>我们也可以把整个文件插入到我们正在编辑的文件中。看一下实际操作，结束 vi 会话，重新 启动一个只打开一个文件的 vi 会话：</p>
+<pre><code>[me@linuxbox ~]$ vi ls-output.txt
+</code></pre><p>We will see our file listing again:</p>
+<p>再一次看到我们的文件列表：</p>
+<pre><code>total 343700
+-rwxr-xr-x 1 root root    31316  2007-12-05  08:58 [
+</code></pre><p>Move the cursor to the third line, then enter the following ex command:</p>
+<p>移动光标到第三行，然后输入以下 ex 命令：</p>
+<pre><code>:r foo.txt
+</code></pre><p>The :r command (short for “read”) inserts the specified file before the cursor position. Our screen should now look like this:</p>
+<p>这个:r 命令（是”read”的简称）把指定的文件插入到光标位置之前。现在屏幕应该看起来像这样：</p>
+<pre><code>total 343700
+-rwxr-xr-x 1 root root     31316 2007-12-05  08:58 [
+....
+The quick brown fox jumped over the lazy dog. It was cool.
+Line 2
+Line 3
+Line 4
+Line 5
+-rwxr-xr-x 1 root root     111276 2008-01-31  13:36 a2p
+....
+</code></pre><p>Saving Our Work</p>
+<h3 id="保存工作"><a href="#保存工作" class="headerlink" title="保存工作"></a>保存工作</h3><p>Like everything else in vi, there are several different ways to save our edited files. We have already covered the ex command :w, but there are some others we may also find helpful.</p>
+<p>像 vi 中的其它操作一样，有几种不同的方法来保存我们所修改的文件。我们已经研究了:w 这个 ex 命令， 但还有几种方法，可能我们也觉得有帮助。</p>
+<p>In command mode, typing ZZ will save the current file and exit vi. Likewise, the ex command :wq will combine the :w and :q commands into one that will both save the file and exit.</p>
+<p>在命令模式下，输入 ZZ 就会保存并退出当前文件。同样地，ex 命令:wq 把:w 和:q 命令结合到 一起，来完成保存和退出任务。</p>
+<p>The :w command may also specify an optional filename. This acts like “Save As…” For example, if we were editing foo.txt and wanted to save an alternate version called foo1.txt, we would enter the following:</p>
+<p>这个:w 命令也可以指定可选的文件名。这个的作用就如”Save As…“。例如，如果我们 正在编辑 foo.txt 文件，想要保存一个副本，叫做 foo1.txt，那么我们可以执行以下命令：</p>
+<pre><code>:w foo1.txt
+</code></pre><hr>
+<p>Note: While the command above saves the file under a new name, it does not change the name of the file you are editing. As you continue to edit, you will still be editing foo.txt, not foo1.txt.</p>
+<p>注意：当上面的命令以一个新名字保存文件时，它并没有更改你正在编辑的文件的名字。 如果你继续编辑，你还是在编辑文件 foo.txt，而不是 foo1.txt。</p>
+<hr>
+<p>Further Reading</p>
+<h3 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h3><p>Even with all that we have covered in this chapter, we have barely scratched the surface of what vi and vim can do. Here are a couple of on-line resources you can use to continue your journey towards vi mastery:</p>
+<p>即使把这章所学的内容都加起来，我们也只是学了 vi 和 vim 的一点儿皮毛而已。这里 有一些在线资料，可以帮助你进一步掌握 vi。</p>
+<ul>
+<li><p>Learning The vi Editor – A Wikibook from Wikipedia that offers a concise guide to vi and several of its work-a-likes including vim. It’s available at:</p>
+</li>
+<li><p>学习 vi 编辑器－一本来自于 Wikipedia 的 Wikibook，是一本关于 vi 的简要指南，并 介绍了几个类似 vi 的程序，其中包括 vim。它可以在以下链接中得到：</p>
+<p><a href="http://en.wikibooks.org/wiki/Vi" target="_blank" rel="noopener">http://en.wikibooks.org/wiki/Vi</a></p>
+</li>
+<li><p>The Vim Book - The vim project has a 570-page book that covers (almost) all of the features in vim. You can find it at:</p>
+</li>
+<li><p>The Vim Book－vim 项目包括一本书，570页，（几乎）包含了 vim 的全部特性。你能在下面链接中找到它：</p>
+<p><a href="ftp://ftp.vim.org/pub/vim/doc/book/vimbook-OPL.pdf" target="_blank" rel="noopener">ftp://ftp.vim.org/pub/vim/doc/book/vimbook-OPL.pdf</a>.</p>
+</li>
+<li><p>A Wikipedia article on Bill Joy, the creator of vi.:</p>
+</li>
+<li><p>Wikipedia 上关于 Bill Joy（vi 创始人）的文章。</p>
+<p><a href="http://en.wikipedia.org/wiki/Bill_Joy" target="_blank" rel="noopener">http://en.wikipedia.org/wiki/Bill_Joy</a></p>
+</li>
+<li><p>A Wikipedia article on Bram Moolenaar, the author of vim:</p>
+</li>
+<li><p>Wikipedia 上关于 Bram Moolenaar（vim 作者）的文章：</p>
+<p><a href="http://en.wikipedia.org/wiki/Bram_Moolenaar" target="_blank" rel="noopener">http://en.wikipedia.org/wiki/Bram_Moolenaar</a></p>
+</li>
+<li><p>Wikipedia 上关于开头作者提到的Chopsticks钢琴曲的介绍：</p>
+<p><a href="https://en.wikipedia.org/wiki/Chopsticks_(music)" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Chopsticks_(music)</a></p>
+</li>
+<li><p>Youku 上视频一段 Chopsticks” (The Celebrated Chop Waltz) on Piano：</p>
+<p><a href="http://v.youku.com/v_show/id_XMzEyOTk4ODkwMA==.html" target="_blank" rel="noopener">http://v.youku.com/v_show/id_XMzEyOTk4ODkwMA==.html</a></p>
+</li>
+</ul>
+
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'brA0u8dhiFmWzBQJ5YDMevuw-gzGzoHsz',
+        appKey: 'InzuBbqaqOss16gJu1jiKE7F',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/07/15/第十四章-自定义shell提示符/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="第十四章 自定义shell提示符">
+                        
+                        <span class="card-title">第十四章 自定义shell提示符</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            In this chapter we will look at a seemingly trivial detail — our shell prompt. This examination will reveal some of the 
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/TLCL/" class="post-category" target="_blank">
+                                    TLCL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/07/15/第十二章-shell环境/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="第十二章 shell环境">
+                        
+                        <span class="card-title">第十二章 shell环境</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            As we discussed earlier, the shell maintains a body of information during our shell session called the environment. Data
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/TLCL/" class="post-category" target="_blank">
+                                    TLCL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">456.8k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/chenshuoke" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:henu_chenshuoke@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2604689299" class="tooltipped" data-tooltip="QQ联系我: 2604689299" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

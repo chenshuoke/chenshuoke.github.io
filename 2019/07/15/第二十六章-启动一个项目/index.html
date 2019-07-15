@@ -1,0 +1,1418 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="第二十六章 启动一个项目, 孤狼的博客">
+    <meta name="description" content="Starting with this chapter, we will begin to build a program. The purpose of this project is to see how various shell fe">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>第二十六章 启动一个项目 | 孤狼的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+    <!-- 下面一句添加的 -->
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">孤狼的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">孤狼的博客</div>
+        <div class="logo-desc">
+            
+            从来没有真正的绝境，只有心灵的迷途
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/chenshuoke" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/chenshuoke" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        第二十六章 启动一个项目
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/TLCL/" class="post-category" target="_blank">
+                                TLCL
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-07-15
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        5.6k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        26 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>Starting with this chapter, we will begin to build a program. The purpose of this project is to see how various shell features are used to create programs and, more importantly, create good programs.</p>
+<p>从这一章开始，我们将建设一个项目。这个项目的目的是为了了解怎样使用各种各样的 shell 功能来 创建程序，更重要的是，创建好程序。</p>
+<p>The program we will write is a report generator. It will present various statistics about our system and its status, and will produce this report in HTML format, so we can view it with a web browser such as Firefox or Konqueror.</p>
+<p>我们将要编写的程序是一个报告生成器。它会显示系统的各种统计数据和它的状态，并将产生 HTML 格式的报告， 所以我们能通过网络浏览器，比如说 Firefox 或者 Konqueror，来查看这个报告。</p>
+<p>Programs are usually built up in a series of stages, with each stage adding features and capabilities. The first stage of our program will produce a very minimal HTML page that contains no system information. That will come later.</p>
+<p>通常，创建程序要经过一系列阶段，每个阶段会添加新的特性和功能。我们程序的第一个阶段将会 产生一个非常小的 HTML 网页，其不包含系统信息。随后我们会添加这些信息。</p>
+<h3 id="第一阶段：最小的文档"><a href="#第一阶段：最小的文档" class="headerlink" title="第一阶段：最小的文档"></a>第一阶段：最小的文档</h3><p>The first thing we need to know is the format of a well-formed HTML document. It looks like this:</p>
+<p>首先我们需要知道的事是一个规则的 HTML 文档的格式。它看起来像这样：</p>
+<pre><code>&lt;HTML&gt;
+      &lt;HEAD&gt;
+            &lt;TITLE&gt;Page Title&lt;/TITLE&gt;
+      &lt;/HEAD&gt;
+      &lt;BODY&gt;
+            Page body.
+      &lt;/BODY&gt;
+&lt;/HTML&gt;</code></pre><p>If we enter this into our text editor and save the file as foo.html, we can use the following URL in Firefox to view the file:</p>
+<p>如果我们将这些内容输入到文本编辑器中，并把文件保存为 foo.html，然后我们就能在 Firefox 中 使用下面的 URL 来查看文件内容：</p>
+<pre><code>file:///home/username/foo.html</code></pre><p>The first stage of our program will be able to output this HTML file to standard output. We can write a program to do this pretty easily. Let’s start our text editor and create a new file named ~/bin/sys_info_page:</p>
+<p>程序的第一个阶段将这个 HTML 文件输出到标准输出。我们可以编写一个程序，相当容易地完成这个任务。 启动我们的文本编辑器，然后创建一个名为 ~/bin/sys_info_page 的新文件：</p>
+<pre><code>[me@linuxbox ~]$ vim ~/bin/sys_info_page</code></pre><p>and enter the following program:</p>
+<p>随后输入下面的程序：</p>
+<pre><code>#!/bin/bash
+# Program to output a system information page
+echo &quot;&lt;HTML&gt;&quot;
+echo &quot;      &lt;HEAD&gt;&quot;
+echo &quot;            &lt;TITLE&gt;Page Title&lt;/TITLE&gt;&quot;
+echo &quot;      &lt;/HEAD&gt;&quot;
+echo &quot;      &lt;BODY&gt;&quot;
+echo &quot;            Page body.&quot;
+echo &quot;      &lt;/BODY&gt;&quot;
+echo &quot;&lt;/HTML&gt;&quot;</code></pre><p>Our first attempt at this problem contains a shebang, a comment (always a good idea) and a sequence of echo commands, one for each line of output. After saving the file, we’ll make it executable and attempt to run it:</p>
+<p>我们第一次尝试解决这个问题，程序包含了一个 shebang，一条注释（总是一个好主意）和一系列的 echo 命令，每个命令负责输出一行文本。保存文件之后，我们将让它成为可执行文件，再尝试运行它：</p>
+<pre><code>[me@linuxbox ~]$ chmod 755 ~/bin/sys_info_page
+[me@linuxbox ~]$ sys_info_page</code></pre><p>When the program runs, we should see the text of the HTML document displayed on the screen, since the echo commands in the script send their output to standard output. We’ll run the program again and redirect the output of the program to the file sys_info_page.html, so that we can view the result with a web browser:</p>
+<p>当程序运行的时候，我们应该看到 HTML 文本在屏幕上显示出来，因为脚本中的 echo 命令会将输出 发送到标准输出。我们再次运行这个程序，把程序的输出重定向到文件 sys_info_page.html 中， 从而我们可以通过网络浏览器来查看输出结果：</p>
+<pre><code>[me@linuxbox ~]$ sys_info_page &gt; sys_info_page.html
+[me@linuxbox ~]$ firefox sys_info_page.html</code></pre><p>So far, so good.</p>
+<p>到目前为止，一切顺利。</p>
+<p>When writing programs, it’s always a good idea to strive for simplicity and clarity. Maintenance is easier when a program is easy to read and understand, not to mention, it can make the program easier to write by reducing the amount of typing. Our current version of the program works fine, but it could be simpler. We could actually combine all the echo commands into one, which will certainly make it easier to add more lines to the program’s output. So, let’s change our program to this:</p>
+<p>在编写程序的时候，尽量做到简单明了，这总是一个好主意。当一个程序易于阅读和理解的时候， 维护它也就更容易，更不用说，通过减少键入量，可以使程序更容易书写了。我们当前的程序版本 工作正常，但是它可以更简单些。实际上，我们可以把所有的 echo 命令结合成一个 echo 命令，当然 这样能更容易地添加更多的文本行到程序的输出中。那么，把我们的程序修改为：</p>
+<pre><code>#!/bin/bash
+# Program to output a system information page
+echo &quot;&lt;HTML&gt;
+    &lt;HEAD&gt;
+          &lt;TITLE&gt;Page Title&lt;/TITLE&gt;
+    &lt;/HEAD&gt;
+    &lt;BODY&gt;
+          Page body.
+    &lt;/BODY&gt;
+&lt;/HTML&gt;&quot;</code></pre><p>A quoted string may include newlines, and therefore contain multiple lines of text. The shell will keep reading the text until it encounters the closing quotation mark. It works this way on the command line, too:</p>
+<p>一个带引号的字符串可能包含换行符，因此可以包含多个文本行。Shell 会持续读取文本直到它遇到 右引号。它在命令行中也是这样工作的：</p>
+<pre><code>[me@linuxbox ~]$ echo &quot;&lt;HTML&gt;
+
+&gt;         &lt;HEAD&gt;
+                &lt;TITLE&gt;Page Title&lt;/TITLE&gt;
+&gt;         &lt;/HEAD&gt;
+&gt;         &lt;BODY&gt;
+&gt;               Page body.
+&gt;         &lt;/BODY&gt;
+&gt;&lt;/HTML&gt;&quot;</code></pre><p>The leading “&gt;” character is the shell prompt contained in the PS2 shell variable. It appears whenever we type a multi-line statement into the shell. This feature is a little obscure right now, but later, when we cover multi-line programming statements, it will turn out to be quite handy.</p>
+<p>开头的 “&gt;” 字符是包含在 PS2shell 变量中的 shell 提示符。每当我们在 shell 中键入多行语句的时候， 这个提示符就会出现。现在这个功能有点儿晦涩，但随后，当我们介绍多行编程语句时，它会派上大用场。</p>
+<h3 id="第二阶段：添加一点儿数据"><a href="#第二阶段：添加一点儿数据" class="headerlink" title="第二阶段：添加一点儿数据"></a>第二阶段：添加一点儿数据</h3><p>Now that our program can generate a minimal document, let’s put some data in the report. To do this, we will make the following changes:</p>
+<p>现在我们的程序能生成一个最小的文档，让我们给报告添加些数据吧。为此，我们将做 以下修改：</p>
+<pre><code>#!/bin/bash
+# Program to output a system information page
+echo &quot;&lt;HTML&gt;
+    &lt;HEAD&gt;
+          &lt;TITLE&gt;System Information Report&lt;/TITLE&gt;
+    &lt;/HEAD&gt;
+    &lt;BODY&gt;
+          &lt;H1&gt;System Information Report&lt;/H1&gt;
+    &lt;/BODY&gt;
+&lt;/HTML&gt;&quot;
+</code></pre><p>We added a page title and a heading to the body of the report.</p>
+<p>我们增加了一个网页标题，并且在报告正文部分加了一个标题。</p>
+<h3 id="变量和常量"><a href="#变量和常量" class="headerlink" title="变量和常量"></a>变量和常量</h3><p>There is an issue with our script, however. Notice how the string “System Information Report” is repeated? With our tiny script it’s not a problem, but let’s imagine that our script was really long and we had multiple instances of this string. If we wanted to change the title to something else, we would have to change it in multiple places, which could be a lot of work. What if we could arrange the script so that the string only appeared once and not multiple times? That would make future maintenance of the script much easier. Here’s how we could do that:</p>
+<p>然而，我们的脚本存在一个问题。请注意字符串 “System Information Report” 是怎样被重复使用的？对于这个微小的脚本而言，它不是一个问题，但是让我们设想一下， 我们的脚本非常冗长，并且我们有许多这个字符串的实例。如果我们想要更换一个标题，我们必须 对脚本中的许多地方做修改，这会是很大的工作量。如果我们能整理一下脚本，让这个字符串只 出现一次而不是多次，会怎样呢？这样会使今后的脚本维护工作更加轻松。我们可以这样做：</p>
+<pre><code>#!/bin/bash
+# Program to output a system information page
+title=&quot;System Information Report&quot;
+echo &quot;&lt;HTML&gt;
+        &lt;HEAD&gt;
+                &lt;TITLE&gt;$title&lt;/TITLE&gt;
+        &lt;/HEAD&gt;
+        &lt;BODY&gt;
+                &lt;H1&gt;$title&lt;/H1&gt;
+        &lt;/BODY&gt;
+&lt;/HTML&gt;&quot;
+</code></pre><p>By creating a variable named title and assigning it the value “System Information Report,” we can take advantage of parameter expansion and place the string in multiple locations.</p>
+<p>通过创建一个名为 title 的变量，并把 “System Information Report” 字符串赋值给它，我们就可以利用参数展开功能，把这个字符串放到文件中的多个位置。</p>
+<p>So, how do we create a variable? Simple, we just use it. When the shell encounters a variable, it automatically creates it. This differs from many programming languages in which variables must be explicitly declared or defined before use. The shell is very lax about this, which can lead to some problems. For example, consider this scenario played out on the command line:</p>
+<p>那么，我们怎样来创建一个变量呢？很简单，我们只管使用它。当 shell 碰到一个变量的时候，它会 自动地创建它。这不同于许多编程语言，它们中的变量在使用之前，必须显式的声明或是定义。关于 这个问题，shell 要求非常宽松，这可能会导致一些问题。例如，考虑一下在命令行中发生的这种情形：</p>
+<pre><code>[me@linuxbox ~]$ foo=&quot;yes&quot;
+[me@linuxbox ~]$ echo $foo
+yes
+[me@linuxbox ~]$ echo $fool
+[me@linuxbox ~]$
+</code></pre><p>We first assign the value “yes” to the variable foo, then display its value with echo. Next we display the value of the variable name misspelled as “fool” and get a blank result. This is because the shell happily created the variable fool when it encountered it, and gave it the default value of nothing, or empty. From this, we learn that we must pay close attention to our spelling! It’s also important to understand what really happened in this example. From our previous look at how the shell performs expansions, we know that the command:</p>
+<p>首先我们把 “yes” 赋给变量 foo，然后用 echo 命令来显示变量值。接下来，我们显示拼写错误的变量名 “fool” 的变量值，然后得到一个空值。这是因为 当 shell 遇到 fool 的时候, 它很高兴地创建了变量 fool 并且赋给 fool 一个空的默认值。因此，我们必须小心谨慎地拼写！同样理解实例中究竟发生了什么事情也 很重要。从我们以前学习 shell 执行展开操作，我们知道这个命令：</p>
+<pre><code>[me@linuxbox ~]$ echo $foo
+</code></pre><p>undergoes parameter expansion and results in:</p>
+<p>经历了参数展开操作，然后得到：</p>
+<pre><code>[me@linuxbox ~]$ echo yes
+</code></pre><p>Whereas the command:</p>
+<p>然而这个命令：</p>
+<pre><code>[me@linuxbox ~]$ echo $fool
+</code></pre><p>expands into:</p>
+<p>展开为：</p>
+<pre><code>[me@linuxbox ~]$ echo
+</code></pre><p>The empty variable expands into nothing! This can play havoc with commands that require arguments. Here’s an example:</p>
+<p>这个空变量展开值为空！对于需要参数的命令来说，这会引起混乱。下面是一个例子：</p>
+<pre><code>[me@linuxbox ~]$ foo=foo.txt
+[me@linuxbox ~]$ foo1=foo1.txt
+[me@linuxbox ~]$ cp $foo $fool
+cp: missing destination file operand after `foo.txt&#39;
+Try `cp --help&#39; for more information.
+</code></pre><p>We assign values to two variables, foo and foo1. We then perform a cp, but misspell the name of the second argument. After expansion, the cp command is only sent one argument, though it requires two.</p>
+<p>我们给两个变量赋值，foo 和 foo1。然后我们执行 cp 操作，但是拼写错了第二个参数的名字。 参数展开之后，这个 cp 命令只接受到一个参数，虽然它需要两个。</p>
+<p>There are some rules about variable names:</p>
+<p>有一些关于变量名的规则：</p>
+<ol>
+<li>Variable names may consist of alphanumeric characters (letters and numbers) and underscore characters.</li>
+<li>The first character of a variable name must be either a letter or an underscore.</li>
+<li>Spaces and punctuation symbols are not allowed.</li>
+<li>变量名可由字母数字字符（字母和数字）和下划线字符组成。</li>
+<li>变量名的第一个字符必须是一个字母或一个下划线。</li>
+<li>变量名中不允许出现空格和标点符号。</li>
+</ol>
+<p>The word “variable” implies a value that changes, and in many applications, variables are used this way. However, the variable in our application, title, is used as a constant. A constant is just like a variable in that it has a name and contains a value. The difference is that the value of a constant does not change. In an application that performs geometric calculations, we might define PI as a constant, and assign it the value of 3.1415, instead of using the number literally throughout our program. The shell makes no distinction between variables and constants; they are mostly for the programmer’s convenience. A common convention is to use upper case letters to designate constants and lower case letters for true variables. We will modify our script to comply with this convention:</p>
+<p>单词 “variable” 意味着可变的值，并且在许多应用程序当中，都是以这种方式来使用变量的。然而， 我们应用程序中的变量，title，被用作一个常量。常量有一个名字且包含一个值，在这方面就 像是变量。不同之处是常量的值是不能改变的。在执行几何运算的应用程序中，我们可以把 PI 定义为 一个常量，并把 3.1415 赋值给它，用它来代替数字字面值。shell 不能辨别变量和常量；它们大多数情况下 是为了方便程序员。一个常用惯例是指定大写字母来表示常量，小写字母表示真正的变量。我们 将修改我们的脚本来遵从这个惯例：</p>
+<pre><code>#!/bin/bash
+# Program to output a system information page
+TITLE=&quot;System Information Report For $HOSTNAME&quot;
+echo &quot;&lt;HTML&gt;
+        &lt;HEAD&gt;
+                &lt;TITLE&gt;$TITLE&lt;/TITLE&gt;
+        &lt;/HEAD&gt;
+        &lt;BODY&gt;
+                &lt;H1&gt;$TITLE&lt;/H1&gt;
+        &lt;/BODY&gt;
+&lt;/HTML&gt;&quot;
+</code></pre><p>We also took the opportunity to jazz up our title by adding the value of the shell variable HOSTNAME. This is the network name of the machine.</p>
+<p>我们亦借此机会，通过在标题中添加 shell 变量名 HOSTNAME，让标题变得活泼有趣些。 这个变量名是这台机器的网络名称。</p>
+<hr>
+<p>Note: The shell actually does provide a way to enforce the immutability of constants, through the use of the declare builtin command with the -r (read- only) option. Had we assigned TITLE this way:</p>
+<p>注意：实际上，shell 确实提供了一种方法，通过使用带有-r（只读）选项的内部命令 declare， 来强制常量的不变性。如果我们给 TITLE 这样赋值：</p>
+<p>declare -r TITLE=”Page Title”</p>
+<p>the shell would prevent any subsequent assignment to TITLE. This feature is rarely used, but it exists for very formal scripts.</p>
+<p>那么随后所有给 TITLE 的赋值都会被 shell 阻止。这个功能极少被使用，但为了很早之前的脚本， 它仍然存在。</p>
+<hr>
+<h4 id="给变量和常量赋值"><a href="#给变量和常量赋值" class="headerlink" title="给变量和常量赋值"></a>给变量和常量赋值</h4><p>Here is where our knowledge of expansion really starts to pay off. As we have seen, variables are assigned values this way:</p>
+<p>这里是我们真正开始使用参数扩展知识的地方。正如我们所知道的，这样给变量赋值：</p>
+<pre><code>variable=value
+</code></pre><p>where variable is the name of the variable and value is a string. Unlike some other programming languages, the shell does not care about the type of data assigned to a variable; it treats them all as strings. You can force the shell to restrict the assignment to integers by using the declare command with the -i option, but, like setting variables as read-only, this is rarely done.</p>
+<p>这里的<em>variable</em>是变量的名字，<em>value</em>是一个字符串。不同于一些其它的编程语言，shell 不会 在乎变量值的类型；它把它们都看作是字符串。通过使用带有-i 选项的 declare 命令，你可以强制 shell 把 赋值限制为整数，但是，正如像设置变量为只读一样，极少这样做。</p>
+<p>Note that in an assignment, there must be no spaces between the variable name, the equals sign, and the value. So what can the value consist of? Anything that we can expand into a string:</p>
+<p>注意在赋值过程中，变量名、等号和变量值之间必须没有空格。那么，这些值由什么组成呢？ 可以展开成字符串的任意值：</p>
+<pre><code>a=z                     # Assign the string &quot;z&quot; to variable a.
+b=&quot;a string&quot;            # Embedded spaces must be within quotes.
+c=&quot;a string and $b&quot;     # Other expansions such as variables can be
+                        # expanded into the assignment.
+
+d=$(ls -l foo.txt)      # Results of a command.
+e=$((5 * 7))            # Arithmetic expansion.
+f=&quot;\t\ta string\n&quot;      # Escape sequences such as tabs and newlines.
+</code></pre><p>Multiple variable assignments may be done on a single line:</p>
+<p>可以在同一行中对多个变量赋值：</p>
+<pre><code>a=5 b=&quot;a string&quot;
+</code></pre><p>During expansion, variable names may be surrounded by optional curly braces “{}”. This is useful in cases where a variable name becomes ambiguous due to its surrounding context. Here, we try to change the name of a file from myfile to myfile1, using a variable:</p>
+<p>在参数展开过程中，变量名可能被花括号 “{}” 包围着。由于变量名周围的上下文，其变得不明确的情况下， 这会很有帮助。这里，我们试图把一个文件名从 myfile 改为 myfile1，使用一个变量：</p>
+<pre><code>[me@linuxbox ~]$ filename=&quot;myfile&quot;
+[me@linuxbox ~]$ touch $filename
+[me@linuxbox ~]$ mv $filename $filename1
+mv: missing destination file operand after `myfile&#39;
+Try `mv --help&#39; for more information.
+</code></pre><p>This attempt fails because the shell interprets the second argument of the mv command as a new (and empty) variable. The problem can be overcome this way:</p>
+<p>这种尝试失败了，因为 shell 把 mv 命令的第二个参数解释为一个新的（并且空的）变量。通过这种方法 可以解决这个问题：</p>
+<pre><code>[me@linuxbox ~]$ mv $filename ${filename}1
+</code></pre><p>By adding the surrounding braces, the shell no longer interprets the trailing 1 as part of the variable name.</p>
+<p>通过添加花括号，shell 不再把末尾的1解释为变量名的一部分。</p>
+<p>We’ll take this opportunity to add some data to our report, namely the date and time the report was created and the user name of the creator:</p>
+<p>我们将利用这个机会来添加一些数据到我们的报告中，即创建包括的日期和时间，以及创建者的用户名：</p>
+<pre><code>#!/bin/bash
+# Program to output a system information page
+TITLE=&quot;System Information Report For $HOSTNAME&quot;
+CURRENT_TIME=$(date +&quot;%x %r %Z&quot;)
+TIME_STAMP=&quot;Generated $CURRENT_TIME, by $USER&quot;
+echo &quot;&lt;HTML&gt;
+        &lt;HEAD&gt;
+                &lt;TITLE&gt;$TITLE&lt;/TITLE&gt;
+        &lt;/HEAD&gt;
+        &lt;BODY&gt;
+                &lt;H1&gt;$TITLE&lt;/H1&gt;
+                &lt;P&gt;$TIME_STAMP&lt;/P&gt;
+        &lt;/BODY&gt;
+&lt;/HTML&gt;&quot;
+</code></pre><h3 id="Here-Documents"><a href="#Here-Documents" class="headerlink" title="Here Documents"></a>Here Documents</h3><p>We’ve looked at two different methods of outputting our text, both using the echo command. There is a third way called a <em>here document</em> or <em>here script</em>. A here document is an additional form of I/O redirection in which we embed a body of text into our script and feed it into the standard input of a command. It works like this:</p>
+<p>我们已经知道了两种不同的文本输出方法，两种方法都使用了 echo 命令。还有第三种方法，叫做 here document 或者 here script。一个 here document 是另外一种 I/O 重定向形式，我们 在脚本文件中嵌入正文文本，然后把它发送给一个命令的标准输入。它这样工作：</p>
+<pre><code>command &lt;&lt; token
+text
+token
+</code></pre><p>where <em>command</em> is the name of command that accepts standard input and <em>token</em> is a string used to indicate the end of the embedded text. We’ll modify our script to use a here document:</p>
+<p>这里的 command 是一个可以接受标准输入的命令名，token 是一个用来指示嵌入文本结束的字符串。 我们将修改我们的脚本，来使用一个 here document:</p>
+<pre><code>#!/bin/bash
+# Program to output a system information page
+TITLE=&quot;System Information Report For $HOSTNAME&quot;
+CURRENT_TIME=$(date +&quot;%x %r %Z&quot;)
+TIME_STAMP=&quot;Generated $CURRENT_TIME, by $USER&quot;
+cat &lt;&lt; _EOF_
+&lt;HTML&gt;
+         &lt;HEAD&gt;
+                &lt;TITLE&gt;$TITLE&lt;/TITLE&gt;
+         &lt;/HEAD&gt;
+         &lt;BODY&gt;
+                &lt;H1&gt;$TITLE&lt;/H1&gt;
+                &lt;P&gt;$TIME_STAMP&lt;/P&gt;
+         &lt;/BODY&gt;
+&lt;/HTML&gt;
+_EOF_
+</code></pre><p>Instead of using echo, our script now uses cat and a here document. The string <em>EOF</em> (meaning “End Of File,” a common convention) was selected as the token, and marks the end of the embedded text. Note that the token must appear alone and that there must not be trailing spaces on the line.</p>
+<p>取代 echo 命令，现在我们的脚本使用 cat 命令和一个 here document。这个字符串_EOF_（意思是“文件结尾”， 一个常见用法）被选作为 token，并标志着嵌入文本的结尾。注意这个 token 必须在一行中单独出现，并且文本行中 没有末尾的空格。</p>
+<p>So what’s the advantage of using a here document? It’s mostly the same as echo, except that, by default, single and double quotes within here documents lose their special meaning to the shell. Here is a command line example:</p>
+<p>那么使用一个 here document 的优点是什么呢？它很大程度上和 echo 一样，除了默认情况下，here documents 中的单引号和双引号会失去它们在 shell 中的特殊含义。这里有一个命令中的例子：</p>
+<pre><code>[me@linuxbox ~]$ foo=&quot;some text&quot;
+[me@linuxbox ~]$ cat &lt;&lt; _EOF_
+&gt; $foo
+&gt; &quot;$foo&quot;
+&gt; &#39;$foo&#39;
+&gt; \$foo
+&gt; _EOF_
+some text
+&quot;some text&quot;
+&#39;some text&#39;
+$foo
+</code></pre><p>As we can see, the shell pays no attention to the quotation marks. It treats them as ordinary characters. This allows us to embed quotes freely within a here document. This could turn out to be handy for our report program.</p>
+<p>正如我们所见到的，shell 根本没有注意到引号。它把它们看作是普通的字符。这就允许我们 在一个 here document 中可以随意的嵌入引号。对于我们的报告程序来说，这将是非常方便的。</p>
+<p>Here documents can be used with any command that accepts standard input. In this example, we use a here document to pass a series of commands to the ftp program in order to retrieve a file from a remote FTP server:</p>
+<p>Here documents 可以和任意能接受标准输入的命令一块使用。在这个例子中，我们使用了 一个 here document 将一系列的命令传递到这个 ftp 程序中，为的是从一个远端 FTP 服务器中得到一个文件：</p>
+<pre><code>#!/bin/bash
+# Script to retrieve a file via FTP
+FTP_SERVER=ftp.nl.debian.org
+FTP_PATH=/debian/dists/lenny/main/installer-i386/current/images/cdrom
+REMOTE_FILE=debian-cd_info.tar.gz
+ftp -n &lt;&lt; _EOF_
+open $FTP_SERVER
+user anonymous me@linuxbox
+cd $FTP_PATH
+hash
+get $REMOTE_FILE
+bye
+_EOF_
+ls -l $REMOTE_FILE
+</code></pre><p>If we change the redirection operator from “&lt;&lt;” to “&lt;&lt;-“, the shell will ignore leading tab characters in the here document. This allows a here document to be indented, which can improve readability:</p>
+<p>如果我们把重定向操作符从 “&lt;&lt;” 改为 “&lt;&lt;-”，shell 会忽略在此 here document 中开头的 tab 字符。 这就能缩进一个 here document，从而提高脚本的可读性：</p>
+<pre><code>#!/bin/bash
+# Script to retrieve a file via FTP
+FTP_SERVER=ftp.nl.debian.org
+FTP_PATH=/debian/dists/lenny/main/installer-i386/current/images/cdrom
+REMOTE_FILE=debian-cd_info.tar.gz
+ftp -n &lt;&lt;- _EOF_
+    open $FTP_SERVER
+    user anonymous me@linuxbox
+    cd $FTP_PATH
+    hash
+    get $REMOTE_FILE
+    bye
+_EOF_
+ls -l $REMOTE_FILE
+</code></pre><h3 id="总结归纳"><a href="#总结归纳" class="headerlink" title="总结归纳"></a>总结归纳</h3><p>In this chapter, we started a project that will carry us through the process of building a successful script. We introduced the concept of variables and constants and how they can be employed. They are the first of many applications we will find for parameter expansion. We also looked at how to produce output from our script, and various methods for embedding blocks of text.</p>
+<p>在这一章中，我们启动了一个项目，其带领我们领略了创建一个成功脚本的整个过程。 同时我们介绍了变量和常量的概念，以及怎样使用它们。它们是我们将找到的众多参数展开应用程序中的第一批实例。 我们也知道了怎样从我们的脚本文件中产生输出，及其各种各样嵌入文本块的方法。</p>
+<h3 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h3><ul>
+<li><p>For more information about HTML, see the following articles and tutorials:</p>
+</li>
+<li><p>关于 HTML 的更多信息，查看下面的文章和教材：</p>
+<p><a href="http://en.wikipedia.org/wiki/Html" target="_blank" rel="noopener">http://en.wikipedia.org/wiki/Html</a></p>
+<p><a href="http://en.wikibooks.org/wiki/HTML_Programming" target="_blank" rel="noopener">http://en.wikibooks.org/wiki/HTML_Programming</a></p>
+<p><a href="http://html.net/tutorials/html/" target="_blank" rel="noopener">http://html.net/tutorials/html/</a></p>
+</li>
+<li><p>The bash man page includes a section entitled “HERE DOCUMENTS,” which has a full description of this feature.</p>
+</li>
+<li><p>Bash 手册包括一节“HERE DOCUMENTS”的内容，其详细的讲述了这个功能。</p>
+</li>
+</ul>
+
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'brA0u8dhiFmWzBQJ5YDMevuw-gzGzoHsz',
+        appKey: 'InzuBbqaqOss16gJu1jiKE7F',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/07/15/第二十七章-自顶向下设计/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="第二十七章 自顶向下设计">
+                        
+                        <span class="card-title">第二十七章 自顶向下设计</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            陈硕珂
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/07/15/第二十五章-编写第一个Shell脚本/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="第二十五章 编写第一个Shell脚本">
+                        
+                        <span class="card-title">第二十五章 编写第一个Shell脚本</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            In the preceding chapters, we have assembled an arsenal of command line tools. While these tools can solve many kinds of
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/TLCL/" class="post-category" target="_blank">
+                                    TLCL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">456.8k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/chenshuoke" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:henu_chenshuoke@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2604689299" class="tooltipped" data-tooltip="QQ联系我: 2604689299" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

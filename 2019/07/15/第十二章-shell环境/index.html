@@ -1,0 +1,1609 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="第十二章 shell环境, 孤狼的博客">
+    <meta name="description" content="As we discussed earlier, the shell maintains a body of information during our shell session called the environment. Data">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>第十二章 shell环境 | 孤狼的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+    <!-- 下面一句添加的 -->
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">孤狼的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">孤狼的博客</div>
+        <div class="logo-desc">
+            
+            从来没有真正的绝境，只有心灵的迷途
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/chenshuoke" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/chenshuoke" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        第十二章 shell环境
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/TLCL/" class="post-category" target="_blank">
+                                TLCL
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-07-15
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        7.6k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        35 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>As we discussed earlier, the shell maintains a body of information during our shell session called the environment. Data stored in the environment is used by programs to determine facts about our configuration. While most programs use configuration files to store program settings, some programs will also look for values stored in the environment to adjust their behavior. Knowing this, we can use the environment to customize our shell experience.</p>
+<p>恰如我们之前所讲的，shell 在 shell 会话中保存着大量信息。这些信息被称为 (shell 的) 环境。 程序获取环境中的数据（即环境变量）来了解本机的配置。虽然大多数程序用配置文件来存储程序设置， 一些程序会根据环境变量来调整他们的行为。知道了这些，我们就可以用环境变量来自定制 shell 体验。</p>
+<p>In this chapter, we will work with the following commands:</p>
+<ul>
+<li>printenv – Print part or all of the environment</li>
+<li>set – Set shell options</li>
+<li>export – Export environment to subsequently executed programs</li>
+<li>alias – Create an alias for a command</li>
+</ul>
+<p>在这一章，我们将用到以下命令：</p>
+<ul>
+<li>printenv - 打印部分或所有的环境变量</li>
+<li>set - 设置 shell 选项</li>
+<li>export — 导出环境变量，让随后执行的程序知道。</li>
+<li>alias - 创建命令别名</li>
+</ul>
+<h3 id="什么存储在环境变量中？"><a href="#什么存储在环境变量中？" class="headerlink" title="什么存储在环境变量中？"></a>什么存储在环境变量中？</h3><p>The shell stores two basic types of data in the environment, though, with bash, the types are largely indistinguishable. They are environment variables and shell variables. Shell variables are bits of data placed there by bash, and environment variables are basically everything else. In addition to variables, the shell also stores some programmatic data, namely aliases and shell functions. We covered aliases in Chapter 6, and shell functions (which are related to shell scripting) will be covered in Part 5.</p>
+<p>shell 在环境中存储了两种基本类型的数据，虽然 bash 几乎无法分辨这些数据的类型。 它们是环境变量和 shell 变量。Shell 变量是 bash 存放的少量数据。剩下的都是 环境变量。除了变量，shell 也存储了一些可编程的数据，即别名和 shell 函数。我们 已经在第六章讨论了别名，而 shell 函数（涉及到 shell 脚本）将会在本章第五部分叙述。</p>
+<h3 id="检查环境变量"><a href="#检查环境变量" class="headerlink" title="检查环境变量"></a>检查环境变量</h3><p>We can use either the set builtin in bash or the printenv program to see what is stored in the environment. The set command will show both the shell and environment variables, while printenv will only display the latter. Since the list of environment contents will be fairly long, it is best to pipe the output of either command into less:</p>
+<p>我们可以用 bash 的内建命令 set，或者是 printenv 程序来查看环境变量。set 命令可以 显示 shell 或环境变量，而 printenv 只是显示环境变量。因为环境变量列表比较长，最好 把每个命令的输出通过管道传递给 less 来阅读：</p>
+<pre><code>[me@linuxbox ~]$ printenv | less</code></pre><p>Doing so, we should get something that looks like this:</p>
+<p>执行以上命令之后，我们应该能得到类似以下内容：</p>
+<pre><code>KDE_MULTIHEAD=false
+SSH_AGENT_PID=6666
+HOSTNAME=linuxbox
+GPG_AGENT_INFO=/tmp/gpg-PdOt7g/S.gpg-agent:6689:1
+SHELL=/bin/bash
+TERM=xterm
+XDG_MENU_PREFIX=kde-
+HISTSIZE=1000
+XDG_SESSION_COOKIE=6d7b05c65846c3eaf3101b0046bd2b00-1208521990.996705
+-1177056199
+GTK2_RC_FILES=/etc/gtk-2.0/gtkrc:/home/me/.gtkrc-2.0:/home/me/.kde/sh
+are/config/gtkrc-2.0
+GTK_RC_FILES=/etc/gtk/gtkrc:/home/me/.gtkrc:/home/me/.kde/share/confi
+g/gtkrc
+GS_LIB=/home/me/.fonts
+WINDOWID=29360136
+QTDIR=/usr/lib/qt-3.3
+QTINC=/usr/lib/qt-3.3/include
+KDE_FULL_SESSION=true
+USER=me
+LS_COLORS=no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01
+:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:\*.cmd=00;32:\*.exe:</code></pre><p>What we see is a list of environment variables and their values. For example, we see a variable called USER, which contains the value “me”. The printenv command can also list the value of a specific variable:</p>
+<p>我们所看到的是环境变量及其数值的列表。例如，我们看到一个叫做 USER 的变量，这个变量值是 “me”。printenv 命令也能够列出特定变量的数值：</p>
+<pre><code>[me@linuxbox ~]$ printenv USER
+me</code></pre><p>The set command, when used without options or arguments, will display both the shell and environment variables, as well as any defined shell functions. Unlike printenv, its output is courteously sorted in alphabetical order:</p>
+<p>当使用没有带选项和参数的 set 命令时，shell 变量，环境变量，和定义的 shell 函数 都会被显示。不同于 printenv 命令，set 命令的输出很友好地按照首字母顺序排列：</p>
+<pre><code>[me@linuxbox ~]$ set | less</code></pre><p>It is also possible to view the contents of a variable using the echo command, like this:</p>
+<p>也可以通过 echo 命令来查看一个变量的内容，像这样：</p>
+<pre><code>[me@linuxbox ~]$ echo $HOME
+/home/me</code></pre><p>One element of the environment that neither set nor printenv displays is aliases. To see them, enter the alias command without arguments:</p>
+<p>别名无法通过使用 set 或 printenv 来查看。 用不带参数的 alias 来查看别名:</p>
+<pre><code>[me@linuxbox ~]$ alias
+alias l.=&#39;ls -d .* --color=tty&#39;
+alias ll=&#39;ls -l --color=tty&#39;
+alias ls=&#39;ls --color=tty&#39;
+alias vi=&#39;vim&#39;
+alias which=&#39;alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde&#39;</code></pre><h3 id="一些有趣的环境变量"><a href="#一些有趣的环境变量" class="headerlink" title="一些有趣的环境变量"></a>一些有趣的环境变量</h3><p>The environment contains quite a few variables, and though your environment may differ from the one presented here, you will likely see the following variables in your environment:</p>
+<p>shell 环境中包含相当多的变量。虽然你的 shell 环境可能与这里的不同，你可能会看到 以下的环境变量：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Variable</th>
+<th align="left">Contents</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">DISPLAY</td>
+<td align="left">The name of your display if you are running a graphical environment. Usually this is “:0”, meaning the first display generated by the X server.</td>
+</tr>
+<tr>
+<td align="left">EDITOR</td>
+<td align="left">The name of the program to be used for text editing.</td>
+</tr>
+<tr>
+<td align="left">SHELL</td>
+<td align="left">The name of your shell program.</td>
+</tr>
+<tr>
+<td align="left">HOME</td>
+<td align="left">The pathname of your home directory.</td>
+</tr>
+<tr>
+<td align="left">LANG</td>
+<td align="left">Defines the character set and collation order of your language.</td>
+</tr>
+<tr>
+<td align="left">OLD_PWD</td>
+<td align="left">The previous working directory.</td>
+</tr>
+<tr>
+<td align="left">PAGER</td>
+<td align="left">The name of the program to be used for paging output. This is often set to /usr/bin/less.</td>
+</tr>
+<tr>
+<td align="left">PATH</td>
+<td align="left">A colon-separated list of directories that are searched when you enter the name of a executable program.</td>
+</tr>
+<tr>
+<td align="left">PS1</td>
+<td align="left">Prompt String 1. This defines the contents of your shell prompt. As we will later see, this can be extensively customized.</td>
+</tr>
+<tr>
+<td align="left">PWD</td>
+<td align="left">The current working directory.</td>
+</tr>
+<tr>
+<td align="left">TERM</td>
+<td align="left">The name of your terminal type. Unix-like systems support many terminal protocols; this variable sets the protocol to be used with your terminal emulator.</td>
+</tr>
+<tr>
+<td align="left">TZ</td>
+<td align="left">Specifies your timezone. Most Unix-like systems maintain the computer’s internal clock in Coordinated Universal Time (UTC) and then displays the local time by applying an offset specified by this variable.</td>
+</tr>
+<tr>
+<td align="left">USER</td>
+<td align="left">Your user name.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">变量</th>
+<th align="left">内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">DISPLAY</td>
+<td align="left">如果你正在运行图形界面环境，那么这个变量就是你显示器的名字。通常，它是 “:0”， 意思是由 X 产生的第一个显示器。</td>
+</tr>
+<tr>
+<td align="left">EDITOR</td>
+<td align="left">文本编辑器的名字。</td>
+</tr>
+<tr>
+<td align="left">SHELL</td>
+<td align="left">shell 程序的名字。</td>
+</tr>
+<tr>
+<td align="left">HOME</td>
+<td align="left">用户家目录。</td>
+</tr>
+<tr>
+<td align="left">LANG</td>
+<td align="left">定义了字符集以及语言编码方式。</td>
+</tr>
+<tr>
+<td align="left">OLD_PWD</td>
+<td align="left">先前的工作目录。</td>
+</tr>
+<tr>
+<td align="left">PAGER</td>
+<td align="left">页输出程序的名字。这经常设置为/usr/bin/less。</td>
+</tr>
+<tr>
+<td align="left">PATH</td>
+<td align="left">由冒号分开的目录列表，当你输入可执行程序名后，会搜索这个目录列表。</td>
+</tr>
+<tr>
+<td align="left">PS1</td>
+<td align="left">Prompt String 1. 这个定义了你的 shell 提示符的内容。随后我们可以看到，这个变量 内容可以全面地定制。</td>
+</tr>
+<tr>
+<td align="left">PWD</td>
+<td align="left">当前工作目录。</td>
+</tr>
+<tr>
+<td align="left">TERM</td>
+<td align="left">终端类型名。类 Unix 的系统支持许多终端协议；这个变量设置你的终端仿真器所用的协议。</td>
+</tr>
+<tr>
+<td align="left">TZ</td>
+<td align="left">指定你所在的时区。大多数类 Unix 的系统按照协调时间时 (UTC) 来维护计算机内部的时钟 ，然后应用一个由这个变量指定的偏差来显示本地时间。</td>
+</tr>
+<tr>
+<td align="left">USER</td>
+<td align="left">你的用户名</td>
+</tr>
+</tbody></table>
+<p>Don’t worry if some of these values are missing. They vary by distribution.</p>
+<p>如果缺失了一些变量，不要担心，这些变量会因发行版本的不同而不同。</p>
+<h3 id="如何建立-shell-环境？"><a href="#如何建立-shell-环境？" class="headerlink" title="如何建立 shell 环境？"></a>如何建立 shell 环境？</h3><p>When we log on to the system, the bash program starts, and reads a series of configuration scripts called startup files, which define the default environment shared by all users. This is followed by more startup files in our home directory that define our personal environment. The exact sequence depends on the type of shell session being started. There are two kinds: a login shell session and a non-login shell session.</p>
+<p>当我们登录系统后， bash 程序启动，并且会读取一系列称为启动文件的配置脚本， 这些文件定义了默认的可供所有用户共享的 shell 环境。然后是读取更多位于我们自己家目录中 的启动文件，这些启动文件定义了用户个人的 shell 环境。确切的启动顺序依赖于要运行的 shell 会话 类型。有两种 shell 会话类型：一个是登录 shell 会话，另一个是非登录 shell 会话。</p>
+<p>A login shell session is one in which we are prompted for our user name and password; when we start a virtual console session, for example. A non-login shell session typically occurs when we launch a terminal session in the GUI.</p>
+<p>登录 shell 会话会在其中提示用户输入用户名和密码；例如，我们启动一个虚拟控制台会话。 非登录 shell 会话通常当我们在 GUI 下启动终端会话时出现。</p>
+<p>Login shells read one or more startup files as shown in Table 12-2:</p>
+<p>登录 shell 会读取一个或多个启动文件，正如表12－2所示：</p>
+<table>
+<thead>
+<tr>
+<th align="left">File</th>
+<th align="left">Contents</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">/etc/profile</td>
+<td align="left">A global configuration script that applies to all users.</td>
+</tr>
+<tr>
+<td align="left">~/.bash_profile</td>
+<td align="left">A user’s personal startup file. Can be used to extend or override settings in the global configuration script.</td>
+</tr>
+<tr>
+<td align="left">~/.bash_login</td>
+<td align="left">If ~/.bash_profile is not found, bash attempts to read this script.</td>
+</tr>
+<tr>
+<td align="left">~/.profile</td>
+<td align="left">If neither ~/.bash_profile nor ~/.bash_login is found, bash attempts to read this file. This is the default in Debian-based distributions, such as Ubuntu.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">文件</th>
+<th align="left">内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">/etc/profile</td>
+<td align="left">应用于所有用户的全局配置脚本。</td>
+</tr>
+<tr>
+<td align="left">~/.bash_profile</td>
+<td align="left">用户个人的启动文件。可以用来扩展或重写全局配置脚本中的设置。</td>
+</tr>
+<tr>
+<td align="left">~/.bash_login</td>
+<td align="left">如果文件 ~/.bash_profile 没有找到，bash 会尝试读取这个脚本。</td>
+</tr>
+<tr>
+<td align="left">~/.profile</td>
+<td align="left">如果文件 ~/.bash_profile 或文件 ~/.bash_login 都没有找到，bash 会试图读取这个文件。 这是基于 Debian 发行版的默认设置，比方说 Ubuntu。</td>
+</tr>
+</tbody></table>
+<p>Non-login shell sessions read the following startup files:</p>
+<p>非登录 shell 会话会读取以下启动文件：</p>
+<table>
+<thead>
+<tr>
+<th align="left">File</th>
+<th align="left">Contents</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">/etc/bash.bashrc</td>
+<td align="left">A global configuration script that applies to all users.</td>
+</tr>
+<tr>
+<td align="left">~/.bashrc</td>
+<td align="left">A user’s personal startup file. Can be used to extend or override settings in the global configuration script.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">文件</th>
+<th align="left">内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">/etc/bash.bashrc</td>
+<td align="left">应用于所有用户的全局配置文件。</td>
+</tr>
+<tr>
+<td align="left">~/.bashrc</td>
+<td align="left">用户个人的启动文件。可以用来扩展或重写全局配置脚本中的设置。</td>
+</tr>
+</tbody></table>
+<p>In addition to reading the startup files above, non-login shells also inherit the environment from their parent process, usually a login shell.</p>
+<p>除了读取以上启动文件之外，非登录 shell 会话也会继承它们父进程的环境设置，通常是一个登录 shell。</p>
+<p>Take a look at your system and see which of these startup files you have. Remember— since most of the filenames listed above start with a period (meaning that they are hidden), you will need to use the “-a” option when using ls.</p>
+<p>浏览一下你的系统，看一看系统中有哪些启动文件。记住－因为上面列出的大多数文件名都以圆点开头 （意味着它们是隐藏文件），你需要使用带”-a”选项的 ls 命令。</p>
+<p>The ~/.bashrc file is probably the most important startup file from the ordinary user’s point of view, since it is almost always read. Non-login shells read it by default and most startup files for login shells are written in such a way as to read the ~/.bashrc file as well.</p>
+<p>在普通用户看来，文件 ~/.bashrc 可能是最重要的启动文件，因为它几乎总是被读取。非登录 shell 默认 会读取它，并且大多数登录 shell 的启动文件会以能读取 ~/.bashrc 文件的方式来书写。</p>
+<h3 id="一个启动文件的内容"><a href="#一个启动文件的内容" class="headerlink" title="一个启动文件的内容"></a>一个启动文件的内容</h3><p>If we take a look inside a typical .bash_profile (taken from a CentOS 4 system), it looks something like this:</p>
+<p>如果我们看一下典型的 .bash_profile 文件（来自于 CentOS 4 系统），它看起来像这样：</p>
+<pre><code># .bash_profile
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+. ~/.bashrc
+fi
+# User specific environment and startup programs
+PATH=$PATH:$HOME/bin
+export PATH</code></pre><p>Lines that begin with a “#” are comments and are not read by the shell. These are there for human readability. The first interesting thing occurs on the fourth line, with the following code:</p>
+<p>以”#”开头的行是注释，shell 不会读取它们。它们在那里是为了方便人们阅读。第一件有趣的事情 发生在第四行，伴随着以下代码：</p>
+<pre><code>if [ -f ~/.bashrc ]; then
+. ~/.bashrc
+fi</code></pre><p>This is called an if compound command, which we will cover fully when we get to shell scripting in Part 5, but for now we will translate:</p>
+<p>这叫做一个 if 复合命令，我们将会在第五部分详细地介绍它，现在我们对它翻译一下：</p>
+<pre><code>If the file ~/.bashrc exists, then
+read the ~/.bashrc file.
+</code></pre><p>We can see that this bit of code is how a login shell gets the contents of .bashrc. The next thing in our startup file has to do with the PATH variable.</p>
+<p>我们可以看到这一小段代码就是一个登录 shell 得到 .bashrc 文件内容的方式。在我们启动文件中， 下一件有趣的事与 PATH 变量有关系。</p>
+<p>Ever wonder how the shell knows where to find commands when we enter them on the command line? For example, when we enter ls, the shell does not search the entire computer to find /bin/ls (the full pathname of the ls command), rather, it searches a list of directories that are contained in the PATH variable.</p>
+<p>是否曾经对 shell 怎样知道在哪里找到我们在命令行中输入的命令感到迷惑？例如，当我们输入 ls 后， shell 不会查找整个计算机系统来找到 /bin/ls（ls 命令的全路径名），相反，它查找一个目录列表， 这些目录包含在 PATH 变量中。</p>
+<p>The PATH variable is often (but not always, depending on the distribution) set by the /etc/profile startup file and with this code:</p>
+<p>PATH 变量经常（但不总是，依赖于发行版）在 /etc/profile 启动文件中设置，通过这些代码：</p>
+<pre><code>PATH=$PATH:$HOME/bin
+</code></pre><p>PATH is modified to add the directory $HOME/bin to the end of the list. This is an example of parameter expansion, which we touched on in Chapter 8. To demonstrate how this works, try the following:</p>
+<p>修改 PATH 变量，添加目录 $HOME/bin 到目录列表的末尾。这是一个参数展开的实例， 参数展开我们在第八章中提到过。为了说明这是怎样工作的，试试下面的例子：</p>
+<pre><code>[me@linuxbox ~]$ foo=&quot;This is some&quot;
+[me@linuxbox ~]$ echo $foo
+This is some
+[me@linuxbox ~]$ foo=&quot;$foo text.&quot;
+[me@linuxbox ~]$ echo $foo
+This is some text.
+</code></pre><p>Using this technique, we can append text to the end of a variable’s contents. By adding the string $HOME/bin to the end of the PATH variable’s contents, the directory $HOME/bin is added to the list of directories searched when a command is entered. This means that when we want to create a directory within our home directory for storing our own private programs, the shell is ready to accommodate us. All we have to do is call it bin, and we’re ready to go.</p>
+<p>使用这种技巧，我们可以把文本附加到一个变量值的末尾。通过添加字符串 $HOME/bin 到 PATH 变量值 的末尾，则目录 $HOME/bin 就添加到了命令搜索目录列表中。这意味着当我们想要在自己的家目录下， 创建一个目录来存储我们自己的私人程序时，shell 已经给我们准备好了。我们所要做的事就是 把创建的目录叫做 bin，赶快行动吧。</p>
+<p>Note: Many distributions provide this PATH setting by default. Some Debian based distributions, such as Ubuntu, test for the existence of the ~/bin directory at login, and dynamically add it to the PATH variable if the directory is found.</p>
+<p>注意：很多发行版默认地提供了这个 PATH 设置。一些基于 Debian 的发行版，例如 Ubuntu，在登录 的时候，会检测目录 ~/bin 是否存在，若找到目录则把它动态地加到 PATH 变量中。</p>
+<p>Lastly, we have:</p>
+<p>最后，有下面一行代码：</p>
+<pre><code>export PATH
+</code></pre><p>The export command tells the shell to make the contents of PATH available to child processes of this shell.</p>
+<p>这个 export 命令告诉 shell 让这个 shell 的子进程可以使用 PATH 变量的内容。</p>
+<h3 id="修改-shell-环境"><a href="#修改-shell-环境" class="headerlink" title="修改 shell 环境"></a>修改 shell 环境</h3><p>Since we know where the startup files are and what they contain, we can modify them to customize our environment.</p>
+<p>既然我们知道了启动文件所在的位置和它们所包含的内容，我们就可以修改它们来定制自己的 shell 环境。</p>
+<h3 id="我们应该修改哪个文件？"><a href="#我们应该修改哪个文件？" class="headerlink" title="我们应该修改哪个文件？"></a>我们应该修改哪个文件？</h3><p>As a general rule, to add directories to your PATH, or define additional environment variables, place those changes in .bash_profile (or equivalent, according to your distribution. For example, Ubuntu uses .profile.) For everything else, place the changes in .bashrc. Unless you are the system administrator and need to change the defaults for all users of the system, restrict your modifications to the files in your home directory. It is certainly possible to change the files in /etc such as profile, and in many cases it would be sensible to do so, but for now, let’s play it safe.</p>
+<p>按照通常的规则，添加目录到你的 PATH 变量或者是定义额外的环境变量，要把这些更改放置到 .bash_profile 文件中（或者其替代文件中，根据不同的发行版。例如，Ubuntu 使用 .profile 文件）。 对于其它的更改，要放到 .bashrc 文件中。除非你是系统管理员，需要为系统中的所有用户修改 默认设置，那么则限定你只能对自己家目录下的文件进行修改。当然，有可能会更改 /etc 目录中的 文件，比如说 profile 文件，而且在许多情况下，修改这些文件也是明智的，但是现在，我们要谨慎行事。</p>
+<h3 id="文本编辑器"><a href="#文本编辑器" class="headerlink" title="文本编辑器"></a>文本编辑器</h3><p>To edit (i.e., modify) the shell’s startup files, as well as most of the other configuration files on the system, we use a program called a text editor. A text editor is a program that is, in some ways, like a word processor in that it allows you to edit the words on the screen with a moving cursor. It differs from a word processor by only supporting pure text, and often contains features designed for writing programs. Text editors are the central tool used by software developers to write code, and by system administrators to manage the configuration files that control the system.</p>
+<p>为了编辑（例如，修改）shell 的启动文件以及系统中大多数其它配置文件，我们使用一个叫做文本编辑器的程序。 文本编辑器是一个在某些方面类似于文字处理器的程序，允许你使用移动光标在屏幕上编辑文字。 文本编辑器不同于文字处理器之处在于它只能支持纯文本，并且经常包含为便于写程序而设计的特性。 文本编辑器是软件开发人员用来写代码，以及系统管理员用来管理控制系统的配置文件的重要工具。</p>
+<p>There are a lot of different text editors available for Linux; your system probably has several installed. Why so many different ones? Probably because programmers like writing them, and since programmers use them extensively, they write editors to express their own desires as to how they should work.</p>
+<p>Linux 系统有许多不同类型的文本编辑器可用；你的系统中可能已经安装了几个。为什么会有这么 多种呢？可能因为程序员喜欢编写它们，又因为程序员们会频繁地使用它们，所以程序员编写编辑器让 它们按照程序员自己的愿望工作。</p>
+<p>Text editors fall into two basic categories: graphical and text based. GNOME and KDE both include some popular graphical editors. GNOME ships with an editor called gedit, which is usually called “Text Editor” in the GNOME menu. KDE usually ships with three which are (in order of increasing complexity) kedit, kwrite, and kate.</p>
+<p>文本编辑器分为两种基本类型：图形化的和基于文本的编辑器。GNOME 和 KDE 两者都包含一些流行的 图形化编辑器。GNOME 自带了一个叫做 gedit 的编辑器，这个编辑器通常在 GNOME 菜单中称为”文本编辑器”。 KDE 通常自带了三种编辑器，分别是（按照复杂度递增的顺序排列）kedit，kwrite，kate。</p>
+<p>There are many text-based editors. The popular ones you will encounter are nano, vi, and emacs. The nano editor is a simple, easy-to-use editor designed as a replacement for the pico editor supplied with the PINE email suite. The vi editor (on most Linux systems replaced by a program named vim, which is short for “Vi IMproved”) is the traditional editor for Unix-like systems. It will be the subject of our next chapter. The emacs editor was originally written by Richard Stallman. It is a gigantic, all-purpose, does-everything programming environment. While readily available, it is seldom installed on most Linux systems by default.</p>
+<p>有许多基于文本的编辑器。你将会遇到一些流行的编辑器，它们是 nano、vi和 emacs。 nano 编辑器 是一个简单易用的编辑器，用于替代随 PINE 邮件套件提供的 pico 编辑器。vi 编辑器 （在大多数 Linux 系统中被 vim 替代，vim 是 “Vi IMproved”的简写）是类 Unix 操作系统的传统编辑器。 vim 是我们下一章节的讨论对象。emacs 编辑器最初由 Richard Stallman 写成。它是一个庞大、多用途的， 可做任何事情的编程环境。虽然 emacs 很容易获取，但是大多数 Linux 系统很少默认安装它。</p>
+<h3 id="使用文本编辑器"><a href="#使用文本编辑器" class="headerlink" title="使用文本编辑器"></a>使用文本编辑器</h3><p>All text editors can be invoked from the command line by typing the name of the editor followed by the name of the file you want to edit. If the file does not already exist, the editor will assume that you want to create a new file. Here is an example using gedit:</p>
+<p>所有的文本编辑器都可以通过在命令行中输入编辑器的名字，加上你所想要编辑的文件来唤醒。如果所 输入的文件名不存在，编辑器则会假定你想要创建一个新文件。下面是一个使用 gedit 的例子：</p>
+<pre><code>[me@linuxbox ~]$ gedit some_file
+</code></pre><p>This command will start the gedit text editor and load the file named “some_file”, if it exists.</p>
+<p>这条命令将会启动 gedit 文本编辑器，同时加载名为 “some_file” 的文件，如果这个文件存在的话。</p>
+<p>All graphical text editors are pretty self-explanatory, so we won’t cover them here. Instead, we will concentrate on our first text-based text editor, nano. Let’s fire up nano and edit the .bashrc file. But before we do that, let’s practice some “safe computing.” Whenever we edit an important configuration file, it is always a good idea to create a backup copy of the file first. This protects us in case we mess the file up while editing. To create a backup of the .bashrc file, do this:</p>
+<p>所有的图形文本编辑器很大程度上都是不需要解释的，所以我们在这里不会介绍它们。反之，我们将集中精力在 我们第一个基于文本的文本编辑器，nano。让我们启动 nano，并且编辑文件 .bashrc。但是在我们这样 做之前，先练习一些”安全计算”。当我们编辑一个重要的配置文件时，首先创建一个这个文件的备份 总是一个不错的主意。这样能避免我们在编辑文件时弄乱文件。创建文件 .bashrc 的备份文件，这样做：</p>
+<pre><code>[me@linuxbox ~]$ cp .bashrc .bashrc.bak
+</code></pre><p>It doesn’t matter what you call the backup file, just pick an understandable name. The extensions “.bak”, “.sav”, “.old”, and “.orig” are all popular ways of indicating a backup file. Oh, and remember that cp will overwrite existing files silently.</p>
+<p>备份文件的名字无关紧要，只要选择一个容易理解的文件名。扩展名 “.bak”、”.sav”、 “.old”和 “.orig” 都是用来指示备份文件的流行方法。哦，记住 cp 命令会默默地覆盖已经存在的同名文件。</p>
+<p>Now that we have a backup file, we’ll start the editor:</p>
+<p>现在我们有了一个备份文件，我们启动 nano 编辑器吧：</p>
+<pre><code>[me@linuxbox ~]$ nano .bashrc
+</code></pre><p>Once nano starts, we’ll get a screen like this:</p>
+<p>一旦 nano 编辑器启动后，我们将会得到一个像下面一样的屏幕：</p>
+<pre><code>GNU nano 2.0.3
+....
+</code></pre><p>Note: If your system does not have nano installed, you may use a graphical editor instead.</p>
+<p>注意：如果你的系统中没有安装 nano 编辑器，你可以用一个图形化的编辑器代替。</p>
+<p>The screen consists of a header at the top, the text of the file being edited in the middle and a menu of commands at the bottom. Since nano was designed to replace the text editor supplied with an email client, it is rather short on editing features. The first command you should learn in any text editor is how to exit the program. In the case of nano, you type Ctrl-x to exit. This is indicated in the menu at the bottom of the screen. The notation “^X” means Ctrl-x. This is a common notation for control characters used by many programs.</p>
+<p>这个屏幕由上面的标头，中间正在编辑的文件文本和下面的命令菜单组成。因为设计 nano 是为了 代替由电子邮件客户端提供的编辑器的，所以它相当缺乏编辑特性。在任一款编辑器中，你应该 学习的第一个命令是怎样退出程序。以 nano 为例，你输入 Ctrl-x 来退出 nano。在屏幕底层的菜单中 说明了这个命令。”^X” 表示法意思是 Ctrl-x。这是控制字符的常见表示法，许多程序都使用它。</p>
+<p>The second command we need to know is how to save our work. With nano it’s Ctrl- o. With this knowledge under our belts, we’re ready to do some editing. Using the down arrow key and / or the PageDown key, move the cursor to the end of the file, then add the following lines to the .bashrc file:</p>
+<p>第二个我们需要知道的命令是怎样保存我们的劳动成果。对于 nano 来说是 Ctrl-o。既然我们 已经获得了这些知识，接下来我们准备做些编辑工作。使用下箭头按键和 / 或下翻页按键，移动 鼠标到文件的最后一行，然后添加以下几行到文件 .bashrc 中：</p>
+<pre><code>umask 0002
+export HISTCONTROL=ignoredups
+export HISTSIZE=1000
+alias l.=&#39;ls -d .* --color=auto&#39;
+alias ll=&#39;ls -l --color=auto&#39;
+</code></pre><p>Note: Your distribution may already include some of these, but duplicates won’t hurt anything.</p>
+<p>注意：你的发行版在这之前可能已经包含其中的一些行，出现重复的代码不会有其他影响。</p>
+<p>Here is the meaning of our additions:</p>
+<p>下表是所添加行的意义：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Line</th>
+<th align="left">Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">umask 0002</td>
+<td align="left">Sets the umask to solve the problem with shared directories</td>
+</tr>
+<tr>
+<td align="left">export HISTCONTROL=ignoredups</td>
+<td align="left">Causes the shell’s history recording feature to ignore a command if the same command was just recorded.</td>
+</tr>
+<tr>
+<td align="left">export HISTSIZE=1000</td>
+<td align="left">Increases the size of the command history from the default of 500 lines to 1000 lines.</td>
+</tr>
+<tr>
+<td align="left">alias l.=’ls -d .* –color=auto’</td>
+<td align="left">Creates a new command called “l.” which displays all directory entries that begin with a dot.</td>
+</tr>
+<tr>
+<td align="left">alias ll=’ls -l –color=auto’</td>
+<td align="left">Creates a new command called “ll” which displays a long format directory listing.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">文本行</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">umask 0002</td>
+<td align="left">设置掩码来解决共享目录的问题。</td>
+</tr>
+<tr>
+<td align="left">export HISTCONTROL=ignoredups</td>
+<td align="left">使得 shell 的历史记录功能忽略一个命令，如果相同的命令已被记录。</td>
+</tr>
+<tr>
+<td align="left">export HISTSIZE=1000</td>
+<td align="left">增加命令历史的大小，从默认的 500 行扩大到 1000 行。</td>
+</tr>
+<tr>
+<td align="left">alias l.=’ls -d .* –color=auto’</td>
+<td align="left">创建一个新命令，叫做’l.’，这个命令会显示所有以点开头的目录项。</td>
+</tr>
+<tr>
+<td align="left">alias ll=’ls -l –color=auto’</td>
+<td align="left">创建一个叫做’ll’的命令，这个命令会显示长格式目录列表。</td>
+</tr>
+</tbody></table>
+<p>As we can see, many of our additions are not intuitively obvious, so it would be a good idea to add some comments to our .bashrc file to help explain things to the humans. Using the editor, change our additions to look like this:</p>
+<p>正如我们所看到的，我们添加的许多代码的意思直觉上并不是明显的，所以添加注释到我们的文件 .bashrc 中是 一个好主意，可以帮助人们理解。使用编辑器，更改我们添加的代码，让它们看起来像这样：</p>
+<pre><code># Change umask to make directory sharing easier
+umask 0002
+ # Ignore duplicates in command history and increase
+ # history size to 1000 lines
+export HISTCONTROL=ignoredups
+export HISTSIZE=1000
+ # Add some helpful aliases
+alias l.=&#39;ls -d .* --color=auto&#39;
+alias ll=&#39;ls -l --color=auto&#39;
+</code></pre><p>Ah, much better! With our changes complete, type Ctrl-o to save our modified .bashrc file, and Ctrl-x to exit nano.</p>
+<p>啊，看起来好多了! 当我们完成修改后，输入 Ctrl-o 来保存我们修改的 .bashrc 文件，输入 Ctrl-x 退出 nano。</p>
+<blockquote>
+<p>Why Comments Are Important</p>
+<p><em>为什么注释很重要？</em></p>
+<p>Whenever you modify configuration files it’s a good idea to add some comments to document your changes. Sure, you will remember what you changed tomorrow, but what about six months from now? Do yourself a favor and add some comments. While you’re at it, it’s not a bad idea to keep a log of what changes you make.</p>
+<p>不管什么时候你修改配置文件时，给你所做的更改加上注释都是一个好主意。的确，明天你会 记得你修改了的内容，但是六个月之后会怎样呢？帮自己一个忙，加上一些注释吧。当你意识 到这一点后，对你所做的修改做个日志是个不错的主意。</p>
+<p>Shell scripts and bash startup files use a “#” symbol to begin a comment. Other configuration files may use other symbols. Most configuration files will have comments. Use them as a guide.</p>
+<p>Shell 脚本和 bash 启动文件都使用 “#” 符号来开始注释。其它配置文件可能使用其它的符号。 大多数配置文件都有注释。把它们作为指南。</p>
+<p>You will often see lines in configuration files that are commented out to prevent them from being used by the affected program. This is done to give the reader suggestions for possible configuration choices or examples of correct configuration syntax. For example, the .bashrc file of Ubuntu 8.04 contains these lines:</p>
+<p>你会经常看到配置文件中的一些行被注释掉，以此防止它们被受影响的程序使用。这样做 是为了给读者在可能的配置选项方面一些建议，或者给出正确的配置语法实例。例如，Ubuntu 8.04 中的 .bashrc 文件包含这些行：</p>
+<pre><code># some more ls aliases
+#alias ll=&#39;ls -l&#39;
+#alias la=&#39;ls -A&#39;
+#alias l=&#39;ls -CF&#39;
+</code></pre><p>The last three lines are valid alias definitions that have been commented out. If you remove the leading “#” symbols from these three lines, a technique called uncommenting, you will activate the aliases. Conversely, if you add a “#” symbol to the beginning of a line, you can deactivate a configuration line while preserving the information it contains.</p>
+<p>最后三行是有效的被注释掉的别名定义。如果你删除这三行开头的 “#” 符号，此技术程称为 uncommenting (取消注释)，这样你就会激活这些别名。相反地，如果你在一行的开头加上 “#” 符号， 你可以注销掉这一行，但会保留它所包含的信息。</p>
+</blockquote>
+<h3 id="激活我们的修改"><a href="#激活我们的修改" class="headerlink" title="激活我们的修改"></a>激活我们的修改</h3><p>The changes we have made to our .bashrc will not take affect until we close our terminal session and start a new one, since the .bashrc file is only read at the beginning of a session. However, we can force bash to re-read the modified .bashrc file with the following command:</p>
+<p>我们对于文件 .bashrc 的修改不会生效，直到我们关闭终端会话，再重新启动一个新的会话， 因为 .bashrc 文件只是在刚开始启动终端会话时读取。然而，我们可以强迫 bash 重新读取修改过的 .bashrc 文件，使用下面的命令：</p>
+<pre><code>[me@linuxbox ~]$ source .bashrc
+</code></pre><p>After doing this, we should be able to see the effect of our changes. Try out one of the new aliases:</p>
+<p>运行上面命令之后，我们就应该能够看到所做修改的效果了。试试其中一个新的别名：</p>
+<pre><code>[me@linuxbox ~]$ ll
+</code></pre><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>In this chapter we learned an essential skill—editing configuration files with a text editor. Moving forward, as we read man pages for commands, take note of the environment variables that commands support. There may be a gem or two. In later chapters, we will learn about shell functions, a powerful feature that you can also include in the bash startup files to add to your arsenal of custom commands.</p>
+<p>在这一章中，我们学到了用文本编辑器来编辑配置文件的基本技巧。随着学习的继续，当我们 浏览命令的手册页时，可以记录下该命令所支持的环境变量。这样或许我们能够收获一到两个特别好用的宝贝命令。 在随后的章节里面，我们将会学习 shell 函数，一个很强大的特性，你可以把它包含在 bash 启动文件里面， 以此来添加你自定制的命令宝库。</p>
+<h3 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h3><p>The INVOCATION section of the bash man page covers the bash startup files in gory detail.</p>
+<p>bash 手册页的 INVOCATION 部分非常详细地讨论了 bash 启动文件。</p>
+
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'brA0u8dhiFmWzBQJ5YDMevuw-gzGzoHsz',
+        appKey: 'InzuBbqaqOss16gJu1jiKE7F',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/07/15/第十三章-vi简介/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="第十三章 vi简介">
+                        
+                        <span class="card-title">第十三章 vi简介</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            There is an old joke about a visitor to New York City asking a passerby for directions to the city’s famous classical mu
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/TLCL/" class="post-category" target="_blank">
+                                    TLCL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/07/15/git-简易指南/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="git-简易指南">
+                        
+                        <span class="card-title">git-简易指南</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            助你开始使用 git 的简易指南，木有高深内容，;)。
+
+安装下载 git OSX 版
+下载 git Windows 版
+下载 git Linux 版
+创建新仓库创建新文件夹，打开，然后执行git init以创建新的 git 仓库。
+检出仓
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Git/" class="post-category" target="_blank">
+                                    Git
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Git/" target="_blank">
+                        <span class="chip bg-color">Git</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">456.8k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/chenshuoke" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:henu_chenshuoke@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2604689299" class="tooltipped" data-tooltip="QQ联系我: 2604689299" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
