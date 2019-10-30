@@ -24,7 +24,7 @@ https://blog.chenshuoke.top
 
 主要记录学习经历，欢迎访问
 
-## 个人图床
+## 个人图床(现已弃用)
 
 https://img.chenshuoke.top
 
